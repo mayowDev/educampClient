@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Maax';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Maax'), url('../assets/fonts/Maax/Maax.otf') format('opentype');
+}
+
+/* Medium */
+@font-face {
+    font-family: 'Maax';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Maax-Medium'), url('../assets/fonts/Maax/Maax-Medium.otf') format('opentype');
+}
+
+/* Regular */
+@font-face {
+    font-family: 'Maax';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Maax-Regular'), url('../assets/fonts/Maax/Maax-RegularMono.otf') format('opentype');
+}
+
+
+@font-face{
+    font-family: 'TT Hoves';
+    src: url('TTHoves-Regular.eot');
+    src: local('TT Hoves Regular'), local('TTHoves-Regular'),
+    url('TTHoves-Regular.eot?#iefix') format('embedded-opentype'),
+    url('TTHoves-Regular.woff2') format('woff2'),
+    url('TTHoves-Regular.woff') format('woff'),
+    url('TTHoves-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

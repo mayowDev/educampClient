@@ -1,0 +1,222 @@
+// @import "../../styles/global.scss";
+
+$lightGray: rgb(127 127 127);
+$gray: #828282;
+$black: #1A1A1A;
+$white: #ffffff;
+$red: #FF0202;
+
+
+.h1{
+  font-family: "TT-Hoves", serif;
+  font-size: 40px;
+  line-height: 42px;
+  font-weight: normal;
+  color: $black;
+  &.dark{
+    color: $white;
+  }
+  &.bold{
+    font-family: 'TT-Hoves', serif !important;
+  }
+  &.big{
+    font-weight: 100 !important;
+    font-style: normal;
+    font-size: 60px;
+    line-height: 66px;
+    letter-spacing: 2px;
+  }
+}
+
+
+.h2{
+  font-family: "TT-Hoves", serif;
+  font-size: 28px;
+  line-height: 34px;
+  font-style: normal;
+  font-weight: normal;
+  color: $black;
+  &.dark{
+    color: $white;
+  }
+  &.bold{
+    font-family: 'TT-Hoves', serif;
+    font-weight: 100 !important;
+  }
+}
+
+.h3{
+  font-family: "TT-Hoves", serif;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: normal;
+  color: $black;
+  &.dark{
+    color: $white;
+  }
+}
+
+.h4{
+  font-family: "TT-Hoves", serif;
+  font-size: 14px;
+  line-height: 27px;
+  font-weight: normal;
+  color: $black;
+  &.dark{
+    color: $white;
+  }
+}
+
+.detail{
+  font-family: "TT-Hoves", serif;
+  font-size: 16px;
+  line-height: 150.1%;
+  color: $gray;
+  &.dark{
+    color: $white;
+  }
+}
+
+.subtitle{
+  font-family: "Maax-Bold", serif;
+  font-weight: 100;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.366667px;
+  text-transform: uppercase;
+  color: $lightGray;
+
+  a{
+    color: $lightGray;
+  }
+  &.dark{
+    color: $white;
+  }
+  &.nav-subtitle{
+    font-size: 14px;
+  }
+}
+
+.p1{
+  font-family: "Maax", serif;
+  font-size: 16px;
+  line-height: 26px;
+  color: $black;
+  &.dark{
+    color: $white;
+  }
+  &.error{
+    color: $red;
+  }
+  &.bold{
+    font-family: "Maax-Bold", serif;
+  }
+  &.italic{
+    font-style: italic;
+  }
+  &.underline{
+    text-decoration: underline;
+  }
+}
+
+.draft-text{
+  word-break: break-word;
+  &.h1, &.h2, &.h3{
+    margin: 18.72px 0;
+  }
+  &.h1x2{
+    font-size: 80px;
+    line-height: 84px;
+    min-height: 84px;
+  }
+  &.h1{
+    min-height: 41.78px;
+  }
+  &.h2{
+    min-height: 32.84px;
+  }
+  &.h3{
+    min-height: 25.373px;
+  }
+  &.p1{
+    min-height: 25.37px;
+  }
+  &.bold{
+    font-family: "Maax-Bold", serif !important;
+  }
+  &.italic{
+    font-style: italic;
+  }
+  &.underline{
+    text-decoration: underline;
+  }
+}
+
+.p2{
+  font-family: "Maax", serif;
+  font-size: 14px;
+  line-height: 22px;
+  color: $black;
+  &.dark{
+    color: $white;
+  }
+  &.error{
+    color: $red;
+  }
+  &.gray{
+    color: #828282;
+  }
+}
+
+.p3{
+  font-family: "Maax", serif;
+  font-size: 14px;
+  line-height: 22px;
+  word-spacing: 7px;
+  color: $gray;
+  width: 336px;
+}
+
+.tooltip{
+  font-family: "Maax-Medium", serif;
+  font-size: 12px;
+  line-height: 20px;
+  //color: $black;
+  color: $white;
+
+  &.dark{
+    color: $white;
+  }
+}
+
+.navigation1{
+  font-family: "Maax-Medium", serif;
+  font-size: 16px;
+  line-height: 17px;
+  color: $black;
+  &.dark{
+    color: $white;
+  }
+}
+
+.navigation2{
+  font-family: "Maax-Medium", serif;
+  font-size: 14px;
+  line-height: 18px;
+  color: $black;
+  &.dark{
+    color: $white;
+  }
+}
+
+.label{
+  //font-family: "Maax-Bold", serif;
+  //font-size: 10px;
+  //line-height: 10px;
+  //letter-spacing: 0.444444px;
+  //color: $black;
+  //text-transform: uppercase;
+  //&.dark{
+  //  color: $white;
+  //}
+}

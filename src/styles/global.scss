@@ -1,0 +1,346 @@
+@import "./variables";
+@import "../assets/fonts/fonts.css";
+
+html{
+    //scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+
+body {
+    margin: 0;
+    &.overflow-hidden {
+        overflow: hidden;
+    }
+}
+
+
+.flex-box{
+    display: flex;
+    & >:first-child {
+        flex: 1;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+video {
+    outline: none;
+}
+
+.body-height{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    z-index: -111;
+    pointer-events: none;
+}
+
+.text-white{
+    color: $white;
+    transition: all 0.4s ease-in-out;
+}
+
+.text-black{
+    color: $black;
+    transition: all 0.4s ease-in-out;
+}
+
+.bg-white {
+    transition: all 0.4s ease-in-out;
+    background-color: $white;
+}
+
+.bg-black{
+    transition: all 0.4s ease-in-out;
+    background-color: $black;
+}
+
+.spinner-container{
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.home-footer {
+    padding-top: 120px !important;
+    margin-top: 0 !important;
+    background-color: $white;
+}
+
+.container {
+    max-width: 1216px;
+    margin: 0 auto;
+    //padding-top: 60px;
+    width: 100%;
+    box-sizing: border-box;
+
+    &.p-top-0{
+        padding-top: 0;
+    }
+
+    &.big{
+        max-width: 1500px;
+    }
+
+    &.conversation{
+        box-sizing: border-box !important;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        //max-width: ;
+    }
+    @media screen and (max-width: 1366px) {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    @media (max-width: 1199px) {
+        max-width: 877px;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 51px;
+        .h1.bold {
+            font-size: 50px;
+        }
+        .details-card-flex {
+            flex-direction: column;
+            .img {
+                width: auto;
+                height: auto;
+            }
+            .p1 {
+                margin-top: 40px;
+            }
+        }
+    }
+    @media(max-width:995px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    @media(max-width:890px) {
+            max-width: 827px;
+            margin: 0 auto;
+    }
+
+    @media(max-width:850px) {
+            max-width: 777px;
+            margin: 0 auto;
+    }
+
+    @media (max-width: 780px) {
+        max-width: 592px;
+        padding-left: 0;
+        padding-right: 0;
+        .h1.bold {
+            font-size: 47px;
+        }
+    }
+    @media (max-width: 687px) {
+        max-width: 560px;
+        .h1.bold {
+            font-size: 45px;
+        }
+    }
+    @media (max-width: 575px) {
+        max-width: 424px;
+        .h1.bold {
+            font-size: 43px;
+        }
+        .details-card-flex {
+            .p1 {
+                margin-top: 30px;
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+    }
+    @media (max-width: 510px) {
+        max-width: 100% !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        &.footer {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+            margin-left: 16px !important;
+            margin-right: 16px !important;
+            margin-top: 70px !important;
+        }
+    }
+    @media (max-width: 425px) {
+        padding-top: 51px;
+        .h1.bold {
+            font-size: 40px;
+        }
+    }
+}
+
+.cursor-disabled {
+    cursor: no-drop;
+}
+.vl{
+    display: inline;
+    border: 0;
+    border-right: 3px solid;
+    border-left: 0;
+}
+
+#root{
+    transition: all 0.4s ease-in-out;
+}
+
+
+
+.form{
+    padding-top: 90px;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+
+    .heading{
+        font-size: $forms-heading-font-size;
+        line-height: $forms-heading-line-height;
+        margin-bottom: 27px;
+        color: $white;
+    }
+    .paragraph{
+        color: $white;
+        font-size: 12px;
+        line-height: 16px;
+        font-family: "Maax-Medium";
+    }
+
+    &__container{
+        padding-bottom: 90px;
+    }
+
+}
+
+.action-icons {
+    display: grid;
+    grid-gap: 17px;
+    align-items: center;
+    transition: all 0.23s ease-in-out;
+    grid-template-columns: auto auto;
+}
+
+
+
+
+body {
+    &.scrollbar-visible {
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            display: block !important;
+        }
+    }
+    &.scrollbar-hidden {
+        overflow-y: hidden;
+        &::-webkit-scrollbar {
+            display: none !important;
+            ;
+        }
+    }
+}
+
+#root {
+    &.full {
+        height: 100% !important;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+body {
+    &.full {
+        height: 100% !important;
+        background: $black !important;
+        //overflow: hidden;
+    }
+}
+
+html {
+    &.full {
+        height: 100% !important;
+    }
+}
+
+.fade-in {
+    //use this class for fade up
+    animation: fadeIn 3s ease forwards;
+    //opacity: 0;
+    //margin-bottom: -120px;
+}
+.fade-up {
+    //use this class for fade up
+    animation: fadeUp 2.3s ease forwards;
+    //opacity: 0;
+    //margin-bottom: -120px;
+    &.exhibitions-card{
+        animation: fadeUp 0.75s ease forwards;
+    }
+}
+.fade-out { //use this class for fade up
+  opacity: 0;
+    //transform: translateY(120px);
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(120px);
+    }
+    5%{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@import "../components/AuthForm/style.scss";
+@import "../components/Button/style.scss";
+@import "../components/Card/style.scss";
+@import "../components/Carousel/style.scss";
+@import "../components/CourseList/style.scss";
+@import "../components/Course/style.scss";
+@import "../components/CurateSidebarDark/style.scss";
+@import "../components/Dropdown/style.scss";
+@import "../components/CourseCard/style.scss";
+@import "../components/Footer/style.scss";
+@import "../components/Header/style.scss";
+@import "../components/Input/style.scss";
+@import "../components/InputField/style.scss";
+@import "../components/Search/style.scss";
+@import "../components/Spinner/style.scss";
+@import "../components/Typography/style.scss";
+@import "../components/ToggleButton/style.scss";
+@import "../components/BootcampLoading/style.scss";
+@import "../components/IconBtn/style.scss";
+
+@import "../containers/Bootcamps/style.scss";
+@import "../containers/Bootcamps/Details/style.scss";
+@import "../containers/Favourites/style.scss";
+@import "../containers/ForgotPassword/style.scss";
+@import "../containers/Coureses/style.scss";
+@import "../containers/Coureses/Details/style.scss";
+@import "../containers/ResetPassword/style.scss";
+@import "../containers/Login/style.scss";
+@import "../containers/SignUp/style.scss";
+@import "../containers/Verify/style.scss";

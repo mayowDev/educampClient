@@ -1,0 +1,72 @@
+@import "../../styles/variables.scss";
+
+.icon-btn{
+  width: 24px;
+  height: 24px;
+  display: flex;
+  flex-shrink: 0;
+  background: #1A1A1A;
+  border: 0;
+  border-radius: 50%;
+  outline: 0;
+  cursor: pointer;
+  min-width: 24px;
+  min-height: 24px;
+  transition: all 0.23s ease-in-out;
+  position: relative;
+
+  img {
+    margin: auto;
+    &.cross {
+      width: 8px;
+      height: 8px;
+    }
+    &.info {
+      width: 4px;
+      height: 10px;
+    }
+    &.arrow {
+      width: 6px;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    &.menu {
+      width: 10px;
+    }
+  }
+
+  &--secondary{
+    background: $hover-gray;
+  }
+
+  &:hover{
+    background: $hover-gray;
+  }
+  @media screen and (max-width: 768px){
+    &:hover{
+      background: $black!important;
+    }
+  }
+  &--no-hover{
+    background: $black;
+    &:hover{
+      background: $black;
+    }
+  }
+
+  &--favourite{
+    background: $yellow;
+    &:hover{
+      background: $yellow;
+    }
+  }
+
+  //&--bright{
+  //  background: #FFFFFF;
+  //  img{
+  //    fill: #1A1A1A !important;
+  //  }
+  //}
+}

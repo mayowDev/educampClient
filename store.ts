@@ -1,0 +1,1 @@
+//check the ./src/redux directory for store configuration

@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'Maax';
+    font-style: normal;
+    src: local('Maax'), url('./Maax/Maax.otf') format('opentype');
+    font-display: swap;
+}
+
+/* Medium */
+@font-face {
+    font-family: 'Maax-Medium';
+    font-style: normal;
+    src: local('Maax-Medium'), url('./Maax/Maax-Medium.otf') format('opentype');
+    font-display: swap;
+}
+
+/* Regular */
+@font-face {
+    font-family: 'Maax-Regular';
+    font-style: normal;
+    src: local('Maax-Regular'), url('./Maax/Maax-RegularMono.otf') format('opentype');
+    font-display: swap;
+}
+
+/* Bold */
+@font-face {
+    font-family: 'Maax-Bold';
+    font-style: normal;
+    src: local('Maax-Bold'), url('./Maax/Maax-Bold.otf') format('opentype');
+    font-display: swap;
+}
+
+/* ======= Charter ====== */
+
+/* Regular */
+@font-face {
+    font-family: 'Charter-Regular';
+    font-style: normal;
+    src: local('Charter-Regular'), url('./Charter/Charter-Regular.otf') format('opentype');
+    font-display: swap;
+}
+
+/* Bold */
+@font-face {
+    font-family: 'Charter-Bold';
+    font-style: normal;
+    src: local('Charter-Bold'), url('./Charter/Charter-Bold.otf') format('opentype');
+    font-display: swap;
+}
+
+/* Italic */
+@font-face {
+    font-family: 'Charter-Italic';
+    font-style: normal;
+    src: local('Charter-Italic'), url('./Charter/Charter-Italic.otf') format('opentype');
+    font-display: swap;
+}
+
+/* CharterITC-Regu */
+@font-face {
+    font-family: 'CharterITC-Regu';
+    font-style: normal;
+    src: local('CharterITC-Regu'), url('./Charter/CharterITC-Regu.otf') format('opentype');
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'TT-Hoves';
+    src: url('./TTHover/TT-Hoves-Light.otf');
+    /*, url('./TTHover/TTHoves-Regular.eot?#iefix') format('embedded-opentype'),*/
+    /*url('./TTHover/TTHoves-Regular.woff2') format('woff2'),*/
+    /*url('./TTHover/TTHoves-Regular.woff') format('woff'),*/
+    /*url('./TTHover/TTHoves-Regular.ttf') format('truetype');*/
+    /*src: local('TT Hoves Italic'), local('TTHoves-Italic'),*/
+    /*url('./TTHover/TTHoves-Regular.eot?#iefix') format('embedded-opentype'),*/
+    /*url('./TTHover/TTHoves-Regular.woff2') format('woff2'),*/
+    /*url('./TTHover/TTHoves-Regular.woff') format('woff'),*/
+    /*url('./TTHover/TTHoves-Regular.ttf') format('truetype');*/
+    font-weight: normal;
+    /*font-style: italic;*/
+}

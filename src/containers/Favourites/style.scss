@@ -1,0 +1,35 @@
+@import '../../styles/variables.scss';
+
+.favourites-wrapper{
+   .action-icons {
+     .button {
+       margin-top: 0 !important;
+     }
+   }
+  .card--horizontal{
+    border:0;
+    padding: 0;
+    grid-gap: 64px;
+    .h2{
+      font-family: "TT-Hoves", serif;
+      font-size: 18px;
+      line-height: 26px;
+      padding-bottom: 4px;
+    }
+    .p1{
+      color: #828282;
+    }
+    .p3{
+      max-width: 168px;
+      margin-top: 16px;
+    }
+  }
+  .grid{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    grid-row-gap: 96px;
+    padding-top: 116px;
+    border-top: 1px solid $black;
+  }
+}

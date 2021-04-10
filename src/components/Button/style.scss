@@ -1,0 +1,127 @@
+$white: #FFFFFF;
+$red: #FF0202;
+$black: #1A1A1A;
+$blackHover: #212121;
+$blackClick: #424242;
+$gray: #E5E5E5;
+$grayHover: #F8F6F6;
+$hover-gray: #DADADA;
+$dark-gray: #8d8d8d;
+
+.button {
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+  border: 0;
+  border-radius: 100px !important;
+  outline: none;
+  cursor: pointer;
+  height: 24px;
+  padding: 0 15px;
+  flex-shrink: 0;
+  font-size: 12px;
+  line-height: 12px;
+  font-family: 'Maax-Medium', serif;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: $black;
+  color: $white;
+  border: 1px solid transparent;
+  transition: all 0.23s ease-in-out;
+  max-width: max-content;
+
+  & > .icon-btn{
+    width: auto;
+    min-width: auto;
+    height: auto;
+    min-height: auto;
+    margin-right: 5px;
+    margin-top: -1px;
+    margin-left: -4px;
+    background: transparent;
+  }
+
+  &.secondary{
+    height: 64px;
+    padding: 0 32px;
+    border-radius: 0 !important;
+  }
+
+  &__dark {
+      background-color: $hover-gray !important;
+      color: $black !important;
+  }
+
+  &__bright {
+      background-color: $black;
+      color: $white;
+      flex-shrink: 0;
+      max-width: max-content;
+      width: max-content;
+      svg{
+        margin-right: 8px;
+        display: block;
+        //transform: translateY(-1px);
+        margin-top: -1px;
+        flex-shrink: 0;
+      }
+      svg path{
+        fill: $white;
+      }
+      span{
+        flex-shrink: 0;
+        transform: translateY(1px);
+      }
+      &:hover{
+        background-color: $hover-gray !important;
+        color: $black !important;
+        svg path{
+          fill: $black;
+        }
+      }
+  }
+
+  &.hidden{
+    display: none;
+  }
+
+  &__icon-animate {
+    & > svg{
+      animation: backForth 1s linear infinite;
+      transform: translateX(-10px);
+
+      @keyframes backForth {
+        from {
+          transform: translateX(-4px);
+        }
+        50%{
+          transform: translateX(4px);
+        }
+        to{
+          transform: translateX(-4px);
+        }
+      }
+    }
+  }
+}
+
+  // .button{
+  //   font-size: 12px;
+  //   line-height: 12px;
+  //   height: 36px;
+  //   padding: 0 25px;
+  //   width: max-content;
+  //   cursor: pointer;
+  // }
+
+  // .zoom{
+    //.button{
+    //  font-size: 15px;
+    //  line-height: 15px;
+    //  height: 56px;
+    //  padding: 0 30px;
+    //  width: max-content;
+    //  cursor: pointer;
+    //}
+  // }
