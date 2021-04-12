@@ -1,6 +1,6 @@
 import React from 'react'
-
-const BootcampDetails = () => {
+import {IBootcampDetailsProps} from './types'
+const BootcampDetails: React.FC<IBootcampDetailsProps> = () => {
     return (
         <div>
             bootcamps details

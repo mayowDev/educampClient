@@ -1,9 +1,9 @@
 import {ofType} from 'redux-observable';
-import {flatMap, map, catchError, merge} from 'rxjs/operators';
+import {flatMap, map, catchError, } from 'rxjs/operators';
 import {GET_FAVOURITES_INIT} from './actionTypes'
-import * as API from "../../../services/api"
+import * as API from "../../../service/api"
 import {fetchFavouritesSuccess} from './actions';
-import {IResponseType} from "../../Galleries/types";
+import {IResponseType} from "../../Favourites/types";
 
 const fetchFavourites = action$ =>
     action$.pipe(

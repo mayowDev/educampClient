@@ -17,14 +17,12 @@ import ForgotPassword from '../ForgotPassword';
 const ProfilePage = lazy(() => import ("../Profile"))
 /** Bootcamps components */
 const BootcampsPage = lazy(() => import ("../Bootcamps"));
-import BootcampDetails from "../Bootcamps/Details";
+const BootcampDetails =  lazy(() => import ("../Bootcamps/Details"));
 /** Courses components */
-import CoursesPage from "../Courses";
-import CourseDetails from "../Courses/Details";
-import ArtistDetails from "../ArtistDetails";
+const CoursesPage = lazy(() => import ( "../Courses"));
+const CourseDetails = lazy(() => import ("../Courses/Details"));
 
 const HomePage = lazy(() => import ("../Home"));
-
 
 
 const RenderRoutes = React.memo(({isLoggedIn, redirectPath}: ITypeRenderRoute) => {
@@ -69,22 +67,22 @@ const RenderRoutes = React.memo(({isLoggedIn, redirectPath}: ITypeRenderRoute) =
     )
 });
 
-const Root = ({isLoggedIn, profile, redirectPath, isConversation, vH, isFirstLoad, artworkId, setArtworkId}) => {
+const Root = ({isLoggedIn, redirectPath, isConversation,  isFirstLoad, profile, bootcampId, setBootcampId}) => {
     const history = useHistory();
-    const [isHeader, setHeader] = useState(null);
-    const [isHome, setHome] = useState(null);
-    const [isProfile, setProfile] = useState(null);
+    const [isHeader, setHeader] = useState<boolean>(false);
+    const [isHome, setHome] = useState<boolean>(false);
+    const [isProfile, setProfile] = useState<boolean>(false);
     const [routeName, setRouteName] = useState(location.pathname);
-    const [isAuthenticationPage, setAuthenticatingPage] = useState(null);
-    const [isSearchPage, setIsSearchPage] = useState(false);
-    const [isArtworksPage, setIsArtworksPage] = useState(false);
-    const [loginPath, setLoginPath] = useState('/login');
-    const [mokeDelay, setMokeDelay] = useState(false);
-    const [isFlex, setFlex] = useState(false);
-    const [mokeHeadersDelay, setMokeHeadersDelay] = useState(true);
-    const [vHeight, setViewHeight] = useState(0);
-    const [headerDelay, setHeaderDelay] = useState(8000); // for header delay
-    const [isCurate, setCurate] = useState(false); // for header delay
+    const [isAuthenticationPage, setAuthenticatingPage] = useState<boolean>(false);
+    const [isSearchPage, setIsSearchPage] = useState<boolean>(false);
+    const [isBootcampsPage, setIsBootcampsPage] = useState<boolean>(false);
+    const [loginPath, setLoginPath] = useState<string>('/login');
+    // const [mokeDelay, setMokeDelay] = useState<boolean>(false);
+    const [isFlex, setFlex] = useState<boolean>(false);
+    // const [mokeHeadersDelay, setMokeHeadersDelay] = useState<Boolean>(true);
+    // const [vHeight, setViewHeight] = useState<number>(0);
+    const [headerDelay, setHeaderDelay] = useState<number>(8000); // for header delay
+    const [isCurate, setCurate] = useState<boolean>(false); // for header delay
 
 
     useEffect(() => {
@@ -101,8 +99,8 @@ const Root = ({isLoggedIn, profile, redirectPath, isConversation, vH, isFirstLoa
 
     useEffect(() => {
         handleHeader(history.location.pathname);
-        const body = document.querySelector('.body-height');
-    }, [vH]);
+        // const body = document.querySelector('.body-height');
+    }, []);
 
     useEffect(() => {
         if(isConversation){
@@ -115,13 +113,8 @@ const Root = ({isLoggedIn, profile, redirectPath, isConversation, vH, isFirstLoa
         }
     }, [isConversation]);
 
-    // useEffect(() => {
-    //     const body = document.querySelector('.body-height');
-    //     body && setVH(body.clientHeight);
-    // }, []);
-
     useEffect(() => {
-        return history.listen((location) => {
+        return history.listen(({location}) => {
             setRouteName(location.pathname);
             handleHeader(location.pathname);
             if(location.pathname === '/'){
@@ -133,20 +126,7 @@ const Root = ({isLoggedIn, profile, redirectPath, isConversation, vH, isFirstLoa
         })
     }, [history]);
 
-    // useEffect(() => {
-    //     console.log(' => in global ', exhibitionsFirstLoad);
-    //
-    //     if(exhibitionsFirstLoad === false){
-    //         setMokeHeadersDelay(false);
-    //         setTimeout(() => {
-    //             setMokeHeadersDelay(true);
-    //             setHeaderDelay(0);
-    //         }, headerDelay);
-    //         setTimeout(() => {
-    //             setMokeDelay(true);
-    //         }, FOOTER_DELAY);
-    //     }
-    // }, [exhibitionsFirstLoad, history]);
+   
 
     const handleHeader = (pathname) => {
         if (pathname.includes('curate') || pathname.includes('invite')) {
@@ -159,10 +139,10 @@ const Root = ({isLoggedIn, profile, redirectPath, isConversation, vH, isFirstLoa
         } else {
             setHome(false);
         }
-        if (pathname.includes('/artworks/')) {
-            setIsArtworksPage(true)
+        if (pathname.includes('/bootcamps/')) {
+            setIsBootcampsPage(true)
         } else {
-            setIsArtworksPage(false);
+            setIsBootcampsPage(false);
         }
         if (pathname === '/profile') {
             setProfile(true);
@@ -176,26 +156,26 @@ const Root = ({isLoggedIn, profile, redirectPath, isConversation, vH, isFirstLoa
         }
         if (pathname.includes('login') || pathname.includes('/signup') || pathname === '/verify' || pathname === '/forgot-password') {
             setAuthenticatingPage(true);
-            document.querySelector("html").classList.add("full");
-            document.querySelector("body").classList.add("full");
-            document.getElementById("root").classList.add("full");
+            document.querySelector("html")!.classList.add("full");
+            document.querySelector("body")!.classList.add("full");
+            document.getElementById("root")!.classList.add("full");
         } else {
             setAuthenticatingPage(false);
-            document.querySelector("html").classList.remove("full");
-            document.querySelector("body").classList.remove("full");
-            document.getElementById("root").classList.remove("full");
+            document.querySelector("html")!.classList.remove("full");
+            document.querySelector("body")!.classList.remove("full");
+            document.getElementById("root")!.classList.remove("full");
         }
-        // if (pathname === '/search') {
-        //     setIsSearchPage(true);
-        // } else {
-        //     setIsSearchPage(false);
-        // }
-        setArtworkId(null);
+        if (pathname === '/search') {
+            setIsSearchPage(true);
+        } else {
+            setIsSearchPage(false);
+        }
+        setBootcampId(null);
     };
 
     return (
         <>
-            {(isArtworksPage === false && ((routeName === '/') || routeName !== '/') && isHeader ) &&
+            {(isBootcampsPage === false && ((routeName === '/') || routeName !== '/') && isHeader ) &&
               <Header routeName={routeName} isLoggedIn={isLoggedIn} isHome={isHome} isProfile={isProfile}
                       mokeHeadersDelay={routeName === '/'}
                       isSearchPage={isSearchPage}
@@ -210,21 +190,21 @@ const Root = ({isLoggedIn, profile, redirectPath, isConversation, vH, isFirstLoa
                             {<div className={`chat-sticky-wrapper ${isConversation ? 'active' : ''}`}>
                                 {/*<div style={{ height: vHeight }}>*/}
                                     <div className={`chats-wrapper ${isConversation ? 'active' : ''}`}>
-                                            <Conversation onClose={() => console.log('closing!')}  />
+                                            {/* <Conversation onClose={() => console.log('closing!')}  /> */}
                                     </div>
                                 {/*</div>*/}
                             </div>}
                             <div className='body-height' />
                       </div>
-            {(mokeDelay || routeName !== '/') && isArtworksPage === false && (!isHome && ((routeName === '/' && !exhibitionsFirstLoad) || routeName !== '/') && <Footer/>)}
+            { routeName !== '/' && isBootcampsPage === false && (!isHome && ((routeName === '/' && !isFirstLoad) || routeName !== '/') && <Footer/>)}
             <div>
-                {artworkId && <ArtworkDetailsContainer artworkId={artworkId} onHide={() => setArtworkId(null)} isConversation={isConversation} onLeftClick={() => console.log('Left Arrow Clicked!')} onRightClick={() => console.log('Right Arrow Clicked!')} arrows={false} />}
+                {bootcampId && <BootcampDetails bootcampId={bootcampId} onHide={() => setBootcampId(null)} isConversation={isConversation}  />}
             </div>
         </>
     )
 };
 
-const Global: React.FC<ITypeGlobal> = ({isLoggedIn,  updateProfileData, redirectPath, profile}) => {
+const Global: React.FC<ITypeGlobal> = ({isLoggedIn, isConversation, setBootcampId, isFirstLoad, bootcampId,  updateProfileData, redirectPath, profile}) => {
     useEffect(() => {
         if(profile && profile.id){
             console.log('profile in 123 : ', profile);
@@ -233,7 +213,7 @@ const Global: React.FC<ITypeGlobal> = ({isLoggedIn,  updateProfileData, redirect
 
     useEffect(() => {
         if (isLoggedIn) {
-            // updateProfileData();
+            if(updateProfileData) updateProfileData()
             setTimeout(() => {
                 console.log('userProfile : ', profile);
             }, 1000);
@@ -241,7 +221,7 @@ const Global: React.FC<ITypeGlobal> = ({isLoggedIn,  updateProfileData, redirect
     }, [isLoggedIn])
     return (
         <BrowserRouter>
-            <Root artworkId={artworkId} profile={profile}  redirectPath={redirectPath} setVH={setVH} isLoggedIn={isLoggedIn} isConversation={isConversation} vH={vH} isFirstLoad={isFirstLoad} setArtworkId={setArtworkId} />
+            <Root bootcampId={bootcampId} profile={profile} isConversation={isConversation}  redirectPath={redirectPath}  isLoggedIn={isLoggedIn}  isFirstLoad={isFirstLoad} setBootcampId={setBootcampId} />
         </BrowserRouter>
     )
 };

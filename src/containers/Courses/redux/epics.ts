@@ -1,7 +1,7 @@
 import { ofType } from 'redux-observable';
 import {catchError, mergeMap, map} from 'rxjs/operators';
 import { FETCH_COURSES_INIT, SORT_COURSES } from './constants'
-import * as API from "../../../services/api"
+import * as API from "../../../service/api"
 import {fetchCoursesSuccess} from './actions';
 import {IResponseType} from '../types'
 
@@ -9,9 +9,9 @@ const fetchCourses = action$ =>
     action$.pipe(
         ofType(FETCH_COURSES_INIT),
         mergeMap(({payload}) => {
-            console.log('payload = ', payload)
-            if(payload.isGroup) {
-                return API.fetchCourses(payload.filter);
+            console.log('fetchCourses payload = ', payload)
+            if(payload) {
+                return API.fetchCourses(payload.published);
             }
             else {
                 return API.fetchCourses(payload);
@@ -19,7 +19,7 @@ const fetchCourses = action$ =>
         }),
         map((resp: IResponseType) => {
             console.log('resp = ', resp)
-            if  (resp.currentPage) {
+            if  (resp.pagination.currentPage) {
                 return fetchCoursesSuccess(resp);
             }
             else {
@@ -38,4 +38,5 @@ const sortCourses = action$ =>
     )
 export default [
     fetchCourses,
+    sortCourses
 ]

@@ -1,3 +1,6 @@
+
+import * as CSS from 'csstype';
+
 export interface ICardProps {
     imgSrc: string | Array<string>,
     title: string,
@@ -18,11 +21,13 @@ export interface ICardProps {
     handleRegister?: () => void,
     handleUnRegister?: () => void,
     registered?: boolean,
-    exhibition?: boolean,
+    bootcamp?: boolean,
+    bootcampName?: string,
+    course?: string,
+    courseName?: string,
     defaultEvent?: boolean,
     toggleRegister?: () => void,
-    galleryName?: string,
     subTitle?: string,
-    style?: object,
+    style?: CSS.Properties,
     noFade?: boolean,
 }

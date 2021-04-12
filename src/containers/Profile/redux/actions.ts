@@ -1,30 +1,43 @@
-import { LOGIN, CHANGE_SEARCH, SET_REDIRECT_PATH, SET_CONVERSATION } from './constants';
+import { GET_PROFILE_DATA, UPDATE_PROFILE_DATA_INIT, UPDATE_PROFILE_DATA_SUCCESS, GET_UPDATE_PROFILE_DATA_INIT, GET_UPDATE_PROFILE_DATA_SUCCESS, UPDATE_PROFILE_IMAGE } from './actionTypes'
 
-export function login(){
-    return {
-        type: LOGIN,
-        payload: true
-    }
+export function getProfileData (data) {
+  return {
+    type: GET_PROFILE_DATA,
+    payload: data
+  }
 }
 
-export function changeSearch(value){
-    return {
-        type: CHANGE_SEARCH,
-        payload: value
-    }
+export function updateProfileDataInit (data) {
+  return {
+    type: UPDATE_PROFILE_DATA_INIT,
+    payload: data
+  }
 }
 
-export function setRedirectPath(value){
-    return {
-        type: SET_REDIRECT_PATH,
-        payload: value
-    }
+export function updateProfileDataSuccess (data) {
+  return {
+    type: UPDATE_PROFILE_DATA_SUCCESS,
+    payload: data
+  }
 }
 
-export function setConversation(value){
-    return {
-        type: SET_CONVERSATION,
-        payload: value
-    }
+export function getUpdatedProfileDataInit () {
+  return {
+    type: GET_UPDATE_PROFILE_DATA_INIT
+  }
 }
 
+export function getUpdatedProfileDataSuccess (data) {
+  console.log('GET_UPDATE_PROFILE_DATA_SUCCESS :: = ', data)
+  return {
+    type: GET_UPDATE_PROFILE_DATA_SUCCESS,
+    payload: data
+  }
+}
+
+export function updateProfileImageData (data) {
+  return {
+    type: UPDATE_PROFILE_IMAGE,
+    payload: data
+  }
+}

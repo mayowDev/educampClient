@@ -1,13 +1,13 @@
 
 import React , {useEffect} from 'react';
 import SendBirdSyncManager from "sendbird-syncmanager";
-import {SubTitle} from "../Typography";
-import { getVariableFromUrl, isEmpty, redirectToIndex } from '../../services/sendbird/utils';
+
+import {  isEmpty, redirectToIndex } from '../../services/sendbird/utils';
 import { SendBirdAction } from '../../services/sendbird/SendBirdAction';
 import { SendBirdConnection } from '../../services/sendbird/SendBirdConnection';
 import {IConversationIconProps} from './types';
 // import { Toast } from './components/Toast';
-import { Chat } from '../../services/sendbird/Chat';
+// import { Chat } from '../../services/sendbird/Chat';
 
 import {connect} from "react-redux";
 import { setCurrentConversation, setAllConversations } from '../../containers/Conversation/redux/actions';
@@ -19,7 +19,6 @@ import IconBtn from "../IconBtn";
 const sb = new SendBirdAction();
 
 let chat = null;
-let chatLeft = null;
 const createConnectionHandler = () => {
     const manager = SendBirdSyncManager.getInstance();
     const connectionManager = new SendBirdConnection();

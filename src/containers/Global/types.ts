@@ -6,7 +6,10 @@ export interface ITypeGlobal {
     profile: any,
     profile_?: any,
     setConversation?: (val: boolean) => void,
+    setBootcampId?: (val:string) => void,
     isConversation?: string,
+    bootcampId?:string,
+    isFirstLoad?:boolean,
 }
 
 export interface ITypeRenderRoute {

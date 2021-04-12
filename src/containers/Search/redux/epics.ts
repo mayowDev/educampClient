@@ -4,7 +4,7 @@ import { throwError } from 'rxjs';
 
 import {FETCH_SEARCH_INIT} from './actionTypes'
 import {CHANGE_SEARCH} from '../../Global/redux/actionTypes'
-import * as API from "../../../services/api"
+import * as API from "../../../service/api"
 import {fetchSearchSuccess} from './actions';
 
 const fetchSearch = action$ =>

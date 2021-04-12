@@ -1,5 +1,5 @@
 const HtmlPlugin = require("html-webpack-plugin");
-const MiniCssPExtractlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Webpack = require('webpack')
 const path = require("path");
 
@@ -41,8 +41,29 @@ module.exports={
             },
             {
                 test:/\.s[ac]ss$/i,
-                use:[MiniCssPExtractlugin.loader, "css-loader", "sass-loader"]
-            }
+                use:[MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+            },
+            // {
+            //     test: /\.css$/,
+            //     use: [
+            //       {
+            //         loader: MiniCssExtractPlugin.loader,
+            //         options: {
+            //           hmr: process.env.NODE_ENV === 'development'
+            //         }
+            //       },
+            //       { loader: 'css-loader', options: { importLoaders: 1 } },
+            //       'postcss-loader'
+            //     ]
+            //   },
+            //   {
+            //     test: /\.(scss|sass)$/,
+            //     loaders: [
+            //       'style-loader',
+            //       { loader: 'css-loader', options: { importLoaders: 1 } },
+            //       'sass-loader'
+            //     ]
+            //   },
         ]
     },
     plugins:[
@@ -50,7 +71,7 @@ module.exports={
             filename:"index.html", 
             template:"./src/index.html"
         }), 
-        new MiniCssPExtractlugin(),
+        new MiniCssExtractPlugin(),
         new Webpack.DefinePlugin({ // THIS allows us to access the node_env in our code
             "process.env":{
                 "NODE_ENV":JSON.stringify(process.env.NODE_ENV)
@@ -61,7 +82,7 @@ module.exports={
     devtool: 'inline-source-map',
     devServer:{
         historyApiFallback:true,
-        port:8000,
+        port:3000,
         compress: true,
         contentBase: path.join(__dirname, 'build'),
         hot: true,
