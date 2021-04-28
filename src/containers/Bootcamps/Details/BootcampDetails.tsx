@@ -1,9 +1,22 @@
 import React from 'react'
-import {IBootcampDetailsProps} from './types'
-const BootcampDetails: React.FC<IBootcampDetailsProps> = () => {
+import {IBootcampDetails} from './types'
+import Card from "../../../components/Card";
+
+const BootcampDetails: React.FC<IBootcampDetails> = (props) => {
+    const {id, name, description, slug, careers, email, website, address, photo, onClick, location} = props;
+
     return (
         <div>
-            bootcamps details
+            <h1>{name}</h1>
+            <Card imgSrc={photo && photo} 
+                title={name}
+                description={description}
+                location={location.toLowerCase()}
+                horizontal
+                bootcamp
+                subTitle={slug}
+                onClick={onClick}
+            />
         </div>
     )
 }

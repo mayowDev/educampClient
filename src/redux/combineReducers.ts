@@ -5,7 +5,7 @@ import bootcampsReducer from '../containers/Bootcamps/redux/reducer'
 import searchReducer from '../containers/Search/redux/reducer'
 import profileReducer from '../containers/Profile/redux/reducer'
 import favouritesReducer from '../containers/Favourites/redux/reducer'
-import conversationReducer from '../containers/Conversation/redux/reducer'
+// import conversationReducer from '../containers/Conversation/redux/reducer'
 
 export default combineReducers({
   global: globalReducer,
@@ -14,5 +14,5 @@ export default combineReducers({
   search: searchReducer,
   profile: profileReducer,
   favourites: favouritesReducer,
-  conversation: conversationReducer,
+  // conversation: conversationReducer,
 })

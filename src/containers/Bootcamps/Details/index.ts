@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 // import {setConversation, setRedirectPath} from "../../containers/Global/redux/actions";
 // import {setCurrentConversation, setEnquireMessage} from "../../containers/Conversation/redux/actions";
 
-const mapStatesToProps = ({ global, bootcamp }) => {
+const mapStatesToProps = ({ global, bootcamps }) => {
     return {
         isLoggedIn: global.isLoggedIn,
-        bootcamp: bootcamp.data
+        bootcamps: bootcamps.data
     };
 };
 

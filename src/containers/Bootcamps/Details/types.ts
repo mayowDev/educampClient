@@ -1,6 +1,14 @@
-export interface IBootcampDetailsProps{
-    bootcampId?:number,
-    onHide?: () => void,
-    isConversation?: boolean,
-
+export interface IBootcampDetails{
+    id:number,
+    name: string, 
+    slug: string,
+    description: string,
+    email: string, 
+    website: string, 
+    address: string,  
+    careers: Array<string>, 
+    photo: string,
+    location: string,
+    onClick?: () => void
+    // isConversation?: boolean,
 }

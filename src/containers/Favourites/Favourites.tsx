@@ -4,8 +4,8 @@ import {H1, P1} from '../../components/Typography'
 // import Dropdown from '../../components/Dropdown'
 import {useHistory} from "react-router";
 import Spinner from "../../components/Spinner";
-import Exhibition from "../../components/Exhibition";
-import {favouriteExhibition} from "../../service/api";
+import Course from "../../components/Course";
+import {favouriteCourse} from "../../service";
 import {getIdFromSlug} from "../../utils";
 
 const Favourites = (props) => {
@@ -28,7 +28,7 @@ const Favourites = (props) => {
     };
 
     const toggleFavourite = async (id) => {
-        const resp = await favouriteExhibition(id);
+        const resp = await favouriteCourse(id);
         if (resp.data) {
             toggleFavouriteExhibition(id, resp.data.isFavourite);
             props.updateDataInFavourite('exhibitions', id, resp.data.isFavourite);
@@ -86,7 +86,7 @@ const Favourites = (props) => {
                                     <div>
                                 {
                                     favourites.exhibitions.map(({data}) => {
-                                        return <Exhibition
+                                        return <Course
                                             id={data.id}
                                             exhibitionImg={data.image && [data.image.data.signedUrl1920x1080, data.image.data.signedUrl1920x1080Webp]}
                                             // exhibitionImg={data.image && data.image.data.signedUrl1920x1080Webp}

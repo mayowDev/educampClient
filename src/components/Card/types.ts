@@ -23,7 +23,7 @@ export interface ICardProps {
     registered?: boolean,
     bootcamp?: boolean,
     bootcampName?: string,
-    course?: string,
+    course?: boolean,
     courseName?: string,
     defaultEvent?: boolean,
     toggleRegister?: () => void,

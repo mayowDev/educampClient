@@ -82,14 +82,13 @@ const Courses = (props) => {
                             {
                                 courses && courses.map((course: any) => {
                                     console.log('courses.tsx',course)
-                                    const {id,  title, weeks, tuition, minimumSkill,scholarshipAvailable, published, image, locations, description} = course.data;
+                                    const {id,  title, weeks, tuition, minimumskill,scholarshipavailable, published, image, coursecontent, description} = course.data;
                                     
                                     const imageUrl = image && image.data && image.data.signedUrl300x600 && image.data.signedUrl300x600.replace('/300_', '/720_');
                                     return (
                                         <div data-aos="fade-up" data-aos-duration="500">
                                             <Card imgSrc={image && image.data && [imageUrl, imageUrl]} title={title}
                                                 description={description}
-                                                location={locations.toLowerCase()}
                                                 horizontal
                                                 onClick={() => handleGalleryClick(id)}
                                             />

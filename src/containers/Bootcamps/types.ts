@@ -9,6 +9,8 @@ interface IPaginationType {
     }
     
 }
+enum Careers{ "Web Development", "Mobile Development", "DevOps", "UI/UX", "Data Science", "QA Manager"}
+
 export interface IResponseType{
     pagination:IPaginationType,
     data:Array<Object>,
@@ -18,5 +20,13 @@ export interface IResponseType{
 export  interface IBootcampFetchInitType{
     name?:string,
     limit?:number,
-    page?:number
+    page?:number,
+    careers?:Careers
+}
+
+export interface IBootcampQuery{
+    name?: string,
+    page?: number,
+    size?: number,
+    limit?: number,
 }

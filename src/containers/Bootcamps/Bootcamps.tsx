@@ -5,12 +5,12 @@ import Card from "../../components/Card";
 import {H1} from '../../components/Typography'
 import Spinner from '../../components/Spinner';
 // import Dropdown from "../../components/Dropdown";
-
+import BootcampDetails from "./Details"
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 
 const Bootcamps = (props) => {
     const history = useHistory()
-    const {updateSortBy, resetBootcamps, setCoursesLoader, fetchBootcamps , state: {courses, sortBy, currentPage, canLoadMore, coursesLoading}, bootcamps} = props;
+    const {updateSortBy, resetBootcamps, setCoursesLoader, fetchBootcamps , state: {sortBy, currentPage, canLoadMore, bootcampsLoading}, bootcamps} = props;
     const [isLoadingMore, setIsLoadingMore] = useState(false);
 
     useEffect(() => {
@@ -46,8 +46,8 @@ const Bootcamps = (props) => {
         }
     };
 
-    const handleGalleryClick = (galleryId) => {
-        history.push(`/galleries/${galleryId}`)
+    const handleBootcampClick = (bootcampId:string) => {
+        history.push(`/bootcamps/${bootcampId}`)
     };
 
 
@@ -67,32 +67,24 @@ const Bootcamps = (props) => {
 
     return (
         <ScrollAnimation>
-            <div className="courses-wrapper container">
+            <div className="bootcamps-wrapper container">
                 <div className="flex">
-                    <H1 className='big' value='Courses'/>
+                    <H1 className='big' value='Bootcamps'/>
                     {/*:TODO--dropdown*/}
                     {/*<Dropdown options={filterOptions()} selected={sortBy} onChange={(val) => handleValueChange(val)} />*/}
                 </div>
                 {
-                    coursesLoading ?
+                    bootcampsLoading ?
                         <Spinner type="cover" />
                         :
                         // @ts-ignore
-                        <div className="cards-container courses-cards" ref={infiniteRef}>
+                        <div className="cards-container bootcamps-cards" ref={infiniteRef}>
                             {
-                                courses && courses.map((course: any) => {
-                                    console.log('courses.tsx',course)
-                                    const {id,  title, weeks, tuition, minimumSkill,scholarshipAvailable, published, image, locations, description} = course.data;
-                                    
-                                    const imageUrl = image && image.data && image.data.signedUrl300x600 && image.data.signedUrl300x600.replace('/300_', '/720_');
+                                bootcamps && bootcamps.map((bootcamp: any) => {
+                                    console.log('Bootcamp.tsx',bootcamp)                                    
                                     return (
                                         <div data-aos="fade-up" data-aos-duration="500">
-                                            <Card imgSrc={image && image.data && [imageUrl, imageUrl]} title={title}
-                                                description={description}
-                                                location={locations.toLowerCase()}
-                                                horizontal
-                                                onClick={() => handleGalleryClick(id)}
-                                            />
+                                            <BootcampDetails  onClick={() => handleBootcampClick(bootcamp.id)} {...bootcamp}/>
                                         </div>
                                     )
                                 })

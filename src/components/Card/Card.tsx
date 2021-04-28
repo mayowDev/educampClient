@@ -1,5 +1,5 @@
 import React from 'react';
-import {H2, P1, P3, SubTitle, Paragraph} from '../Typography';
+import {H2, P1, P3, SubTitle} from '../Typography';
 
 import {ICardProps} from './types';
 import './style.scss';
@@ -12,7 +12,7 @@ import ScrollAnimation from "../ScrollAnimation/ScrollAnimation";
 const Card: React.FC<ICardProps> = ({style,  bootcampName, subTitle, bootcamp,  event, imgSrc=defaultCourseImage, title, location, description, onClick, 
     horizontal, address, lenghts, moderatedBy, timeLine, handleRegister, handleUnRegister, noBorder, registered, className, course, noFade}) => {
 
-    // const [isdisable, handleDisale] = useState(false);
+    // const [isdisable, handleDisable] = useState(false);
     // const [isInfo, handleInfo] = useState(false);
 
     const RenderContent = () => (
@@ -38,7 +38,7 @@ const Card: React.FC<ICardProps> = ({style,  bootcampName, subTitle, bootcamp,  
                     {bootcamp && <P1 className="bootcamps-subtitle bold" value={subTitle || ''} />}
                     {!course && bootcamp && <p className="p1 bootcamps-time-line bold">{bootcampName} <span>{timeLine}</span></p>}
 
-                    {!bootcamp && !event && location &&
+                    {!bootcamp && location &&
                     <P1 className={`location ${horizontal && address ? 'gray' : ''}`} value={location}/>}
                     {!bootcamp && !event && horizontal && address && (
                         <P1 className="address gray" value={address}/>
@@ -100,7 +100,7 @@ const Card: React.FC<ICardProps> = ({style,  bootcampName, subTitle, bootcamp,  
                     }
                 </div>
             </div>
-            {event && <Paragraph className="events-card-description" value="Cover up sun nasa king vymaanika electromagnetic sanskrit ufo magnetic current vimana ufo star. Earth mound star mayan know ufo mutation crystal worm hole targeted astronaut. Know mayan disc puma mahabharata weightless time sightings golden interdimensional technology times i know. Worm hole theorists contend mainstream vimana otherworldly nazca lines sumerian. Kachina civilization clearly gates extraterrestrial electromagnetic ancient puma choral." />}
+            {/* {event && <Paragraph className="events-card-description" value="Cover up sun nasa king vymaanika electromagnetic sanskrit ufo magnetic current vimana ufo star. Earth mound star mayan know ufo mutation crystal worm hole targeted astronaut. Know mayan disc puma mahabharata weightless time sightings golden interdimensional technology times i know. Worm hole theorists contend mainstream vimana otherworldly nazca lines sumerian. Kachina civilization clearly gates extraterrestrial electromagnetic ancient puma choral." />} */}
         </>
     );
 
