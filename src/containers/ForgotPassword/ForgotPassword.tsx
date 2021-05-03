@@ -3,10 +3,9 @@ import { H1, P1, P2, SubTitle } from '../../components/Typography';
 import { Heading, Paragraph } from '../../components/Typography';
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import {forgot} from "../../service/api";
+import {forgotPassword} from "../../service";
 import {Link, useHistory} from 'react-router-dom';
 import Close from "../../assets/icons/close.svg";
-import LazyLoad from 'react-lazy-load';
 import IconBtn from "../../components/IconBtn";
 // @ts-ignore
 const Forgot:React.FC = ({ isLoggedIn }) => {
@@ -17,7 +16,7 @@ const Forgot:React.FC = ({ isLoggedIn }) => {
 
     const handleReset = async () => {
         try {
-            const result = await forgot({
+            const result = await forgotPassword({
                 email
             });
             if(result) {
@@ -42,7 +41,7 @@ const Forgot:React.FC = ({ isLoggedIn }) => {
     };
 
     const handleClose = () => {
-        history.goBack();
+        history.back();
     };
 
     return (

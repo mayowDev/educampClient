@@ -17,7 +17,7 @@ import IconBtn from '../IconBtn';
 
 // import Conversation from '../../containers/Conversation';
 // import Inbox from "../../containers/Inbox";
-import ConversationIcon from "./ConversationIcon";
+// import ConversationIcon from "./ConversationIcon";
 
 const Header: React.FC<IHeaderProps> = (props) => {
     const { isSidebar, mokeHeadersDelay, isLoggedIn,routeName,changeSearch,searchQuery,profileData,isHome,
@@ -50,14 +50,14 @@ const Header: React.FC<IHeaderProps> = (props) => {
         if (value.length > 2 && history.location.pathname !== "/search") {
             history.push('/search')
         }
-        changeSearch(value);
+        if(changeSearch) changeSearch(value);
     };
 
     const handleConversation = () => {
-        if (isChat === false && isSidebar === false) {
+        if (isChat === false && isSidebar === false && setChat) {
             setChat(true);
         } else {
-            setChat(false);
+            setChat && setChat(false);
         }
         setNavBright(false);
     };
@@ -159,7 +159,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
                                     className={`search_bar ${(isSearchActive || searchQuery?.length) ? 'active' : ''}`}>
                                     <MenuItem value="Search"/>
                                     <input value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)}
-                                           autoFocus={searchQuery.length > 0}
+                                           autoFocus={searchQuery!.length > 0}
                                            type="text"/>
                                     {/*<div className="icon" onClick={() => {window.innerWidth < 614 && handleSearchClick()}}>*/}
                                     {/*    <img src={SearchIcon} width={18} height={18}  alt="Search"/>*/}
@@ -198,10 +198,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
                                                 !isLoggedIn ?
                                                     <Button value='Login' className='button__bright' to='/login'/> :
                                                     <div className={`logged-in-chat ${isChat ? 'active' : ''}`}
-                                                         onClick={() => handleConversation()}><ConversationIcon
-                                                        isLoggedIn={isLoggedIn}
-                                                        handleConversation={handleConversation}
-                                                    /></div>
+                                                         onClick={() => handleConversation()}>conversation icon</div>
                                             }
                                             {
                                                 !isLoggedIn ?

@@ -1,7 +1,8 @@
+// @ message receiver
 import { ofType } from 'redux-observable';
 import {catchError, mergeMap, map} from 'rxjs/operators';
 import { FETCH_COURSES_INIT, SORT_COURSES } from './constants'
-import * as API from "../../../service/api"
+import * as API from "../../../service"
 import {fetchCoursesSuccess} from './actions';
 import {IResponseType} from '../types'
 
@@ -11,10 +12,11 @@ const fetchCourses = action$ =>
         mergeMap(({payload}) => {
             console.log('fetchCourses payload = ', payload)
             if(payload) {
-                return API.fetchCourses(payload.published);
+                return API.getPublishedCourses();
             }
             else {
-                return API.fetchCourses(payload);
+                return API.getPublishedCourses();
+                // return API.getAllCourses();Todo: make query argument optional
             }
         }),
         map((resp: IResponseType) => {

@@ -8,10 +8,10 @@ const BootcampDetails: React.FC<IBootcampDetails> = (props) => {
     return (
         <div>
             <h1>{name}</h1>
-            <Card imgSrc={photo && photo} 
-                title={name}
+            <Card imgSrc={photo && [photo] || ''} 
+                title={name || ''}
                 description={description}
-                location={location.toLowerCase()}
+                location={location?.toLowerCase()}
                 horizontal
                 bootcamp
                 subTitle={slug}

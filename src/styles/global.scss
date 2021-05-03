@@ -2,7 +2,6 @@
 @import "../assets/fonts/fonts.css";
 
 html{
-    //scroll-behavior: smooth;
     overflow-y: scroll;
 }
 
@@ -315,32 +314,30 @@ html {
 }
 
 @import "../components/AuthForm/style.scss";
+@import "../components/Bootcamp/style.scss";
 @import "../components/Button/style.scss";
 @import "../components/Card/style.scss";
-@import "../components/Carousel/style.scss";
-@import "../components/CourseList/style.scss";
 @import "../components/Course/style.scss";
-@import "../components/CurateSidebarDark/style.scss";
+@import "../components/CourseList/style.scss";
+
 @import "../components/Dropdown/style.scss";
-@import "../components/CourseCard/style.scss";
 @import "../components/Footer/style.scss";
 @import "../components/Header/style.scss";
 @import "../components/Input/style.scss";
-@import "../components/InputField/style.scss";
-@import "../components/Search/style.scss";
+// @import "../components/InputField/style.scss";
+// @import "../components/Search/style.scss";
 @import "../components/Spinner/style.scss";
 @import "../components/Typography/style.scss";
-@import "../components/ToggleButton/style.scss";
-@import "../components/BootcampLoading/style.scss";
+// @import "../components/ToggleButton/style.scss";
 @import "../components/IconBtn/style.scss";
 
-@import "../containers/Bootcamps/style.scss";
-@import "../containers/Bootcamps/Details/style.scss";
-@import "../containers/Favourites/style.scss";
-@import "../containers/ForgotPassword/style.scss";
-@import "../containers/Coureses/style.scss";
-@import "../containers/Coureses/Details/style.scss";
-@import "../containers/ResetPassword/style.scss";
-@import "../containers/Login/style.scss";
-@import "../containers/SignUp/style.scss";
+// @import "../containers/Bootcamps/Details/style.scss";
+// @import "../containers/Coureses/style.scss";
+// @import "../containers/Coureses/Details/style.scss";
+// @import "../containers/Favourites/style.scss";
+// @import "../containers/ForgotPassword/style.scss";
+// @import "../containers/ResetPassword/style.scss";
+// @import "../containers/Login/style.scss";
+// @import "../containers/SignUp/style.scss";
 @import "../containers/Verify/style.scss";
+@import "../containers/Bootcamps/style.scss";

@@ -1,6 +1,5 @@
 import React from 'react';
-import {P2} from '../Typography';
-import {Paragraph} from '../Typography2';
+import {Paragraph} from '../Typography';
 import {Link} from 'react-router-dom';
 import './style.scss';
 import {ISearchResult} from './types';
@@ -22,9 +21,9 @@ const SearchResult: React.FC<ISearchResult> = ({imgSrc, isDisabled, title, subti
                     </div>
                     <div className="searchDetails">
                         {/*<P2 className="searchTitle" value={title}/>*/}
-                        <Paragraph className="searchTitle" value={title} />
-                        <Paragraph className="gray searchSubtiltle" value={subtitle} />
-                        <Paragraph className="searchDescription" value={description} />
+                        <Paragraph className="searchTitle" value={title || ''} />
+                        <Paragraph className="gray searchSubtiltle" value={subtitle  || ''} />
+                        <Paragraph className="searchDescription" value={description  || ''} />
                         {/*<P2 className="searchSubtiltle" value={subtitle}/>*/}
                         {/*<P2 className="searchDescription" value={description}/>*/}
                     </div>

@@ -107,16 +107,8 @@ const Search = ({resetInput, searchQuery, resetSearchRecords, fetchSearchInit, r
                         <div className=" ">
                             <div className="search-wrapper borderBottom ">
                                 <div className="searh-head container">
-                                    {/* <P2 value='Search Results for'/> */}
-                                    {/* <H1 className="big bold" value={"“" + searchQuery + "”"}/> */}
-                                    {/*<P1 value={`Showing ${getResultsLength()} results for '${searchQuery}'`}/>*/}
                                     <Title2 value={`Showing ${getResultsLength()} results for '${searchQuery}'`} />
                                 </div>
-                                {/*<Dropdown options={[*/}
-                                {/*    {value: "alphabetical", label: "Alphabetical"},*/}
-                                {/*    {value: "numerical", label: "Numerical"}*/}
-                                {/*]} selected="Alphabetical"*/}
-                                {/*          onChange={(val) => console.log(val)}/>*/}
                             </div>
                         </div>
                         <div className="card-description">
@@ -135,20 +127,6 @@ const Search = ({resetInput, searchQuery, resetSearchRecords, fetchSearchInit, r
                                                 />)
                                         })
                                     }
-                                    {/*{*/}
-                                    {/*    records.artworks.data.map(record => {*/}
-                                    {/*        return (*/}
-                                    {/*            <SearchResult*/}
-                                    {/*                imgSrc={record.data.image && [record.data.image.data.signedUrl300x600Webp, record.data.image.data.signedUrl300x600, record.data.image.data.signedUrl]}*/}
-                                    {/*                title={record.data.title}*/}
-                                    {/*                subtitle={record.data.medium}*/}
-                                    {/*                description={record.data.description}*/}
-                                    {/*                id={record.data.id}*/}
-                                    {/*                isDisabled*/}
-                                    {/*                type="artworks"*/}
-                                    {/*            />)*/}
-                                    {/*    })*/}
-                                    {/*}*/}
                                     {
                                         records.artists.data.map(record => {
                                             return (

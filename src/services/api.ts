@@ -653,15 +653,8 @@ var CancelToken = axiosMain.CancelToken;
 
 export const fetchSearch = async (searchQuery, page, loadingMore) => {
     try {
-        // console.log('cancel = ', cancel)
-        // if (cancel != undefined) {
-        //     cancel();
-        //     console.log("cancelled");
-        // }
-
-        // &page=${page}&limit=${RECORDS_LIMIT}
         const result = await axios
-            .get(`user/web/discover?search=${searchQuery}&page=${page}&limit=${5}`, {
+            .get(`search?q=${searchQuery}&page=${page}&limit=${5}`, {
                 // cancelToken: new CancelToken(function executor(c) {
                 //     cancel = c;
                 // }),

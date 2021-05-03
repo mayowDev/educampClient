@@ -1,7 +1,7 @@
 import React from 'react';
 import {ISpinnerProps} from "./type";
 import LogoURL from '../../assets/images/Logo.png';
-import BrightLogo from '../../assets/images/bright-logo.png';
+import BrightLogo from '../../assets/images/Logo.png';
 
 const Spinner: React.FC<ISpinnerProps> = ({ bright, className }) => {
     return (

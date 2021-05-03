@@ -1,5 +1,5 @@
 import React, {useEffect, useState, memo} from 'react';
-import LogoURL from '../../assets/images/logo@80x80.png';
+import LogoURL from '../../assets/images/Logo.png';
 import {ImageLoaderProps} from './types';
 import Loader from '../Spinner';
 import {isEqual} from 'lodash';
@@ -23,7 +23,8 @@ const ImageLoader: React.FC<ImageLoaderProps> = memo(({imgUrls, isOverlayed, onC
     useEffect(() => {
         console.log("isEqual(localImgUrl, imgUrls)",isEqual(localImgUrl, imgUrls), localImgUrl, localImgUrl.length <= 0,imgSrc);
         if(!isEqual(localImgUrl, imgUrls) && localImgUrl.length <= 0)
-        setLocalImageUrls(imgUrls);
+        return
+        // setLocalImageUrls(imgUrls);
 
     },[localImgUrl,setLocalImageUrls,imgSrc])
     useEffect(() => {
@@ -40,7 +41,7 @@ const ImageLoader: React.FC<ImageLoaderProps> = memo(({imgUrls, isOverlayed, onC
             return p.toString() === "[object SafariRemoteNotification]";
             // @ts-ignore
         })(!window['safari'] || (typeof safari !== 'undefined' && window['safari'].pushNotification));
-
+        // @ts-ignore
         // Check if browser use the 2nd image in array that is not a webp image.
         if (isSafari && imgUrls[1]) {
             setImgSrc(imgUrls[1]);

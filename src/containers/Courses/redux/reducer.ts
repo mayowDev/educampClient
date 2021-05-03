@@ -1,3 +1,4 @@
+// @ departments
 import {FETCH_COURSES_SUCCESS, SET_COURSES_LOADER, SORT_COURSES, RESET_COURSES} from './constants'
 
 

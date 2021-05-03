@@ -5,10 +5,12 @@ import axios from "./axios";
 //search course by category and by keyword match aka full text search
 // user should be able to review a course after 50% completion, and remind him after 10% of the 50% remaining
 //if user->buys-a-Courses -> authenticat him to that course, else just show him 3-5 random videos of the course 
-
-export const getAllCourses = async (query) => {
+interface IQuery{
+    query?: any
+}
+export const getAllCourses = async (query:IQuery) => {
     try {
-        const result = await axios.get(`/courses/${query}`)
+        const result = await axios.get(`/courses/${query?query:null}`)
         .catch((err: any) => {
             console.log('err = ', err);
             if (err && err.response && err.response.status === 400) {

@@ -4,7 +4,7 @@ import IInputProps from './types';
 import DarkEye from '../../assets/icons/eye-close-up.svg';
 import BrightEye from '../../assets/icons/eye-close-up-bright.svg';
 import { P2 } from '../Typography';
-import smoothscroll from 'smoothscroll-polyfill';
+// import smoothscroll from 'smoothscroll-polyfill';
 
 
 const Input: React.FC<IInputProps> = ({name, label, onChange, value, placeholder, type, className, disabled, onMouseLeave, autoComplete, passwordVisible, errorMsg}) => {
@@ -54,7 +54,7 @@ const Input: React.FC<IInputProps> = ({name, label, onChange, value, placeholder
 
     useEffect(() => {
         setBrowser(getBrowser());
-        smoothscroll.polyfill();
+        // smoothscroll.polyfill();
         // setValue(value);
     }, []);
 

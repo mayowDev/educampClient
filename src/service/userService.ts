@@ -76,7 +76,7 @@ export const loginWithFacebook = async () => {
     }
 };
 
-export const forgotPassword = async (data:string) => {
+export const forgotPassword = async (data) => {
     try {
         const result = await axios.post("/auth/forgot", data)
             .catch((err: any) => {
@@ -154,7 +154,7 @@ export const updateProfile = async (data) => {
 export const updateProfileImage = async (data) => {
     console.log('data in Apis', data);
     try {
-        const result = await axios.post(`/auth/me`, data)
+        const result = await axios.patch(`/auth/me`, data)
             .catch((err: any) => {
                 console.log('err = ', err);
                 if (err && err.response && err.response.status === 400) {

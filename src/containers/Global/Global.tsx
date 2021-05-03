@@ -31,9 +31,10 @@ const RenderRoutes = React.memo(({isLoggedIn, redirectPath}: ITypeRenderRoute) =
             <Switch>
                 {/*ROUTES: FOR ALL CONDITIONS*/}
                 <Route exact path="/bootcamps" component={() => <BootcampsPage/>}/>
-                <Route exact path="/bootcamps/:id" component={() => <BootcampDetails/>}/>
+                <Route exact path="/bootcamps/:id" component={BootcampDetails}/>
                 <Route exact path="/courses" component={() => <CoursesPage/>}/>
-                <Route exact path="/courses/:id" component={() => <CourseDetails/>}/>
+                <Route exact path="/courses/:id" component={CourseDetails}/>
+                {/* <Route exact path="/courses/:id" component={() => <CourseDetails/>}/> */}
 
                 <Route exact path="/reset/:token" isLoggedIn={isLoggedIn} component={ResetPage}/>
                                 
@@ -198,7 +199,7 @@ const Root = ({isLoggedIn, redirectPath, isConversation,  isFirstLoad, profile, 
                       </div>
             { routeName !== '/' && isBootcampsPage === false && (!isHome && ((routeName === '/' && !isFirstLoad) || routeName !== '/') && <Footer/>)}
             <div>
-                {bootcampId && <BootcampDetails bootcampId={bootcampId} onHide={() => setBootcampId(null)} isConversation={isConversation}  />}
+                {bootcampId && <BootcampDetails id={bootcampId} onHide={() => setBootcampId(null)}   />}
             </div>
         </>
     )

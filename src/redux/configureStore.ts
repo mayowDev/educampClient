@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "development") {
   );
 }
 
-const store = createStore(rootReducer, compose(...middlewares));
+const store:any = createStore(rootReducer, compose(...middlewares));
 
 epicMiddleware.run(rootEpic);
 

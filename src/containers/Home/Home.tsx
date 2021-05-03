@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import Exhibition from '../../components/Exhibition'
+import Bootcamp from '../../components/Bootcamp'
 import { withRouter } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import LoadingPage from '../../components/LoadingPage';
 import useInfiniteScroll from "react-infinite-scroll-hook";
-import DetailsHeader from "../../components/DetailsHeader";
+// import DetailsHeader from "../../components/DetailsHeader";
 import ScrollAnimation from "../../components/ScrollAnimation/ScrollAnimation";
 
 const LOGO_FADE_UP_DELAY = 2500; // This is for making loader visible for one second after the current exhibitions are loaded.
@@ -39,7 +39,7 @@ const Home = (props) => {
     useEffect(() => {
         const body = document.querySelector('.body-height');
         body && setViewHeight(body.clientHeight + 5);
-        props.setViewHeight(body.clientHeight);
+        props.setViewHeight(body?.clientHeight);
     }, [])
 
     useEffect(() => {
@@ -156,7 +156,7 @@ const Home = (props) => {
             <div className='bg-white container '>
                 <div className="exhibitions-wrapper home-exhibitions" style={{ paddingTop: '15px' }}>
                      <ScrollAnimation delay={400}>
-                        <DetailsHeader title="Current Exhibitions"/>
+                        {/* <DetailsHeader title="Current Exhibitions"/> */}
                         {
                             exhibitionsLoading ?
                                 <div className="bg-white">
@@ -175,11 +175,13 @@ const Home = (props) => {
                                         exhibitions.map((exhibition: any, index) => {
                                             const {id, name, image, organisation} = exhibition.data;
                                             const {locations} = organisation.data;
-                                            let {startedAt, endedAt} = exhibition.data;
+                                            // let {startedAt, endedAt} = exhibition.data;
 
                                             return (
                                                 <div key={id}>
-                                                    <Exhibition
+                                                    <Bootcamp/>
+                                                    Exhibition compoentn
+                                                    {/* <Exhibition
                                                         id={id}
                                                         exhibitionImg={image && [image.data.signedUrl1920x1080Webp, image.data.signedUrl1920x1080, image.data.signedUrl]}
                                                         title={name}
@@ -189,7 +191,7 @@ const Home = (props) => {
                                                         startedAt={startedAt}
                                                         endedAt={endedAt}
                                                         locations={locations}
-                                                    />
+                                                    /> */}
                                                 </div>
                                             )
                                         })

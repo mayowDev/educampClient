@@ -1,4 +1,4 @@
-import { FETCH_BOOTCAMPS_INIT, FETCH_BOOTCAMPS_SUCCESS, RESET_BOOTCAMPS, SEARCH_BOOTCAMPS } from './constants'
+import { FETCH_BOOTCAMPS_INIT, FETCH_BOOTCAMPS_SUCCESS, RESET_BOOTCAMPS, TOGGLE_GROUP_FAVOURITE, SEARCH_BOOTCAMPS } from './constants'
 import {IBootcampFetchInitType} from '../types'
 
 export function fetchBootcampsInit (filterQuery:IBootcampFetchInitType) {
@@ -22,6 +22,13 @@ export function searchBootcamps(value:string) {
         payload: value
     }
 }
+ export function toggleFavourite(itemId, isFavourite){
+     return {
+         type: TOGGLE_GROUP_FAVOURITE,
+         payload: {itemId, isFavourite}
+     }
+
+ }
 
 export function resetBootcamps() {
     return {
