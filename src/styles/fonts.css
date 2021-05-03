@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: 'Maax';
     font-style: normal;
     font-weight: 300;
@@ -6,23 +6,23 @@
 }
 
 /* Medium */
-@font-face {
+/* @font-face {
     font-family: 'Maax';
     font-style: normal;
     font-weight: 400;
     src: local('Maax-Medium'), url('../assets/fonts/Maax/Maax-Medium.otf') format('opentype');
-}
+} */
 
 /* Regular */
-@font-face {
+/* @font-face {
     font-family: 'Maax';
     font-style: normal;
     font-weight: 500;
     src: local('Maax-Regular'), url('../assets/fonts/Maax/Maax-RegularMono.otf') format('opentype');
-}
+} */
 
 
-@font-face{
+/* @font-face{
     font-family: 'TT Hoves';
     src: url('TTHoves-Regular.eot');
     src: local('TT Hoves Regular'), local('TTHoves-Regular'),
@@ -32,4 +32,4 @@
     url('TTHoves-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}
+} */

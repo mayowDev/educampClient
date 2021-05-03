@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Login from './Login'
-import '../../assets/fonts/fonts.css'
+// import '../../assets/fonts/fonts.css'
 // import { getUpdatedProfileDataInit } from '../Profile/redux/actions';
 // import { setConversation } from './redux/actions';
 // import { fetchSendBirdInit } from '../Conversation/redux/actions';

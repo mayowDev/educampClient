@@ -9,11 +9,11 @@ import './styles/global.scss'
 
 function App () {
   return (
-    <Provider store={store}>
-      <Router>
+    // <Provider store={store}>
+      // <Router>
         <GlobalPage />
-      </Router>
-    </Provider>
+      // </Router>
+    // </Provider>
   )
 }
 

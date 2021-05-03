@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Reset from './Reset'
-import '../../assets/fonts/fonts.css'
+// import '../../assets/fonts/fonts.css'
 
 const mapStatesToProps = ({auth}) => {
     return {

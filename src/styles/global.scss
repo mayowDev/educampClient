@@ -1,5 +1,5 @@
-@import "./variables";
-@import "../assets/fonts/fonts.css";
+// @import "./variables";
+// @import "../assets/fonts/fonts.css";
 
 html{
     overflow-y: scroll;
@@ -42,23 +42,23 @@ video {
 }
 
 .text-white{
-    color: $white;
+    color: white;
     transition: all 0.4s ease-in-out;
 }
 
 .text-black{
-    color: $black;
+    color: black;
     transition: all 0.4s ease-in-out;
 }
 
 .bg-white {
     transition: all 0.4s ease-in-out;
-    background-color: $white;
+    background-color: white;
 }
 
 .bg-black{
     transition: all 0.4s ease-in-out;
-    background-color: $black;
+    background-color: black;
 }
 
 .spinner-container{
@@ -71,7 +71,7 @@ video {
 .home-footer {
     padding-top: 120px !important;
     margin-top: 0 !important;
-    background-color: $white;
+    background-color: white;
 }
 
 .container {
@@ -203,13 +203,13 @@ video {
     align-items: center;
 
     .heading{
-        font-size: $forms-heading-font-size;
-        line-height: $forms-heading-line-height;
+        font-size: 15px;
+        line-height: 10px;
         margin-bottom: 27px;
-        color: $white;
+        color: white;
     }
     .paragraph{
-        color: $white;
+        color: white;
         font-size: 12px;
         line-height: 16px;
         font-family: "Maax-Medium";
@@ -260,7 +260,7 @@ body {
 body {
     &.full {
         height: 100% !important;
-        background: $black !important;
+        background: black !important;
         //overflow: hidden;
     }
 }
@@ -339,5 +339,5 @@ html {
 // @import "../containers/ResetPassword/style.scss";
 // @import "../containers/Login/style.scss";
 // @import "../containers/SignUp/style.scss";
-@import "../containers/Verify/style.scss";
+// @import "../containers/Verify/style.scss";
 @import "../containers/Bootcamps/style.scss";

@@ -1,7 +1,7 @@
-@import '../../styles/variables.scss';
+// @import '../../styles/variables.scss';
 
 .home{
-  background-color: $black;
+  background-color: black;
   h1{
     font-weight: 100;
   }
@@ -109,7 +109,7 @@
       .circle{
         width: 79px;
         height: 79px;
-        border: 1px solid $white;
+        border: 1px solid white;
         box-sizing: border-box;
         border-radius: 50%;
       }

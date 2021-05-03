@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+// @import '../../styles/variables.scss';
 $gray: whitesmoke;
 $darkGray: #7D8488;
 
@@ -167,7 +167,7 @@ $darkGray: #7D8488;
 
     .exhibitions-time-line{
       margin-top: 17px;
-      color: $black;
+      color: $gray;
       span{
         color: #979797;
       }

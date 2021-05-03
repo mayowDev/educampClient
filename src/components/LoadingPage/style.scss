@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+// @import '../../styles/variables.scss';
 
 .loading-page{
   display: flex;
@@ -7,7 +7,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: $black;
+  background: black;
   z-index: 11111111;
   & > .spinner-container {
     transition: all .7s ease-in-out;
@@ -17,7 +17,7 @@
     &.bright{
       .img{
         width: auto;
-        heigth: auto;
+        height: auto;
       }
     }
     &.move-up{

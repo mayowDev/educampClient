@@ -1,5 +1,6 @@
 const HtmlPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Webpack = require('webpack')
 const path = require("path");
 
@@ -27,6 +28,7 @@ module.exports={
             },
             {
                 test: /\.html$/,
+                exclude: /node_modules/,
                 use:[{loader:'html-loader'}]
             },
             {
@@ -40,9 +42,38 @@ module.exports={
                 use:[{loader:'file-loader'}]
             },
             {
-                test:/\.s[ac]ss$/i,
-                use:[MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "file-loader"
+              },
+            // {
+            //     test: /\.(scss|sass|css)$/,
+            //     use:[{loader: 'css-loader', }]
+            // },
+            // {
+            //     test: /\.css$/,
+            //     use: [
+            //       {
+            //         loader: MiniCssExtractPlugin.loader,
+            //         options: {
+            //           hmr: process.env.NODE_ENV === 'development'
+            //         }
+            //       },
+            //       { loader: 'css-loader', options: { importLoaders: 1 } },
+            //       'postcss-loader'
+            //     ]
+            //   },
+            // {
+            //     test:/\.s[ac]ss$/i,
+            //     use:[MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+            // },
+            {
+                test: /\.scss$/,
+                use: ["style-loader", "css-loader", "sass-loader"]
             },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader", "node-sass"]
+              },
             // {
             //     test: /\.css$/,
             //     use: [
@@ -57,11 +88,9 @@ module.exports={
             //     ]
             //   },
             //   {
-            //     test: /\.(scss|sass)$/,
-            //     loaders: [
-            //       'style-loader',
-            //       { loader: 'css-loader', options: { importLoaders: 1 } },
-            //       'sass-loader'
+            //     test: /\.(scss|sass|css)$/,
+            //     use: [
+            //         MiniCssExtractPlugin.loader, "css-loader", "style-loader","sass-loader"
             //     ]
             //   },
         ]
@@ -72,11 +101,14 @@ module.exports={
             template:"./src/index.html"
         }), 
         new MiniCssExtractPlugin(),
-        new Webpack.DefinePlugin({ // THIS allows us to access the node_env in our code
-            "process.env":{
-                "NODE_ENV":JSON.stringify(process.env.NODE_ENV)
-            }
-        })
+        new Webpack.DefinePlugin({
+            'process.env.NODE_ENV' : JSON.stringify('development')
+          }),
+        // new Webpack.DefinePlugin({ // THIS allows us to access the node_env in our code
+        //     "process.env":{
+        //         "NODE_ENV":JSON.stringify(process.env.NODE_ENV)
+            // This has effect on the react lib size
+        // })
 
     ],
     devtool: 'inline-source-map',

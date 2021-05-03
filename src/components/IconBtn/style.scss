@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+// @import "../../styles/variables.scss";
 
 .icon-btn{
   width: 24px;
@@ -38,28 +38,28 @@
   }
 
   &--secondary{
-    background: $hover-gray;
+    background: gray;
   }
 
   &:hover{
-    background: $hover-gray;
+    background: gray;
   }
   @media screen and (max-width: 768px){
     &:hover{
-      background: $black!important;
+      background: black!important;
     }
   }
   &--no-hover{
-    background: $black;
+    background: black;
     &:hover{
-      background: $black;
+      background: black;
     }
   }
 
   &--favourite{
-    background: $yellow;
+    background: yellow;
     &:hover{
-      background: $yellow;
+      background: yellow;
     }
   }
 
