@@ -1,4 +1,4 @@
-/* @font-face {
+/* /* @font-face {
     font-family: 'Maax';
     font-style: normal;
     src: local('Maax'), url('./Maax/Maax.otf') format('opentype');
@@ -64,7 +64,7 @@
 } */
 
 
-/*
+
  @font-face {
     font-family: 'TT-Hoves';
     src: url('./TTHover/TT-Hoves-Light.otf');
@@ -79,4 +79,5 @@
     /*url('./TTHover/TTHoves-Regular.ttf') format('truetype');*/
     
     /*font-style: italic;*/
-
+ 
+ }

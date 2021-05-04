@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="Description" CONTENT="EduCamp is an online learning and teaching marketplace with over 130k courses and 35 million students. Learn programming, marketing, data science and many more">
+        <!-- <meta name="google-site-verification" content="nNV6RZBlz6995dge0AynzlJ_lMjbV-2bzDiWLmQinls"/> -->
+        <!-- <link href="stylesheet" rel="aos/dist/aos.css" /> -->
+        <title>Edu Camp</title>
+        <!-- Hotjar Tracking Code for www.educamp.io -->
+        <!-- <script>
+          (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:2316396,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+          })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        </script> -->
+
+        <style>
+            .bg-back-body{
+                background-color: #1A1A1A;
+            }
+        </style>
+    </head>
+    <body id="body" class="bg-back-body">
+        <div id="root"></div>
+
+        <!-- Dependencies in ejs -->
+
+        <% if (webpackConfig.mode == 'production') { %>
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161700888-2"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'UA-161700888-2');
+            </script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.10.2/umd/react.production.min.js" integrity="sha256-kHzwNYrCFiiWZjqmRupBU8LYKWYt1LrpoojN8Kmv84c=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.10.2/umd/react-dom.production.min.js" integrity="sha256-h2FCY1kn1qwXfMbwHXuDN15oigd8pYcz4KUnl4cAdB0=" crossorigin="anonymous"></script>
+        <% } else { %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.10.2/umd/react.development.js" integrity="sha256-Fy0+oh76u+dih9imNzr0Ka1RHbVKV8o4nR+p8s6wTXE=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.10.2/umd/react-dom.development.js" integrity="sha256-ZMB3rvxm3yr+lN12NcNAJbw6JQWFah3Qx3s3XH1Z0P8=" crossorigin="anonymous"></script>
+        <% } %>
+    </body>
+</html>

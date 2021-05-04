@@ -1,9 +1,9 @@
 const HtmlPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Webpack = require('webpack')
 const path = require("path");
-
+const { loader } = require("mini-css-extract-plugin");
+console.log("process.env", process.env.NODE_ENV)
 module.exports={
     target:'web', 
     mode:'development',
@@ -44,7 +44,19 @@ module.exports={
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "file-loader"
-              },
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|otf|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    // options: {
+                    //   name: '[name].[ext]',
+                    //   outputPath: 'fonts/'
+                    // }
+                  }
+                ]
+            },
             // {
             //     test: /\.(scss|sass|css)$/,
             //     use:[{loader: 'css-loader', }]
@@ -72,8 +84,12 @@ module.exports={
             },
             {
                 test: /\.css$/i,
-                use: ["style-loader", "css-loader", "node-sass"]
+                use: ["style-loader", "css-loader"],
               },
+            // {
+            //     test: /\.css$/,
+            //     use: ["style-loader", "css-loader", "node-sass", ]
+            //   },
             // {
             //     test: /\.css$/,
             //     use: [
@@ -98,7 +114,7 @@ module.exports={
     plugins:[
         new HtmlPlugin({
             filename:"index.html", 
-            template:"./src/index.html"
+            template:"./public/index.html"
         }), 
         new MiniCssExtractPlugin(),
         new Webpack.DefinePlugin({
@@ -119,5 +135,4 @@ module.exports={
         contentBase: path.join(__dirname, 'build'),
         hot: true,
     },
-
 }
