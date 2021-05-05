@@ -5,13 +5,15 @@ import Login from './Login'
 // import { setConversation } from './redux/actions';
 // import { fetchSendBirdInit } from '../Conversation/redux/actions';
 
-const mapStatesToProps = ({course}) => {
+const mapStatesToProps = (state) => {
+    console.log('login state', state);
+    
     return {
         // isLoggedIn: global.isLoggedIn,
         // redirectPath: global.redirectPath,
         // profile: profile.profileData,
         // isConversation: global.isConversation,
-        courseId: course.courseId,
+        // courseId: course.courseId,
     }
 };
 

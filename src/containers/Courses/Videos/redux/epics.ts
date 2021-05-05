@@ -1,14 +1,14 @@
 // @ message receiver
 import { ofType } from 'redux-observable';
 import {catchError, mergeMap, map} from 'rxjs/operators';
-import { FETCH_COURSES_INIT, SORT_COURSES } from './constants'
+import { FETCH_VIDEOS_INIT, VIDEO_COMPLETED } from './constants'
 import * as API from "../../../../service"
-import {fetchCourseVideosSuccess} from './actions';
+import {fetchVideosSuccess} from './actions';
 import {IResponseType} from '../types'
 
-const fetchCourses = action$ =>
+const fetchCourseVideos = action$ =>
     action$.pipe(
-        ofType(FETCH_COURSES_INIT),
+        ofType(FETCH_VIDEOS_INIT),
         mergeMap(({payload}) => {
             console.log('fetchCourses payload = ', payload)
             if(payload) {
@@ -22,10 +22,10 @@ const fetchCourses = action$ =>
         map((resp: IResponseType) => {
             console.log('resp = ', resp)
             if  (resp.pagination.currentPage) {
-                return fetchCourseVideosSuccess(resp);
+                return fetchVideosSuccess(resp);
             }
             else {
-                return fetchCourseVideosSuccess({...resp, currentPage: 1});
+                return fetchVideosSuccess({...resp, currentPage: 1});
             }
         }),
         catchError(error => {
@@ -33,12 +33,12 @@ const fetchCourses = action$ =>
             return () => {}
         })
     );
-const sortCourses = action$ =>
+const completedVideo = action$ =>
     action$.pipe(
-        ofType(SORT_COURSES),
+        ofType(VIDEO_COMPLETED),
         
     )
 export default [
-    fetchCourses,
-    sortCourses
+    fetchCourseVideos,
+    completedVideo
 ]

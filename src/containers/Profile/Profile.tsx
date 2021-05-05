@@ -1,18 +1,18 @@
 import React, {useEffect, useState, Fragment} from 'react'
 import {H1, H3, P2, P1, Title} from '../../components/Typography'
 import Input from '../../components/Input'
-import Favourites from '../Favourites'
+// import Favourites from '../Favourites'
 // import PrivateExhibitions from '../Exhibitions/PrivateExhibitions'
 import './style.scss'
-import {S3Upload} from '../../services/s3Upload'
+// import {S3Upload} from '../../services/s3Upload'
 import {updateProfileImage, resetPassword} from '../../services/api'
 // import {Link} from 'react-router-dom'
-// import LazyLoad from 'react-lazy-load';
+
 import {logout} from '../../utils';
 
 import Button from "../../components/Button";
 
-const Profile = ({uploadMeta, profileData, updateProfileData, getUpdatedProfileDataInit, getUpdatedProfileDataSuccess, updateProfileImageData}) => {
+const Profile = ({profileData}) => {
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [errMsg, setErrMsg] = useState('');
@@ -29,14 +29,14 @@ const Profile = ({uploadMeta, profileData, updateProfileData, getUpdatedProfileD
     });
 
     function getData() {
-
-        const {firstname, lastname, email, image} = profileData
-        image && image.data && console.log('getData = ', image.data.signedUrl336, !photo)
-        setFullName(firstname + lastname);
+        console.log('getData = ', profileData)
+        const {name, email, avatar} = profileData
+        // image && image.data && console.log('getData = ', image.data.signedUrl336, !photo)
+        setFullName(name);
         setEmail(email)
-        if (!photo && image) {
-            setPhoto(image.data.signedUrl336)
-        }
+        // if (!photo && image) {
+        //     setPhoto(image.data.signedUrl336)
+        // }
     }
 
     // useEffect(() => {
@@ -45,14 +45,14 @@ const Profile = ({uploadMeta, profileData, updateProfileData, getUpdatedProfileD
 
     useEffect(() => {
         getData()
-        console.log('profileData in pro: ', profileData);
+        console.log('profileData in useEffec: ', profileData);
     }, [profileData]);
 
-    useEffect(() => {
-        if (!profileData.email) {
-            getUpdatedProfileDataInit()
-        }
-    }, [getUpdatedProfileDataInit, profileData.email]);
+    // useEffect(() => {
+    //     if (!profileData.email) {
+    //         getUpdatedProfileDataInit()
+    //     }
+    // }, [getUpdatedProfileDataInit, profileData.email]);
 
     const isPasswordValid = (pass) => {
         return pass.length > 7 && /^(?=.*\d)(?=.*[!@$*()]).{8,}$/i.test(pass);
@@ -75,7 +75,7 @@ const Profile = ({uploadMeta, profileData, updateProfileData, getUpdatedProfileD
     }, [newPassword]);
 
     useEffect(() => {
-        if (fullName !== profileData.firstname + profileData.lastname && fullName.length < 4) {
+        if (fullName !== profileData.name && fullName.length < 4) {
             setErrMsg('Name must contain 4 letter');
         } else {
             checkPass(newPassword);
@@ -108,50 +108,50 @@ const Profile = ({uploadMeta, profileData, updateProfileData, getUpdatedProfileD
         [0, ...indices].map((n, i, m) => slicable.slice(n, m[i + 1]));
 
     const handleUpdate = async () => {
-        if (isPhotoChanged && uploadMeta && uploadMeta.upload && uploadMeta.upload.Bucket) {
+        if (isPhotoChanged) {
             let fileType = photoFile.type
             // @ts-ignore
             fileType = fileType.split('/')
             fileType = fileType[1]
-            const fileName = `${Date.now()}.${fileType}`
+            // const fileName = `${Date.now()}.${fileType}`
 
             // @ts-ignore
-            const newFile = new File([photoFile], fileName, {type: fileType})
+            // const newFile = new File([photoFile], fileName, {type: fileType})
 
-            const Key = `${uploadMeta.upload.Key}${fileName}`
-            const Bucket = uploadMeta.upload.Bucket
+            // const Key = `${uploadMeta.upload.Key}${fileName}`
+            // const Bucket = uploadMeta.upload.Bucket
 
-            await S3Upload({
-                Key,
-                Bucket,
-                Body: newFile
-            })
-            const resp = await updateProfileImage({
-                assetKey: Key
-            })
+            // await S3Upload({
+            //     Key,
+            //     Bucket,
+            //     Body: newFile
+            // })
+            // const resp = await updateProfileImage({
+            //     assetKey: Key
+            // })
 
-            photo && getUpdatedProfileDataSuccess({
-                ...resp,
-                data: {
-                    ...resp.data,
-                    image: {
-                        ...resp.data.image,
-                        data: {
-                            ...resp.data.image.data,
-                            signedUrl120: photo,
-                            signedUrl336: photo
-                        }
-                    }
-                }
-            })
-            updateProfileImageData({
-                ...resp.data.image,
-                data: {
-                    ...resp.data.image.data,
-                    signedUrl120: photo,
-                    signedUrl336: photo
-                }
-            })
+            // photo && getUpdatedProfileDataSuccess({
+            //     ...resp,
+            //     data: {
+            //         ...resp.data,
+            //         image: {
+            //             ...resp.data.image,
+            //             data: {
+            //                 ...resp.data.image.data,
+            //                 signedUrl120: photo,
+            //                 signedUrl336: photo
+            //             }
+            //         }
+            //     }
+            // })
+            // updateProfileImageData({
+            //     ...resp.data.image,
+            //     data: {
+            //         ...resp.data.image.data,
+            //         signedUrl120: photo,
+            //         signedUrl336: photo
+            //     }
+            // })
             setTimeout(() => {
                 setDisabled(false)
                 setPhotoChanged(false)
@@ -162,33 +162,33 @@ const Profile = ({uploadMeta, profileData, updateProfileData, getUpdatedProfileD
             }, 1000)
         }
 
-        handleFullName();
+        // handleFullName();
         handleResetPassword();
     };
 
-    const handleFullName = () => {
-        if (fullName !== "" && fullName !== profileData.firstname + profileData.firstname) {
-            const fullNameSpaceIndex = fullName.indexOf(" ");
-            if (fullNameSpaceIndex !== -1) {
-                const fullNameCopy = fullName;
-                const newFirstName = splitOn(fullNameCopy, fullNameSpaceIndex)[0];
-                const newLastName = splitOn(fullNameCopy, fullNameSpaceIndex)[1];
-                if ((newFirstName || newLastName) && (profileData.firstname !== newFirstName || profileData.lastname !== newLastName)) {
-                    setDisabled(true);
-                    updateProfileData({firstname: newFirstName || '', lastname: newLastName || ''});
-                    setTimeout(() => {
-                        setDisabled(false)
-                    }, 500)
-                }
-            } else {
-                setDisabled(true);
-                updateProfileData({firstname: fullName || '', lastname: "" || ''});
-                setTimeout(() => {
-                    setDisabled(false)
-                }, 500)
-            }
-        }
-    };
+    // const handleFullName = () => {
+    //     if (fullName !== "" && fullName !== profileData.firstname + profileData.firstname) {
+    //         const fullNameSpaceIndex = fullName.indexOf(" ");
+    //         if (fullNameSpaceIndex !== -1) {
+    //             const fullNameCopy = fullName;
+    //             const newFirstName = splitOn(fullNameCopy, fullNameSpaceIndex)[0];
+    //             const newLastName = splitOn(fullNameCopy, fullNameSpaceIndex)[1];
+    //             // if ((newFirstName || newLastName) && (profileData.firstname !== newFirstName || profileData.lastname !== newLastName)) {
+    //             //     setDisabled(true);
+    //             //     updateProfileData({firstname: newFirstName || '', lastname: newLastName || ''});
+    //             //     setTimeout(() => {
+    //             //         setDisabled(false)
+    //             //     }, 500)
+    //             // }
+    //         } else {
+    //             setDisabled(true);
+    //             updateProfileData({firstname: fullName || '', lastname: "" || ''});
+    //             setTimeout(() => {
+    //                 setDisabled(false)
+    //             }, 500)
+    //         }
+    //     }
+    // };
 
     const resetFullName = () => {
         setFullName(profileData.firstname + profileData.lastname);
@@ -407,7 +407,7 @@ const Profile = ({uploadMeta, profileData, updateProfileData, getUpdatedProfileD
                   </div>
                 </Fragment>
             }
-            {
+            {/* {
                 activeTab === "bookmarks" &&
                 <Favourites/>
             }
@@ -415,7 +415,7 @@ const Profile = ({uploadMeta, profileData, updateProfileData, getUpdatedProfileD
                 activeTab === "exhibitions" &&
                     // @ts-ignore
                 <PrivateExhibitions/>
-            }
+            } */}
         </div>
     )
 }

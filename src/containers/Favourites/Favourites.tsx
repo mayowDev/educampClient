@@ -87,18 +87,17 @@ const Favourites = (props) => {
                                 {
                                     favourites.exhibitions.map(({data}) => {
                                         return <Course
-                                            id={data.id}
-                                            exhibitionImg={data.image && [data.image.data.signedUrl1920x1080, data.image.data.signedUrl1920x1080Webp]}
-                                            // exhibitionImg={data.image && data.image.data.signedUrl1920x1080Webp}
-                                            title={data.name}
-                                            onClick={handleExhibitionClick}
-                                            subTitle={data.organisation && data.organisation.data.overview}
-                                            galleryName={data.organisation && data.organisation.data.name}
-                                            locations={data.organisation && data.organisation.data.locations}
-                                            startedAt={data.startedAt}
-                                            endedAt={data.endedAt}
-                                            toggleFavourite={(id) => toggleFavourite(id)}
-                                            isFavourite={data.isFavourite}
+                                            // id={data.id}
+                                            // exhibitionImg={data.image && [data.image.data.signedUrl1920x1080, data.image.data.signedUrl1920x1080Webp]}
+                                            // title={data.name}
+                                            // onClick={handleExhibitionClick}
+                                            // subTitle={data.organisation && data.organisation.data.overview}
+                                            // galleryName={data.organisation && data.organisation.data.name}
+                                            // locations={data.organisation && data.organisation.data.locations}
+                                            // startedAt={data.startedAt}
+                                            // endedAt={data.endedAt}
+                                            // toggleFavourite={(id) => toggleFavourite(id)}
+                                            // isFavourite={data.isFavourite}
                                         />
                                     })
                                 }

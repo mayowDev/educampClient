@@ -6,7 +6,7 @@ const w: any = window as any;
 
 const epicMiddleware = createEpicMiddleware();
 const middlewares = [applyMiddleware(epicMiddleware)];
-
+console.log("process.env.store", process.env.NODE_ENV)
 if (process.env.NODE_ENV === "development") {
   middlewares.push(
       w.__REDUX_DEVTOOLS_EXTENSION__ ? w.__REDUX_DEVTOOLS_EXTENSION__() : f => f

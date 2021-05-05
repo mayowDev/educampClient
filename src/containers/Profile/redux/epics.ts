@@ -1,8 +1,8 @@
 import {ofType} from 'redux-observable';
 import {catchError, mergeMap, map} from 'rxjs/operators';
-import {UPDATE_PROFILE_DATA_INIT, GET_UPDATE_PROFILE_DATA_INIT} from './actionTypes'
-import * as API from "../../../service/"
-import {updateProfileDataSuccess, getUpdatedProfileDataSuccess} from './actions';
+import {UPDATE_PROFILE_DATA_INIT, GET_PROFILE_DATA_INIT} from './actionTypes'
+import * as API from "../../../service"
+import {updateProfileDataSuccess, getProfileDataSuccess} from './actions';
 import {IResponseType} from "../../Profile/types";
 
 const updateProfile = action$ =>
@@ -20,22 +20,22 @@ const updateProfile = action$ =>
         })
     );
 
-// const getUpdatedProfile = action$ =>
-//     action$.pipe(
-//         ofType(GET_UPDATE_PROFILE_DATA_INIT),
-//         mergeMap(() => API.updateProfile()),
-//         map((resp: IResponseType) => {
-//             if (resp.data) {
-//                 return getUpdatedProfileDataSuccess(resp);
-//             }
-//         }),
-//         catchError(error => {
-//             console.log('error = ', error);
-//             return () => {}
-//         })
-//     );
+const getUserProfile = action$ =>
+    action$.pipe(
+        ofType(GET_PROFILE_DATA_INIT),
+        mergeMap(() => API.getUserProfile()),
+        map((resp: IResponseType) => {
+            if (resp.data) {
+                return getProfileDataSuccess(resp);
+            }
+        }),
+        catchError(error => {
+            console.log('error = ', error);
+            return () => {}
+        })
+    );
 
 export default [
     updateProfile,
-    // getUpdatedProfile
+    getUserProfile
 ];

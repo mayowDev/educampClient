@@ -1,9 +1,9 @@
 const HtmlPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Webpack = require('webpack')
+const Dotenv = require('dotenv-webpack');
+
 const path = require("path");
-const { loader } = require("mini-css-extract-plugin");
-console.log("process.env", process.env.NODE_ENV)
 module.exports={
     target:'web', 
     mode:'development',
@@ -117,14 +117,15 @@ module.exports={
             template:"./public/index.html"
         }), 
         new MiniCssExtractPlugin(),
-        new Webpack.DefinePlugin({
-            'process.env.NODE_ENV' : JSON.stringify('development')
-          }),
-        // new Webpack.DefinePlugin({ // THIS allows us to access the node_env in our code
-        //     "process.env":{
-        //         "NODE_ENV":JSON.stringify(process.env.NODE_ENV)
-            // This has effect on the react lib size
-        // })
+        new Dotenv({
+            path: './.env', // Path to .env file (this is the default)
+            // safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
+        }),
+        // new Webpack.EnvironmentPlugin({
+        //     // THIS allows us to access the node_env in our code
+        //     NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
+        //     DEBUG: false,
+        //   })
 
     ],
     devtool: 'inline-source-map',

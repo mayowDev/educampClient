@@ -1,8 +1,16 @@
-import { GET_PROFILE_DATA, UPDATE_PROFILE_DATA_INIT, UPDATE_PROFILE_DATA_SUCCESS, GET_UPDATE_PROFILE_DATA_INIT, GET_UPDATE_PROFILE_DATA_SUCCESS, UPDATE_PROFILE_IMAGE } from './actionTypes'
+import { GET_PROFILE_DATA_INIT, UPDATE_PROFILE_DATA_INIT, UPDATE_PROFILE_DATA_SUCCESS, GET_UPDATE_PROFILE_DATA_INIT, GET_PROFILE_DATA_SUCCESS, UPDATE_PROFILE_IMAGE } from './actionTypes'
 
 export function getProfileData (data) {
   return {
-    type: GET_PROFILE_DATA,
+    type: GET_PROFILE_DATA_INIT,
+    payload: data
+  }
+}
+
+export function getProfileDataSuccess (data) {
+  console.log('GET_PROFILE_DATA_SUCCESS action :: = ', data)
+  return {
+    type: GET_PROFILE_DATA_SUCCESS,
     payload: data
   }
 }
@@ -27,13 +35,6 @@ export function getUpdatedProfileDataInit () {
   }
 }
 
-export function getUpdatedProfileDataSuccess (data) {
-  console.log('GET_UPDATE_PROFILE_DATA_SUCCESS :: = ', data)
-  return {
-    type: GET_UPDATE_PROFILE_DATA_SUCCESS,
-    payload: data
-  }
-}
 
 export function updateProfileImageData (data) {
   return {
