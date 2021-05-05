@@ -1,38 +1,17 @@
-import { FETCH_BOOTCAMPS_INIT, FETCH_BOOTCAMPS_SUCCESS, RESET_BOOTCAMPS, TOGGLE_GROUP_FAVOURITE, SEARCH_BOOTCAMPS } from './constants'
-import {IBootcampFetchInitType} from '../types'
+import { FETCH_BOOTCAMP, FETCH_BOOTCAMPS,  SEARCH_BOOTCAMPS } from './constants'
+import * as API from "../../../service"
 
-export function fetchBootcampsInit (filterQuery:IBootcampFetchInitType) {
-    console.log('fetchBootcampsInit => ', filterQuery);
-    return {
-      type: FETCH_BOOTCAMPS_INIT,
-      payload: { filterQuery      }
-    }
-}
-
-export function fetchBootcampsSuccess (data) {
-    return {
-        type: FETCH_BOOTCAMPS_SUCCESS,
-        payload: data
-    }
+export const  fetchBootcamps = () =>  async dispatch =>{
+    const response = await API.getAllBootcamps()    
+    dispatch({type: FETCH_BOOTCAMPS, payload: response})
 }
   
-export function searchBootcamps(value:string) {
-    return {
-        type: SEARCH_BOOTCAMPS,
-        payload: value
-    }
+export const fetchBootcamp =  (id:string) => async dispatch =>{
+    const response = await API.getBootcamp(id)    
+    dispatch({type: FETCH_BOOTCAMP, payload: response})
 }
- export function toggleFavourite(itemId, isFavourite){
-     return {
-         type: TOGGLE_GROUP_FAVOURITE,
-         payload: {itemId, isFavourite}
-     }
 
- }
-
-export function resetBootcamps() {
-    return {
-        type: RESET_BOOTCAMPS,
-    }
-}
-  
+// export const  searchBootcamp =(query)=> async dispatch =>{
+//     const response = await API.searchBootcamp(query)
+//     dispatch({type: SEARCH_BOOTCAMPS, payload: response})
+// }

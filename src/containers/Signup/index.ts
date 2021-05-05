@@ -1,21 +1,23 @@
 import { connect } from 'react-redux';
 import Signup from './Signup'
+import {signup} from './redux/actions'
 // import '../../assets/fonts/fonts.css'
 
-const mapStatesToProps = ({auth}) => {
+const mapStatesToProps = (state) => {
+    console.log('signUp MapstateToProps', state)
+
     return {
         // isLoggedIn: global.isLoggedIn,
         // redirectPath: global.redirectPath,
         // profile: profile.profileData,
         // isConversation: global.isConversation,
-        auth: auth.signup,
+        auth: state.auth,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        // updateProfileData: () => {dispatch(getUpdatedProfileDataInit())},
-        // setConversation: (val) => {dispatch(setConversation(val))},
+        signup: (data) => {dispatch(signup(data))},
     }
 };
 

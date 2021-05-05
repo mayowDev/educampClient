@@ -1,9 +1,11 @@
 
 import axios from "./axios";
+// import axios from "axios";
 import {ICreateBootcamp} from './types'
+
 export const getAllBootcamps = async () => {
     try {
-        const result = await axios.get(`/bootcamps/`)
+        const result = await axios.get('/bootcamps/')
         .catch((err: any) => {
             console.log('err = ', err);
             if (err && err.response && err.response.status === 400) {
@@ -13,7 +15,6 @@ export const getAllBootcamps = async () => {
             }
             return Promise.reject(new Error(JSON.stringify(err.response.data)));
         });
-        console.log('getAllBootcamps = ', result)
         if (result) {
             return result.data;
         }

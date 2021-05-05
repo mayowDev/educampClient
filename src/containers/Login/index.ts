@@ -6,7 +6,6 @@ import Login from './Login'
 // import { fetchSendBirdInit } from '../Conversation/redux/actions';
 
 const mapStatesToProps = (state) => {
-    console.log('login state', state);
     
     return {
         // isLoggedIn: global.isLoggedIn,

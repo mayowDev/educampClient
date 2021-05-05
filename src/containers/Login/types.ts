@@ -1,12 +1,11 @@
-export interface ITypeGlobal {
-    isLoggedIn?: boolean,
-    redirectPath?: string,
-    updateProfileData?: () => void,
-    fetchSendBirdInit?: (val: any) => void,
-    profile: any,
-    profile_?: any,
-    setConversation?: (val: boolean) => void,
-    isConversation?: string,
+export interface ITypeLoginData {
+    email: string;
+    password: string;
+//     profile: any,
+//     profile_?: any,
+//     setConversation?: (val: boolean) => void,
+//     fetchSendBirdInit?: (val: any) => void,
+//     isConversation?: string,
 }
 
 export interface ITypeRenderRoute {

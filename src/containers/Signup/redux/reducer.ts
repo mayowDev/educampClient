@@ -1,18 +1,17 @@
 // import { LOCAL_STORAGE_KEYS } from '../../../components/Constants'
-import { SIGNUP, CHANGE_FORM_TYPE } from './constants';
+import { SIGNUP } from './constants';
 
 const initialState = {
-  formType: '',
+  isLoggedIn: false,
+  user: {}
 };
 
 function getSignUp (state = initialState, action) {
   switch (action.type) {
     case SIGNUP:
-      return { ...state, isLoggedIn: true };
+      console.log('SIGNUP reducer', action.payload);
+      return { ...state, user: action.payload };
 
-    case CHANGE_FORM_TYPE:
-      return { ...state, formType: action.payload };
-    
     default:
       return state
     }

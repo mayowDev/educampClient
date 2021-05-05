@@ -10,60 +10,63 @@ import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 
 const Bootcamps = (props) => {
     const history = useHistory()
-    const {updateSortBy, resetBootcamps, setCoursesLoader, fetchBootcamps , state: {sortBy, currentPage, canLoadMore, bootcampsLoading}, bootcamps} = props;
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
-
+    
+    const {  fetchBootcamps,  bootcamps:{bootcamps, bootcampsLoading}} = props;
+    // const [isLoadingMore, setIsLoadingMore] = useState(false);
+    console.log('props.bootcamps', bootcamps);//empty
     useEffect(() => {
         
-        loadData();
-        loadBootcamps()
-        return () => {
-            resetBootcamps();
-        }
+        fetchBootcamps();
+        // return () => {
+        //     resetBootcamps();
+        // }
     }, []);
 
 
-    const loadBootcamps = () => {
-        if (bootcamps && bootcamps.length === 0) {
-            fetchBootcamps();
-        }
-    }
+    // const loadBootcamps = () => {
+    //     if (bootcamps && bootcamps.length === 0) {
+    //         fetchBootcamps();
+    //     }
+    //     console.log('bootcamps.tsx', props.bootcamps);//empty
+    //     console.log('Bootcamps props', props.fetchBootcamps());//promise pending
 
-    useEffect(() => {
-        setIsLoadingMore(false)
-    }, [bootcamps && bootcamps.length])
+    // }
 
-    const loadData = async () => {
-        if (canLoadMore && !isLoadingMore) {
-            setIsLoadingMore(true);
-            const nextPage = currentPage + 1;
-            const isGroup = !['alphabetical', ].includes(sortBy);
-            await props.fetchGalleriesInit( nextPage, sortBy, isGroup,"gallery");
-        }
-        else{
-            const isGroup = !['alphabetical', ].includes(sortBy);
-            await props.fetchGalleriesInit( 1, sortBy, isGroup,"gallery");
-        }
-    };
+    // useEffect(() => {
+    //     setIsLoadingMore(false)
+    // }, [bootcamps && bootcamps.length])
 
-    const handleBootcampClick = (bootcampId:string) => {
-        history.push(`/bootcamps/${bootcampId}`)
-    };
+    // const loadData = async () => {
+        // if (canLoadMore && !isLoadingMore) {
+            // setIsLoadingMore(true);
+            // const nextPage = currentPage + 1;
+            // const isGroup = !['alphabetical', ].includes(sortBy);
+            // await props.fetchGalleriesInit( nextPage, sortBy, isGroup,"gallery");
+        // }
+        // else{
+            // const isGroup = !['alphabetical', ].includes(sortBy);
+            // await props.fetchGalleriesInit( 1, sortBy, isGroup,"gallery");
+        // }
+    // };
+
+    // const handleBootcampClick = (bootcampId:string) => {
+    //     history.push(`/bootcamps/${bootcampId}`)
+    // };
 
 
 
-    const handleValueChange = async (value) => {
-        setCoursesLoader(true)
-        updateSortBy(value);
-        const isGroup = !['alphabetical', ].includes(value);
-        await props.fetchGalleriesInit( 1, value, isGroup, "gallery");
-    }
+    // const handleValueChange = async (value) => {
+    //     setCoursesLoader(true)
+    //     // updateSortBy(value);
+    //     const isGroup = !['alphabetical', ].includes(value);
+    //     await props.fetchGalleriesInit( 1, value, isGroup, "gallery");
+    // }
 
-    const infiniteRef = useInfiniteScroll({
-        loading: isLoadingMore,
-        hasNextPage: canLoadMore,
-        onLoadMore: loadData,
-    });
+    // const infiniteRef = useInfiniteScroll({
+    //     loading: isLoadingMore,
+    //     hasNextPage: canLoadMore,
+    //     onLoadMore: loadData,
+    // });
 
     return (
         <ScrollAnimation>
@@ -75,23 +78,20 @@ const Bootcamps = (props) => {
                 </div>
                 {
                     bootcampsLoading ?
-                        <Spinner type="cover" />
+                        <Spinner />
                         :
                         // @ts-ignore
-                        <div className="cards-container bootcamps-cards" ref={infiniteRef}>
+                        <div className="cards-container bootcamps-cards" >
                             {
                                 bootcamps && bootcamps.map((bootcamp: any) => {
-                                    console.log('Bootcamp.tsx',bootcamp)                                    
+                                    console.log('each bootcamp',bootcamp)                                    
                                     return (
                                         <div data-aos="fade-up" data-aos-duration="500">
-                                            <BootcampDetails  onClick={() => handleBootcampClick(bootcamp.id)} {...bootcamp}/>
+                                            {bootcamp.slug}
+                                            {/* <BootcampDetails  onClick={() => handleBootcampClick(bootcamp.id)} {...bootcamp}/> */}
                                         </div>
                                     )
                                 })
-                            }
-                            {
-                                isLoadingMore &&
-                                <Spinner/>
                             }
                         </div>
 

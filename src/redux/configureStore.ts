@@ -1,20 +1,15 @@
 import { applyMiddleware, compose, createStore } from "redux";
-import { createEpicMiddleware } from "redux-observable";
-import rootEpic from "./combineEpics";
+import thunkMiddleware from 'redux-thunk'
 import rootReducer from "./combineReducers";
-const w: any = window as any;
+const middlewares = [applyMiddleware(thunkMiddleware)]
 
-const epicMiddleware = createEpicMiddleware();
-const middlewares = [applyMiddleware(epicMiddleware)];
-console.log("process.env.store", process.env.NODE_ENV)
+const w: any = window as any;
 if (process.env.NODE_ENV === "development") {
   middlewares.push(
       w.__REDUX_DEVTOOLS_EXTENSION__ ? w.__REDUX_DEVTOOLS_EXTENSION__() : f => f
   );
 }
 
-const store:any = createStore(rootReducer, compose(...middlewares));
-
-epicMiddleware.run(rootEpic);
+const store:any = createStore(rootReducer, compose(...middlewares))
 
 export default store;

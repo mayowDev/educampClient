@@ -1,17 +1,19 @@
-import { SIGNUP, CHANGE_FORM_TYPE } from './constants';
+import { SIGNUP } from './constants';
 import {ITypeSignUp} from '../types'
-export function signup(data:ITypeSignUp){
-    return {
-        type: SIGNUP,
-        payload: data
-    }
+import * as API from "../../../service"
+
+export const signup = (data:ITypeSignUp)=> async dispatch =>{
+    const response = await API.signup(data)
+    console.log('signupAction response', response);
+    
+    dispatch({type:SIGNUP, payload: response})
 }
 
-export function changeFormType(value:string){
-    return {
-        type: CHANGE_FORM_TYPE,
-        payload: value
-    }
-}
+// export function changeFormType(value:string){
+//     return {
+//         type: CHANGE_FORM_TYPE,
+//         payload: value
+//     }
+// }
 
 

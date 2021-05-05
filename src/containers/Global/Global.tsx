@@ -16,7 +16,7 @@ import Verify from '../Verify';
 // import ForgotPassword from '../ForgotPassword';
 const ProfilePage = lazy(() => import ("../Profile"))
 // /** Bootcamps components */
-// const BootcampsPage = lazy(() => import ("../Bootcamps"));
+import  BootcampsPage from "../Bootcamps";
 // const BootcampDetails =  lazy(() => import ("../Bootcamps/Details"));
 // /** Courses components */
 // const CoursesPage = lazy(() => import ( "../Courses"));
@@ -223,7 +223,7 @@ const Global = () => {
     return (
         <BrowserRouter>
             <h1>Welcome to Edu Camp Client</h1>
-            <Login/>
+            <BootcampsPage/>
         </BrowserRouter>
     )
 };

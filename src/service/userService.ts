@@ -1,7 +1,8 @@
 import axios from "./axios";
 import {LOCAL_STORAGE_KEYS} from "../components/Constants"
+import {ITypeLoginData, ITypeSignUpData} from './types'
 
-export const signup = async (data) => {
+export const signup = async (data:ITypeSignUpData) => {
     try {
         const result = await axios.post(`/auth/signup`, data)
             .catch((err: any) => {
@@ -13,6 +14,8 @@ export const signup = async (data) => {
                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
             });
         if (result) {
+            console.log('signupService result ===>', result);
+            
             return result.data;
         }
     } catch (e) {
@@ -39,10 +42,8 @@ export const verify = async (data) => {
     }
 }
 
-export const login = async (email: string, password: string) => {
-    const result = await axios.post("/auth/signin", {
-            email, password,
-        })
+export const login = async (data:ITypeLoginData) => {
+    const result = await axios.post("/auth/signin", data)
         .catch((err: any) => {
             return Promise.reject(err.response);
         });
@@ -59,7 +60,7 @@ export const loginWithGoogle = async () => {
         .catch((err: any) => {
             return Promise.reject(err.response);
         });
-    if (result && result.data && result.data) {
+    if (result && result.data) {
         //handle session here
         return result && result.data
     }
@@ -184,6 +185,7 @@ export const getUserProfile = async () => {
                 }
                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
             });
+        console.log('getUserProfile service', result)
         if (result) {
             return result.data;
         }
