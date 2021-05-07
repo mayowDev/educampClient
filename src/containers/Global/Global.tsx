@@ -11,12 +11,11 @@ import LoadingPage from "../../components/LoadingPage";
 // /** Auth components */
 import Login from '../Login';
 import SignUp from '../Signup';
-import Verify from '../Verify';
+// import Verify from '../Verify';
 // import ResetPage from '../ResetPassword'
 // import ForgotPassword from '../ForgotPassword';
-const ProfilePage = lazy(() => import ("../Profile"))
 // /** Bootcamps components */
-import  BootcampsPage from "../Bootcamps";
+// import  BootcampsPage from "../Bootcamps";
 // const BootcampDetails =  lazy(() => import ("../Bootcamps/Details"));
 // /** Courses components */
 // const CoursesPage = lazy(() => import ( "../Courses"));
@@ -25,7 +24,7 @@ import  BootcampsPage from "../Bootcamps";
 // const HomePage = lazy(() => import ("../Home"));
 
 
-const RenderRoutes = React.memo(({isLoggedIn}: ITypeRenderRoute) => {
+const RenderRoutes = React.memo(({}: ITypeRenderRoute) => {
     return (
         <Suspense fallback={<LoadingPage/>}>
              <Switch>
@@ -43,13 +42,13 @@ const RenderRoutes = React.memo(({isLoggedIn}: ITypeRenderRoute) => {
                  {/*ROUTES: NOT LOGGED IN*/}
                  {/* {!isLoggedIn && <Route exact path="/" component={() => <HomePage isLoggedIn={isLoggedIn}/>}/>} */}
                  { <Route exact path="/login" component={Login}/>}
-                 { <Route exact path="/signup" component={SignUp}/>}
+                 { <Route exact path="/register" component={SignUp}/>}
                  {/* {!isLoggedIn && <Route exact path="/verify" component={Verify}/>} */}
-                 {/* <Route isLoggedIn={isLoggedIn} exact path="/forgot-password" component={ForgotPassword}/> */}
+                 {/* <Route exact path="/forgot-password" component={ForgotPassword}/> */}
 
 
                  {/*ROUTES: ONLY LOGGED IN*/}
-                 {!isLoggedIn && <Route exact path="/profile" component={ProfilePage}/>}
+                 {/* {!isLoggedIn && <Route exact path="/profile" component={ProfilePage}/>} */}
                  {/* {isLoggedIn && <Route exact path="/favourites" component={Favourites}/>} */}
                  {/* {isLoggedIn && <Route exact path="/search" component={SearchPage}/>} */}
 
@@ -222,7 +221,7 @@ const Global = () => {
     // }, [isLoggedIn])
     return (
         <BrowserRouter>
-            <SignUp/>
+            <RenderRoutes/>
             {/* <BootcampsPage/> */}
         </BrowserRouter>
     )

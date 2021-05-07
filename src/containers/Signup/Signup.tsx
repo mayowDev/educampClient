@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import Logo from '../../assets/images/logo-white@2x.png';
+import Google from '../../assets/images/icon-google.png';
 
 const Signup = ({signup}) => {
     const [user, setUser] = useState({name: '', email:'', password:''})
-    const [remember, setRemember] = useState(false)
     //TODO: handle all validation errors:- taken email, input values, password length and strength, API VALIDATION: taken emails
     
     const handleInputChange = (e)=>{
@@ -11,9 +11,6 @@ const Signup = ({signup}) => {
           ...user,
           [e.target.name]: e.target.value
         });
-    }
-    const  handleRemember = (e) => {
-        if(e.target.name === 'remember') setRemember(!remember)
     }
 
     const onSignUpSubmit = e => {
@@ -44,21 +41,12 @@ const Signup = ({signup}) => {
                             <label htmlFor="password">Password</label>
                             <input name="password" onChange={handleInputChange} type="password" className="form-control" placeholder="Your Password" id="password"/>
                         </div>
-                        
-                        <div className="forgot-remember">
-                            <label className="control "><span className="caption">Remember me</span>
-                                <input name="remember" type="checkbox" onChange={handleRemember} checked={remember}/>
-                                <div className="control__indicator"></div>
-                             </label>
-                            <span ><a href="#" className="forgot-pass">Forgot Password?</a></span> 
-                        </div>
-
                         <input type="submit" value="Sign Up" className="btn btn-block btn-primary"/>
 
                         <span className="seprater">OR</span>    
                         <div className="icons">
-                            <a href="#" className="btn btn-block auth-btn fb"> <span className="icon-facebook"></span> Login with facebook</a>
-                            <a href="#" className="btn btn-block auth-btn gl"><span className="icon-google"></span> Login with Google</a>
+                            <a href="#" className="btn btn-block auth-btn fb"> <span></span> Sign up with facebook</a>
+                            <a href="#" className="btn btn-block auth-btn gl"><img src={Google} alt="Google-logo"/> Sign up with Google</a>
                         </div>
                     </form>
                 </div>

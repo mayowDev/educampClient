@@ -4,7 +4,7 @@ import Login from './Login'
 // import { getUpdatedProfileDataInit } from '../Profile/redux/actions';
 // import { setConversation } from './redux/actions';
 // import { fetchSendBirdInit } from '../Conversation/redux/actions';
-
+import './style.scss';
 const mapStatesToProps = (state) => {
     
     return {

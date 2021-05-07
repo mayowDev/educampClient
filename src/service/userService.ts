@@ -14,9 +14,7 @@ export const signup = async (data:ITypeSignUpData) => {
                 }
                 return Promise.reject(new Error(JSON.stringify(err)));
             });
-        if (result) {
-            console.log('signupService result ===>', result);
-            
+        if (result) {            
             return result.data;
         }
     } catch (e) {

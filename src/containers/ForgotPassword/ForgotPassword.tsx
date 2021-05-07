@@ -27,6 +27,7 @@ const Forgot:React.FC = ({ isLoggedIn }) => {
             }
         }
         catch(e) {
+            console.log(e);
             setSuccess(false)
         }
     };
