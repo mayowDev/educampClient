@@ -222,8 +222,8 @@ const Global = () => {
     // }, [isLoggedIn])
     return (
         <BrowserRouter>
-            <h1>Welcome to Edu Camp Client</h1>
-            <BootcampsPage/>
+            <SignUp/>
+            {/* <BootcampsPage/> */}
         </BrowserRouter>
     )
 };

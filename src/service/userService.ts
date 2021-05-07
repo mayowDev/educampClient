@@ -4,14 +4,15 @@ import {ITypeLoginData, ITypeSignUpData} from './types'
 
 export const signup = async (data:ITypeSignUpData) => {
     try {
-        const result = await axios.post(`/auth/signup`, data)
+        const result = await axios.post(`/auth/register`, data)
             .catch((err: any) => {
+                console.log('catchError', err);
                 if (err && err.response && err.response.status === 400) {
                     return Promise.reject(
                         new Error("Request failed with status code 400")
                     );
                 }
-                return Promise.reject(new Error(JSON.stringify(err.response.data)));
+                return Promise.reject(new Error(JSON.stringify(err)));
             });
         if (result) {
             console.log('signupService result ===>', result);
@@ -19,6 +20,7 @@ export const signup = async (data:ITypeSignUpData) => {
             return result.data;
         }
     } catch (e) {
+        console.log('promiseERROR',e);
         return Promise.reject(new Error(e.message));
     }
 }
