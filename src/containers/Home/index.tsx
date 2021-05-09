@@ -1,6 +1,6 @@
-import Home from './Home'
+// import Home from './Home'
 import { connect } from 'react-redux'
-import { fetchBootcampsInit, resetBootcamps } from '../Bootcamps/redux/actions'
+// import { fetchBootcampsInit, resetBootcamps } from '../Bootcamps/redux/actions'
 import './style.scss'
 
 const mapStatesToProps = ({bootcamp, global}) => {
@@ -11,8 +11,8 @@ const mapStatesToProps = ({bootcamp, global}) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    resetBootcamps: () => dispatch(resetBootcamps()),
-    fetchBootcamps: (filterQuery) => dispatch(fetchBootcampsInit( filterQuery)),
+    // resetBootcamps: () => dispatch(resetBootcamps()),
+    // fetchBootcamps: (filterQuery) => dispatch(fetchBootcampsInit( filterQuery)),
 });
 
-export default connect(mapStatesToProps, mapDispatchToProps)(Home)
+// export default connect(mapStatesToProps, mapDispatchToProps)(Home)

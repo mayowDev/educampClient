@@ -1,36 +1,22 @@
-import { GET_PROFILE_DATA_INIT, UPDATE_PROFILE_IMAGE, UPDATE_PROFILE_DATA_SUCCESS, GET_PROFILE_DATA_SUCCESS } from './actionTypes'
+import { GET_PROFILE_DATA, UPDATE_PROFILE_IMAGE } from './actionTypes'
 
 const initialState = {
-  profileData: {},
-  uploadMeta: {}
+  profileLoading: true,
+  profileData: {}
 }
 
-function GetProfile (state = initialState, action) {
+function getProfile (state = initialState, action) {
   switch (action.type) {
-    // case GET_PROFILE_DATA_INIT:
-    //   return { ...state, profileData: action.payload.data };
-    // case UPDATE_PROFILE_DATA_SUCCESS:
-    //   // console.log('UPDATE_PROFILE_DATA_SUCCESS payload here is : ', action.payload)
-    //   return { ...state, profileData: action.payload }
-    case GET_PROFILE_DATA_SUCCESS:
-      console.log('GET_PROFILE_DATA_SUCCESS payload here is : ===>> ', action.payload);
+    case GET_PROFILE_DATA:
+      console.log('GET_PROFILE_DATA reducer : ===>> ', action.payload);
       return {
         ...state,
-        profileData: action.payload.data
+        profileData: action.payload,
+        profileLoading: false,
       };
-    case UPDATE_PROFILE_IMAGE:
-      console.log('action.payload L ', action.payload);
-      return {
-        ...state,
-        profileData: {
-          ...state.profileData,
-          image: action.payload
-        }
-      }
-
     default:
       return state
   }
 }
 
-export default GetProfile
+export default getProfile

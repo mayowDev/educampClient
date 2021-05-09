@@ -1,21 +1,18 @@
 import { connect } from 'react-redux'
 import Profile from './Profile'
-import { updateProfileDataInit, getUpdatedProfileDataInit, updateProfileImageData } from './redux/actions'
+import { updateProfileData, getProfileData, getUpdatedProfileData, updateProfileImage } from './redux/actions'
 
-const mapStatesToProps = ( state) => {
-  console.log('profile connect =>' , state);
-  
+const mapStatesToProps = ( state) => {  
   return {
-    profileData: state.profile.profileData,
-    // uploadMeta: profile.uploadMeta
+    profileData: state.profile,
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateProfileData: (data) => { dispatch(updateProfileDataInit(data)) },
-  // getUpdatedProfileDataSuccess: (data) => { dispatch(getUpdatedProfileDataSuccess(data)) },
-  getUpdatedProfileDataInit: () => { dispatch(getUpdatedProfileDataInit()) },
-  updateProfileImageData: (data) => { dispatch(updateProfileImageData(data)) }
+  getProfileData : () => {dispatch(getProfileData())},
+  updateProfileData: (data) => { dispatch(updateProfileData(data)) },
+  updateProfileImage: (data) => { dispatch(updateProfileImage(data)) },
+  getUpdatedProfileData: () => { dispatch(getUpdatedProfileData()) }
 })
 
 export default connect(mapStatesToProps, mapDispatchToProps)(Profile)

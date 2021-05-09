@@ -13,9 +13,6 @@ function getLogin (state = initialState, action) {
     case LOGIN:
       return { ...state, isLoggedIn: true };
 
-    case CHANGE_SEARCH:
-      return { ...state, searchQuery: action.payload };
-
     case SET_REDIRECT_PATH:
       return { ...state, redirectPath: action.payload };
 

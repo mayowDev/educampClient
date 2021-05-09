@@ -14,7 +14,7 @@ function reducer(state=initialState, action){
 
             return {
                 ...state,
-                bootcamps:  action.payload.data,
+                bootcamps:  action.payload,
                 pages: action.payload.pagination,
                 // canLoadMore: action.payload.page && action.payload.page.lastPage && action.payload.currentPage < action.payload.page.lastPage.index,
                 bootcampsLoading: false,

@@ -2,8 +2,6 @@ import axios from "./axios-foursquare";
 import axiosMain from "axios";
 import {BACKEND_URL} from "../configs"
 
-import { isMobileDevice } from '../utils';
-// import { initSync } from './sendbird/main'
 const getWebMobileParam = () => {
     let params = '';
     // Only pass params is BETA API is being used.
@@ -18,7 +16,6 @@ const getWebMobileParam = () => {
     return params;
 };
 
-console.log('${getWebMobileParam()} = ', getWebMobileParam())
 
 import {LOCAL_STORAGE_KEYS, RECORDS_LIMIT} from "../components/Constants"
 // import * as config from "../config";

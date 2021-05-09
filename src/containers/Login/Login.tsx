@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import Logo from '../../assets/images/logo-white@2x.png';
 import Google from '../../assets/images/icon-google.png';
+// import {login} from "../../service";
 
-const Login = ({login}) => {
+const Login = (props) => {
     const [user, setUser] = useState({ email:'', password:''})
     const [remember, setRemember] = useState(false)
+    const history = useHistory()
     //TODO: handle all validation errors:- taken email, input values, password length and strength, API VALIDATION: taken emails
     
     const handleInputChange = (e)=>{
@@ -17,11 +19,36 @@ const Login = ({login}) => {
     const  handleRemember = (e) => {
         if(e.target.name === 'remember') setRemember(!remember)
     }
-
-    const onLoginpSubmit = e => {
-        console.log('your login information is: ' + user.email, user.password);
+    // const submitForm = async () => {
+    //     // setLoggingIn(true);
+    //     try {
+    //         const resp = await login(user.email, user.password);
+    //         if (resp) {
+    //             // setLoggingIn(false);
+    //             // props.getLogedInUserData(resp);
+    //             login(true);
+    //         }
+    //     }
+    //     catch (e) {
+    //         if(e.data === "Unverified user") {
+    //             // history.push('/verify', email)
+    //         }
+    //         else {
+    //             // setLoggingIn(false);
+    //             // setErrorMsg("Email or password is Invalid!");
+    //             // setEmailError(true);
+    //             // setPasswordError(true);
+    //         }
+    //     }
+    // };
+    const onLoginSubmit = e => {
         e.preventDefault();
-        login(user)
+        if(props.isLoggedIn){
+            alert("Your are already loged in")
+        }
+        props.login(user);
+        history.push('/')
+
     }
 
     return (
@@ -33,7 +60,7 @@ const Login = ({login}) => {
 					    <h2 className="title-head">Login in </h2>
 					    <p>Don't have an Account? <Link to="/register">Register here</Link></p>
 				    </div>	
-                    <form onSubmit={onLoginpSubmit} method="post">
+                    <form onSubmit={onLoginSubmit} method="post">
                         <div className="form-group ">
                             <label htmlFor="email">email</label>
                             <input name="email" onChange={handleInputChange} type="email" className="form-control" placeholder="youremail@gmail.com" id="email"/>
@@ -51,7 +78,7 @@ const Login = ({login}) => {
                             <span ><Link to="/forgt-password" className="forgot-pass">Forgot Password?</Link></span> 
                         </div>
 
-                        <input type="submit" value="Log in" className="btn btn-block btn-primary"/>
+                        <input type="submit"  value="Log in" className="btn btn-block btn-primary"/>
 
                         <span className="seprater">OR</span>    
                         <div className="icons">

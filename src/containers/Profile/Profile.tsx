@@ -12,11 +12,14 @@ import {logout} from '../../utils';
 
 import Button from "../../components/Button";
 
-const Profile = ({profileData}) => {
+const Profile = (props) => {
+    console.log('Profile.tsx',props);
+    
+    const {profileData:{profileData, profileLoading}} = props;
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [errMsg, setErrMsg] = useState('');
-    const [passErr, setPassErr] = useState();
+    // const [passErr, setPassErr] = useState();
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [reset, setReset] = useState(false);
@@ -27,32 +30,16 @@ const Profile = ({profileData}) => {
     const [photoFile, setPhotoFile] = useState({
         type: ''
     });
-
     function getData() {
-        console.log('getData = ', profileData)
-        const {name, email, avatar} = profileData
-        // image && image.data && console.log('getData = ', image.data.signedUrl336, !photo)
+        const profile = props.profileData
+        const {name, email, avatar} = profile
         setFullName(name);
         setEmail(email)
-        // if (!photo && image) {
-        //     setPhoto(image.data.signedUrl336)
-        // }
     }
 
-    // useEffect(() => {
-    //   setErrMsg('');
-    // }, [newPassword, oldPassword]);
-
     useEffect(() => {
-        getData()
-        console.log('profileData in useEffec: ', profileData);
-    }, [profileData]);
-
-    // useEffect(() => {
-    //     if (!profileData.email) {
-    //         getUpdatedProfileDataInit()
-    //     }
-    // }, [getUpdatedProfileDataInit, profileData.email]);
+        props.getProfileData() //Todo : find out how  useeffect works with dependencies and why the console data is loading without stop when i set props.profiledat as dependenciy
+    }, []);
 
     const isPasswordValid = (pass) => {
         return pass.length > 7 && /^(?=.*\d)(?=.*[!@$*()]).{8,}$/i.test(pass);
@@ -219,7 +206,7 @@ const Profile = ({profileData}) => {
         setPhotoFile({
             type: ''
         });
-        getData();
+        // getData();
         setOldPassword("");
         setNewPassword("");
         resetFullName();

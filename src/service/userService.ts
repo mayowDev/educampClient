@@ -6,7 +6,6 @@ export const signup = async (data:ITypeSignUpData) => {
     try {
         const result = await axios.post(`/auth/register`, data)
             .catch((err: any) => {
-                console.log('catchError', err);
                 if (err && err.response && err.response.status === 400) {
                     return Promise.reject(
                         new Error("Request failed with status code 400")
@@ -43,14 +42,13 @@ export const verify = async (data) => {
 }
 
 export const login = async (data:ITypeLoginData) => {
-    const result = await axios.post("/auth/signin", data)
+    const result = await axios.post("/auth/login", data)
         .catch((err: any) => {
             return Promise.reject(err.response);
         });
     if (result && result.data && result.data.token) {
         //handle session here
         localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, JSON.stringify(result.data.token))
-        localStorage.setItem(LOCAL_STORAGE_KEYS.AWS, JSON.stringify(result.data.aws))
         return result && result.data
     }
 };
@@ -174,52 +172,10 @@ export const updateProfileImage = async (data) => {
 };
 
 export const getUserProfile = async () => {
-    try {
+    try {        
         const result = await axios.get(`/auth/me`)
             .catch((err: any) => {
-                console.log('err = ', err);
-                if (err && err.response && err.response.status === 400) {
-                    return Promise.reject(
-                        new Error("Request failed with status code 400")
-                    );
-                }
-                return Promise.reject(new Error(JSON.stringify(err.response.data)));
-            });
-        console.log('getUserProfile service', result)
-        if (result) {
-            return result.data;
-        }
-    } catch (e) {
-        return Promise.reject(new Error(e.message));
-    }
-};
-
-export const fetchFavourites = async () => {
-    try {
-        const result = await axios
-            .get(`user/favourites`)
-            .catch((err: any) => {
-                console.log('err = ', err);
-                if (err && err.response && err.response.status === 400) {
-                    return Promise.reject(
-                        new Error("Request failed with status code 400")
-                    );
-                }
-                return Promise.reject(new Error(JSON.stringify(err.response.data)));
-            });
-        if (result) {
-            return {...result.data};
-        }
-    } catch (e) {
-        return Promise.reject(new Error(e.message));
-    }
-};
-
-export const logout = async () => {
-    try {
-        const result = await axios.get(`/auth/`)
-            .catch((err: any) => {
-                console.log('err = ', err);
+                console.log('getUserProfileErr = ', err);
                 if (err && err.response && err.response.status === 400) {
                     return Promise.reject(
                         new Error("Request failed with status code 400")
@@ -235,22 +191,63 @@ export const logout = async () => {
     }
 };
 
-export const deleteAccount = async (email) => {
-    try {
-        const result = await axios.delete(`/auth/me`, email)
-            .catch((err: any) => {
-                console.log('err = ', err);
-                if (err && err.response && err.response.status === 400) {
-                    return Promise.reject(
-                        new Error("Request failed with status code 400")
-                    );
-                }
-                return Promise.reject(new Error(JSON.stringify(err.response.data)));
-            });
-        if (result) {
-            return result.data;
-        }
-    } catch (e) {
-        return Promise.reject(new Error(e.message));
-    }
-};
+// export const fetchFavourites = async () => {
+//     try {
+//         const result = await axios
+//             .get(`user/favourites`)
+//             .catch((err: any) => {
+//                 console.log('err = ', err);
+//                 if (err && err.response && err.response.status === 400) {
+//                     return Promise.reject(
+//                         new Error("Request failed with status code 400")
+//                     );
+//                 }
+//                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
+//             });
+//         if (result) {
+//             return {...result.data};
+//         }
+//     } catch (e) {
+//         return Promise.reject(new Error(e.message));
+//     }
+// };
+
+// export const logout = async () => {
+//     try {
+//         const result = await axios.get(`/auth/`)
+//             .catch((err: any) => {
+//                 console.log('err = ', err);
+//                 if (err && err.response && err.response.status === 400) {
+//                     return Promise.reject(
+//                         new Error("Request failed with status code 400")
+//                     );
+//                 }
+//                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
+//             });
+//         if (result) {
+//             return result.data;
+//         }
+//     } catch (e) {
+//         return Promise.reject(new Error(e.message));
+//     }
+// };
+
+// export const deleteAccount = async (email) => {
+//     try {
+//         const result = await axios.delete(`/auth/me`, email)
+//             .catch((err: any) => {
+//                 console.log('err = ', err);
+//                 if (err && err.response && err.response.status === 400) {
+//                     return Promise.reject(
+//                         new Error("Request failed with status code 400")
+//                     );
+//                 }
+//                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
+//             });
+//         if (result) {
+//             return result.data;
+//         }
+//     } catch (e) {
+//         return Promise.reject(new Error(e.message));
+//     }
+// };

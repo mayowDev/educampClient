@@ -3,7 +3,7 @@ import * as API from "../../../service"
 
 export const  fetchBootcamps = () =>  async dispatch =>{
     const response = await API.getAllBootcamps()    
-    dispatch({type: FETCH_BOOTCAMPS, payload: response})
+    dispatch({type: FETCH_BOOTCAMPS, payload: response.data})
 }
   
 export const fetchBootcamp =  (id:string) => async dispatch =>{

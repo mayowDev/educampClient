@@ -11,9 +11,10 @@ import LoadingPage from "../../components/LoadingPage";
 // /** Auth components */
 import Login from '../Login';
 import SignUp from '../Signup';
-// import Verify from '../Verify';
-// import ResetPage from '../ResetPassword'
-// import ForgotPassword from '../ForgotPassword';
+import Verify from '../Verify';
+import ForgotPassword from '../ForgotPassword';
+import ResetPage from '../ResetPassword'
+import ProfilePage from '../Profile'
 // /** Bootcamps components */
 // import  BootcampsPage from "../Bootcamps";
 // const BootcampDetails =  lazy(() => import ("../Bootcamps/Details"));
@@ -24,7 +25,9 @@ import SignUp from '../Signup';
 // const HomePage = lazy(() => import ("../Home"));
 
 
-const RenderRoutes = React.memo(({}: ITypeRenderRoute) => {
+const RenderRoutes = React.memo(({isLoggedIn}: ITypeRenderRoute) => {
+    console.log('isLoggedIn=',isLoggedIn);
+    
     return (
         <Suspense fallback={<LoadingPage/>}>
              <Switch>
@@ -43,12 +46,12 @@ const RenderRoutes = React.memo(({}: ITypeRenderRoute) => {
                  {/* {!isLoggedIn && <Route exact path="/" component={() => <HomePage isLoggedIn={isLoggedIn}/>}/>} */}
                  { <Route exact path="/login" component={Login}/>}
                  { <Route exact path="/register" component={SignUp}/>}
-                 {/* {!isLoggedIn && <Route exact path="/verify" component={Verify}/>} */}
+                 {!isLoggedIn && <Route exact path="/verify" component={Verify}/>}
                  {/* <Route exact path="/forgot-password" component={ForgotPassword}/> */}
 
 
                  {/*ROUTES: ONLY LOGGED IN*/}
-                 {/* {!isLoggedIn && <Route exact path="/profile" component={ProfilePage}/>} */}
+                 {<Route exact path="/profile" component={ProfilePage}/>}
                  {/* {isLoggedIn && <Route exact path="/favourites" component={Favourites}/>} */}
                  {/* {isLoggedIn && <Route exact path="/search" component={SearchPage}/>} */}
 
