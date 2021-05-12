@@ -1,26 +1,25 @@
 // Messages =CONSTANTS
-import { FETCH_COURSES_INIT, FETCH_COURSES_SUCCESS, CREATE_COURSE, UPDATE_COURSE, DELETE_COURSE, SET_COURSES_LOADER, SORT_COURSES, RESET_COURSES } from './constants'
-import {ICourseFetchInitType} from '../types'
-//action-creator aka messenggers/dekivery
-export function fetchCoursesInit (filterQuery:ICourseFetchInitType) {
-  console.log('fetchCoursesInit => ', filterQuery);
-  return {
-    type: FETCH_COURSES_INIT,
-    payload: {filterQuery}
-  }
+import { FETCH_COURSES, FETCH_COURSE, CREATE_COURSE, UPDATE_COURSE, DELETE_COURSE, SORT_COURSES, RESET_COURSES } from './constants'
+import {ICourseFetchType} from '../types'
+import * as API from "../../../service"
+//action-creator aka messenggers/delivery
+export const fetchCourses = (filterQuery:ICourseFetchType) => async dispatch => {
+  const response = await API.getAllCourses(filterQuery)
+  console.log('FETCH_COURSES action => ', response);
+  dispatch({
+    type: FETCH_COURSES,
+    payload: response.data
+  })
 }
-export function fetchCoursesSuccess (data) {
-  return {
-    type: FETCH_COURSES_SUCCESS,
-    payload: data
-  }
+export const fetchCourse = (id) => async dispatch => {
+  const response = await API.getCourse(id)
+  console.log('FETCH_COURSE action => ', response);
+  dispatch({
+    type: FETCH_COURSE,
+    payload: id
+  })
 }
-export function setCoursesLoader (data) {
-  return {
-    type: SET_COURSES_LOADER,
-    payload: data
-  }
-}
+
 
 export function sortCourses(value) {
   return {
@@ -34,11 +33,13 @@ export function resetCourses() {
   }
 }
 
-export function createCourse(data){
-  return { //Action  = The message
+export const  createCourse = (data, userId)=> async dispatch =>{
+  const response = await API.createCourse(data, userId)
+  console.log('CREATE_COURSE action => ', response);
+  dispatch({
     type: CREATE_COURSE,
-    payload: data
-  }
+    payload: response
+  })
 }
 
 export function updateCourse(data){

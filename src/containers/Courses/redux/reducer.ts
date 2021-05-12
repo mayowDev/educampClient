@@ -1,5 +1,4 @@
-// @ departments
-import {FETCH_COURSES_SUCCESS, SET_COURSES_LOADER, SORT_COURSES, RESET_COURSES} from './constants'
+import {FETCH_COURSES, SET_COURSES_LOADER, SORT_COURSES, RESET_COURSES} from './constants'
 
 
 const initialState = {
@@ -11,16 +10,16 @@ const initialState = {
     sortBy: 'alphabetical',
 }
 
-function reducer(state = initialState, action) {
+export default(state = initialState, action) =>{
     switch (action.type) {
-        case FETCH_COURSES_SUCCESS:
-            console.log('FETCH_COURSES_SUCCESS = ', action.payload);
+        case FETCH_COURSES:
+            console.log('FETCH_COURSES reducer = ', action.payload);
             return {
                 ...state,
                 courses: action.payload.currentPage === 1 ? action.payload.data : [...state.courses, ...action.payload.data],
-                pages: action.payload.page,
-                currentPage: action.payload.currentPage,
-                canLoadMore: action.payload.page && action.payload.page.lastPage && action.payload.currentPage < action.payload.page.lastPage.index,
+                pages: action.payload.pagination.page,
+                currentPage: action.payload.pagination.currentPage,
+                // canLoadMore: action.payload.page && action.payload.page.lastPage && action.payload.currentPage < action.payload.page.lastPage.index,
                 coursesLoading: false,
             };
 
@@ -31,14 +30,8 @@ function reducer(state = initialState, action) {
         case SET_COURSES_LOADER:
             return {
                 ...state,
-                galleriesLoading: action.payload,
-            };
-
-        case SET_COURSES_LOADER:
-            return {
-                ...state,
                 galleries: [],
-                galleriesLoading: true,
+                coursesLoading: true,
                 canLoadMore: true,
                 currentPage: 0,
                 pages: {},
@@ -51,4 +44,3 @@ function reducer(state = initialState, action) {
     }
 }
 
-export default reducer

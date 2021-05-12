@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 const mapStatesToProps = (state) => {
   return {
+    currentUserId: state.profile.id,
     ...state
   }
 }

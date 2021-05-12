@@ -15,7 +15,7 @@ export interface IResponseType{
     count:number
 }
 
-export  interface ICourseFetchInitType{
+export  interface ICourseFetchType{
     title?:string,
     minimumSkill?: string,
     limit?:number,
