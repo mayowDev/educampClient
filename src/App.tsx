@@ -5,9 +5,7 @@ import GlobalPage from './containers/Global'
 import store from './redux/configureStore'
 import './styles/global.scss'
 
-
-
-function App () {
+const App = ()=> {
   return (
     <Provider store={store}>
      <Router>

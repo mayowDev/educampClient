@@ -1,16 +1,17 @@
-import './style.scss'
 import { connect } from 'react-redux'
 import Header from './Header'
 import {changeSearch} from '../../containers/Global/redux/actions'
 
 import './style.scss'
 
-const mapStatesToProps = ({global, profile, exhibition, conversation}) => {
+const mapStatesToProps = (state) => {
+    console.log('Header state', state);
+    
     return {
-        searchQuery: global.searchQuery,
-        isChat: global.isConversation,
-        profileData: profile.profileData,
-        currentConversation: conversation.currentConversation,
+        // searchQuery: global.searchQuery,
+        isLoggedIn: state.global.isLoggedIn,
+        profileData: state.profile.profileData,
+        
     };
 };
 

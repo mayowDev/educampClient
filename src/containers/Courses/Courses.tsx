@@ -4,65 +4,53 @@ import useInfiniteScroll from 'react-infinite-scroll-hook';
 import Card from "../../components/Card";
 import {H1} from '../../components/Typography'
 import Spinner from '../../components/Spinner';
+// import {paginate} from '../../utils/paginate'
 // import Dropdown from "../../components/Dropdown";
 
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 
 const Courses = (props) => {
     const history = useHistory()
-    const {updateSortBy, resetCourses, setCoursesLoader, fetchCourses, collectiveMeta, gallery: {courses, sortBy, currentPage, canLoadMore, coursesLoading}, course, globalProps} = props;
+    const {updateSortBy, resetCourses, setCoursesLoader, fetchCourses, collectiveMeta, data, data:{courses, sortBy, currentPage, canLoadMore, coursesLoading}, globalProps} = props;
     const [isLoadingMore, setIsLoadingMore] = useState(false);
+    
+    console.log('coursesLoading', coursesLoading)
 
+    // const loadCourses = () => {
+    //     if (!coursesLoading) {
+    //         fetchCourses();
+    //     }
+    // }
     useEffect(() => {
         
-        loadData();
-        loadCourses()
-        return () => {
-            resetCourses();
-        }
+        fetchCourses()
+        // return () => {
+        //     resetCourses();
+        // }
     }, []);
 
+    // useEffect(() => {
+    //     setIsLoadingMore(false)
+    // }, [courses && courses.length])
+    console.log('courses', courses)
 
-    const loadCourses = () => {
-        if (collectiveMeta && collectiveMeta.length === 0) {
-            fetchCourses();
-        }
-    }
-
-    useEffect(() => {
-        setIsLoadingMore(false)
-    }, [courses && courses.length])
-
-    const loadData = async () => {
-        if (canLoadMore && !isLoadingMore) {
-            setIsLoadingMore(true);
-            const nextPage = currentPage + 1;
-            const isGroup = !['alphabetical', ].includes(sortBy);
-            await props.fetchGalleriesInit( nextPage, sortBy, isGroup,"gallery");
-        }
-        else{
-            const isGroup = !['alphabetical', ].includes(sortBy);
-            await props.fetchGalleriesInit( 1, sortBy, isGroup,"gallery");
-        }
-    };
-
-    const handleGalleryClick = (galleryId) => {
-        history.push(`/galleries/${galleryId}`)
+    const handleCourseClick = (courseId: number) => {
+        history.push(`/courses/${courseId}`)
     };
 
 
 
-    const handleValueChange = async (value) => {
-        setCoursesLoader(true)
-        updateSortBy(value);
-        const isGroup = !['alphabetical', ].includes(value);
-        await props.fetchGalleriesInit( 1, value, isGroup, "gallery");
-    }
+    // const handleValueChange = async (value) => {
+        // setCoursesLoader(true)
+        // updateSortBy(value);
+        // const isGroup = !['alphabetical', ].includes(value);
+        // await props.fetchGallerie( 1, value, isGroup, "gallery");
+    // }
 
     const infiniteRef = useInfiniteScroll({
         loading: isLoadingMore,
         hasNextPage: canLoadMore,
-        onLoadMore: loadData,
+        onLoadMore: ()=>{console.log("loading infinite scroll")}
     });
 
     return (
@@ -82,15 +70,13 @@ const Courses = (props) => {
                             {
                                 courses && courses.map((course: any) => {
                                     console.log('courses.tsx',course)
-                                    const {id,  title, weeks, tuition, minimumskill,scholarshipavailable, published, image, coursecontent, description} = course.data;
-                                    
-                                    const imageUrl = image && image.data && image.data.signedUrl300x600 && image.data.signedUrl300x600.replace('/300_', '/720_');
+                                    const {_id:id,  title, weeks, tuition, minimumskill,scholarshipavailable, published, image, coursecontent, description} = course;                                    
                                     return (
                                         <div data-aos="fade-up" data-aos-duration="500">
-                                            <Card imgSrc={image && image.data && [imageUrl, imageUrl]} title={title}
+                                            <Card imgSrc={image } title={title}
                                                 description={description}
                                                 horizontal
-                                                onClick={() => handleGalleryClick(id)}
+                                                onClick={() => handleCourseClick(id)}
                                             />
                                         </div>
                                     )

@@ -2,13 +2,15 @@ import { connect } from 'react-redux';
 import Verify from './Verify'
 // import '../../assets/fonts/fonts.css'
 
-const mapStatesToProps = ({auth}) => {
+const mapStatesToProps = (state) => {
+    console.log('verify state', state);
+    
     return {
         // isLoggedIn: global.isLoggedIn,
         // redirectPath: global.redirectPath,
         // profile: profile.profileData,
         // isConversation: global.isConversation,
-        auth: auth.verify,
+        // auth: auth.verify,
     }
 };
 

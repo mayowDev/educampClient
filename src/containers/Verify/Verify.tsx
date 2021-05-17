@@ -2,9 +2,9 @@ import React from 'react'
 
 const Verify = () => {
     return (
-        <div>
-            Verify page handle verified users and redirectPath to profile page
-        </div>
+        <h1>
+            Verify user handle verified users and redirectPath to profile page
+        </h1>
     )
 }
 

@@ -1,13 +1,8 @@
 import React, {lazy, Suspense, useEffect, useState} from 'react';
-import {Redirect, Route, Switch} from "react-router";
-import {BrowserRouter, useHistory} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 /** Shared components */
-import {ITypeGlobal, ITypeRenderRoute} from "./types"
-// import Header from "../../components/Header";
-// import Footer from "../../components/Footer";
-import LoadingPage from "../../components/LoadingPage";
-// import SearchPage from "../Search";
-// const Favourites = lazy(() => import ("../Favourites"));
+import HomePage from "../Home"
+import NotFound from "../../views/404/NoFound";
 // /** Auth components */
 import Login from '../Login';
 import SignUp from '../Signup';
@@ -15,60 +10,26 @@ import Verify from '../Verify';
 import ForgotPassword from '../ForgotPassword';
 import ResetPage from '../ResetPassword'
 import ProfilePage from '../Profile'
-// /** Bootcamps components */
-// import  BootcampsPage from "../Bootcamps";
-// const BootcampDetails =  lazy(() => import ("../Bootcamps/Details"));
-// /** Courses components */
-// const CoursesPage = lazy(() => import ( "../Courses"));
-// const CourseDetails = lazy(() => import ("../Courses/Details"));
+// /** Course components */
+import CourseDetails from "../Courses/Details"
+import CoursesPage from "../Courses";
 
-// const HomePage = lazy(() => import ("../Home"));
-
-
-const RenderRoutes = React.memo(({isLoggedIn}: ITypeRenderRoute) => {
-    console.log('isLoggedIn=',isLoggedIn);
-    
+const RenderRoutes = ({isLoggedIn}) => {  
     return (
-        <Suspense fallback={<LoadingPage/>}>
-             <Switch>
-                 {/* ROUTES: FOR ALL CONDITIONS */}
-                 {/* <Route exact path="/bootcamps" component={() => <BootcampsPage/>}/> */}
-                 {/* <Route exact path="/bootcamps/:id" component={BootcampDetails}/> */}
-                 {/* <Route exact path="/courses" component={() => <CoursesPage/>}/> */}
-                 {/* <Route exact path="/courses/:id" component={CourseDetails}/> */}
-                 {/* <Route exact path="/courses/:id" component={() => <CourseDetails/>}/> */}
-
-                 {/* <Route exact path="/reset/:token" isLoggedIn={isLoggedIn} component={ResetPage}/> */}
-                                
-                 {/* <Route exact path="/artists/:id" component={ArtistDetails}/> */}
-
-                 {/*ROUTES: NOT LOGGED IN*/}
-                 {/* {!isLoggedIn && <Route exact path="/" component={() => <HomePage isLoggedIn={isLoggedIn}/>}/>} */}
-                 { <Route exact path="/login" component={Login}/>}
-                 { <Route exact path="/register" component={SignUp}/>}
-                 {!isLoggedIn && <Route exact path="/verify" component={Verify}/>}
-                 {/* <Route exact path="/forgot-password" component={ForgotPassword}/> */}
-
-
-                 {/*ROUTES: ONLY LOGGED IN*/}
-                 {<Route exact path="/profile" component={ProfilePage}/>}
-                 {/* {isLoggedIn && <Route exact path="/favourites" component={Favourites}/>} */}
-                 {/* {isLoggedIn && <Route exact path="/search" component={SearchPage}/>} */}
-
-                 {/* {
-                     isLoggedIn ?
-                         !!redirectPath ?
-                             @ts-ignore
-                             <Route path="*" component={() => <Redirect to={redirectPath}/>}/>
-                             :
-                             <Route path="*" component={() => <Redirect to={'/bootcamps'}/>}/>
-                         :
-                         <Route path="*" component={() => <Redirect to={'/'}/>}/>
-                 } */}
-             </Switch>
-         </Suspense>
+            <Switch>
+                <Route exact path="/" component={HomePage}/>
+                <Route exact path="/courses" component={CoursesPage}/>
+                <Route exact path="/courses/:id" component={CourseDetails}/>
+                <Route exact path="/reset/:token"  component={ResetPage}/>
+                {!isLoggedIn && <Route exact path="/login" component={Login}/>}
+                {!isLoggedIn && <Route exact path="/register" component={SignUp}/>}
+                {!isLoggedIn && <Route exact path="/verify" component={Verify}/>}
+                {!isLoggedIn && <Route exact path="/forgot-password" component={ForgotPassword}/> }
+                {isLoggedIn && <Route exact path="/profile" component={()=><ProfilePage/>}/>}
+               <Route component={NotFound}/>
+            </Switch>
      )
-});
+};
 
 // const Root = ({isLoggedIn, redirectPath, isConversation,  isFirstLoad, profile, bootcampId, setBootcampId}) => {
 //     const history = useHistory();
@@ -207,25 +168,10 @@ const RenderRoutes = React.memo(({isLoggedIn}: ITypeRenderRoute) => {
 //     )
 // };
 
-const Global = () => {
-    // useEffect(() => {
-    //     if(profile && profile.id){
-    //         console.log('profile in global.tsx : ', profile);
-    //     }
-    // }, [profile.id]);
-
-    // useEffect(() => {
-    //     if (isLoggedIn) {
-    //         if(updateProfileData) updateProfileData()
-    //         setTimeout(() => {
-    //             console.log('userProfile : ', profile);
-    //         }, 1000);
-    //     }
-    // }, [isLoggedIn])
+const Global = (props) => {    
     return (
         <BrowserRouter>
-            <RenderRoutes/>
-            {/* <BootcampsPage/> */}
+            <RenderRoutes isLoggedIn={props.isLoggedIn}/>
         </BrowserRouter>
     )
 };

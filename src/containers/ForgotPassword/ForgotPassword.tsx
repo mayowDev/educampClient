@@ -3,9 +3,9 @@ import { H1, P1, P2, SubTitle } from '../../components/Typography';
 import { Heading, Paragraph } from '../../components/Typography';
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import {forgotPassword} from "../../service";
+import {forgotPassword} from "../../services";
 import {Link, useHistory} from 'react-router-dom';
-import Close from "../../assets/icons/close.svg";
+// import Close from "../../assets/icons/close.svg";
 import IconBtn from "../../components/IconBtn";
 // @ts-ignore
 const Forgot:React.FC = ({ isLoggedIn }) => {
@@ -42,7 +42,7 @@ const Forgot:React.FC = ({ isLoggedIn }) => {
     };
 
     const handleClose = () => {
-        history.back();
+        history.goBack();
     };
 
     return (

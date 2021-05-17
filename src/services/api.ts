@@ -1,4 +1,4 @@
-import axios from "./axios-foursquare";
+import axios from "./axios";
 import axiosMain from "axios";
 import {BACKEND_URL} from "../configs"
 

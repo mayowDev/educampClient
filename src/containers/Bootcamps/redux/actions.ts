@@ -1,5 +1,5 @@
 import { FETCH_BOOTCAMP, FETCH_BOOTCAMPS,  SEARCH_BOOTCAMPS } from './constants'
-import * as API from "../../../service"
+import * as API from "../../../services"
 
 export const  fetchBootcamps = () =>  async dispatch =>{
     const response = await API.getAllBootcamps()    

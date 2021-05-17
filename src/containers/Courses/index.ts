@@ -1,27 +1,25 @@
 import './style.scss'
 import Courses from './Courses'
 import { connect } from 'react-redux'
-
+import {fetchCourses} from './redux/actions'
 const mapStatesToProps = (state) => {
+  console.log('courses State', state);
+  
   return {
-    currentUserId: state.profile.id,
-    ...state
+    // currentUserId: state.profile.id,
+    data: state.courses,
+    // ...state
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     // dispatching actions to the store.
-    // increment: () => dispatch({ type: INCREMENT }),
-    // toggleTodo: () => dispatch(toggleTodo(ownProps.todoId))
-    // You will also likely want to forward arguments to your action creators
-     // explicitly forwarding arguments
-    //  onClick: (event) => dispatch(trackClick(event)),
-
-     // implicitly forwarding arguments
-    //  onReceiveImpressions: (...impressions) =>
-      //  dispatch(trackImpressions(impressions))
+    fetchCourses: () => dispatch(fetchCourses())
+     // explicitly forwarding arguments to action creators
+    //  onClick: (event) => dispatch((event)),
+     // implicitly forwarding arguments to action creators
+    //  onReceiveImpressions: (...impressions) =>dispatch(trackImpressions(impressions))
 })
 
 export default connect(mapStatesToProps, mapDispatchToProps)(Courses)
 
-// export {default} from './Login'

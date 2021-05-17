@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
-import Logo from '../../assets/images/logo-white@2x.png';
+import Logo from '../../assets/images/Logo-small.png';
 import Google from '../../assets/images/icon-google.png';
 // import {login} from "../../service";
 

@@ -6,6 +6,7 @@ $light100: #efefef;
 $darkGray: #F9F9F9;
 
 .header {
+  background-color: white !important;
   padding: 0 33px 0 31px;
   display: flex;
   align-items: center;
@@ -18,12 +19,12 @@ $darkGray: #F9F9F9;
   opacity: 1;
   //zoom: 80%;
 
-  &--hidden {
-    opacity: 0;
-    transition: opacity 0.34s ease-in-out !important;
-    -webkit-transition: opacity 0.34s ease-in-out !important;
-    -moz-transition: opacity 0.34s ease-in-out !important;
-  }
+  // &--hidden {
+  //   opacity: 0;
+  //   transition: opacity 0.34s ease-in-out !important;
+  //   -webkit-transition: opacity 0.34s ease-in-out !important;
+  //   -moz-transition: opacity 0.34s ease-in-out !important;
+  // }
 
   &--flex {
     display: flex;

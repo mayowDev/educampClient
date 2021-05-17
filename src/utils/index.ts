@@ -1,10 +1,7 @@
 // @ts-ignore
-import SendBirdSyncManager from 'sendbird-syncmanager';
-
-// @ts-ignore
 export const formatDate = (date, isEndDate = false) => {
     const newDate = new Date(date);
-    var month = [];
+    var month:Array<string> = [];
     month[0] = "Jan";
     month[1] = "Feb";
     month[2] = "Mar";
@@ -36,7 +33,7 @@ function formatAMPM(date) {
 
 export const formatDateTime = (date) => {
     const newDate = new Date(date);
-    var month = [];
+    var month:Array<string> = [];
     month[0] = "January";
     month[1] = "February";
     month[2] = "March";
@@ -61,7 +58,6 @@ export const logout = () => {
     setTimeout(() => {
         window.location.href = "/";
     }, 100)
-    // SendBirdSyncManager && SendBirdSyncManager.getInstance() && SendBirdSyncManager.getInstance().clearCache();
 }
 
 export const getIdFromSlug = (slug) => {

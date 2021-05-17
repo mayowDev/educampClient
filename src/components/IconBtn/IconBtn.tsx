@@ -39,7 +39,6 @@ const Icon = {
 };
 
 const IconBtn:React.FC<IIconBtnProps> = ({type, onClick, to, className, secondary, onMouseEnter, onMouseLeave, noHover, onMouseDown, onMouseUp}) => {
-
     const button = () => (
         <button className={'icon-btn icon-btn--bright' + (className ? (' ' + className) : '') + (secondary ? ' icon-btn--secondary' : '') + (type === "favouriteOn2" ? ' icon-btn--favourite' : '') + (noHover ? ' icon-btn--no-hover' : '')} onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
             <img alt='icon'

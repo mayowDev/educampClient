@@ -140,13 +140,14 @@
     padding-top: 135px;
     padding-bottom: 176px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     .button{
       margin-top: 0;
       font-size: 25px;
       width: 391px;
       height: 125px;
+      padding: 0 50px;
 
       p{
         font-size: 25px;

@@ -1,9 +1,8 @@
 import React, {useEffect, useState, memo} from 'react';
-import LogoURL from '../../assets/images/Logo.png';
+import LogoURL from '../../assets/images/loading.gif';
 import {ImageLoaderProps} from './types';
 import Loader from '../Spinner';
 import {isEqual} from 'lodash';
-var commponentId = 0;
 
 const ImageLoader: React.FC<ImageLoaderProps> = memo(({imgUrls, isOverlayed, onClick, style}) => {
     const [imgSrc, setImgSrc] = useState(LogoURL);
@@ -14,18 +13,14 @@ const ImageLoader: React.FC<ImageLoaderProps> = memo(({imgUrls, isOverlayed, onC
     useEffect(() => {
 
         localImgUrlRef.current.length <= 0 && loadImage();
-        console.log("onImageLoad-- component mounting",isLoading, commponentId++);
         return () => console.log("Unmounting---------")
     }, []);
     useEffect(() => {
         localImgUrlRef.current = localImgUrl;
     },[localImgUrl])
     useEffect(() => {
-        console.log("isEqual(localImgUrl, imgUrls)",isEqual(localImgUrl, imgUrls), localImgUrl, localImgUrl.length <= 0,imgSrc);
         if(!isEqual(localImgUrl, imgUrls) && localImgUrl.length <= 0)
         return
-        // setLocalImageUrls(imgUrls);
-
     },[localImgUrl,setLocalImageUrls,imgSrc])
     useEffect(() => {
         // isEqual(imgUrls);

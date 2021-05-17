@@ -2,10 +2,10 @@ import React, {Fragment, useEffect, useState} from 'react'
 import Card from '../../components/Card'
 import {H1, P1} from '../../components/Typography'
 // import Dropdown from '../../components/Dropdown'
-import {useHistory} from "react-router";
+import {useHistory} from "react-router-dom";
 import Spinner from "../../components/Spinner";
-import Course from "../../components/Course";
-import {favouriteCourse} from "../../service";
+import Course from "../../components/CourseList";
+import {favouriteCourse} from "../../services";
 import {getIdFromSlug} from "../../utils";
 
 const Favourites = (props) => {

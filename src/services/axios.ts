@@ -27,6 +27,13 @@ instance.interceptors.request.use(
 //         return response;
 //     },
 //     async error => {
+    //   const expectdError = error.response && error.response.status >= 400 && error.response.status < 500
+    // if(!expectdError){
+        // console.log('expectdError', expectdError);
+        // tost.error('expectdError')
+        // alert(expectdError)
+    // }
+    // return Promise.reject(expectdError)
 //         if ((error.response.status === 400 || error.response.status === 401)) {
 //             return async () => {
 //                 const retError = {...error};

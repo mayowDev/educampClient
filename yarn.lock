@@ -14308,6 +14308,11 @@
   "resolved" "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz"
   "version" "1.2.1"
 
+"raven-js@^3.27.2":
+  "integrity" "sha512-mFWQcXnhRFEQe5HeFroPaEghlnqy7F5E2J3Fsab189ondqUzcjwSVi7el7F36cr6PvQYXoZ1P2F5CSF2/azeMQ=="
+  "resolved" "https://registry.npmjs.org/raven-js/-/raven-js-3.27.2.tgz"
+  "version" "3.27.2"
+
 "raw-body@^2.4.1":
   "integrity" "sha512-9WmIKF6mkvA0SLmA2Knm9+qj89e+j1zqgyn8aXGd7+nAduPoqgI9lO57SAZNn/Byzo5P7JhXTyg9PzaJbH73bA=="
   "resolved" "https://registry.yarnpkg.com/raw-body/-/raw-body-2.4.1.tgz"

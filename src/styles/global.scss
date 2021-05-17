@@ -3,6 +3,7 @@
 
 html{
     overflow-y: scroll;
+    background-color:antiquewhite;
 }
 
 body {
@@ -314,11 +315,9 @@ html {
 }
 
 @import "../components/AuthForm/style.scss";
-@import "../components/Bootcamp/style.scss";
+
 @import "../components/Button/style.scss";
 @import "../components/Card/style.scss";
-@import "../components/Course/style.scss";
-@import "../components/CourseList/style.scss";
 
 @import "../components/Dropdown/style.scss";
 @import "../components/Footer/style.scss";

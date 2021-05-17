@@ -1,6 +1,6 @@
 import { SIGNUP } from './constants';
 import {ITypeSignUp} from '../types'
-import * as API from "../../../service"
+import * as API from "../../../services"
 
 export const signup = (data:ITypeSignUp)=> async dispatch =>{
     const response = await API.signup(data)

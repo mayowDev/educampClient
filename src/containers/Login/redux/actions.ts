@@ -1,6 +1,6 @@
 import { LOGIN, SET_REDIRECT_PATH } from './constants';
 import {ITypeLoginData} from '../types'
-import * as API from "../../../service"
+import * as API from "../../../services"
 
 export const login = (data:ITypeLoginData)=> async dispatch=>{
     const response = await API.login(data)

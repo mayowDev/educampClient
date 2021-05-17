@@ -10,6 +10,7 @@ module.exports={
     entry:'./src/index.tsx',
     output:{
         path:path.resolve(__dirname, 'build'),
+        publicPath: '/',//for react-router-dom nested-routes
         filename:'bundle.js'
     },
     resolve:{
@@ -32,7 +33,7 @@ module.exports={
                 use:[{loader:'html-loader'}]
             },
             {
-                test: /\.(jpe?g|png|gif|svg|glb|hdr|gltf)$/i,
+                test: /\.(jpe?g|png|woff(2)?|ttf|eot|otf|svg|gif|glb|hdr|gltf)$/i,
                 // use :[{
                 //     loaders: [
                 //         'file-loader?hash=sha512&digest=hex&name=img/[hash].[ext]',
@@ -42,43 +43,6 @@ module.exports={
                 use:[{loader:'file-loader'}]
             },
             {
-                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "file-loader"
-            },
-            {
-                test: /\.(woff(2)?|ttf|eot|otf|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                use: [
-                  {
-                    loader: 'file-loader',
-                    // options: {
-                    //   name: '[name].[ext]',
-                    //   outputPath: 'fonts/'
-                    // }
-                  }
-                ]
-            },
-            // {
-            //     test: /\.(scss|sass|css)$/,
-            //     use:[{loader: 'css-loader', }]
-            // },
-            // {
-            //     test: /\.css$/,
-            //     use: [
-            //       {
-            //         loader: MiniCssExtractPlugin.loader,
-            //         options: {
-            //           hmr: process.env.NODE_ENV === 'development'
-            //         }
-            //       },
-            //       { loader: 'css-loader', options: { importLoaders: 1 } },
-            //       'postcss-loader'
-            //     ]
-            //   },
-            // {
-            //     test:/\.s[ac]ss$/i,
-            //     use:[MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
-            // },
-            {
                 test: /\.scss$/,
                 use: ["style-loader", "css-loader", "sass-loader"]
             },
@@ -86,29 +50,6 @@ module.exports={
                 test: /\.css$/i,
                 use: ["style-loader", "css-loader"],
               },
-            // {
-            //     test: /\.css$/,
-            //     use: ["style-loader", "css-loader", "node-sass", ]
-            //   },
-            // {
-            //     test: /\.css$/,
-            //     use: [
-            //       {
-            //         loader: MiniCssExtractPlugin.loader,
-            //         options: {
-            //           hmr: process.env.NODE_ENV === 'development'
-            //         }
-            //       },
-            //       { loader: 'css-loader', options: { importLoaders: 1 } },
-            //       'postcss-loader'
-            //     ]
-            //   },
-            //   {
-            //     test: /\.(scss|sass|css)$/,
-            //     use: [
-            //         MiniCssExtractPlugin.loader, "css-loader", "style-loader","sass-loader"
-            //     ]
-            //   },
         ]
     },
     plugins:[
@@ -133,7 +74,9 @@ module.exports={
         historyApiFallback:true,
         port:3000,
         compress: true,
-        contentBase: path.join(__dirname, 'build'),
+        open: true,
+        progress:true,
+        // contentBase: path.join(__dirname, 'build'),
         hot: true,
     },
 }

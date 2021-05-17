@@ -6,9 +6,9 @@ import axios from "./axios";
 // user should be able to review a course after 50% completion, and remind him after 10% of the 50% remaining
 //if user->buys-a-Courses -> authenticat him to that course, else just show him 3-5 random videos of the course 
 
-export const getAllCourses = async (query) => {
+export const getAllCourses = async () => {
     try {
-        const result = await axios.get(`/courses/${query?query:null}`)
+        const result = await axios.get(`/courses`)
         .catch((err: any) => {
             console.log('err = ', err);
             if (err && err.response && err.response.status === 400) {
@@ -18,7 +18,6 @@ export const getAllCourses = async (query) => {
             }
             return Promise.reject(new Error(JSON.stringify(err.response.data)));
         });
-        console.log('fetchAllCourses = ', result)
         if (result) {
             return result.data;
         }

@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
-import Logo from '../../assets/images/logo-white@2x.png';
+import {Link, useHistory} from 'react-router-dom'
+import Logo from '../../assets/images/Logo-small.png';
 import Google from '../../assets/images/icon-google.png';
 
 const Signup = ({signup}) => {
     const [user, setUser] = useState({name: '', email:'', password:''})
     //TODO: handle all validation errors:- taken email, input values, password length and strength, API VALIDATION: taken emails
-    
+    const history = useHistory()
     const handleInputChange = (e)=>{
         setUser({
           ...user,
@@ -17,6 +18,7 @@ const Signup = ({signup}) => {
         console.log('your information is: ' + user.email, user.name, user.password);
         e.preventDefault();
         signup(user)
+        history.push('/verify')
     }
 
     return (
@@ -26,7 +28,7 @@ const Signup = ({signup}) => {
                 <div className="signup__form-block">
                     <div className="heading">
 					    <h2 className="title-head">Sign Up <span>Now</span></h2>
-					    <p>Have an Account? <a href="login.html">Login here</a></p>
+					    <p>Have an Account? <Link to="/login">Login here</Link></p>
 				    </div>	
                     <form onSubmit={onSignUpSubmit} method="post">
                         <div className="form-group ">
