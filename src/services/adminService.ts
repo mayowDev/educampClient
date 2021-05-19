@@ -34,7 +34,6 @@ export const login = async (email: string, password: string) => {
     if (result && result.data && result.data.token) {
         //handle session here
         localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, JSON.stringify(result.data.token))
-        localStorage.setItem(LOCAL_STORAGE_KEYS.AWS, JSON.stringify(result.data.aws))
         return result && result.data
     }
 };

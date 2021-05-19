@@ -1,4 +1,2 @@
-export const LOGIN = "LOGIN";
 export const CHANGE_SEARCH = "CHANGE_SEARCH";
 export const SET_REDIRECT_PATH = "SET_REDIRECT_PATH";
-export const SET_CONVERSATION = "SET_CONVERSATION";

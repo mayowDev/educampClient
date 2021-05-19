@@ -2,14 +2,10 @@ import { connect } from 'react-redux';
 import GlobalPage from './Global'
 import '../../assets/fonts/fonts.css'
 import { getProfileData } from '../Profile/redux/actions';
-// import { setConversation } from './redux/actions';
-// import { fetchSendBirdInit } from '../Conversation/redux/actions';
 
-const mapStatesToProps = (state) => {
-    console.log('global state',state);
-    
+const mapStatesToProps = (state) => {    
     return {
-        isLoggedIn: state.global.isLoggedIn,
+        isLoggedIn: state.auth.isLoggedIn,
         bootcamps: state.bootcamps,
         profile: state.profile.profileData,
         courses: state.courses,

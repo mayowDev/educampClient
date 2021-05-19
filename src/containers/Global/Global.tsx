@@ -4,8 +4,8 @@ import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import HomePage from "../Home"
 import NotFound from "../../views/404/NoFound";
 // /** Auth components */
-import Login from '../Login';
-import SignUp from '../Signup';
+import Login from '../Auth/Login';
+import SignUp from '../Auth/Signup';
 import Verify from '../Verify';
 import ForgotPassword from '../ForgotPassword';
 import ResetPage from '../ResetPassword'
@@ -15,6 +15,7 @@ import CourseDetails from "../Courses/Details"
 import CoursesPage from "../Courses";
 
 const RenderRoutes = ({isLoggedIn}) => {  
+    console.log('auth.isLoggedIn', isLoggedIn)
     return (
             <Switch>
                 <Route exact path="/" component={HomePage}/>
@@ -25,7 +26,8 @@ const RenderRoutes = ({isLoggedIn}) => {
                 {!isLoggedIn && <Route exact path="/register" component={SignUp}/>}
                 {!isLoggedIn && <Route exact path="/verify" component={Verify}/>}
                 {!isLoggedIn && <Route exact path="/forgot-password" component={ForgotPassword}/> }
-                {isLoggedIn && <Route exact path="/profile" component={()=><ProfilePage/>}/>}
+                {isLoggedIn && <Redirect from="/login" exact to="/" />}
+                {isLoggedIn?<Route exact path="/profile" component={()=><ProfilePage/>}/>:<Redirect  exact to="/login" />}
                <Route component={NotFound}/>
             </Switch>
      )

@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
-import Logo from '../../assets/images/Logo-small.png';
-import Google from '../../assets/images/icon-google.png';
+import {toast} from 'react-toastify'
+import Logo from '../../../assets/images/Logo-small.png';
+import Google from '../../../assets/images/icon-google.png';
 // import {login} from "../../service";
 
 const Login = (props) => {
     const [user, setUser] = useState({ email:'', password:''})
     const [remember, setRemember] = useState(false)
     const history = useHistory()
-    //TODO: handle all validation errors:- taken email, input values, password length and strength, API VALIDATION: taken emails
+    //TODO: handle all validation:- invalid email format, loader while loading
     
     const handleInputChange = (e)=>{
         setUser({
@@ -19,36 +20,15 @@ const Login = (props) => {
     const  handleRemember = (e) => {
         if(e.target.name === 'remember') setRemember(!remember)
     }
-    // const submitForm = async () => {
-    //     // setLoggingIn(true);
-    //     try {
-    //         const resp = await login(user.email, user.password);
-    //         if (resp) {
-    //             // setLoggingIn(false);
-    //             // props.getLogedInUserData(resp);
-    //             login(true);
-    //         }
-    //     }
-    //     catch (e) {
-    //         if(e.data === "Unverified user") {
-    //             // history.push('/verify', email)
-    //         }
-    //         else {
-    //             // setLoggingIn(false);
-    //             // setErrorMsg("Email or password is Invalid!");
-    //             // setEmailError(true);
-    //             // setPasswordError(true);
-    //         }
-    //     }
-    // };
     const onLoginSubmit = e => {
         e.preventDefault();
-        if(props.isLoggedIn){
-            alert("Your are already loged in")
+        // props.isLoggedIn && toast.error("Your are already loged in..")
+        const response = props.login(user)
+        console.log('login res', response)
+        if(typeof response !== "undefined"){
+            toast.success("Succesfully Logged In")
+            history.replace('/') 
         }
-        props.login(user);
-        history.push('/')
-
     }
 
     return (

@@ -1,6 +1,6 @@
 import axios from "./axios";
-import {LOCAL_STORAGE_KEYS} from "../components/Constants"
 import {ITypeLoginData, ITypeSignUpData} from './types'
+import {LOCAL_STORAGE_KEYS} from "../components/Constants"
 
 export const signup = async (data:ITypeSignUpData) => {
     try {
@@ -42,13 +42,18 @@ export const verify = async (data) => {
 }
 
 export const login = async (data:ITypeLoginData) => {
-    const result = await axios.post("/auth/login", data)
+    const result = await axios.post("/auth/signin", data)
         .catch((err: any) => {
-            return Promise.reject(err.response);
+            console.log('login API error: ' + err);
+            if (err && err.response && err.response.status === 400) {
+                return Promise.reject(
+                    new Error("Request failed with status code 400")
+                );
+            }
+            return Promise.reject(new Error(JSON.stringify(err.message)));
         });
-    if (result && result.data && result.data.token) {
-        //handle session here
-        localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, JSON.stringify(result.data.token))
+    if (result && result.data) {
+        localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, result.data.success)
         return result && result.data
     }
 };
@@ -59,7 +64,7 @@ export const loginWithGoogle = async () => {
             return Promise.reject(err.response);
         });
     if (result && result.data) {
-        //handle session here
+        localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, result.data.success)
         return result && result.data
     }
 };
@@ -70,7 +75,7 @@ export const loginWithFacebook = async () => {
             return Promise.reject(err.response);
         });
     if (result && result.data) {
-        //handle session here
+        localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, result.data.success)
         return result && result.data
     }
 };
@@ -184,6 +189,7 @@ export const getUserProfile = async () => {
                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
             });
         if (result) {
+            // console.log('GET_PROFILE_DATA_API', result)
             return result.data;
         }
     } catch (e) {
@@ -212,25 +218,28 @@ export const getUserProfile = async () => {
 //     }
 // };
 
-// export const logout = async () => {
-//     try {
-//         const result = await axios.get(`/auth/`)
-//             .catch((err: any) => {
-//                 console.log('err = ', err);
-//                 if (err && err.response && err.response.status === 400) {
-//                     return Promise.reject(
-//                         new Error("Request failed with status code 400")
-//                     );
-//                 }
-//                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
-//             });
-//         if (result) {
-//             return result.data;
-//         }
-//     } catch (e) {
-//         return Promise.reject(new Error(e.message));
-//     }
-// };
+export const logout = async () => {
+    try {
+        const result = await axios.get(`/auth/`)
+            .catch((err: any) => {
+                console.log('err = ', err);
+                if (err && err.response && err.response.status === 400) {
+                    return Promise.reject(
+                        new Error("Request failed with status code 400")
+                    );
+                }
+                return Promise.reject(new Error(JSON.stringify(err.response.data)));
+            });
+        console.log("logout data",result.data)
+        if (result && result.data) {
+            localStorage.clear();
+            // localStorage.removeItem(LOCAL_STORAGE_KEYS.LOGIN_STATE)
+            return result && result.data;
+        }
+    } catch (e) {
+        return Promise.reject(new Error(e.message));
+    }
+};
 
 // export const deleteAccount = async (email) => {
 //     try {

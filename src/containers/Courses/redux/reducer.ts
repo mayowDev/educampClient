@@ -20,10 +20,10 @@ export default(state = initialState, action) =>{
                 networkError:true
             }
         case FETCH_COURSES:
-            console.log('FETCH_COURSES reducer = ', action.payload);
+            console.log('FETCH_COURSES reducer = ', action.payload.rows);
             return {
                 ...state,
-                courses:  [...state.courses, ...action.payload],
+                courses:  [...state.courses, ...action.payload.rows],
                 pages: action.payload.pagination,
                 // currentPage: action.payload.pagination.currentPage?action.payload.pagination.currentPage:0,
                 // canLoadMore: action.payload.page && action.payload.page.lastPage && action.payload.currentPage < action.payload.page.lastPage.index,

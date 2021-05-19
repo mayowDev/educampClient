@@ -1,10 +1,15 @@
+export interface ITypeSignUp {
+    name: string;
+    email: string,
+    password: string,
+    role: string
+}
+
 export interface ITypeLoginData {
     email: string;
     password: string;
 //     profile: any,
-//     profile_?: any,
 //     setConversation?: (val: boolean) => void,
-//     fetchSendBirdInit?: (val: any) => void,
 //     isConversation?: string,
 }
 

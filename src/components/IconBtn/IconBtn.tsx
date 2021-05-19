@@ -46,6 +46,7 @@ const IconBtn:React.FC<IIconBtnProps> = ({type, onClick, to, className, secondar
                      `${type === 'cross' ? 'cross' : ''} 
                      ${type === 'info' ? 'info' : ''} 
                      ${type === 'menu' ? 'menu' : ''} 
+                    //  ${type === 'user' ? 'user' : ''} 
                      ${(type === 'back' || type === 'next') ? 'arrow' : ''}`}
                  src={!secondary ? Icon[type] : Icon[type + "Secondary"]}
             />

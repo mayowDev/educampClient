@@ -4,8 +4,11 @@ import { fetchBootcamps } from '../Bootcamps/redux/actions'
 import './style.scss'
 
 const mapStatesToProps = (state) => {
+    console.log('Homestate', state.auth);
+    
     return {
-        globalProps: state.global
+        isLoggedIn: state.auth.isLoggedIn,
+        global: state.global
     };
 };
 

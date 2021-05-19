@@ -1,11 +1,4 @@
-import { LOGIN, CHANGE_SEARCH, SET_REDIRECT_PATH } from './constants';
-
-export function login(){
-    return {
-        type: LOGIN,
-        payload: true
-    }
-}
+import { CHANGE_SEARCH, SET_REDIRECT_PATH } from './constants';
 
 export function changeSearch(value){
     return {

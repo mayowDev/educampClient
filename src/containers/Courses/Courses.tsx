@@ -11,28 +11,17 @@ import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 
 const Courses = (props) => {
     const history = useHistory()
-    const {updateSortBy, resetCourses, setCoursesLoader, fetchCourses, collectiveMeta, data, data:{courses, sortBy, currentPage, canLoadMore, coursesLoading}, globalProps} = props;
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
+    const {   fetchCourses, data, data:{courses, canLoadMore, coursesLoading}} = props;
+    console.log('data,', data);
     
-    console.log('coursesLoading', coursesLoading)
-
-    // const loadCourses = () => {
-    //     if (!coursesLoading) {
-    //         fetchCourses();
-    //     }
-    // }
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
     useEffect(() => {
-        
         fetchCourses()
-        // return () => {
-        //     resetCourses();
-        // }
     }, []);
 
     // useEffect(() => {
     //     setIsLoadingMore(false)
     // }, [courses && courses.length])
-    console.log('courses', courses)
 
     const handleCourseClick = (courseId: number) => {
         history.push(`/courses/${courseId}`)
@@ -70,13 +59,14 @@ const Courses = (props) => {
                             {
                                 courses && courses.map((course: any) => {
                                     console.log('courses.tsx',course)
-                                    const {_id:id,  title, weeks, tuition, minimumskill,scholarshipavailable, published, image, coursecontent, description} = course;                                    
+                                    const {id,  title, description, slug, duration, price, minimumskill,scholarshipavailable, published, image, courseContent} = course;                                    
                                     return (
                                         <div data-aos="fade-up" data-aos-duration="500">
                                             <Card imgSrc={image } title={title}
                                                 description={description}
                                                 horizontal
                                                 onClick={() => handleCourseClick(id)}
+                                                {...course}
                                             />
                                         </div>
                                     )

@@ -4,15 +4,15 @@ import { updateProfileData, getProfileData, getUpdatedProfileData, updateProfile
 
 const mapStatesToProps = ( state) => {  
   return {
-    profileData: state.profile,
+    profileData: state.profile.profileData,
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  getProfileData : () => {dispatch(getProfileData())},
-  updateProfileData: (data) => { dispatch(updateProfileData(data)) },
-  updateProfileImage: (data) => { dispatch(updateProfileImage(data)) },
-  getUpdatedProfileData: () => { dispatch(getUpdatedProfileData()) }
+  getProfileData: () => dispatch(getProfileData()),
+  updateProfileData: (data) => dispatch(updateProfileData(data)) ,
+  updateProfileImage: (data) =>  dispatch(updateProfileImage(data)) ,
+  getUpdatedProfileData: () => dispatch(getUpdatedProfileData())
 })
 
 export default connect(mapStatesToProps, mapDispatchToProps)(Profile)

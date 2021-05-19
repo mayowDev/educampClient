@@ -9,9 +9,8 @@ const mapStatesToProps = (state) => {
     
     return {
         // searchQuery: global.searchQuery,
-        isLoggedIn: state.global.isLoggedIn,
+        isLoggedIn: state.auth.isLoggedIn,
         profileData: state.profile.profileData,
-        
     };
 };
 

@@ -10,7 +10,8 @@ const HomePage:React.FC<IHomeProps> = ({isLoggedIn}) => {
     const history = useHistory();
     return (
         <>
-        <PrimarySearchAppBar/>
+        {/* <PrimarySearchAppBar isLoggedIn={isLoggedIn}/> */}
+        <Header/>
         <section className='home'>
             <div className='home__container'>
                 <H1 className='home__heading dark' value='Course on demand: a new way to learn any skill without leaving your home.' />

@@ -41,7 +41,11 @@ $dark-gray: #8d8d8d;
     margin-left: -4px;
     background: transparent;
   }
-
+  &.primary{
+    height: 40px;
+    padding: 0 32px;
+    border-radius: 5px !important;
+  }
   &.secondary{
     height: 64px;
     padding: 0 32px;

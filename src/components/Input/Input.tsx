@@ -7,7 +7,7 @@ import { P2 } from '../Typography';
 // import smoothscroll from 'smoothscroll-polyfill';
 
 
-const Input: React.FC<IInputProps> = ({name, label, onChange, value, placeholder, type, className, disabled, onMouseLeave, autoComplete, passwordVisible, errorMsg}) => {
+const Input: React.FC<IInputProps> = ({name, label, value, onChange,  placeholder, type, className, disabled, onMouseLeave, autoComplete, passwordVisible, errorMsg}) => {
     const [focus, setFocus] = useState(false);
     const [passVisible, setPassVisibility] = useState(false);
     // const [inputValue, setValue] = useState(value || '');

@@ -5,17 +5,15 @@ import Input from '../../components/Input'
 // import PrivateExhibitions from '../Exhibitions/PrivateExhibitions'
 import './style.scss'
 // import {S3Upload} from '../../services/s3Upload'
-import {updateProfileImage, resetPassword} from '../../services/api'
+import {updateProfileImage, resetPassword} from '../../services'
 // import {Link} from 'react-router-dom'
 
 import {logout} from '../../utils';
 
 import Button from "../../components/Button";
 
-const Profile = (props) => {
-    console.log('Profile.tsx',props);
-    
-    const {profileData:{profileData, profileLoading}} = props;
+const Profile = (props) => {    
+    const {getProfileData, profileData} = props;
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [errMsg, setErrMsg] = useState('');
@@ -27,19 +25,21 @@ const Profile = (props) => {
     const [isPhotoChanged, setPhotoChanged] = useState(false)
     const [disabled, setDisabled] = useState(false)
     const [activeTab, setActiveTab] = useState('bookmarks');
-    const [photoFile, setPhotoFile] = useState({
-        type: ''
-    });
-    function getData() {
-        const profile = props.profileData
-        const {name, email, avatar} = profile
-        setFullName(name);
-        setEmail(email)
-    }
-
+    const [photoFile, setPhotoFile] = useState({type: ''});
+    
     useEffect(() => {
-        props.getProfileData() //Todo : find out how  useeffect works with dependencies and why the console data is loading without stop when i set props.profiledat as dependenciy
-    }, []);
+        getProfileData();
+    }, [])
+    // function getData() {
+    //     const {name, email} = profileData
+    //     setFullName(name);
+    //     setEmail(email)
+    // }
+
+    // useEffect(() => {
+    //Todo : find out how  useeffect works with dependencies and why the console data is loading without stop when i set props.profiledat as dependenciy
+    // Solution : error was in reducer.ts, trying to use object instead of array
+    // },[]);
 
     const isPasswordValid = (pass) => {
         return pass.length > 7 && /^(?=.*\d)(?=.*[!@$*()]).{8,}$/i.test(pass);
@@ -53,30 +53,29 @@ const Profile = (props) => {
         }
     };
 
-    useEffect(() => {
-        checkPass(oldPassword);
-    }, [oldPassword]);
+    // useEffect(() => {
+    //     checkPass(oldPassword);
+    // }, [oldPassword]);
 
-    useEffect(() => {
-        checkPass(newPassword);
-    }, [newPassword]);
+    // useEffect(() => {
+    //     checkPass(newPassword);
+    // }, [newPassword]);
 
-    useEffect(() => {
-        if (fullName !== profileData.name && fullName.length < 4) {
-            setErrMsg('Name must contain 4 letter');
-        } else {
-            checkPass(newPassword);
-            checkPass(oldPassword);
-        }
-    }, [fullName]);
+    // useEffect(() => {
+    //     if (fullName !== profileData.name && fullName.length < 4) {
+    //         setErrMsg('Name must contain 4 letter');
+    //     } else {
+    //         checkPass(newPassword);
+    //         checkPass(oldPassword);
+    //     }
+    // }, [fullName]);
 
     const handleResetPassword = async () => {
         if (oldPassword.length > 7 && newPassword.length > 7) {
             setDisabled(true)
-            const resp = await resetPassword({
-                oldPassword: oldPassword,
-                newPassword: newPassword
-            });
+            const userData = {oldPassword, newPassword}
+            const resetToken = 'sometoken'
+            const resp = await resetPassword(userData, resetToken);
             if (resp) {
                 if (typeof resp !== 'string') {
                     console.log('resp = ', resp);
