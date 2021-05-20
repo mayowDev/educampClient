@@ -17,6 +17,10 @@ export interface IBootcampQuery{
     size?: number,
     limit?: number,
 }
+
+export interface IForgotPassword{
+    email: string
+}
 export interface ICreateBootcamp{
     name: string,          
     description: string,

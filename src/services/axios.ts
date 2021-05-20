@@ -27,16 +27,13 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(response =>{return response}, error => {
         const expectdError = error.response && error.response.status >= 400 && error.response.status < 500
-        console.log('interceptors.response error', error);
         if(!expectdError){
-            toast.error('unexpectd error occurred')
+            toast.error(error.message)
         }else{
             toast.error(error.response.data.message)
         }
         return Promise.reject(error)
     }
 );
-
-// instance.defaults.withCredentials = true ; same -> config.withCredentials = true 
 
 export default instance;

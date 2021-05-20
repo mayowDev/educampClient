@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import GlobalPage from './Global'
 import '../../assets/fonts/fonts.css'
-import { getProfileData } from '../Profile/redux/actions';
+import { getProfileData } from '../Auth/Profile/redux/actions';
 
 const mapStatesToProps = (state) => {    
     return {

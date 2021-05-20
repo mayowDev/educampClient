@@ -24,25 +24,16 @@ const HomePage:React.FC<IHomeProps> = ({isLoggedIn}) => {
             </div>
             <div className='home__container exbition-wrap'>
                 <div className="blocks">
+                    
                     <div className="block">
                         <div className="circle" />
-                        <H3 className="dark" value="Take your time in private" />
-                        <P1 className="dark" value="Aesthetic appreciation happens in moments of private contemplation with works of art." />
+                        <H3 className="dark" value="Learn on your base" />
+                        <P1 className="dark" value="Not everyone learns the same. Feel like taking break?  Come back and complete your learning later." />
                     </div>
                     <div className="block">
                         <div className="circle" />
-                        <H3 className="dark" value="Curate your favourites" />
-                        <P1 className="dark" value="Save and share your favorite pieces. Come back and reference them later." />
-                    </div>
-                    <div className="block">
-                        <div className="circle" />
-                        <H3 className="dark" value="Exclusive Exhibitions" />
-                        <P1 className="dark" value="We offer viewings of the best artwork from around the globe curated by the most notable galleries." />
-                    </div>
-                    <div className="block">
-                        <div className="circle" />
-                        <H3 className="dark" value="See them in your space" />
-                        <P1 className="dark" value="See works of art on your wall before you consider adding to your physical collection." />
+                        <H3 className="dark" value="Exclusive Courses" />
+                        <P1 className="dark" value="We offer the best insructors from around the globe, so you can have the best quality courses possible." />
                     </div>
                 </div>
                 <Link to='/signup' className="create-account">

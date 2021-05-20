@@ -1,4 +1,4 @@
-export * from './userService'
+export * from './authService'
 export * from './bootcampService'
 export * from './courseService'
 export * from './reviewService'

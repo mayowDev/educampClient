@@ -1,16 +1,16 @@
 import React, {useEffect, useState, Fragment} from 'react'
-import {H1, H3, P2, P1, Title} from '../../components/Typography'
-import Input from '../../components/Input'
+import {H1, H3, P2, P1, Title} from '../../../components/Typography'
+import Input from '../../../components/Input'
 // import Favourites from '../Favourites'
 // import PrivateExhibitions from '../Exhibitions/PrivateExhibitions'
 import './style.scss'
 // import {S3Upload} from '../../services/s3Upload'
-import {updateProfileImage, resetPassword} from '../../services'
+import {updateProfileImage, resetPassword} from '../../../services'
 // import {Link} from 'react-router-dom'
 
-import {logout} from '../../utils';
+import {logout} from '../../../utils';
 
-import Button from "../../components/Button";
+import Button from "../../../components/Button";
 
 const Profile = (props) => {    
     const {getProfileData, profileData} = props;

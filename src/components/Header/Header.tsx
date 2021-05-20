@@ -3,12 +3,9 @@ import {Link, useHistory} from 'react-router-dom'
 import Logo from '../../assets/images/logo-white@2x.png';
 
 import {IHeaderProps} from './types';
-import ProfilePlaceholder from '../../assets/icons/profile-placeholder.svg';
 import {P1, SubTitle} from '../Typography';
 import MenuItem from '../MenuItem';
 import Button from '../Button';
-// import {logout} from '../../containers/Auth/redux/actions'
-import * as API from "../../services"
 
 import IconBtn from '../IconBtn';
 
@@ -16,10 +13,7 @@ import IconBtn from '../IconBtn';
 const Header: React.FC<IHeaderProps> = (props) => {
     console.log('Header props', props);
     
-    const {  isLoggedIn,routeName,changeSearch,searchQuery,isHome,
-        isProfile,isAuthenticationPage, isSearchPage,isLoginForgot
-    } = props;    
-    // console.log('isHome', isHome);
+    const {  isLoggedIn,routeName,changeSearch,searchQuery,isHome, isProfile, logout} = props;    
     
     const history = useHistory();
     const [nav, setNav] = useState(false);
@@ -31,12 +25,10 @@ const Header: React.FC<IHeaderProps> = (props) => {
         }
         if(changeSearch) changeSearch(value);
     };
-    const handleLogout = async()=>{
-        const res = await API.logout();
-        if(res.success){
-            window.location.reload()
-            //history.push('/login')
-        }
+
+    const handleLogout =async ()=>{
+       const res = await logout();
+       console.log('logout res', res)
     }
     // const handleProfileMenuOpen =(e)=>{
             // setAnchorEl(e.currentTarget);

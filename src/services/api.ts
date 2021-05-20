@@ -4,39 +4,6 @@ import {LOCAL_STORAGE_KEYS, RECORDS_LIMIT} from "../components/Constants"
 import axiosMain from "axios";
 import {BACKEND_URL} from "../configs"
 
-// const getWebMobileParam = () => {
-//     let params = '';
-//     // Only pass params is BETA API is being used.
-//     // if(!BACKEND_URL.includes('api')) {
-//     //     return params;
-//     // }
-//     // if(isMobileDevice()){
-//     //     params = "&mobile=true"
-//     // }else{
-//     //     params = "&web=true"
-//     // }
-//     return params;
-// };
-
-
-// // import * as config from "../config";
-// export const login = async (
-//     email: string,
-//     password: string
-// ) => {
-//         const result = await axiosMain
-//             .post(`${BACKEND_URL}login`, {
-//                 email, password, device: 'WEBAPP'
-//             })
-//             .catch((err: any) => {
-//                 return Promise.reject(err.response);
-//             });
-//         if (result && result.data && result.data.token) {
-//             localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, JSON.stringify(result.data.token))
-//             localStorage.setItem(LOCAL_STORAGE_KEYS.AWS, JSON.stringify(result.data.aws))
-//             return result && result.data
-//         }
-// };
 
 // export const forgot = async (data) => {
 //     try {

@@ -1,12 +1,11 @@
 import React, { useState, Fragment } from 'react';
-import { H1, P1, P2, SubTitle } from '../../components/Typography';
-import { Heading, Paragraph } from '../../components/Typography';
-import Input from "../../components/Input";
-import Button from "../../components/Button";
-import {forgotPassword} from "../../services";
+import { H1, P1, P2, SubTitle } from '../../../components/Typography';
+import { Heading, Paragraph } from '../../../components/Typography';
+import Input from "../../../components/Input";
+import Button from "../../../components/Button";
+import {forgotPassword} from "../../../services";
 import {Link, useHistory} from 'react-router-dom';
-// import Close from "../../assets/icons/close.svg";
-import IconBtn from "../../components/IconBtn";
+import Close from "../../../assets/icons/close.svg";
 // @ts-ignore
 const Forgot:React.FC = ({ isLoggedIn }) => {
     const [email, setEmail] = useState('');
@@ -19,6 +18,8 @@ const Forgot:React.FC = ({ isLoggedIn }) => {
             const result = await forgotPassword({
                 email
             });
+            console.log('result', result);
+            
             if(result) {
                 setSuccess(true)
             }
@@ -98,13 +99,9 @@ const Forgot:React.FC = ({ isLoggedIn }) => {
                         )
                     }
                 </div>
-                <IconBtn className='cross' onClick={ handleClose} type="cross" secondary/>
-
-                {/*<div onClick={handleClose} className='cross'>*/}
-                {/*    <LazyLoad>*/}
-                {/*    <img src={Close} alt="close" />*/}
-                {/*    </LazyLoad>*/}
-                {/*</div>*/}
+                <div onClick={handleClose} className='cross'>
+                   <img src={Close} alt="close" />
+                </div>
             </div>
         </div>
     )

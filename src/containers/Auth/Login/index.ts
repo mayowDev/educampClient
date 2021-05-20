@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Login from './Login'
 // import '../../assets/fonts/fonts.css'
-import {login} from '../redux/actions'
+import {login, loginWithGoogle} from '../redux/actions'
 
 import './style.scss';
 const mapStatesToProps = ({auth}) => {
@@ -15,6 +15,7 @@ const mapStatesToProps = ({auth}) => {
 const mapDispatchToProps = dispatch => {
     return {
         login: (data) => {dispatch(login(data))},
+        loginWithGoogle : ()=> dispatch(loginWithGoogle())
     }
 };
 

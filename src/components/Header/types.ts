@@ -23,7 +23,14 @@ export interface IHeaderProps {
     currentConversation?: any,
     isChat?: boolean,
     isSidebar?: boolean
-    // isInEvent?: boolean,
+    logout: () => LogoutResponse,
+}
+
+export interface LogoutResponse {
+    success : boolean, 
+    message: string, 
+    data: object
+
 }
 
 export interface IConversationIconProps {

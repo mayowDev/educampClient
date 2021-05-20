@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import Logo from '../../../assets/images/Logo-small.png';
 import Google from '../../../assets/images/icon-google.png';
-
+import Button from '../../../components/Button'
 const Signup = ({signup}) => {
-    const [user, setUser] = useState({name: '', email:'', password:''})
+    const [user, setUser] = useState({name: '', email:'', password:'', confirmPassword:'', role:'student'})
     //TODO: handle all validation errors:- taken email, input values, password length and strength, API VALIDATION: taken emails
     const history = useHistory()
     const handleInputChange = (e)=>{
@@ -15,10 +15,10 @@ const Signup = ({signup}) => {
     }
 
     const onSignUpSubmit = e => {
-        console.log('your information is: ' + user.email, user.name, user.password);
         e.preventDefault();
-        signup(user)
-        history.push('/verify')
+        const res = signup(user)
+        // console.log('signup.tsx', res)
+        // history.push('/verify')
     }
 
     return (
@@ -43,12 +43,16 @@ const Signup = ({signup}) => {
                             <label htmlFor="password">Password</label>
                             <input name="password" onChange={handleInputChange} type="password" className="form-control" placeholder="Your Password" id="password"/>
                         </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Confirm Password</label>
+                            <input name="confirmPassword" onChange={handleInputChange} type="password" className="form-control" placeholder="Confirm Password" id="confirmPassword"/>
+                        </div>
                         <input type="submit" value="Sign Up" className="btn btn-block btn-primary"/>
 
                         <span className="seprater">OR</span>    
                         <div className="icons">
-                            <a href="#" className="btn btn-block auth-btn fb"> <span></span> Sign up with facebook</a>
-                            <a href="#" className="btn btn-block auth-btn gl"><img src={Google} alt="Google-logo"/> Sign up with Google</a>
+                            <a href="#" className="btn btn-block auth-btn fb">Sign up with facebook</a>
+                            <a onClick={()=>console.log('login with google')} className="btn btn-block auth-btn gl"><img src={Google} alt="Google-logo"/> Sign up with Google</a>
                         </div>
                     </form>
                 </div>

@@ -81,18 +81,16 @@
 	}
 	
 }
-.btn-block, input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].btn-block {
-    width: 100%;
-	font-size:18px;
-	color: white;
-	line-height: 2.5;
-	cursor: pointer;
-	&::active{
-		border: 1px solid red
-	}
-
-
-}
+// .btn-block, input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].btn-block {
+//     width: 100%;
+// 	font-size:18px;
+// 	color: white;
+// 	line-height: 2.5;
+// 	cursor: pointer;
+// 	&::active{
+// 		border: 1px solid red
+// 	}
+// }
 .seprater{
 	text-align: center;
     display: block;
@@ -198,12 +196,3 @@
 		border-style: none
 	  }
 }
-
-// .googl{
-// 	border-radius:  25px;
-// 	box-shadow: 0px 10px 55px 10px rgba(0, 0, 0, 0.1);
-// 	-webkit-box-shadow: 0px 10px 55px 10px rgba(0, 0, 0, 0.1);
-// 	// -webkit-box-shadow: 20px 15px 20px 20px rgba(0, 0, 0, 0.2);
-// 	// box-shadow: 20px 15px 20px 20px rgba(0, 0, 0, 0.2); 
-// 	// right bottom, background
-// }

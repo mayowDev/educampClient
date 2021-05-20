@@ -4,6 +4,7 @@ $gray: #7f7f7f;
 $lightGray: #cfcfcf;
 $light100: #efefef;
 $darkGray: #F9F9F9;
+$dark: black;
 
 .header {
   background-color: white !important;
@@ -387,7 +388,8 @@ $darkGray: #F9F9F9;
             height: 100%;
 
             &:hover{
-              border-bottom: 4px solid $gray;
+              border-bottom: 4px solid $dark;
+              margin-bottom: 4px;
             }
             &.active{
               border-bottom: 4px solid $gray;
@@ -445,7 +447,7 @@ $darkGray: #F9F9F9;
           transform: translateY(0);
           margin-right: 18px;
           & >:last-child{
-            margin-left: 17px;
+            margin-left: -17px;
           }
 
           &.active{
@@ -916,6 +918,7 @@ $darkGray: #F9F9F9;
           }
           .header--flex{
             z-index: 10;
+            position: fixed;
           }
 
           .mobile-btn{

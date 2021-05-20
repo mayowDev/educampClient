@@ -1,5 +1,5 @@
 import { GET_PROFILE_DATA, UPDATE_PROFILE_DATA, GET_UPDATED_PROFILE_DATA, UPDATE_PROFILE_IMAGE, FETCH_PROFILE_FAILED } from './actionTypes'
-import * as API from "../../../services"
+import * as API from "../../../../services"
 
 export const getProfileData = () => async dispatch => {
   const response = await API.getUserProfile();

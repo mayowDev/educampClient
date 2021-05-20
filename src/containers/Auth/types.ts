@@ -5,12 +5,52 @@ export interface ITypeSignUp {
     role: string
 }
 
-export interface ITypeLoginData {
+export interface ITypeLogin {
     email: string;
     password: string;
-//     profile: any,
-//     setConversation?: (val: boolean) => void,
-//     isConversation?: string,
+}
+export interface ITypeVerify {
+    id: number;
+    token: string,
+    expires: number,
+    signature: string
+}
+
+
+
+export interface IForgotProps{
+    loading:boolean,
+    forgotPassword:(email:object)=>{
+        type: string,
+        payload:{
+            success:boolean,
+            message:string,
+            data?:string
+        }
+    },
+    forgotPasswordResponse:{
+        type: string,
+        payload:{
+            success:boolean,
+            message:string,
+            data?:string
+        }
+    }
+}
+export interface IForgotPassword{
+    email: string
+}
+
+export interface ITypeResetPassword{
+    password: string,
+    confirmPassword: string, //TODO: find a way to match this with newPassword
+
+}
+export interface ITypeUpdatePassword{
+    oldPassword: string
+    newPassword: string,
+    confirmPassword: string, //TODO: find a way to match this with newPassword
+
 }
 
 export interface ITypeRenderRoute {

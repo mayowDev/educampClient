@@ -1,21 +1,24 @@
 import React, {lazy, Suspense, useEffect, useState} from 'react';
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Redirect, useHistory} from 'react-router-dom'
 /** Shared components */
 import HomePage from "../Home"
 import NotFound from "../../views/404/NoFound";
-// /** Auth components */
+/** Auth components */
 import Login from '../Auth/Login';
 import SignUp from '../Auth/Signup';
-import Verify from '../Verify';
-import ForgotPassword from '../ForgotPassword';
-import ResetPage from '../ResetPassword'
-import ProfilePage from '../Profile'
-// /** Course components */
+import Verify from '../Auth/Verify';
+import ForgotPassword from '../Auth/Forgot';
+import ResetPage from '../Auth/Reset'
+import ProfilePage from '../Auth/Profile'
+/** Course components */
 import CourseDetails from "../Courses/Details"
 import CoursesPage from "../Courses";
 
-const RenderRoutes = ({isLoggedIn}) => {  
-    console.log('auth.isLoggedIn', isLoggedIn)
+const RenderRoutes = (props) => {  
+    const history = useHistory()
+    const isLoggedIn = props.isLoggedIn
+    console.log('history props', );
+
     return (
             <Switch>
                 <Route exact path="/" component={HomePage}/>
@@ -26,22 +29,22 @@ const RenderRoutes = ({isLoggedIn}) => {
                 {!isLoggedIn && <Route exact path="/register" component={SignUp}/>}
                 {!isLoggedIn && <Route exact path="/verify" component={Verify}/>}
                 {!isLoggedIn && <Route exact path="/forgot-password" component={ForgotPassword}/> }
-                {isLoggedIn && <Redirect from="/login" exact to="/" />}
-                {isLoggedIn?<Route exact path="/profile" component={()=><ProfilePage/>}/>:<Redirect  exact to="/login" />}
+                {isLoggedIn  && <Redirect from="/login" exact to="/" />}
+                {isLoggedIn  ? <Route exact path="/profile" component={()=><ProfilePage/>}/> : <Redirect  exact to="/" />}
+                {/* <Redirect from={history.location.pathname} exact to="/" />} */}
                <Route component={NotFound}/>
             </Switch>
      )
 };
 
-// const Root = ({isLoggedIn, redirectPath, isConversation,  isFirstLoad, profile, bootcampId, setBootcampId}) => {
+// const Root = ({isLoggedIn, redirectPath, isConversation,  isFirstLoad, profile}) => {
 //     const history = useHistory();
 //     const [isHeader, setHeader] = useState<boolean>(false);
 //     const [isHome, setHome] = useState<boolean>(false);
 //     const [isProfile, setProfile] = useState<boolean>(false);
 //     const [routeName, setRouteName] = useState(location.pathname);
-//     const [isAuthenticationPage, setAuthenticatingPage] = useState<boolean>(false);
 //     const [isSearchPage, setIsSearchPage] = useState<boolean>(false);
-//     const [isBootcampsPage, setIsBootcampsPage] = useState<boolean>(false);
+//     const [isCoursesPage, setCoursesPage] = useState<boolean>(false);
 //     const [loginPath, setLoginPath] = useState<string>('/login');
 //     // const [mokeDelay, setMokeDelay] = useState<boolean>(false);
 //     const [isFlex, setFlex] = useState<boolean>(false);
