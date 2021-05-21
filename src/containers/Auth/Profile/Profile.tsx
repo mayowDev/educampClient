@@ -6,14 +6,13 @@ import Input from '../../../components/Input'
 import './style.scss'
 // import {S3Upload} from '../../services/s3Upload'
 import {updateProfileImage, resetPassword} from '../../../services'
-// import {Link} from 'react-router-dom'
-
+import Spinner from '../../../components/Spinner'
 import {logout} from '../../../utils';
 
 import Button from "../../../components/Button";
 
 const Profile = (props) => {    
-    const {getProfileData, profileData} = props;
+    const {getUserData, auth, auth:{profileLoading, userProfile:userProfileData}} = props;
     const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [errMsg, setErrMsg] = useState('');
@@ -24,23 +23,25 @@ const Profile = (props) => {
     const [photo, setPhoto] = useState('')
     const [isPhotoChanged, setPhotoChanged] = useState(false)
     const [disabled, setDisabled] = useState(false)
-    const [activeTab, setActiveTab] = useState('bookmarks');
+    const [activeTab, setActiveTab] = useState('settings');
     const [photoFile, setPhotoFile] = useState({type: ''});
-    
-    useEffect(() => {
-        getProfileData();
-    }, [])
-    // function getData() {
-    //     const {name, email} = profileData
+
+    // function fetchUserData() {
+    //     const {name, email} = userProfileData
     //     setFullName(name);
     //     setEmail(email)
+    //     getUserData()
     // }
+    useEffect(() => {
+        console.log('profile usereffect');
+        
+        getUserData()
+    }, []);
+    console.log('userProfileData', userProfileData);
 
-    // useEffect(() => {
     //Todo : find out how  useeffect works with dependencies and why the console data is loading without stop when i set props.profiledat as dependenciy
-    // Solution : error was in reducer.ts, trying to use object instead of array
-    // },[]);
-
+    // Solution : error was in reducer.ts, trying to use object instead of array or this below
+    // <Route exact path="/profile" component={()=><ProfilePage/>}/> 
     const isPasswordValid = (pass) => {
         return pass.length > 7 && /^(?=.*\d)(?=.*[!@$*()]).{8,}$/i.test(pass);
     };
@@ -52,23 +53,6 @@ const Profile = (props) => {
             setErrMsg('');
         }
     };
-
-    // useEffect(() => {
-    //     checkPass(oldPassword);
-    // }, [oldPassword]);
-
-    // useEffect(() => {
-    //     checkPass(newPassword);
-    // }, [newPassword]);
-
-    // useEffect(() => {
-    //     if (fullName !== profileData.name && fullName.length < 4) {
-    //         setErrMsg('Name must contain 4 letter');
-    //     } else {
-    //         checkPass(newPassword);
-    //         checkPass(oldPassword);
-    //     }
-    // }, [fullName]);
 
     const handleResetPassword = async () => {
         if (oldPassword.length > 7 && newPassword.length > 7) {
@@ -94,90 +78,28 @@ const Profile = (props) => {
         [0, ...indices].map((n, i, m) => slicable.slice(n, m[i + 1]));
 
     const handleUpdate = async () => {
-        if (isPhotoChanged) {
-            let fileType = photoFile.type
-            // @ts-ignore
-            fileType = fileType.split('/')
-            fileType = fileType[1]
-            // const fileName = `${Date.now()}.${fileType}`
+        console.log('handleUpdate')
+        // if (isPhotoChanged) {
+        //     let fileType = photoFile.type
+        //     // @ts-ignore
+        //     fileType = fileType.split('/')
+        //     fileType = fileType[1]
+            
+        //     setTimeout(() => {
+        //         setDisabled(false)
+        //         setPhotoChanged(false)
+        //         setPhotoChanged(false);
+        //         setPhotoFile({
+        //             type: ''
+        //         });
+        //     }, 1000)
+        // }
 
-            // @ts-ignore
-            // const newFile = new File([photoFile], fileName, {type: fileType})
-
-            // const Key = `${uploadMeta.upload.Key}${fileName}`
-            // const Bucket = uploadMeta.upload.Bucket
-
-            // await S3Upload({
-            //     Key,
-            //     Bucket,
-            //     Body: newFile
-            // })
-            // const resp = await updateProfileImage({
-            //     assetKey: Key
-            // })
-
-            // photo && getUpdatedProfileDataSuccess({
-            //     ...resp,
-            //     data: {
-            //         ...resp.data,
-            //         image: {
-            //             ...resp.data.image,
-            //             data: {
-            //                 ...resp.data.image.data,
-            //                 signedUrl120: photo,
-            //                 signedUrl336: photo
-            //             }
-            //         }
-            //     }
-            // })
-            // updateProfileImageData({
-            //     ...resp.data.image,
-            //     data: {
-            //         ...resp.data.image.data,
-            //         signedUrl120: photo,
-            //         signedUrl336: photo
-            //     }
-            // })
-            setTimeout(() => {
-                setDisabled(false)
-                setPhotoChanged(false)
-                setPhotoChanged(false);
-                setPhotoFile({
-                    type: ''
-                });
-            }, 1000)
-        }
-
-        // handleFullName();
-        handleResetPassword();
+        // handleResetPassword();
     };
 
-    // const handleFullName = () => {
-    //     if (fullName !== "" && fullName !== profileData.firstname + profileData.firstname) {
-    //         const fullNameSpaceIndex = fullName.indexOf(" ");
-    //         if (fullNameSpaceIndex !== -1) {
-    //             const fullNameCopy = fullName;
-    //             const newFirstName = splitOn(fullNameCopy, fullNameSpaceIndex)[0];
-    //             const newLastName = splitOn(fullNameCopy, fullNameSpaceIndex)[1];
-    //             // if ((newFirstName || newLastName) && (profileData.firstname !== newFirstName || profileData.lastname !== newLastName)) {
-    //             //     setDisabled(true);
-    //             //     updateProfileData({firstname: newFirstName || '', lastname: newLastName || ''});
-    //             //     setTimeout(() => {
-    //             //         setDisabled(false)
-    //             //     }, 500)
-    //             // }
-    //         } else {
-    //             setDisabled(true);
-    //             updateProfileData({firstname: fullName || '', lastname: "" || ''});
-    //             setTimeout(() => {
-    //                 setDisabled(false)
-    //             }, 500)
-    //         }
-    //     }
-    // };
-
     const resetFullName = () => {
-        setFullName(profileData.firstname + profileData.lastname);
+        setFullName(userProfileData.name);
     };
 
     const handlePhotoChange = async (e) => {
@@ -208,7 +130,7 @@ const Profile = (props) => {
         // getData();
         setOldPassword("");
         setNewPassword("");
-        resetFullName();
+        // resetFullName();
     };
 
     const handleReset = () => {
@@ -223,21 +145,19 @@ const Profile = (props) => {
 
     return (
         <div className='profile-wrapper'>
-            {/* <div className='addimage-popup'>
-        <P2 className='' value='Upload a photo' />
-        <P2 className='' value='Remove Photo' />
-        <P2 className='' value='Cancel' />
-      </div> */}
+              {
+                profileLoading&&(<Spinner/>)
+              }
             <div className='add-image'>
                 <div className="container nav-container">
                     <div className='profile-nav'>
-                        <div onClick={() => setActiveTab('bookmarks')}>
-                            <Title className={'nav-item big' + (activeTab === 'bookmarks' ? ' active' : '')}
-                                   value="Bookmarks"/>
+                        <div onClick={() => setActiveTab('favourites')}>
+                            <Title className={'nav-item big' + (activeTab === 'favourites' ? ' active' : '')}
+                                   value="Favourites"/>
                         </div>
-                        <div onClick={() => setActiveTab('exhibitions')}>
-                            <Title className={'nav-item big' + (activeTab === 'exhibitions' ? ' active' : '')}
-                                   value="Exhibitions"/>
+                        <div onClick={() => setActiveTab('courses')}>
+                            <Title className={'nav-item big' + (activeTab === 'courses' ? ' active' : '')}
+                                   value="Courses"/>
                         </div>
                         <div onClick={() => setActiveTab('settings')}>
                             <Title className={'nav-item big' + (activeTab === 'settings' ? ' active' : '')}
@@ -252,7 +172,7 @@ const Profile = (props) => {
                   <div className="container">
                     <div className='add-image settings-section'>
                       <div className='image-title-wrapper'>
-                        <div className={`image-wrapper ${disabled ? 'upload-image-disabled' : ''}`}>
+                        {/* <div className={`image-wrapper ${disabled ? 'upload-image-disabled' : ''}`}>
                           <label>
                             <input type='file' onChange={handlePhotoChange}/>
                               {
@@ -279,16 +199,15 @@ const Profile = (props) => {
                                       </>
                               }
                           </label>
-                        </div>
-                        <div className='image-title'>
-                          <H1 className="bold" value={profileData && profileData.name}/>
-                            {/* <P1 className="" value='Fly Gallery, New York, NY'/> */}
-                        </div>
+                        </div> */}
+                        {/* <div className='image-title'>
+                          <H1 className="bold" value={userProfileData && userProfileData.name}/>
+                        </div> */}
                       </div>
 
-                      <div className="buttons-wrapper">
+                      {/* <div className="buttons-wrapper">
                           {
-                              ((profileData && fullName !== profileData.firstname + profileData.lastname) || isPhotoChanged || oldPassword.length > 0 || newPassword.length > 0) ? (
+                              ((userProfileData && fullName !== userProfileData.name) || isPhotoChanged || oldPassword.length > 0 || newPassword.length > 0) ? (
                                       <>
                                           <Button
                                               value='Discard Changes'
@@ -313,14 +232,14 @@ const Profile = (props) => {
                                       className='button__bright'
                                   />
                           }
-                      </div>
+                      </div> */}
                     </div>
                     <div className='information-wrapper'>
                       <P1 className='error' value={errMsg || ''}/>
                       <div className='container'>
                         <H3 value='Account information'/>
                         <form className='input-wrapper'>
-                          <div className='information-class'>
+                          {/* <div className='information-class'>
                             <Input
                               value={fullName}
                               name="name"
@@ -331,8 +250,8 @@ const Profile = (props) => {
                               disabled={disabled}
                               onChange={(e) => setFullName(e.target.value)}
                             />
-                          </div>
-                          <div className='information-class'>
+                          </div> */}
+                          {/* <div className='information-class'>
                             <Input
                               value={email}
                               name="email"
@@ -350,8 +269,8 @@ const Profile = (props) => {
                                 <P1 value="Reset Password"/>
                               </div>
                               }
-                          </div>
-                            {
+                          </div> */}
+                            {/* {
                                 reset && (
                                     <>
                                         <div className='information-class cursor-disabled'>
@@ -386,7 +305,7 @@ const Profile = (props) => {
                                         </div>
                                     </>
                                 )
-                            }
+                            } */}
                         </form>
                       </div>
                     </div>
@@ -394,7 +313,7 @@ const Profile = (props) => {
                 </Fragment>
             }
             {/* {
-                activeTab === "bookmarks" &&
+                activeTab === "favourites" &&
                 <Favourites/>
             }
             {

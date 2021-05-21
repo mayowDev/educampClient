@@ -1,13 +1,11 @@
 import React, { useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import Logo from '../../assets/images/logo-white@2x.png';
-
 import {IHeaderProps} from './types';
-import {P1, SubTitle} from '../Typography';
 import MenuItem from '../MenuItem';
 import Button from '../Button';
-
 import IconBtn from '../IconBtn';
+import Dropdown from '../Dropdown';
 
 
 const Header: React.FC<IHeaderProps> = (props) => {
@@ -93,20 +91,24 @@ const Header: React.FC<IHeaderProps> = (props) => {
                             <li onClick={() => setNavBright(false)} className={!isLoggedIn ? 'not-logged-in' : ''}>
                                 {
                                 !isLoggedIn &&
+                                <>
                                     <Button value='Sign In' className='' type='primary' to='/login'/> 
+                                    <Button value='Sign Up' className='' type='primary' to='/register'/> 
+                                </>
                                 }
                             </li>
-                            <li onClick={() => setNavBright(false)} className={!isLoggedIn ? 'not-logged-in' : ''}>
-                                {
-                                    !isLoggedIn ?
-                                        <Button value='Sign Up' className='' type='primary' to='/register'/> :
-                                        <Button value='Sign out' className='' type='primary' onClick={()=>handleLogout()}/> 
-
-                                        // <div className={`${isLinkActive('/profile')}`}>
-                                            /* <IconBtn className="user--profile" type="user" to='/profile' /> */
-                                        // </div>
-                                }
-                            </li>
+                            {isLoggedIn &&
+                                <li onClick={() => setNavBright(false)} className={!isLoggedIn ? 'not-logged-in' : 'logged-in'}>
+                                    <div className={`${isLinkActive('/profile')}`}>
+                                        <Dropdown>
+                                            <IconBtn className="user--profile" type="user" to='/profile' />
+                                            <Button value='Logout' className='' type='primary' onClick={()=>handleLogout()}/> 
+                                        </Dropdown>
+                                    
+                                    </div>
+                                </li>
+                            }
+                            
 
                         </ul>
                     </nav>

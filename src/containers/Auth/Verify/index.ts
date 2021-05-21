@@ -1,23 +1,18 @@
 import { connect } from 'react-redux';
 import Verify from './Verify'
-// import '../../assets/fonts/fonts.css'
-
-const mapStatesToProps = (state) => {
-    console.log('verify state', state);
+import {verify} from '../redux/actions'
+const mapStatesToProps = ({auth}) => {
+    console.log('verify state', auth);
     
     return {
-        // isLoggedIn: global.isLoggedIn,
-        // redirectPath: global.redirectPath,
-        // profile: profile.profileData,
-        // isConversation: global.isConversation,
-        // auth: auth.verify,
+        isLoggedIn: auth.isLoggedIn,
+        // verify: auth.isVerified,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        // updateProfileData: () => {dispatch(getUpdatedProfileDataInit())},
-        // setConversation: (val) => {dispatch(setConversation(val))},
+        verify: (token) => dispatch(verify(token)),
     }
 };
 

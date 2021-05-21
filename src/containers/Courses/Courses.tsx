@@ -19,22 +19,9 @@ const Courses = (props) => {
         fetchCourses()
     }, []);
 
-    // useEffect(() => {
-    //     setIsLoadingMore(false)
-    // }, [courses && courses.length])
-
     const handleCourseClick = (courseId: number) => {
         history.push(`/courses/${courseId}`)
     };
-
-
-
-    // const handleValueChange = async (value) => {
-        // setCoursesLoader(true)
-        // updateSortBy(value);
-        // const isGroup = !['alphabetical', ].includes(value);
-        // await props.fetchGallerie( 1, value, isGroup, "gallery");
-    // }
 
     const infiniteRef = useInfiniteScroll({
         loading: isLoadingMore,
@@ -47,8 +34,6 @@ const Courses = (props) => {
             <div className="courses-wrapper container">
                 <div className="flex">
                     <H1 className='big' value='Courses'/>
-                    {/*:TODO--dropdown*/}
-                    {/*<Dropdown options={filterOptions()} selected={sortBy} onChange={(val) => handleValueChange(val)} />*/}
                 </div>
                 {
                     coursesLoading ?

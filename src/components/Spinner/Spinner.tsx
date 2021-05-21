@@ -1,12 +1,12 @@
 import React from 'react';
 import {ISpinnerProps} from "./type";
-import LogoURL from '../../assets/images/Spinner-200px.gif';
-import BrightLogo from '../../assets/images/Spinner-200px.gif';
+import spinner from '../../assets/images/loading.gif';
+// import SpiningGif from '../../assets/images/Spinner-200px.gif';
 
 const Spinner: React.FC<ISpinnerProps> = ({ bright, className }) => {
     return (
         <div className={`spinner-container ${bright ? 'bright' : ''} ${className || ''}`}>
-            <img style={{width: '350%', height: '350px'}} src={!bright ? LogoURL : BrightLogo} className="anime-loader" />
+            <img style={{width: '350%', height: '350px'}} src={spinner} className="anime-loader" />
         </div>
     )
 }

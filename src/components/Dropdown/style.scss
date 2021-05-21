@@ -1,3 +1,41 @@
-.some{
-    color: aliceblue;
+.dropdown {
+    margin-top: 7px !important;
+    position: relative;
+    display: inline-block;
+    &:hover{
+        .dropdown-content {
+          display: block;    
+          margin-top: 1px;
+        }
+        .dropbtn {background-color: black;}
+    } 
+    .dropbtn {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        border-radius: 45px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: -40px;
+      background-color: #f9f9f9;
+      min-width: 150px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      a {
+        color: black;
+        padding: 12px 16px!important;
+        text-decoration: none;
+        text-align: center;
+        display: block;
+        &:hover {background-color: #f1f1f1;}
+      }
+      .logout-btn {
+        padding: 0!important;
+      }
+    }
 }

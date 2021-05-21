@@ -25,8 +25,6 @@ export default(state = initialState, action) =>{
                 ...state,
                 courses:  [...state.courses, ...action.payload.rows],
                 pages: action.payload.pagination,
-                // currentPage: action.payload.pagination.currentPage?action.payload.pagination.currentPage:0,
-                // canLoadMore: action.payload.page && action.payload.page.lastPage && action.payload.currentPage < action.payload.page.lastPage.index,
                 coursesLoading: false,
             };
 

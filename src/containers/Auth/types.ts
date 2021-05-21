@@ -16,7 +16,17 @@ export interface ITypeVerify {
     signature: string
 }
 
+export interface IVerifyProps{
+    verify:(token:object)=>{
+        type: string,
+        payload:{
+            success:boolean,
+            message:string,
+            data?:string
+        }
+    }
 
+}
 
 export interface IForgotProps{
     loading:boolean,

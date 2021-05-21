@@ -9,8 +9,6 @@ if (process.env.NODE_ENV === "development") {
       w.__REDUX_DEVTOOLS_EXTENSION__ ? w.__REDUX_DEVTOOLS_EXTENSION__() : f => f
   );
 }
-// const enhancedCompose=w.__REDUX_DEVTOOLS_EXTENSION__COMPOSE__ || compose
-// const store:any = createStore(rootReducer, enhancedCompose(applyMiddleware(thunkMiddleware)))
 
 const store:any = createStore(rootReducer, compose(...middlewares))
 

@@ -1,7 +1,7 @@
 import { SIGNUP, VERIFY, LOGIN, GET_USER_DATA, FORGOT_PASSWORD, LOGOUT,  RESET_PASSWORD, UPDATE_PASSWORD, API_ERROR, } from './constants';
 import {ITypeSignUp, ITypeVerify, ITypeLogin, IForgotPassword , ITypeResetPassword, ITypeUpdatePassword} from '../types'
 import * as API from "../../../services"
-import { UPDATE_PROFILE_IMAGE } from '../Profile/redux/actionTypes';
+import { UPDATE_PROFILE_IMAGE, UPDATE_PROFILE } from '../redux/constants';
 
 export const signup = (data:ITypeSignUp)=> async dispatch =>{
     const response = await API.signup(data)
@@ -15,8 +15,8 @@ export const signup = (data:ITypeSignUp)=> async dispatch =>{
 }
 
 
-export const verify = (token:ITypeVerify)=> async dispatch=>{
-    const response = await API.verify(token)
+export const verify = (url:ITypeVerify)=> async dispatch=>{
+    const response = await API.verify(url)
     if (typeof response === "undefined") {
         return dispatch({type:API_ERROR})
     }
@@ -37,7 +37,6 @@ export const login = (data:ITypeLogin)=> async dispatch=>{
 
 export const loginWithGoogle  = () => async dispatch=>{
     const response = await API.loginWithGoogle()
-    console.log('loginWithGoogle action', response)
     if (typeof response === "undefined") {
         return dispatch({type:API_ERROR})
     }
@@ -58,10 +57,12 @@ export const loginWithFacebook  = () => async dispatch=>{
 
 export const getUserData = () => async dispatch => {
     const response = await API.getUserProfile();
-    console.log('getMe', response)
+    if (!response.success) {
+        return dispatch({type:API_ERROR})
+    }
     dispatch( {
       type: GET_USER_DATA,
-      payload: response
+      payload: response.data
     })
 }
 
@@ -77,7 +78,6 @@ export const forgotPassword  = (email:IForgotPassword) => async dispatch=>{
 
 export const resetPassword = (data:ITypeResetPassword, resettoken:string) => async dispatch => {
     const response = await API.resetPassword(data, resettoken);
-    console.log('resetPassword', response)
     if (typeof response === "undefined") {
         return dispatch({type:API_ERROR})
     }
@@ -88,7 +88,6 @@ export const resetPassword = (data:ITypeResetPassword, resettoken:string) => asy
 
 export const updatePassword = (data:ITypeUpdatePassword) => async dispatch => {
     const response = await API.updatePassword(data);
-    console.log('updatePassword', response)
     if (typeof response === "undefined") {
         return dispatch({type:API_ERROR})
     }
@@ -99,7 +98,6 @@ export const updatePassword = (data:ITypeUpdatePassword) => async dispatch => {
 
 export const updateProfileImage = (imgFile) => async dispatch=>{
     const response = await API.updateProfileImage(imgFile);
-    console.log('updateProfileImage action', response)
     if (typeof response === "undefined") {
         return dispatch({type:API_ERROR})
     }
@@ -110,6 +108,13 @@ export const updateProfileImage = (imgFile) => async dispatch=>{
 }
 
 export const updateProfileData = (profileData) => async dispatch => {
+    const response = await API.updateProfile(profileData);
+    if (typeof response === "undefined") {
+        return dispatch({type:API_ERROR})
+    }
+    if(response && response.success === true){
+        dispatch({type:UPDATE_PROFILE, payload: response})
+    }
 
 } 
 

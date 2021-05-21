@@ -17,7 +17,7 @@ import CoursesPage from "../Courses";
 const RenderRoutes = (props) => {  
     const history = useHistory()
     const isLoggedIn = props.isLoggedIn
-    console.log('history props', );
+    // console.log('history props', );
 
     return (
             <Switch>
@@ -30,7 +30,7 @@ const RenderRoutes = (props) => {
                 {!isLoggedIn && <Route exact path="/verify" component={Verify}/>}
                 {!isLoggedIn && <Route exact path="/forgot-password" component={ForgotPassword}/> }
                 {isLoggedIn  && <Redirect from="/login" exact to="/" />}
-                {isLoggedIn  ? <Route exact path="/profile" component={()=><ProfilePage/>}/> : <Redirect  exact to="/" />}
+                {<Route exact path="/profile" component={ProfilePage}/>}
                 {/* <Redirect from={history.location.pathname} exact to="/" />} */}
                <Route component={NotFound}/>
             </Switch>

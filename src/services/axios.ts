@@ -1,7 +1,6 @@
 import axios from "axios";
 import {  toast } from 'react-toastify'
 import {BACKEND_URL} from "../configs"
-// import {LOCAL_STORAGE_KEYS} from "../components/Constants"
 
 const instance = axios.create({
     baseURL: BACKEND_URL,
@@ -26,11 +25,13 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(response =>{return response}, error => {
+        // console.log('axios error', error.message);
         const expectdError = error.response && error.response.status >= 400 && error.response.status < 500
         if(!expectdError){
             toast.error(error.message)
         }else{
-            toast.error(error.response.data.message)
+            const errorArray = error.response.data.message.split(",")
+            errorArray.map(err=> err.length > 1 && toast.error(err));
         }
         return Promise.reject(error)
     }

@@ -1,18 +1,17 @@
 import { connect } from 'react-redux'
 import Profile from './Profile'
-import { updateProfileData, getProfileData, getUpdatedProfileData, updateProfileImage } from './redux/actions'
+import { updateProfileData, getUserData,  updateProfileImage } from '../redux/actions'
 
 const mapStatesToProps = ( state) => {  
+  // console.log('state.auth.userProfileData',state.auth.userProfileData);
+  
   return {
-    profileData: state.profile.profileData,
+    auth: state.auth,
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  getProfileData: () => dispatch(getProfileData()),
-  updateProfileData: (data) => dispatch(updateProfileData(data)) ,
-  updateProfileImage: (data) =>  dispatch(updateProfileImage(data)) ,
-  getUpdatedProfileData: () => dispatch(getUpdatedProfileData())
+  getUserData: () => dispatch(getUserData())
 })
 
 export default connect(mapStatesToProps, mapDispatchToProps)(Profile)

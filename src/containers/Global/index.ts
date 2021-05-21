@@ -1,20 +1,20 @@
 import { connect } from 'react-redux';
 import GlobalPage from './Global'
 import '../../assets/fonts/fonts.css'
-import { getProfileData } from '../Auth/Profile/redux/actions';
+import { getUserData } from '../Auth/redux/actions';
 
 const mapStatesToProps = (state) => {    
     return {
         isLoggedIn: state.auth.isLoggedIn,
         bootcamps: state.bootcamps,
-        profile: state.profile.profileData,
+        profile: state.auth.userProfileData,
         courses: state.courses,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getProfileData: () => {dispatch(getProfileData())}
+        getUserData: () => dispatch(getUserData())
     }
 };
 

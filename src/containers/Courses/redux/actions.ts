@@ -9,7 +9,6 @@ export const fetchCourses = () => async dispatch => {
   if(!response.success){
     dispatch({
       type: FETCH_COURSES_FAILED,
-      
     })
   }
   dispatch({
