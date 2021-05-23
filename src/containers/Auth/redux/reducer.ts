@@ -22,7 +22,6 @@ export default(state = initialState, action)=>{
     case LOGOUT:
       return { ...state, isLoggedIn: false };
     case GET_USER_DATA:
-      console.log('GET_USER_DATA reducer = ', action.payload);
       return {
           ...state,
           userProfile:  {...action.payload},//working fine now

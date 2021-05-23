@@ -3,7 +3,7 @@ import {IBootcampDetails} from './types'
 import Card from "../../../components/Card";
 
 const BootcampDetails: React.FC<IBootcampDetails> = (props) => {
-    const {id, name, description, slug, careers, email, website, address, photo, onClick, location} = props;
+    const {id, name, description, slug, careers,   photo, onClick, location} = props;
 
     return (
         <div>

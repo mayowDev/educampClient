@@ -5,7 +5,6 @@ import { UPDATE_PROFILE_IMAGE, UPDATE_PROFILE } from '../redux/constants';
 
 export const signup = (data:ITypeSignUp)=> async dispatch =>{
     const response = await API.signup(data)
-    console.log('signup Action response', response);
     if (!response.success) {
         return dispatch({type:API_ERROR})
     }

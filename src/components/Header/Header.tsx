@@ -25,28 +25,9 @@ const Header: React.FC<IHeaderProps> = (props) => {
     };
 
     const handleLogout =async ()=>{
-       const res = await logout();
-       console.log('logout res', res)
+       await logout();
     }
-    // const handleProfileMenuOpen =(e)=>{
-            // setAnchorEl(e.currentTarget);
-
-        // return (
-        //     <div className="profileMenu">
-        //         <nav className='profileMenu__nav'>
-        //             <ul>
-        //                 <li/>
-        //                 <li onClick={() => setNavBright(false)}>
-        //                     <MenuItem value='Profile' to="/profile" className={isLinkActive('/profile') || isLinkActive('/')}/>
-        //                 </li>
-        //                 <li onClick={() => setNavBright(false)}>
-        //                     <MenuItem value='Logout' to="/logout" className={isLinkActive('/logout')}/>
-        //                 </li>
-        //             </ul>
-        //         </nav>
-        //     </div>
-        // )
-    // }
+   
     // const handleMenuClose = () => {
     //     setAnchorEl(null);
     //     handleMobileMenuClose();
@@ -100,9 +81,11 @@ const Header: React.FC<IHeaderProps> = (props) => {
                             {isLoggedIn &&
                                 <li onClick={() => setNavBright(false)} className={!isLoggedIn ? 'not-logged-in' : 'logged-in'}>
                                     <div className={`${isLinkActive('/profile')}`}>
-                                        <Dropdown>
-                                            <IconBtn className="user--profile" type="user" to='/profile' />
-                                            <Button value='Logout' className='' type='primary' onClick={()=>handleLogout()}/> 
+                                        <Dropdown icon={<IconBtn className="user--profile" type="user" />}>
+                                            <Link to="/profile">My Profile</Link>
+                                            <Link to="/settings">Settings</Link>
+                                            <Link to="/help">Help</Link>
+                                            <Link className="logout-btn" to="/" onClick={()=>handleLogout()}>Logout</Link>
                                         </Dropdown>
                                     
                                     </div>

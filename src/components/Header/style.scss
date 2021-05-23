@@ -18,14 +18,6 @@ $dark: black;
   -webkit-transition: opacity 0.4s ease-in-out !important;
   -moz-transition: opacity 0.4s ease-in-out !important;
   opacity: 1;
-  //zoom: 80%;
-
-  // &--hidden {
-  //   opacity: 0;
-  //   transition: opacity 0.34s ease-in-out !important;
-  //   -webkit-transition: opacity 0.34s ease-in-out !important;
-  //   -moz-transition: opacity 0.34s ease-in-out !important;
-  // }
 
   &--flex {
     display: flex;
@@ -40,26 +32,21 @@ $dark: black;
     padding-top: 0;
     box-shadow: none;
     padding-top: 28px;
-
-    //& > * {
-    //  zoom: 130%;
-    //}
-
-      .mobile-btn{
-              display: none !important;
-              width: 30px;
-              height: 20px;
-              z-index: 11;
-              display: flex;
-              justify-content: space-between;
-              flex-direction: column;
-              //span{
-              //  display: block;
-              //  width: 30px;
-              //  height: 1px;
-              //  background: #fff;
-              //}
-      }
+    .mobile-btn{
+            display: none !important;
+            width: 30px;
+            height: 20px;
+            z-index: 11;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            //span{
+            //  display: block;
+            //  width: 30px;
+            //  height: 1px;
+            //  background: #fff;
+            //}
+    }
 
     .header__logo {
       display: block;
@@ -418,13 +405,6 @@ $dark: black;
             }
           }
 
-          //&.active {
-          //    border-bottom: 4px solid $gray;
-          //    a{
-          //      border-bottom: 4px solid transparent;
-          //    }
-          //}
-
           &.not-logged-in{
             & > a{
               border-bottom:0;
@@ -680,7 +660,7 @@ $dark: black;
         //  transform: translateY(0);
         //
         //  a, button {
-        //    //width: 96px;
+        //    width: 96px;
         //    margin: 0 auto;
         //    justify-content: center;
         //    &.menu-link-btn{

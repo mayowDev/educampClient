@@ -36,10 +36,7 @@ const Profile = (props) => {
         getUserData()
     }, []);
 
-    //Todo : find out how  useeffect works with dependencies and why the console data is loading without stop when i set props.profiledat as dependenciy
-    // Solution : error was in reducer.ts, trying to use object instead of array or this below
-    // <Route exact path="/profile" component={()=><ProfilePage/>}/> 
-    const isPasswordValid = (pass) => {
+     const isPasswordValid = (pass) => {
         return pass.length > 7 && /^(?=.*\d)(?=.*[!@$*()]).{8,}$/i.test(pass);
     };
 
@@ -75,7 +72,6 @@ const Profile = (props) => {
         [0, ...indices].map((n, i, m) => slicable.slice(n, m[i + 1]));
 
     const handleUpdate = async () => {
-        console.log('handleUpdate')
         // if (isPhotoChanged) {
         //     let fileType = photoFile.type
         //     // @ts-ignore
@@ -136,10 +132,8 @@ const Profile = (props) => {
     };
 
     const handleEmailChange = (value) => {
-        console.log('value coming from email ==> ', value);
         setEmail(value)
     };
-    console.log('userProfileData', userProfileData);
     
     return (
         <div className='profile-wrapper'>

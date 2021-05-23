@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Redirect, Link} from 'react-router-dom'
+import {Redirect, Link, useHistory} from 'react-router-dom'
 
 import Logo from '../../../assets/images/Logo-small.png';
 // import Button from '../../../components/Button'
@@ -7,7 +7,7 @@ const Login = (props) => {
     const {location:{state}, isLoggedIn, loginWithGoogle, login} = props
     const [user, setUser] = useState({ email:'', password:''})
     const [remember, setRemember] = useState(false)
-    // const history = useHistory()
+    const history = useHistory()
     const handleInputChange = (e)=>{
         setUser({
           ...user,
@@ -21,7 +21,6 @@ const Login = (props) => {
         e.preventDefault();
         try {
             login(user)  
-            // window.location.pathname = state?state.from.pathname :"/"  //this is not working to redirect user from whern he come from  
         } catch (error) {
             console.log(error);
         }    
@@ -30,7 +29,6 @@ const Login = (props) => {
         e.preventDefault();
         const response =loginWithGoogle()
         console.log('login with google.tsx', response);
-        
     }
     if(isLoggedIn) return <Redirect to={state?state.from.pathname:"/"} />
     return (

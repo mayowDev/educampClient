@@ -1,22 +1,21 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-
-const Dropdown:React.FunctionComponent = (props) => {
-    console.log('dropwdownProps', props.children);
+const Dropdown = (props) => {
     // const childs = React.Children.toArray(props.children)
-    // const button = childs.map(child => child.type.name == "Button")
-    // if(button){
-    //     console.log("button")
-    // }
+    console.log("childs")
     return (
         <>
         <div className="dropdown" >
-            <div  className="dropbtn">{props.children?props.children[0]:"Menu"}</div>
+            <div  className="dropbtn">{props.icon?props.icon:"DropDown"}</div>
+            {/* <div  className="dropbtn">{props.children?props.children[0]:"DropDown"}</div> */}
             <div className="dropdown-content">
-                <Link to="/profile">My Profile</Link>
-                <Link to="#">Settings</Link>
-                <Link to="#">Help</Link>
-                {props.children?props.children[1]:<Link to="#">Logout</Link>}
+                {props.children?props.children: (
+                    <>
+                     <Link to="/profile">My Profile</Link>
+                     <Link to="#">Link 2</Link>
+                     <Link to="#">Link 3</Link>
+                    </>
+                )}
             </div>
         </div>
 

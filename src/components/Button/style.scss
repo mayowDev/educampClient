@@ -13,7 +13,7 @@ $dark-gray: #8d8d8d;
   display: flex;
   overflow: hidden;
   border: 0;
-  border-radius: 100px !important;
+  border-radius: 100px;
   outline: none;
   cursor: pointer;
   height: 24px;
@@ -44,12 +44,12 @@ $dark-gray: #8d8d8d;
   &.primary{
     height: 40px;
     padding: 0 32px;
-    border-radius: 5px !important;
+    border-radius: 5px;
   }
   &.secondary{
     height: 64px;
     padding: 0 32px;
-    border-radius: 0 !important;
+    border-radius: 0 ;
   }
 
   &__dark {

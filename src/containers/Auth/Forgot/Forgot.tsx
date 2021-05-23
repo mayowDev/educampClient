@@ -65,7 +65,7 @@ const Forgot = (props:IForgotProps) => {
                         isSuccess ?
                         <>
                             <Paragraph className="success-message" value={`We've sent a reset link with instructions to reset your password.  it's valid in the next 10 mins.`} />
-                            <Link to='/' className="btn  btn-primary success-btn" type='primary'>Go Home</Link>
+                            <Link to='/' className="btn  link-primary success-btn" type='primary'>Go Home</Link>
                         </>
                         :
                         <>
