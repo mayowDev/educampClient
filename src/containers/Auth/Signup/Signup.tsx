@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
-import {Link, useHistory} from 'react-router-dom'
+import {Redirect, Link, useHistory} from 'react-router-dom'
 import Logo from '../../../assets/images/Logo-small.png';
 import Google from '../../../assets/images/icon-google.png';
 import Button from '../../../components/Button'
-const Signup = ({signup}) => {
+const Signup = ({signup, isLoggedIn}) => {
     const [user, setUser] = useState({name: '', email:'', password:'', confirmPassword:'', role:'student'})
     //TODO: handle all validation errors:- taken email, input values, password length and strength, API VALIDATION: taken emails
     const history = useHistory()
+    if(isLoggedIn) return <Redirect to="/" />;
+
     const handleInputChange = (e)=>{
         setUser({
           ...user,

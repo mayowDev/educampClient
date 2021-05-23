@@ -1,15 +1,13 @@
 import React, {useState} from 'react'
-import {Link, useHistory} from 'react-router-dom'
-import {toast} from 'react-toastify'
+import {Redirect, Link} from 'react-router-dom'
+
 import Logo from '../../../assets/images/Logo-small.png';
-import Google from '../../../assets/images/icon-google.png';
-import Button from '../../../components/Button'
+// import Button from '../../../components/Button'
 const Login = (props) => {
+    const {location:{state}, isLoggedIn, loginWithGoogle, login} = props
     const [user, setUser] = useState({ email:'', password:''})
     const [remember, setRemember] = useState(false)
-    const history = useHistory()
-    //TODO: handle all validation:- invalid email format, loader while loading
-    
+    // const history = useHistory()
     const handleInputChange = (e)=>{
         setUser({
           ...user,
@@ -21,20 +19,20 @@ const Login = (props) => {
     }
     const onLoginSubmit = e => {
         e.preventDefault();
-        // props.isLoggedIn && toast.error("Your are already loged in..")
-        const response = props.login(user)
-        if(typeof response !== "undefined"){
-            toast.success("Succesfully Logged In")
-            history.replace('/') 
-        }
+        try {
+            login(user)  
+            // window.location.pathname = state?state.from.pathname :"/"  //this is not working to redirect user from whern he come from  
+        } catch (error) {
+            console.log(error);
+        }    
     }
     const handleLoginWithGoogle =(e)=>{
         e.preventDefault();
-        const response =props.loginWithGoogle()
+        const response =loginWithGoogle()
         console.log('login with google.tsx', response);
         
     }
-
+    if(isLoggedIn) return <Redirect to={state?state.from.pathname:"/"} />
     return (
         <div className="login">
             <div className="login__sidebar"><Link to="/"><img src={Logo} alt="geekcamp-logo"/></Link></div>

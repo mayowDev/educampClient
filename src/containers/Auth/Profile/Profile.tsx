@@ -32,12 +32,9 @@ const Profile = (props) => {
     //     setEmail(email)
     //     getUserData()
     // }
-    useEffect(() => {
-        console.log('profile usereffect');
-        
+    useEffect(() => {        
         getUserData()
     }, []);
-    console.log('userProfileData', userProfileData);
 
     //Todo : find out how  useeffect works with dependencies and why the console data is loading without stop when i set props.profiledat as dependenciy
     // Solution : error was in reducer.ts, trying to use object instead of array or this below
@@ -142,185 +139,19 @@ const Profile = (props) => {
         console.log('value coming from email ==> ', value);
         setEmail(value)
     };
-
+    console.log('userProfileData', userProfileData);
+    
     return (
         <div className='profile-wrapper'>
               {
-                profileLoading&&(<Spinner/>)
-              }
-            <div className='add-image'>
-                <div className="container nav-container">
-                    <div className='profile-nav'>
-                        <div onClick={() => setActiveTab('favourites')}>
-                            <Title className={'nav-item big' + (activeTab === 'favourites' ? ' active' : '')}
-                                   value="Favourites"/>
-                        </div>
-                        <div onClick={() => setActiveTab('courses')}>
-                            <Title className={'nav-item big' + (activeTab === 'courses' ? ' active' : '')}
-                                   value="Courses"/>
-                        </div>
-                        <div onClick={() => setActiveTab('settings')}>
-                            <Title className={'nav-item big' + (activeTab === 'settings' ? ' active' : '')}
-                                   value="Settings"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {
-                activeTab === "settings" &&
-                <Fragment>
-                  <div className="container">
-                    <div className='add-image settings-section'>
-                      <div className='image-title-wrapper'>
-                        {/* <div className={`image-wrapper ${disabled ? 'upload-image-disabled' : ''}`}>
-                          <label>
-                            <input type='file' onChange={handlePhotoChange}/>
-                              {
-                                  photo
-                                      ? <>
-                                          <img src={photo} alt={'change photo'}/>
-                                          <P2 className='' value='Change photo'/>
-                                      </>
-                                      : <>
-                                          <svg
-                                              xmlns='http://www.w3.org/2000/svg' width='120' height='120'
-                                              viewBox='0 0 120 120' fill='none'
-                                          >
-                                              <circle
-                                                  cx='60' cy='60' r='58.5' fill='white' stroke='#939393'
-                                                  stroke-width='3' stroke-dasharray='5 5'
-                                              />
-                                              <path
-                                                  d='M62.8445 49.1819H59.6754V58.9946H50.0918V62.0873H59.6754V71.9382H62.8445V62.0873H72.4282V58.9946H62.8445V49.1819Z'
-                                                  fill='#7D7D7D'
-                                              />
-                                          </svg>
-                                          <P2 className='' value='Add a photo'/>
-                                      </>
-                              }
-                          </label>
-                        </div> */}
-                        {/* <div className='image-title'>
-                          <H1 className="bold" value={userProfileData && userProfileData.name}/>
-                        </div> */}
-                      </div>
+                profileLoading?<Spinner/>:
+                (
+                    <h1>{userProfileData.email}</h1>
+                    
+                )
 
-                      {/* <div className="buttons-wrapper">
-                          {
-                              ((userProfileData && fullName !== userProfileData.name) || isPhotoChanged || oldPassword.length > 0 || newPassword.length > 0) ? (
-                                      <>
-                                          <Button
-                                              value='Discard Changes'
-                                              size="large"
-                                              className='button__dark'
-                                              type="primary"
-                                              onClick={() => handleDiscard()}
-                                          />
-                                          <Button
-                                              onClick={handleUpdate}
-                                              value='Save Changes'
-                                              size="large"
-                                              className='button__bright'
-                                          />
-                                      </>
-                                  )
-                                  :
-                                  <Button
-                                      onClick={() => logout()}
-                                      value='Logout'
-                                      size="large"
-                                      className='button__bright'
-                                  />
-                          }
-                      </div> */}
-                    </div>
-                    <div className='information-wrapper'>
-                      <P1 className='error' value={errMsg || ''}/>
-                      <div className='container'>
-                        <H3 value='Account information'/>
-                        <form className='input-wrapper'>
-                          {/* <div className='information-class'>
-                            <Input
-                              value={fullName}
-                              name="name"
-                              label='First and Last Name'
-                              type='text'
-                              placeholder=''
-                              className='input__bright'
-                              disabled={disabled}
-                              onChange={(e) => setFullName(e.target.value)}
-                            />
-                          </div> */}
-                          {/* <div className='information-class'>
-                            <Input
-                              value={email}
-                              name="email"
-                              label='Email Address'
-                              type='text'
-                              placeholder=''
-                              disabled
-                              className='input__bright'
-                              onChange={(e) => handleEmailChange(e.target.value)}
-                            />
-                              {reset === false &&
-                              <div className="reset" onClick={() => {
-                                  setReset(!reset)
-                              }}>
-                                <P1 value="Reset Password"/>
-                              </div>
-                              }
-                          </div> */}
-                            {/* {
-                                reset && (
-                                    <>
-                                        <div className='information-class cursor-disabled'>
-                                            <Input
-                                                value={oldPassword}
-                                                label='Old Password'
-                                                name='old-password'
-                                                type='password'
-                                                autoComplete="new-password"
-                                                placeholder=''
-                                                disabled={disabled}
-                                                className='input__bright'
-                                                onChange={(e) => setOldPassword(e.target.value)}
-                                            />
-                                        </div>
-                                        <div className='information-class'>
-                                            <Input
-                                                value={newPassword}
-                                                label='New Password'
-                                                name="new-password"
-                                                type='password'
-                                                placeholder=''
-                                                disabled={disabled}
-                                                className='input__bright'
-                                                onChange={(e) => setNewPassword(e.target.value)}
-                                            />
-                                            {reset === true &&
-                                            <div className="reset" onClick={handleReset}>
-                                              <P1 value="Cancel"/>
-                                            </div>
-                                            }
-                                        </div>
-                                    </>
-                                )
-                            } */}
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </Fragment>
-            }
-            {/* {
-                activeTab === "favourites" &&
-                <Favourites/>
-            }
-            {
-                activeTab === "exhibitions" &&
-                    // @ts-ignore
-                <PrivateExhibitions/>
-            } */}
+              }
+            
         </div>
     )
 }
