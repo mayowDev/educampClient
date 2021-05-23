@@ -9,7 +9,7 @@ import Dropdown from '../Dropdown';
 
 
 const Header: React.FC<IHeaderProps> = (props) => {
-    console.log('Header props', props);
+    // console.log('Header props', props);
     
     const {  isLoggedIn,routeName,changeSearch,searchQuery,isHome, isProfile, logout} = props;    
     

@@ -1,20 +1,18 @@
 import Home from './Home'
 import { connect } from 'react-redux'
-import { fetchBootcamps } from '../Bootcamps/redux/actions'
+import { fetchCourses } from '../Courses/redux/actions'
 import './style.scss'
 
-const mapStatesToProps = (state) => {
-    console.log('Homestate', state.auth);
-    
+const mapStatesToProps = (state) => {    
     return {
         isLoggedIn: state.auth.isLoggedIn,
-        global: state.global
+        global: state.global,
+        courses: state.courses
     };
 };
 
 const mapDispatchToProps = dispatch => ({
-    // resetBootcamps: () => dispatch(resetBootcamps()),
-    fetchBootcamps: () => dispatch(fetchBootcamps()),
+    fetchCourses: () => dispatch(fetchCourses()),
 });
 
 export default connect(mapStatesToProps, mapDispatchToProps)(Home)

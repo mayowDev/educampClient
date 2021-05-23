@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 const Dropdown = (props) => {
     // const childs = React.Children.toArray(props.children)
-    console.log("childs")
+    // console.log("childs")
     return (
         <>
         <div className="dropdown" >

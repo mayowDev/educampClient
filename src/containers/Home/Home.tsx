@@ -4,13 +4,12 @@ import Button from '../../components/Button';
 import { Link, useHistory } from 'react-router-dom';
 import {IHomeProps} from './types';
 import Header from '../../components/Header'
-import PrimarySearchAppBar from '../../components/Header/HeaderMaterial'
+
 const HomePage:React.FC<IHomeProps> = ({isLoggedIn}) => {
-    //     const {exhibition: {exhibitions, currentPage, canLoadMore, exhibitionsLoading, exhibitionsFirstLoad}, globalProps, setFirstLoadGlobal} = props;
+    //     const {isLoggedIn,  global, courses,  fetchCourses} = props;
     const history = useHistory();
     return (
         <>
-        {/* <PrimarySearchAppBar isLoggedIn={isLoggedIn}/> */}
         <Header/>
         <section className='home'>
             <div className='home__container'>

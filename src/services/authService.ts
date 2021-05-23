@@ -43,7 +43,6 @@ export const verify = async (data) => {
 export const login = async (data:ITypeLoginData) => {
     const result = await axios.post("/auth/signin", data)
         .catch((err: any) => {
-            console.log('login API error: ' + err);
             if (err && err.response && err.response.status === 400) {
                 return Promise.reject(
                     new Error("Request failed with status code 400")
