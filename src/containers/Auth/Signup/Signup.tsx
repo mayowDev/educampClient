@@ -5,11 +5,11 @@ import Google from '../../../assets/images/icon-google.png';
 import Button from '../../../components/Button'
 import { Heading, Paragraph } from '../../../components/Typography';
 import Spinner from '../../../components/Spinner';
-import {ISignUpProps} from '../types'
+import {ISignUpProps, ITypeSignUp} from '../types'
 
 const Signup = ({signup, resetPage, isLoading, isApiError, isRegistered, isLoggedIn}:ISignUpProps) => {
     if(isLoggedIn) return <Redirect to="/" />;
-    const [user, setUser] = useState({name: '', email:'', password:'', confirmPassword:'', role:'student'})
+    const [user, setUser] = useState<ITypeSignUp>({name: '', email:'', password:'', confirmPassword:'', role:'student'})
     const history = useHistory()
 
     useEffect(() => {
@@ -30,19 +30,20 @@ const Signup = ({signup, resetPage, isLoading, isApiError, isRegistered, isLogge
     const onSignUpSubmit =  async e => {
         e.preventDefault();
         try {
-             const res = await signup(user);
-            //  if(typeof res === "undefined") {setLoading(true)}
+             await signup(user);
+             setUser({name: '', email:'', password:'', confirmPassword:'', role:'student'});
+             
         }
         catch(e) {
             console.log('signupError',e.message);
+            setUser({name: '', email:'', password:'', confirmPassword:'', role:'student'});
         }
     }
-    const noErr= isApiError === false
     return (
         <div className="signup">
             <div className="signup__sidebar"><a href="/"><img src={Logo} alt="geekcamp-logo"/></a></div>
             <div className="signup__form-container">
-            {isLoading && noErr? <Spinner />:
+            {isLoading && !isApiError ?<Spinner />:
              <div className={`signup__${isRegistered ? 'form-success': 'form-block'} `} >
                 <div className="heading">
                     <Heading className="title-head" value={isRegistered? "Email Sent !" : "Signup Now" }/>

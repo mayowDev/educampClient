@@ -1,4 +1,4 @@
-import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY, GET_USER_DATA, RESET_PAGE, LOGOUT,  RESET_PASSWORD,
+import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY, GET_USER_DATA, RESET_PAGE, LOGOUT,  LODING,
   LOGIN_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, 
 } from './constants';
 import {LOCAL_STORAGE_KEYS} from "../../../components/Constants"
@@ -20,6 +20,10 @@ export default(state = initialState, action)=>{
         ...state, 
         isRegistered: false,
         loading:false,
+      }
+    case LODING:
+      return{
+        loading:true,
       }
     case SIGNUP_SUCCESS:
       return { 
@@ -49,8 +53,7 @@ export default(state = initialState, action)=>{
           profileLoading: false,
       };
     case API_ERROR:
-      console.log('API_ERROR reducer', action.payload);
-      return { ...state, isApiError: true };
+      return { ...state, loading: false, isApiError: true };
     default:
       return state;
     }

@@ -1,5 +1,5 @@
 import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY, GET_USER_DATA, FORGOT_PASSWORD, LOGOUT,  RESET_PASSWORD,
-    LOGIN_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, 
+    LOGIN_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, LODING,
 } from './constants';
 import {ITypeSignUp, ITypeVerify, ITypeLogin, IForgotPassword , ITypeResetPassword, ITypeUpdatePassword} from '../types'
 import * as API from "../../../services"
@@ -7,13 +7,16 @@ import { UPDATE_PROFILE_IMAGE, UPDATE_PROFILE } from '../redux/constants';
 
 export const signup = (data:ITypeSignUp)=> async dispatch =>{
      try {
+        dispatch({type:LODING})
         const response = await API.signup(data)
-         dispatch({
-             type: SIGNUP_SUCCESS,
-             payload: response
-         });
+        if(response.success){
+            dispatch({
+                type: SIGNUP_SUCCESS,
+                payload: response
+            });   
+        }
      } catch(err) {
-        console.log('SIGNUP_FAIL',err);
+        // console.log('SIGNUP_FAIL',err);
         dispatch({
             type: SIGNUP_FAIL
         })
