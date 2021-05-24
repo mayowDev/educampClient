@@ -1,4 +1,5 @@
 /* Signup component */
+
 .signup{
 	display:flex;
 	width: 100%;
@@ -79,18 +80,51 @@
 			}
 		} 
 	}
+	&__form-success{
+		min-height: 200px!important;
+		flex-direction: row;
+		align-items:center;
+		justify-content:center;
+		max-width: 500px;
+  	    background: white;
+    	margin: auto;
+    	padding: 50px;	
+		-webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);
+		box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2); 
+		@media (max-width: 767.98px) {	
+			padding: 25px; 
+		} 
+		.heading{
+			text-align: center;
+			h2{
+				font-size: 30px!important;
+			}
+			p a{
+				font-size: 18px;
+				color: black;
+				text-decoration: underline;
+				padding-bottom: 0px;
+			}
+		} 
+		.success-message{
+			font-size: 20px;
+		}
+		.link-primary {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: black !important;
+			margin: auto !important;
+			padding: 0 45px !important;
+			font-size: 1rem;
+			height: 55px !important;
+			color: white;
+			text-align: center;
+		}
+	}
 	
 }
-// .btn-block, input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].btn-block {
-//     width: 100%;
-// 	font-size:18px;
-// 	color: white;
-// 	line-height: 2.5;
-// 	cursor: pointer;
-// 	&::active{
-// 		border: 1px solid red
-// 	}
-// }
+
 .seprater{
 	text-align: center;
     display: block;

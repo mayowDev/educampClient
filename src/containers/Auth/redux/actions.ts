@@ -1,18 +1,24 @@
-import { SIGNUP, VERIFY, LOGIN, GET_USER_DATA, FORGOT_PASSWORD, LOGOUT,  RESET_PASSWORD, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, } from './constants';
+import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY, GET_USER_DATA, FORGOT_PASSWORD, LOGOUT,  RESET_PASSWORD,
+    LOGIN_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, 
+} from './constants';
 import {ITypeSignUp, ITypeVerify, ITypeLogin, IForgotPassword , ITypeResetPassword, ITypeUpdatePassword} from '../types'
 import * as API from "../../../services"
 import { UPDATE_PROFILE_IMAGE, UPDATE_PROFILE } from '../redux/constants';
 
 export const signup = (data:ITypeSignUp)=> async dispatch =>{
-    const response = await API.signup(data)
-    if (!response.success) {
-        return dispatch({type:API_ERROR})
-    }
-    if(response && response.success){
-        dispatch({type:SIGNUP, payload: response})
-    }
+     try {
+        const response = await API.signup(data)
+         dispatch({
+             type: SIGNUP_SUCCESS,
+             payload: response
+         });
+     } catch(err) {
+        console.log('SIGNUP_FAIL',err);
+        dispatch({
+            type: SIGNUP_FAIL
+        })
+     }
 }
-
 
 export const verify = (url:ITypeVerify)=> async dispatch=>{
     const response = await API.verify(url)
@@ -30,7 +36,7 @@ export const login = (data:ITypeLogin)=> async dispatch=>{
         return dispatch({type:API_ERROR})
     }
     if(response && response.success){
-        dispatch({type:LOGIN, payload: response})
+        dispatch({type:LOGIN_SUCCESS, payload: response})
     }
 }
 
@@ -40,7 +46,7 @@ export const loginWithGoogle  = () => async dispatch=>{
         return dispatch({type:API_ERROR})
     }
     if(response && response.success){
-        dispatch({type:LOGIN, payload: response})
+        dispatch({type:LOGIN_SUCCESS, payload: response})
     }
 }
 
@@ -50,7 +56,7 @@ export const loginWithFacebook  = () => async dispatch=>{
         return dispatch({type:API_ERROR})
     }
     if(response && response.success){
-        dispatch({type:LOGIN, payload: response})
+        dispatch({type:LOGIN_SUCCESS, payload: response})
     }
 }
 

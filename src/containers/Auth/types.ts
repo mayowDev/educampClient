@@ -5,6 +5,22 @@ export interface ITypeSignUp {
     role: string
 }
 
+export interface ISignUpProps{
+    isLoading:boolean,
+    isRegistered:boolean,
+    isLoggedIn:boolean,
+    isApiError:boolean,
+    resetPage:()=>void,
+    signup:(user:object)=>{
+        type: string,
+        payload:{
+            success:boolean,
+            message:string,
+            data?:string
+        }
+    }
+}
+
 export interface ITypeLogin {
     email: string;
     password: string;

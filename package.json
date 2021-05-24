@@ -22,8 +22,8 @@
   "scripts": {
     "build-betaaa": "npm run clean-dist && ./node_modules/.bin/cross-env NODE_OPTIONS='--max-old-space-size=4096' webpack --config configs/webpack/prod.js --env API_URL=https://api.vortic.io/",
     "clean-dist": "rimraf build/*",
-    "start": "npm run start:dev",
-    "start:dev": "webpack serve  --env API_URL=https://api-geekcamp.herokuapp.com/api/v1  NODE_ENV=development --config webpack.config.js  --profile --content-base src/ ",
+    "start": "npm run start-dev",
+    "start-dev": "webpack serve  --env NODE_ENV=development API_URL=https://api-geekcamp.herokuapp.com/api/v1  --config webpack.config.js  --profile --content-base src/ ",
     "start-prod": "npm-run-all --parallel build server",
     "storybook": "start-storybook -p 6006 -s public",
     "serve": "webpack serve --config webpack.config.js --progress --profile --watch --content-base src/",
@@ -33,7 +33,10 @@
     "netlify:deploy": "netlify deploy --dir=./dist -p -m \"$(git log -1 --pretty=%B)\"",
     "test": "NODE_ENV=test && jest  --coverage  --watchAll --config=configs/jest.json",
     "test:watch": "NODE_ENV=test && jest --watch --coverage --config=configs/jest.json",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "analyze": "cross-env NODE_ENV=production ANALYZE=1 webpack",
+    "deploy": "cross-env GZIP=1 DEPLOY_S3=1 npm run build"
+
   },
   "eslintConfig": {
     "extends": [
