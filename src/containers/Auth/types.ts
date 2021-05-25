@@ -21,20 +21,22 @@ export interface ISignUpProps{
         }
     }
 }
-
 export interface ITypeLogin {
     email: string;
     password: string;
 }
 export interface ITypeVerify {
-    id: number;
-    token: string,
-    expires: number,
-    signature: string
+    // id: number;
+    token: string | undefined
+    // expires: number,
+    // signature: string
 }
-
 export interface IVerifyProps{
-    verify:(token:object)=>{
+    isLoggedIn: boolean,
+    isVerified: boolean,
+    isLoading: boolean,
+    isApiError:boolean
+    verify:(token:string)=>{
         type: string,
         payload:{
             success:boolean,
@@ -44,7 +46,6 @@ export interface IVerifyProps{
     }
 
 }
-
 export interface IForgotProps{
     loading:boolean,
     forgotPassword:(email:object)=>{

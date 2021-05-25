@@ -7,7 +7,7 @@ import { Heading, Paragraph } from '../../../components/Typography';
 import Spinner from '../../../components/Spinner';
 import {ISignUpProps, ITypeSignUp} from '../types'
 
-const Signup = ({signup, resetPage, isLoading, isApiError, isRegistered, isLoggedIn}:ISignUpProps) => {
+const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn}:ISignUpProps) => {
     if(isLoggedIn) return <Redirect to="/" />;
     const [user, setUser] = useState<ITypeSignUp>({name: '', email:'', password:'', confirmPassword:'', role:'student'})
     const history = useHistory()
@@ -32,18 +32,18 @@ const Signup = ({signup, resetPage, isLoading, isApiError, isRegistered, isLogge
         try {
              await signup(user);
              setUser({name: '', email:'', password:'', confirmPassword:'', role:'student'});
-             
         }
         catch(e) {
             console.log('signupError',e.message);
             setUser({name: '', email:'', password:'', confirmPassword:'', role:'student'});
         }
     }
+    console.log('isLoading ', isLoading)
     return (
         <div className="signup">
             <div className="signup__sidebar"><a href="/"><img src={Logo} alt="geekcamp-logo"/></a></div>
             <div className="signup__form-container">
-            {isLoading && !isApiError ?<Spinner />:
+            {isLoading  ?<Spinner />:
              <div className={`signup__${isRegistered ? 'form-success': 'form-block'} `} >
                 <div className="heading">
                     <Heading className="title-head" value={isRegistered? "Email Sent !" : "Signup Now" }/>
@@ -55,7 +55,7 @@ const Signup = ({signup, resetPage, isLoading, isApiError, isRegistered, isLogge
                     {
                         isRegistered ?
                         <>
-                            <Paragraph className="success-message" value={`Please activate your account by following the link we've sent to your Email, it's valid in next 1 min.`} />
+                            <Paragraph className="success-message" value={`Please activate your account by following the link we've sent to your Email, it's valid in next 12 hrs.`} />
                             <Button onClick={handleGoHome} value="Go Home" className="link-primary"/>
                         </>
                         :

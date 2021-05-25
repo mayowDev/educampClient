@@ -5,6 +5,14 @@ export interface ITypeSignUpData{
     password: string;
     role: string;
 }
+
+export interface ITypeVerify {
+    // id: number;
+    token: string,
+    // expires: number,
+    // signature: string
+}
+
 export interface ITypeLoginData {
     email: string;
     password: string;

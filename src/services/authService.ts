@@ -1,5 +1,5 @@
 import axios from "./axios";
-import {ITypeLoginData, ITypeSignUpData, IForgotPassword} from './types'
+import {ITypeLoginData, ITypeVerify, ITypeSignUpData, IForgotPassword} from './types'
 import {LOCAL_STORAGE_KEYS} from "../components/Constants"
 
 export const signup = async (data:ITypeSignUpData) => {
@@ -21,9 +21,10 @@ export const signup = async (data:ITypeSignUpData) => {
     }
 }
 
-export const verify = async (data) => {
+export const verify = async (token) => {
     try {
-        const result = await axios.put(`/auth/verify`, data)
+        // const result = await axios.get(`/auth/verify`,{params: token})
+        const result = await axios.get(`/auth/verify/${token}`)
             .catch((err: any) => {
                 if (err && err.response && err.response.status === 400) {
                     return Promise.reject(

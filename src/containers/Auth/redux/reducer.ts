@@ -1,4 +1,4 @@
-import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY, GET_USER_DATA, RESET_PAGE, LOGOUT,  LODING,
+import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY_SUCCESS, GET_USER_DATA, RESET_PAGE, LOGOUT,  LODING,
   LOGIN_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, 
 } from './constants';
 import {LOCAL_STORAGE_KEYS} from "../../../components/Constants"
@@ -15,14 +15,9 @@ const initialState = {
 
 export default(state = initialState, action)=>{
   switch (action.type) {
-    case RESET_PAGE:
-      return{
-        ...state, 
-        isRegistered: false,
-        loading:false,
-      }
     case LODING:
       return{
+        ...state, 
         loading:true,
       }
     case SIGNUP_SUCCESS:
@@ -32,16 +27,13 @@ export default(state = initialState, action)=>{
         loading:false,
 
       };
-    case SIGNUP_FAIL:
-      return { 
+    case VERIFY_SUCCESS: 
+    console.log('verify payload', action.payload);   
+      return{
         ...state, 
-        loading:false,
-        isApiError: true,
-        isRegistered: false
-      };
-    
-    case VERIFY: 
-      return{...state, isVerified:true}
+        isVerified:action.payload.success,
+        loading:false
+      }
     case LOGIN_SUCCESS:
       return { ...state, loading:false, isLoggedIn: true };
     case LOGOUT:
@@ -53,7 +45,16 @@ export default(state = initialState, action)=>{
           profileLoading: false,
       };
     case API_ERROR:
-      return { ...state, loading: false, isApiError: true };
+    case RESET_PAGE:
+      return {
+         ...state,
+        loading: false, 
+        isApiError: true ,
+        isRegistered: false,
+        isVerified:false,
+        isLoggedIn:false,
+        profileLoading:false
+      };
     default:
       return state;
     }

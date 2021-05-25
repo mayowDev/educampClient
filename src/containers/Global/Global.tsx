@@ -25,7 +25,7 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/reset/:token"  component={ResetPage}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/register" component={SignUp}/>
-                <Route exact path="/verify" component={Verify}/>
+                <Route exact path="/auth/verify" component={Verify}/>
                 <Route exact path="/forgot-password" component={ForgotPassword}/>
                 <ProtectedRoute exact path="/profile" isLoggedIn={isLoggedIn}  component={ProfilePage}/>
                <Route component={NotFound}/>

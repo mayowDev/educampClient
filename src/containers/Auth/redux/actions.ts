@@ -1,7 +1,7 @@
-import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY, GET_USER_DATA, FORGOT_PASSWORD, LOGOUT,  RESET_PASSWORD,
+import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY_SUCCESS, VERIFY_FAIL, GET_USER_DATA, FORGOT_PASSWORD, LOGOUT,  RESET_PASSWORD,
     LOGIN_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, LODING,
 } from './constants';
-import {ITypeSignUp, ITypeVerify, ITypeLogin, IForgotPassword , ITypeResetPassword, ITypeUpdatePassword} from '../types'
+import {ITypeSignUp, ITypeLogin, IForgotPassword , ITypeResetPassword, ITypeUpdatePassword} from '../types'
 import * as API from "../../../services"
 import { UPDATE_PROFILE_IMAGE, UPDATE_PROFILE } from '../redux/constants';
 
@@ -9,37 +9,53 @@ export const signup = (data:ITypeSignUp)=> async dispatch =>{
      try {
         dispatch({type:LODING})
         const response = await API.signup(data)
+        if (!response.success) {
+            return dispatch({type:API_ERROR})
+        }
         if(response.success){
             dispatch({
                 type: SIGNUP_SUCCESS,
                 payload: response
             });   
         }
-     } catch(err) {
-        // console.log('SIGNUP_FAIL',err);
-        dispatch({
-            type: SIGNUP_FAIL
-        })
+     } catch(error) {
+        console.log('SignupErr',error)     
+        return dispatch({type:API_ERROR})
      }
 }
 
-export const verify = (url:ITypeVerify)=> async dispatch=>{
-    const response = await API.verify(url)
-    if (!response.success) {
-        return dispatch({type:API_ERROR})
+export const verify = (token)=> async dispatch=>{
+    try {
+        dispatch({type:LODING})
+        const response = await API.verify(token)
+        console.log('verify action', response)
+        if (!response.success) {
+            return dispatch({type:API_ERROR})
+        }
+        if(response && response.success){
+            dispatch({type:VERIFY_SUCCESS, payload: response})
+        }
+        
+    } catch (error) {
+        console.log('VerifyErr',error)     
+        return dispatch({type:API_ERROR}) 
     }
-    if(response && response.success){
-        dispatch({type:VERIFY, payload: response})
-    }
+   
 }
 
 export const login = (data:ITypeLogin)=> async dispatch=>{
-    const response = await API.login(data)
-    if (!response.success) {
+    try {
+        dispatch({type:LODING})
+        const response = await API.login(data)
+        if (!response.success) {
+            return dispatch({type:API_ERROR})
+        }
+        if(response && response.success){
+            dispatch({type:LOGIN_SUCCESS, payload: response})
+        }
+    } catch (error) {
+        console.log('signInErr',error)     
         return dispatch({type:API_ERROR})
-    }
-    if(response && response.success){
-        dispatch({type:LOGIN_SUCCESS, payload: response})
     }
 }
 

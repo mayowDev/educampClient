@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 import Verify from './Verify'
 import {verify} from '../redux/actions'
+import './style.scss'
 const mapStatesToProps = ({auth}) => {
-    console.log('verify state', auth);
+    console.log('auth state', auth);
     
     return {
         isLoggedIn: auth.isLoggedIn,
-        // verify: auth.isVerified,
+        isVerified: auth.isVerified,
+        isLoading: auth.loading
     }
 };
 

@@ -6,10 +6,8 @@ import './style.scss';
 
 
 const mapStatesToProps = (state) => {   
-    // console.log('state.auth', state.auth);
-     
     return {
-        isApiError: state.auth.isApiError,
+        // isApiError: state.auth.isApiError,
         isLoggedIn: state.auth.isLoggedIn,
         isRegistered: state.auth.isRegistered,
         isLoading: state.auth.loading,
