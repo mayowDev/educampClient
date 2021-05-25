@@ -108,7 +108,7 @@ export const forgotPassword = async (email:IForgotPassword)=> {
     }
 };
 
-export const resetPassword = async (data, resettoken) => {
+export const resetPassword = async (resettoken, data ) => {
     try {
         const result = await axios.put(`/auth/${resettoken}`, data)
             .catch((err: any) => {

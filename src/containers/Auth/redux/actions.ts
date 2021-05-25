@@ -1,5 +1,5 @@
-import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY_SUCCESS, VERIFY_FAIL, GET_USER_DATA, FORGOT_PASSWORD, LOGOUT,  RESET_PASSWORD,
-    LOGIN_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, LODING,
+import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY_SUCCESS, VERIFY_FAIL, GET_USER_DATA, FORGOT_PASSWORD_SUCCESS, LOGOUT,
+    LOGIN_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, LODING, RESET_PASSWORD_SUCCESS,
 } from './constants';
 import {ITypeSignUp, ITypeLogin, IForgotPassword , ITypeResetPassword, ITypeUpdatePassword} from '../types'
 import * as API from "../../../services"
@@ -91,22 +91,35 @@ export const getUserData = () => async dispatch => {
 }
 
 export const forgotPassword  = (email:IForgotPassword) => async dispatch=>{
-    const response = await API.forgotPassword(email)
-    if (!response.success) {
+    try {
+        dispatch({type:LODING})
+        const response = await API.forgotPassword(email)
+        if (!response.success) {
+            return dispatch({type:API_ERROR})
+        }
+        if(response && response.success){
+            return dispatch({type:FORGOT_PASSWORD_SUCCESS, payload: response})
+        }
+    } catch (error) {
+        console.log('forgotErr',error)     
         return dispatch({type:API_ERROR})
-    }
-    if(response && response.success){
-        return dispatch({type:FORGOT_PASSWORD, payload: response})
     }
 }
 
-export const resetPassword = (data:ITypeResetPassword, resettoken:string) => async dispatch => {
-    const response = await API.resetPassword(data, resettoken);
-    if (!response.success) {
+export const resetPassword = (resettoken:string, data:ITypeResetPassword) => async dispatch => {
+    try {
+        dispatch({type:LODING})
+        const response = await API.resetPassword(resettoken, data);
+        console.log('resetACTION', response);
+        if (!response.success) {
+            return dispatch({type:API_ERROR})
+        }
+        if(response && response.success){
+            dispatch({type:RESET_PASSWORD_SUCCESS, payload: response})
+        }
+    } catch (error) {
+        console.log('resettErr',error)     
         return dispatch({type:API_ERROR})
-    }
-    if(response && response.success){
-        dispatch({type:RESET_PASSWORD, payload: response})
     }
 }
 

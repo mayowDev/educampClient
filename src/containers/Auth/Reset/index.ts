@@ -1,21 +1,21 @@
 import { connect } from 'react-redux';
 import Reset from './Reset'
+import {resetPassword} from '../redux/actions'
 // import '../../assets/fonts/fonts.css'
 
 const mapStatesToProps = ({auth}) => {
+    console.log('reset state', auth);
     return {
-        // isLoggedIn: global.isLoggedIn,
-        // redirectPath: global.redirectPath,
-        // profile: profile.profileData,
-        // isConversation: global.isConversation,
-        auth: auth.reset,
+        isLoggedIn: auth.isLoggedIn,
+        isResetPasswordSuccess: auth.isResetPasswordSuccess,
+        isApiError: auth.isApiError,
+        isLoading:  auth.loading,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        // updateProfileData: () => {dispatch(getUpdatedProfileDataInit())},
-        // setConversation: (val) => {dispatch(setConversation(val))},
+        resetPassword: (token, data) => dispatch(resetPassword(token, data)),
     }
 };
 

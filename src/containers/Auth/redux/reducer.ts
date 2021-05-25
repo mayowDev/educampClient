@@ -1,14 +1,16 @@
-import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY_SUCCESS, GET_USER_DATA, RESET_PAGE, LOGOUT,  LODING,
-  LOGIN_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, 
+import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY_SUCCESS, GET_USER_DATA, RESET_PAGE, LOGOUT,  LODING, RESET_PASSWORD_SUCCESS,
+  LOGIN_SUCCESS, FORGOT_PASSWORD_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, 
 } from './constants';
 import {LOCAL_STORAGE_KEYS} from "../../../components/Constants"
 
 const initialState = {
   isRegistered:false,
   isVerified:false,
-  loading:true,
-  profileLoading:true,
   isLoggedIn: !!localStorage.getItem(LOCAL_STORAGE_KEYS.LOGIN_STATE),
+  isForgotPasswordSuccess: false,
+  isResetPasswordSuccess: false,
+  loading:false,
+  profileLoading:true,
   userProfile:[],
   isApiError: false,
 };
@@ -28,21 +30,33 @@ export default(state = initialState, action)=>{
 
       };
     case VERIFY_SUCCESS: 
-    console.log('verify payload', action.payload);   
       return{
         ...state, 
-        isVerified:action.payload.success,
+        isVerified: action.payload.success,
         loading:false
       }
     case LOGIN_SUCCESS:
-      return { ...state, loading:false, isLoggedIn: true };
+      return { ...state, isLoggedIn: true, loading:false, };
     case LOGOUT:
       return { ...state, isLoggedIn: false };
+    case FORGOT_PASSWORD_SUCCESS:
+      return { 
+        ...state,  
+        isForgotPasswordSuccess: action.payload.success, 
+        loading:false
+      }
+    case RESET_PASSWORD_SUCCESS:
+      console.log('RESET payload', action.payload);   
+      return { 
+        ...state,  
+        isResetPasswordSuccess: action.payload.success, 
+        loading:false
+      }
     case GET_USER_DATA:
       return {
           ...state,
           userProfile:  {...action.payload},//working fine now
-          profileLoading: false,
+          loading: false,
       };
     case API_ERROR:
     case RESET_PAGE:

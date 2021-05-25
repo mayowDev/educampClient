@@ -1,19 +1,23 @@
-import React, {useState} from 'react'
-import {Link, useHistory} from 'react-router-dom'
+import React, {useState, } from 'react'
+import {Link, useHistory} from 'react-router-dom';
+import qs from 'querystring'
 import Logo from '../../../assets/images/Logo-small.png';
 import Button from '../../../components/Button'
 import { Heading, Paragraph } from '../../../components/Typography';
 import Spinner from '../../../components/Spinner';
 
 const Reset = (props) => {
-    const {resetPassword} = props
-    const [password, setPassword] = useState<string>('')
+    const {resetPassword, isLoading, isApiError, isResetPasswordSuccess, isLoggedIn} = props
     const [userPassword, setUserPassword] = useState({ password:'', confirmPassword:"" })
-    const [matchPassword, setMatchPassword] = useState(false)
-    const [isSuccess, setSuccess] = useState<boolean>(false);
-    const [isLoading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<boolean>(false);
-    // const history = useHistory()
+    const history = useHistory();
+
+    const query = qs.parse(history.location.search)    
+    const token = query["?token"]
+    // console.log('token', token);
+    
+    // useEffect(() => {
+    //     verifyResit()
+    // },[])
 
     const isPasswordMatch = ({password, confirmPassword}) => {
         return password === confirmPassword;
@@ -27,52 +31,41 @@ const Reset = (props) => {
     //     history.goBack();
     // };
     const handleInputChange = (e)=>{
+        e.preventDefault();
         setUserPassword({
             ...userPassword,
             [e.target.name]: e.target.value
           });
-        setPassword(e.currentTarget.value);
     }
     const handleReset = async (e) => {
         e.preventDefault();
-        // alert(userPassword.password)
         try {
-            setLoading(true)
-            setError(!error);
-            const result = await resetPassword(userPassword);
-            console.log('resetResult', result)
-            if(result.payload.success) {
-                setSuccess(true)
-                setLoading(false)
-                //logout(user)
-            }
-            else{
-                setLoading(false)
-            }
+            const result = await resetPassword(token,userPassword);
+            console.log('reset.tsx Result', result)
+          
         }
         catch(e) {
-            console.log(e.message);
-            setSuccess(false)
+            console.log('resetErr',e.message);
         }
     };
     return <div className="forgot">
     <div className="forgot__sidebar"><Link to="/"><img src={Logo} alt="geekcamp-logo"/></Link></div>
     <div className="forgot__form-container">
-        {isLoading && !error?<Spinner />:
+        {isLoading? <Spinner />:
             <div className="forgot__form-block">
             <div className="heading">
-                <Heading className="title-head" value={isSuccess? "Your Password Was Updated Succesfully !" : "Reset Your Password" }/>
-                {!isSuccess&&
-                    <p>Login Your Account <Link to="/login">Click here</Link></p>                            
+                <Heading className="title-head" value={isResetPasswordSuccess? "Password Updated Succesfully !" : "Reset Your Password" }/>
+                {!isResetPasswordSuccess&&
+                    <p>Re-send reset email <Link to="/forgot-password"> Click here</Link></p>                            
                 }
 
             </div>	
             <form method="post" onSubmit={(e)=>handleReset(e)}>
             {
-                isSuccess ?
+                isResetPasswordSuccess ?
                 <>
                     <Paragraph className="success-message" value={`We've Successfully reset your password.  please login into your account with then new password.`} />
-                    <Link to='/' className="btn  btn-primary success-btn" type='primary'>Go Home</Link>
+                    <Link to='/login' className="btn  btn-primary success-btn" type='primary'>Login</Link>
                 </>
                 :
                 <>
@@ -85,10 +78,10 @@ const Reset = (props) => {
                         <input name="confirmPassword" onChange={handleInputChange} value={userPassword.confirmPassword} type="password" className="form-control" placeholder="Confrim Password" id="confirmPassword"/>
                     </div>
                     {
-                        validPassword() && (
+                        validPassword() && userPassword.password.length > 8 && (
                             <>
                             {/* <br /><br /> */}
-                            <Button value='Reset Password' className="btn  btn-primary" type='primary'/> 
+                            <Button value='Reset Password' className="btn link-primary  btn-primary" type='primary'/> 
                             </>
                         )
                     }

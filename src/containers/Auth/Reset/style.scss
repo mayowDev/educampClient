@@ -98,6 +98,23 @@
 			text-align: center;
 			width: 100px;
 		}
+		.link-primary {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: black !important;
+			margin:0 auto !important;
+			padding: 0 45px !important;
+			font-size: 1rem;
+			height: 55px !important;
+			color: white;
+			text-align: center;
+            // width: 50%;
+			transition:all 0.3s;
+			&:hover{
+				margin-bottom: -30px !important;
+			}
+		}
 	}
 	
 }

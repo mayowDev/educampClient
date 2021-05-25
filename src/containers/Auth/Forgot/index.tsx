@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 import {forgotPassword} from '../redux/actions'
 const mapStatesToProps = (state) => {
   return {
-    state: state.auth.forgotPassword,
-    loading: state.auth.loading
+    // state: state.auth.forgotPassword,
+    isApiError: state.auth.isApiError,
+    isLoading: state.auth.loading
   }
 }
 

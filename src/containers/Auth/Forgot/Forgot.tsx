@@ -7,11 +7,9 @@ import Spinner from '../../../components/Spinner';
 
 import {IForgotProps} from '../types'
 const Forgot = (props:IForgotProps) => {
-    const {forgotPassword} = props
+    const {forgotPassword,isLoading, isApiError} = props
     const [email, setEmail] = useState<string>('')
     const [isSuccess, setSuccess] = useState<boolean>(false);
-    const [isLoading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<boolean>(false);
     // const history = useHistory()
 
     const isEmailValid = (mail) => {
@@ -31,15 +29,9 @@ const Forgot = (props:IForgotProps) => {
     const handleReset = async (e) => {
         e.preventDefault();
         try {
-            setLoading(true)
-            setError(!error);
             const result = await forgotPassword({email});
             if(result.payload.success) {
                 setSuccess(true)
-                setLoading(false)
-            }
-            else{
-                setLoading(false)
             }
         }
         catch(e) {
@@ -51,7 +43,7 @@ const Forgot = (props:IForgotProps) => {
         <div className="forgot">
             <div className="forgot__sidebar"><Link to="/"><img src={Logo} alt="geekcamp-logo"/></Link></div>
             <div className="forgot__form-container">
-                {isLoading && !error?<Spinner />:
+                {isLoading?<Spinner />:
                     <div className="forgot__form-block">
                     <div className="heading">
                         <Heading className="title-head" value={isSuccess? "Email Sent !" : "Forget Password" }/>
@@ -77,7 +69,7 @@ const Forgot = (props:IForgotProps) => {
                                 validEmail() && (
                                     <>
                                     <br /><br />
-                                    <Button value='Send Email' className="btn  btn-primary" type='primary'/> 
+                                    <Button value='Send Email' className="btn link-primary btn-primary" type='primary'/> 
                                     </>
                                 )
                             }

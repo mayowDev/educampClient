@@ -63,10 +63,13 @@
 		box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2); 
 		@media (max-width: 767.98px) {	
 			padding: 25px; 
-		} 
-		.content{
+		}
+		// .forgot__form-block {
+			
+		// }
+		.heading{
 			text-align: center;
-			h2{
+			.title-head{
 				font-size: 30px!important;
 			}
 			p a{
@@ -78,19 +81,19 @@
 		} 
 		.success-message{
 			font-size: 20px;
+			text-align: center;
 		}
-        .link-primary {
+        .success-btn {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			background-color: black !important;
-			margin:45px auto !important;
+			margin: auto !important;
 			padding: 0 45px !important;
-			font-size: 1rem;
+			font-size: 1.3rem;
 			height: 55px !important;
 			color: white;
 			text-align: center;
-            width: 50%;
+			width: 50%;
 		}		
 	}
 }

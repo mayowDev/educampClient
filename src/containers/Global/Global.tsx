@@ -22,7 +22,7 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/" component={HomePage}/>
                 <Route exact path="/courses" component={CoursesPage}/>
                 <Route exact path="/courses/:id" component={CourseDetails}/>
-                <Route exact path="/reset/:token"  component={ResetPage}/>
+                <Route exact path="/auth/reset"  component={ResetPage}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/register" component={SignUp}/>
                 <Route exact path="/auth/verify" component={Verify}/>
