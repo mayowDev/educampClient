@@ -3,7 +3,7 @@ import Profile from './Profile'
 import {getUserData, logout, updateProfileData, updateProfileImage, updatePassword, deleteAccount } from '../redux/actions'
 
 const mapStatesToProps = ( {auth}) => {  
-  console.log('profile auth',auth);
+  // console.log('profile auth',auth);
   return {
     isLoading: auth.loading,
     isLoggedIn: auth.isLoggedIn,

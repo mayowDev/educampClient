@@ -5,7 +5,7 @@ import { Heading, Paragraph } from '../../../components/Typography';
 import Spinner from '../../../components/Spinner';
 import Sidebar from '../../../components/Sidebar'
 const Resend = (props) => {
-    const {reseendVerificationEmail, isLoading, isResendEmailSuccess} = props
+    const {resendVerificationEmail, isLoading, isResendEmailSuccess} = props
     const [email, setEmail] = useState<string>('')
 
     const isEmailValid = (mail) => {
@@ -23,7 +23,7 @@ const Resend = (props) => {
     const handleResendVerification = async (e) => {
         e.preventDefault();
         try {
-            const result = await reseendVerificationEmail({email});
+            const result = await resendVerificationEmail({email});
             console.log('resend.tsx result', result);
         }
         catch(e) {

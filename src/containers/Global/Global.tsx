@@ -35,7 +35,17 @@ const RenderRoutes = ({isLoggedIn}) => {
             </Switch>
      )
 };
-const Global = ({isLoggedIn}) => {    
+const Global = ({isLoggedIn, userProfile, getUserData}) => { 
+    useEffect(() => {
+        getUserData()
+    },[])
+    useEffect(() => {
+        if(userProfile && userProfile.id){
+            // console.log('userProfile in 123 : ', userProfile);
+            const { id, name, email, role } = userProfile;
+            console.log('global profile ====>', name)
+        }
+    }, [userProfile.id]); 
     return (
         <BrowserRouter>
             <RenderRoutes isLoggedIn={isLoggedIn}/>

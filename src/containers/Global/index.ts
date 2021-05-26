@@ -3,12 +3,12 @@ import GlobalPage from './Global'
 import '../../assets/fonts/fonts.css'
 import { getUserData } from '../Auth/redux/actions';
 
-const mapStatesToProps = (state) => {    
+const mapStatesToProps = ({auth, bootcamps, courses}) => {    
     return {
-        isLoggedIn: state.auth.isLoggedIn,
-        bootcamps: state.bootcamps,
-        profile: state.auth.userProfileData,
-        courses: state.courses,
+        isLoggedIn: auth.isLoggedIn,
+        bootcamps: bootcamps,
+        userProfile: auth.userProfile,
+        courses: courses,
     }
 };
 

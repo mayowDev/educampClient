@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Signup from './Signup'
 import Resend from './Resend'
-import {signup, reseendVerificationEmail} from '../redux/actions'
+import {signup, resendVerificationEmail} from '../redux/actions'
 import { RESET_PAGE} from '../redux/constants';
 import './style.scss';
 
@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
     signup: (data) => dispatch(signup(data)),
     resetPage: () => dispatch({type: RESET_PAGE}),
-    reseendVerificationEmail: (email) => dispatch(reseendVerificationEmail(email))
+    resendVerificationEmail: (email) => dispatch(resendVerificationEmail(email))
 
 });
 

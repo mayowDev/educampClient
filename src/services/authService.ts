@@ -21,7 +21,7 @@ export const signup = async (data:ITypeSignUpData) => {
     }
 }
 
-export const reseendVerificationEmail = async (email:string) => {
+export const resendVerificationEmail = async (email:string) => {
     try {
         const result = await axios.post(`/auth/resend`, email)
             .catch((err: any) => {
@@ -161,7 +161,6 @@ export const updatePassword = async (data) => {
 }
 
 export const updateProfile = async (data) => {
-    console.log('data in Apis', data);
     try {
         const result = await axios.put(`/auth/me`, data)
             .catch((err: any) => {
@@ -215,7 +214,7 @@ export const getUserProfile = async () => {
                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
             });
         if (result) {
-            console.log('GET_PROFILE_DATA_API', result.data.data);
+            // console.log('GET_PROFILE_DATA_API', result.data.data);
             return result.data;
         }
     } catch (e) {

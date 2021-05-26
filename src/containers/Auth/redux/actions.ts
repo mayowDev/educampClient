@@ -24,11 +24,10 @@ export const signup = (data:ITypeSignUp)=> async dispatch =>{
      }
 }
 
-export const reseendVerificationEmail= (data:string)=> async dispatch =>{
+export const resendVerificationEmail= (data:string)=> async dispatch =>{
     try {
        dispatch({type:LODING})
-       const response:any = await API.reseendVerificationEmail(data)
-       console.log('action response', response);
+       const response:any = await API.resendVerificationEmail(data)
        
        if (!response.success) {
            return dispatch({type:API_ERROR})
@@ -49,7 +48,6 @@ export const verify = (token)=> async dispatch=>{
     try {
         dispatch({type:LODING})
         const response = await API.verify(token)
-        console.log('verify action', response)
         if (!response.success) {
             return dispatch({type:API_ERROR})
         }
@@ -138,7 +136,6 @@ export const resetPassword = (resettoken:string, data:ITypeResetPassword) => asy
     try {
         dispatch({type:LODING})
         const response = await API.resetPassword(resettoken, data);
-        console.log('resetACTION', response);
         if (!response.success) {
             return dispatch({type:API_ERROR})
         }
@@ -175,7 +172,7 @@ export const updateProfileData = (profileData) => async dispatch => {
     try {
         dispatch({type:LODING})
         const response = await API.updateProfile(profileData);
-        console.log('updateProfileData ACTION', response);
+        // console.log('updateProfileData ACTION', response);
         if (!response.success) {
             return dispatch({type:API_ERROR})
         }

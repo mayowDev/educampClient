@@ -18,19 +18,8 @@ const Profile = (props) => {
     const {getUserData, isLoading, updateProfileData, isProfileUpdated, isLoggedIn, userProfile, logout} = props;
     // console.log('this logs on each key stroke, so use memo ' + userProfile)
 
-    useEffect(() => {        
-        getUserData()
-        setUserData()
-        
-    }, []);
-    //    useEffect(() => {
-    //         const {id, name, email, avatar=defaultUserImage} = userProfile
-    //         setName(name);
-    //         setEmail(email);
-    // }, [])// if i add dependency of userProfile it complains about uncontrolled, if i leave empty my inputs are not populated
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    console.log('name', name);
     const [errMsg, setErrMsg] = useState('');
     const [passErr, setPassErr] = useState('');
     const [oldPassword, setOldPassword] = useState('');
@@ -42,15 +31,25 @@ const Profile = (props) => {
     const [disabled, setDisabled] = useState(false)
     // const [activeTab, setActiveTab] = useState('details');
     // const [photoFile, setPhotoFile] = useState({type: ''});
-   function setUserData(){
-        if(!isLoading){    
-            const {id, name, email, avatar=defaultUserImage} = userProfile
-            console.log('userProfile in fnc', userProfile)
-            setName(name);
-            setEmail(email);
-        }
-   }
- 
+
+    function getData() {
+
+        const {name, email} = userProfile
+        setName(name);
+        setEmail(email)
+        // if (!photo && image) {
+        //     setPhoto(image.data.signedUrl336)
+        // }
+    }
+
+    // useEffect(() => {
+    //   setErrMsg('');
+    // }, [newPassword, oldPassword]);
+
+    useEffect(() => {
+        getData()
+        // console.log('userProfile in profile.tsx: ', userProfile);
+    }, [userProfile]);
    
     const handleLogout = async ()=>{
         await logout();
@@ -147,11 +146,11 @@ const Profile = (props) => {
     //     handleDiscard();
     // };
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value)
+    const handleEmailChange = (value) => {
+        setEmail(value)
     };
-    const handleNameChange = (e) => {
-        setName(e.target.value)
+    const handleNameChange = (value) => {
+        setName(value)
     }
    
     const handleUpdateUserDetails = async (e) => {
@@ -189,14 +188,13 @@ const Profile = (props) => {
                         <div className="form-group">
                             <label className="form-label">Name</label>
                             <div className="input-container">
-                                <input name="name"  id="name" onChange={handleNameChange} className="form-control" type="text" value={name}/>
+                                <input name="name"  id="name" value={name} onChange={(e) => handleNameChange(e.target.value)} className="form-control" type="text" />
                             </div>
                         </div>
                         <div className="form-group">
                             <label className="form-label">Email</label>
                             <div className="input-container">
-                            {/* <input name="email" onChange={handleInputChange} value={email} type="email" className="form-control" placeholder="Enter Your Email address" id="email"/> */}
-                            <input name="email" id="email" onChange={handleEmailChange} className="form-control" type="email" value={email}/>
+                                <input name="email" id="email" value={email} onChange={(e) => handleEmailChange(e.target.value)} className="form-control" type="email" />
                             </div>
                         </div>
                         {/* <div className="form-group">
