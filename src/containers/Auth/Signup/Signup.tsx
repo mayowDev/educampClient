@@ -19,7 +19,7 @@ const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn}:ISignUp
         resetPage()
     },[])
 
-    const handleGoHome = e => {
+    const handleGoHome = () => {
           history.replace("/");
       }; 
 

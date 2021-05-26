@@ -1,5 +1,5 @@
 import { SIGNUP_SUCCESS, VERIFY_SUCCESS, GET_USER_DATA, RESET_PAGE, LOGOUT,  LODING, RESET_PASSWORD_SUCCESS,
-  LOGIN_SUCCESS, FORGOT_PASSWORD_SUCCESS, RESEND_VERIFICATION_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, 
+  LOGIN_SUCCESS, FORGOT_PASSWORD_SUCCESS, RESEND_VERIFICATION_SUCCESS, UPDATE_PROFILE, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, 
 } from './constants';
 import {LOCAL_STORAGE_KEYS} from "../../../components/Constants"
 
@@ -10,6 +10,7 @@ const initialState = {
   isForgotPasswordSuccess: false,
   isResetPasswordSuccess: false,
   isResendEmailSuccess: false,
+  isProfileUpdated: false,
   loading:false,
   profileLoading:true,
   userProfile:[],
@@ -63,17 +64,22 @@ export default(state = initialState, action)=>{
           ...state,
           userProfile:  {...action.payload.data},//working fine now
           loading: false,
-      };
+      }
+    case UPDATE_PROFILE:
+      return {
+        ...state,
+        isProfileUpdated:action.payload.success,
+        loading: false
+      }
     case API_ERROR:
     case RESET_PAGE:
       return {
          ...state,
         loading: false, 
         isApiError: true ,
-        isRegistered: false,
-        isVerified:false,
-        isLoggedIn:false,
-        profileLoading:false
+        // isRegistered: false,
+        // isVerified:false,
+        // isLoggedIn:false,
       };
     default:
       return state;

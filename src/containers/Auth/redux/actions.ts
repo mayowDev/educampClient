@@ -169,18 +169,24 @@ export const updateProfileImage = (imgFile) => async dispatch=>{
     if(response && response.success){
         dispatch({type:UPDATE_PROFILE_IMAGE, payload: response})
     }
-
 }
 
 export const updateProfileData = (profileData) => async dispatch => {
-    const response = await API.updateProfile(profileData);
-    if (!response.success) {
+    try {
+        dispatch({type:LODING})
+        const response = await API.updateProfile(profileData);
+        console.log('updateProfileData ACTION', response);
+        if (!response.success) {
+            return dispatch({type:API_ERROR})
+        }
+        if(response && response.success){
+            dispatch({type:UPDATE_PROFILE, payload: response})
+        } 
+        
+    } catch (error) {
+        console.log('updateProfileErr',error)     
         return dispatch({type:API_ERROR})
     }
-    if(response && response.success){
-        dispatch({type:UPDATE_PROFILE, payload: response})
-    }
-
 } 
 
 export const logout = ()=> async dispatch=>{

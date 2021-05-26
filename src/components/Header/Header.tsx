@@ -10,7 +10,6 @@ import Dropdown from '../Dropdown';
 
 const Header: React.FC<IHeaderProps> = (props) => {
     // console.log('Header props', props);
-    
     const {  isLoggedIn,routeName,changeSearch,searchQuery,isHome, isProfile, logout} = props;    
     
     const history = useHistory();
@@ -28,11 +27,6 @@ const Header: React.FC<IHeaderProps> = (props) => {
        await logout();
     }
    
-    // const handleMenuClose = () => {
-    //     setAnchorEl(null);
-    //     handleMobileMenuClose();
-    //   };
-    
     const isLinkActive = (route) => {
         return routeName === route ? "active" : '';
     };
