@@ -1,5 +1,5 @@
 import axios from "./axios";
-import {ITypeLoginData, ITypeVerify, ITypeSignUpData, IForgotPassword} from './types'
+import {ITypeLoginData, ITypeSignUpData, IForgotPassword} from './types'
 import {LOCAL_STORAGE_KEYS} from "../components/Constants"
 
 export const signup = async (data:ITypeSignUpData) => {
@@ -21,9 +21,27 @@ export const signup = async (data:ITypeSignUpData) => {
     }
 }
 
+export const reseendVerificationEmail = async (email:string) => {
+    try {
+        const result = await axios.post(`/auth/resend`, email)
+            .catch((err: any) => {
+                if (err && err.response && err.response.status === 400) {
+                    return Promise.reject(
+                        new Error("Request failed with status code 400")
+                    );
+                }
+                return Promise.reject(new Error(err.message));
+            });
+        if (result) {            
+            return result.data;
+        }
+    } catch (e) {
+        return Promise.reject(new Error(e.message));
+    }
+}
+
 export const verify = async (token) => {
     try {
-        // const result = await axios.get(`/auth/verify`,{params: token})
         const result = await axios.get(`/auth/verify/${token}`)
             .catch((err: any) => {
                 if (err && err.response && err.response.status === 400) {
@@ -197,7 +215,7 @@ export const getUserProfile = async () => {
                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
             });
         if (result) {
-            // console.log('GET_PROFILE_DATA_API', result)
+            console.log('GET_PROFILE_DATA_API', result.data.data);
             return result.data;
         }
     } catch (e) {

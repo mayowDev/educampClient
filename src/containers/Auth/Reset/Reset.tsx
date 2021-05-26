@@ -1,23 +1,19 @@
 import React, {useState, } from 'react'
-import {Link, useHistory} from 'react-router-dom';
+import {Link, Redirect, useHistory} from 'react-router-dom';
 import qs from 'querystring'
-import Logo from '../../../assets/images/Logo-small.png';
 import Button from '../../../components/Button'
 import { Heading, Paragraph } from '../../../components/Typography';
 import Spinner from '../../../components/Spinner';
+import Sidebar from '../../../components/Sidebar';
 
 const Reset = (props) => {
     const {resetPassword, isLoading, isApiError, isResetPasswordSuccess, isLoggedIn} = props
     const [userPassword, setUserPassword] = useState({ password:'', confirmPassword:"" })
     const history = useHistory();
-
+    isLoggedIn&& <Redirect to="/"/>
+    
     const query = qs.parse(history.location.search)    
     const token = query["?token"]
-    // console.log('token', token);
-    
-    // useEffect(() => {
-    //     verifyResit()
-    // },[])
 
     const isPasswordMatch = ({password, confirmPassword}) => {
         return password === confirmPassword;
@@ -27,9 +23,6 @@ const Reset = (props) => {
         return isPasswordMatch(userPassword);
     };
 
-    // const handleGoBack = () => {
-    //     history.goBack();
-    // };
     const handleInputChange = (e)=>{
         e.preventDefault();
         setUserPassword({
@@ -42,17 +35,17 @@ const Reset = (props) => {
         try {
             const result = await resetPassword(token,userPassword);
             console.log('reset.tsx Result', result)
-          
+
         }
         catch(e) {
             console.log('resetErr',e.message);
         }
     };
-    return <div className="forgot">
-    <div className="forgot__sidebar"><Link to="/"><img src={Logo} alt="geekcamp-logo"/></Link></div>
-    <div className="forgot__form-container">
+    return <div className="reset">
+        <Sidebar/>
+    <div className="reset__form-container">
         {isLoading? <Spinner />:
-            <div className="forgot__form-block">
+            <div className="reset__form-block">
             <div className="heading">
                 <Heading className="title-head" value={isResetPasswordSuccess? "Password Updated Succesfully !" : "Reset Your Password" }/>
                 {!isResetPasswordSuccess&&

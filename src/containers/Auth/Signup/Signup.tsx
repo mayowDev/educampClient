@@ -5,6 +5,8 @@ import Google from '../../../assets/images/icon-google.png';
 import Button from '../../../components/Button'
 import { Heading, Paragraph } from '../../../components/Typography';
 import Spinner from '../../../components/Spinner';
+import Sidebar from '../../../components/Sidebar';
+
 import {ISignUpProps, ITypeSignUp} from '../types'
 
 const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn}:ISignUpProps) => {
@@ -40,15 +42,22 @@ const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn}:ISignUp
     }
     console.log('isLoading ', isLoading)
     return (
-        <div className="signup">
-            <div className="signup__sidebar"><a href="/"><img src={Logo} alt="geekcamp-logo"/></a></div>
-            <div className="signup__form-container">
+        <div className="signup shared-form">
+            <Sidebar/>
+            <div className="shared-form__container">
             {isLoading  ?<Spinner />:
-             <div className={`signup__${isRegistered ? 'form-success': 'form-block'} `} >
+             <div className={`${isRegistered ? 'form-success': 'signup__form-block form-block'} `} >
                 <div className="heading">
                     <Heading className="title-head" value={isRegistered? "Email Sent !" : "Signup Now" }/>
                     {!isRegistered&&
-                            <p>Have an Account? <Link to="/login">Login here</Link></p>                           
+                    <>
+                            <p>Have an Account? <Link to="/login">Login here</Link></p> 
+                            <p>Lost your activation link? <Link to="/resend-email">Request new one</Link></p>                           
+                    </>
+                    }
+                    {isRegistered&&
+                            // <p>Have an Account? <Link to="/login">Login here</Link></p>
+                            <p>Lost your activation link? <Link to="/resend-email">Request new one</Link></p>                           
                     }
                 </div>	
                 <form>

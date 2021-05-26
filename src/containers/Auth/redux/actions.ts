@@ -1,4 +1,4 @@
-import { SIGNUP_SUCCESS, SIGNUP_FAIL, VERIFY_SUCCESS, VERIFY_FAIL, GET_USER_DATA, FORGOT_PASSWORD_SUCCESS, LOGOUT,
+import { SIGNUP_SUCCESS, VERIFY_SUCCESS, RESEND_VERIFICATION_SUCCESS, GET_USER_DATA, FORGOT_PASSWORD_SUCCESS, LOGOUT,
     LOGIN_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, LODING, RESET_PASSWORD_SUCCESS,
 } from './constants';
 import {ITypeSignUp, ITypeLogin, IForgotPassword , ITypeResetPassword, ITypeUpdatePassword} from '../types'
@@ -22,6 +22,27 @@ export const signup = (data:ITypeSignUp)=> async dispatch =>{
         console.log('SignupErr',error)     
         return dispatch({type:API_ERROR})
      }
+}
+
+export const reseendVerificationEmail= (data:string)=> async dispatch =>{
+    try {
+       dispatch({type:LODING})
+       const response:any = await API.reseendVerificationEmail(data)
+       console.log('action response', response);
+       
+       if (!response.success) {
+           return dispatch({type:API_ERROR})
+       }
+       if(response.success){
+           dispatch({
+               type: RESEND_VERIFICATION_SUCCESS,
+               payload: response
+           });   
+       }
+    } catch(error) {
+       console.log('Resentemail Err',error)     
+       return dispatch({type:API_ERROR})
+    }
 }
 
 export const verify = (token)=> async dispatch=>{
@@ -80,14 +101,21 @@ export const loginWithFacebook  = () => async dispatch=>{
 }
 
 export const getUserData = () => async dispatch => {
-    const response = await API.getUserProfile();
-    if (!response.success) {
+    try {
+        dispatch({type:LODING})
+        const response = await API.getUserProfile();        
+        if (!response.success) {
+            return dispatch({type:API_ERROR})
+        }
+        if(response && response.success){
+            return dispatch({type:GET_USER_DATA, payload: response})
+        }
+    } catch (error) {
+        console.log('getUserErr',error)     
         return dispatch({type:API_ERROR})
+        
     }
-    dispatch( {
-      type: GET_USER_DATA,
-      payload: response.data
-    })
+    
 }
 
 export const forgotPassword  = (email:IForgotPassword) => async dispatch=>{

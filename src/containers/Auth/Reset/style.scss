@@ -5,55 +5,13 @@
 	margin: auto !important
 }
 
-/* forgot component */
-.forgot{
+/* reset component */
+.reset{
 	display:flex;
 	width: 100%;
 	height: 100vh;
 	background: #f6f7fc;
 	position: relative;
-	&__sidebar{
-		background-image: url('../../../assets//images//bg2.jpg');
-		position: sticky;
-		left:0;
-		top:0;
-		z-index: 1;
-		width: 25%;
-		min-width: 500px;
-		height: 100vh;
-		background-position: center;
-		text-align: center!important;
-		align-items: center;
-		display: flex;
-		vertical-align: middle;
-		a{
-			display:block;
-			width:100%;
-			img{
-				width: 40%;
-			}
-			@media (max-width: 767.98px) {
-				  width: 100%;
-				  height: 200px; 
-			} 
-		}
-		&:after{
-			opacity:0.9;
-			content:"";
-			position:absolute;
-			left:0;
-			top:0;
-			z-index:-1;
-			width:100%;
-			height:100%;
-			background: #4c1864; /* Old browsers */
-			background: -moz-linear-gradient(45deg, #4c1864 0%, #4c1864 100%); /* FF3.6-15 */
-			background: -webkit-linear-gradient(45deg, #4c1864 0%,#4c1864 100%); /* Chrome10-25,Safari5.1-6 */
-			background: linear-gradient(45deg, #4c1864 0%,#4c1864 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c1864', endColorstr='#4c1864',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-		}
-	}
-	
 	&__form-container {
 		width: 75%;
 		background: #f6f7fc; 

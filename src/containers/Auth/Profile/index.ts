@@ -2,10 +2,11 @@ import { connect } from 'react-redux'
 import Profile from './Profile'
 import {getUserData, updateProfileData, updateProfileImage, updatePassword, deleteAccount } from '../redux/actions'
 
-const mapStatesToProps = ( state) => {  
-  // console.log('state.auth',state.auth);
+const mapStatesToProps = ( {auth}) => {  
+  // console.log('profile auth',auth);
   return {
-    auth: state.auth,
+    isLoading: auth.loading,
+    userProfile: auth.userProfile
   }
 }
 

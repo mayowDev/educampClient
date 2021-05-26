@@ -3,13 +3,10 @@ import {Link, useHistory} from 'react-router-dom'
 import Button from '../../../components/Button'
 import { Heading, Paragraph } from '../../../components/Typography';
 import Spinner from '../../../components/Spinner';
-import Sidebar from '../../../components/Sidebar';
-
-import {IForgotProps} from '../types'
-const Forgot = (props:IForgotProps) => {
-    const {forgotPassword,isLoading, isApiError} = props
+import Sidebar from '../../../components/Sidebar'
+const Resend = (props) => {
+    const {reseendVerificationEmail, isLoading, isResendEmailSuccess} = props
     const [email, setEmail] = useState<string>('')
-    const [isSuccess, setSuccess] = useState<boolean>(false);
 
     const isEmailValid = (mail) => {
         return /^\S+@\S+\.\S+$/.test(mail) === true;
@@ -22,37 +19,35 @@ const Forgot = (props:IForgotProps) => {
     const handleInputChange = (e)=>{
         setEmail(e.target.value)
     }
-    const handleReset = async (e) => {
+    console.log('isResendEmailSuccess', isResendEmailSuccess, 'isloading', isLoading)
+    const handleResendVerification = async (e) => {
         e.preventDefault();
         try {
-            const result = await forgotPassword({email});
-            if(result.payload.success) {
-                setSuccess(true)
-            }
+            const result = await reseendVerificationEmail({email});
+            console.log('resend.tsx result', result);
         }
         catch(e) {
             console.log(e.message);
-            setSuccess(false)
         }
     };
     return (
-        <div className="forgot">
+        <div className="resend shared-form">
             <Sidebar/>
-            <div className="forgot__form-container">
+            <div className="shared-form__container">
                 {isLoading?<Spinner />:
-                    <div className="forgot__form-block">
+                    <div className={`${isResendEmailSuccess?'form-success': ' form-block resend__form-block'} `} >
                     <div className="heading">
-                        <Heading className="title-head" value={isSuccess? "Email Sent !" : "Forget Password" }/>
-                        {!isSuccess&&
+                        <Heading className="title-head" value={isResendEmailSuccess? "Email Sent !" : "Resend verification email" }/>
+                        {!isResendEmailSuccess&&
                             <p>Login Your Account <Link to="/login">Click here</Link></p>                            
                         }
 
                     </div>	
-                    <form method="post" onSubmit={(e)=>handleReset(e)}>
+                    <form method="post" onSubmit={(e)=>handleResendVerification(e)}>
                     {
-                        isSuccess ?
+                        isResendEmailSuccess ?
                         <>
-                            <Paragraph className="success-message" value={`We've sent a reset link with instructions to reset your password.  it's valid in the next 10 mins.`} />
+                            <Paragraph className="success-message" value={`We've sent  you a new  Verification link to your email.  it's valid in the next 12 hrs.`} />
                             <Link to='/' className="btn  link-primary success-btn" type='primary'>Go Home</Link>
                         </>
                         :
@@ -65,7 +60,7 @@ const Forgot = (props:IForgotProps) => {
                                 validEmail() && (
                                     <>
                                     <br /><br />
-                                    <Button value='Send Email' className="btn link-primary btn-primary" type='primary'/> 
+                                    <Button value='Send Email' className="link-primary btn-primary" type='primary'/> 
                                     </>
                                 )
                             }
@@ -83,4 +78,4 @@ const Forgot = (props:IForgotProps) => {
     )
 }
 
-export default Forgot
+export default Resend

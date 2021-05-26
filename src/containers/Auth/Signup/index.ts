@@ -1,15 +1,16 @@
 import { connect } from 'react-redux';
 import Signup from './Signup'
-import {signup} from '../redux/actions'
+import Resend from './Resend'
+import {signup, reseendVerificationEmail} from '../redux/actions'
 import { RESET_PAGE} from '../redux/constants';
 import './style.scss';
 
 
-const mapStatesToProps = (state) => {   
+const mapStateToProps = (state) => {   
     return {
-        // isApiError: state.auth.isApiError,
-        isLoggedIn: state.auth.isLoggedIn,
         isRegistered: state.auth.isRegistered,
+        isResendEmailSuccess: state.auth.isResendEmailSuccess,
+        isLoggedIn: state.auth.isLoggedIn,
         isLoading: state.auth.loading,
         isNewUser:  state.auth.isNewUser,
     }
@@ -17,8 +18,13 @@ const mapStatesToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
     signup: (data) => dispatch(signup(data)),
-    resetPage: () => { dispatch({type: RESET_PAGE}) }
+    resetPage: () => dispatch({type: RESET_PAGE}),
+    reseendVerificationEmail: (email) => dispatch(reseendVerificationEmail(email))
 
 });
 
-export default connect(mapStatesToProps, mapDispatchToProps)(Signup);
+// export default connect(mapStatesToProps, mapDispatchToProps)(Signup, Resend);
+export default {
+    Signup: connect(mapStateToProps, mapDispatchToProps)(Signup),
+    Resend: connect(mapStateToProps, mapDispatchToProps)(Resend)
+  }

@@ -1,5 +1,5 @@
 import React, {lazy, Suspense, useEffect, useState} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 /** Shared components */
 import HomePage from "../Home"
 import NotFound from "../../views/404/NoFound";
@@ -24,9 +24,12 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/courses/:id" component={CourseDetails}/>
                 <Route exact path="/auth/reset"  component={ResetPage}/>
                 <Route exact path="/login" component={Login}/>
-                <Route exact path="/register" component={SignUp}/>
+                <Route exact path="/register" component={SignUp.Signup}/>
+                <Route exact path="/resend-email" component={SignUp.Resend}/>
                 <Route exact path="/auth/verify" component={Verify}/>
                 <Route exact path="/forgot-password" component={ForgotPassword}/>
+                <Redirect exact from="/signup" to="/register"/>
+                <Redirect exact from="/signin" to="/login"/>
                 <ProtectedRoute exact path="/profile" isLoggedIn={isLoggedIn}  component={ProfilePage}/>
                <Route component={NotFound}/>
             </Switch>

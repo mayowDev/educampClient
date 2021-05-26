@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import {Redirect, Link, useHistory} from 'react-router-dom'
+import Sidebar from '../../../components/Sidebar'
 
-import Logo from '../../../assets/images/Logo-small.png';
-// import Button from '../../../components/Button'
 const Login = (props) => {
     const {location:{state}, isLoggedIn, loginWithGoogle, login} = props
     const [user, setUser] = useState({ email:'', password:''})
@@ -33,7 +32,7 @@ const Login = (props) => {
     if(isLoggedIn) return <Redirect to={state?state.from.pathname:"/"} />
     return (
         <div className="login">
-            <div className="login__sidebar"><Link to="/"><img src={Logo} alt="geekcamp-logo"/></Link></div>
+            <Sidebar/>
             <div className="login__form-container">
                 <div className="login__form-block">
                     <div className="heading">

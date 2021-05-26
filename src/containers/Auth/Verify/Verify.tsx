@@ -1,11 +1,10 @@
 import React, { useEffect} from 'react'
 import {Link, useHistory, Redirect} from 'react-router-dom'
 import qs from 'querystring'
-import Logo from '../../../assets/images/Logo-small.png';
 import { Heading, Paragraph } from '../../../components/Typography';
 import {IVerifyProps} from '../types'
 import Spinner from '../../../components/Spinner';
-
+import Sidebar from '../../../components/Sidebar'
 const Verify = (props:IVerifyProps) => {
     const {verify, isVerified, isApiError, isLoggedIn, isLoading} = props
     if(isLoggedIn) return <Redirect to="/" />;
@@ -28,7 +27,7 @@ const Verify = (props:IVerifyProps) => {
     };
     return (
         <div className="verify">
-            <div className="verify__sidebar"><Link to="/"><img src={Logo} alt="geekcamp-logo"/></Link></div>
+            <Sidebar/>
             {isLoading && !isApiError ?<Spinner />:
                 <div className="verify__container">
                     <div className="content">
