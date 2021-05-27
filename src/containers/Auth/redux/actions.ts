@@ -1,9 +1,8 @@
 import { SIGNUP_SUCCESS, VERIFY_SUCCESS, RESEND_VERIFICATION_SUCCESS, GET_USER_DATA, FORGOT_PASSWORD_SUCCESS, LOGOUT,
-    LOGIN_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, LODING, RESET_PASSWORD_SUCCESS,
+    LOGIN_SUCCESS, UPDATE_PASSWORD, DELETE_ACCOUNT, API_ERROR, LODING, RESET_PASSWORD_SUCCESS, UPDATE_PROFILE, UPDATE_PROFILE_IMAGE,
 } from './constants';
-import {ITypeSignUp, ITypeLogin, IForgotPassword , ITypeResetPassword, ITypeUpdatePassword} from '../types'
+import {ITypeSignUp, ITypeLogin , ITypeResetPassword, ITypeUpdatePassword} from '../types'
 import * as API from "../../../services"
-import { UPDATE_PROFILE_IMAGE, UPDATE_PROFILE } from '../redux/constants';
 
 export const signup = (data:ITypeSignUp)=> async dispatch =>{
      try {
@@ -24,10 +23,10 @@ export const signup = (data:ITypeSignUp)=> async dispatch =>{
      }
 }
 
-export const resendVerificationEmail= (data:string)=> async dispatch =>{
+export const resendVerificationEmail= (email:string)=> async dispatch =>{
     try {
        dispatch({type:LODING})
-       const response:any = await API.resendVerificationEmail(data)
+       const response:any = await API.resendVerificationEmail(email)
        
        if (!response.success) {
            return dispatch({type:API_ERROR})
@@ -44,7 +43,7 @@ export const resendVerificationEmail= (data:string)=> async dispatch =>{
     }
 }
 
-export const verify = (token)=> async dispatch=>{
+export const verify = (token:string)=> async dispatch=>{
     try {
         dispatch({type:LODING})
         const response = await API.verify(token)
@@ -110,13 +109,11 @@ export const getUserData = () => async dispatch => {
         }
     } catch (error) {
         console.log('getUserErr',error)     
-        return dispatch({type:API_ERROR})
-        
+        return dispatch({type:API_ERROR})       
     }
-    
 }
 
-export const forgotPassword  = (email:IForgotPassword) => async dispatch=>{
+export const forgotPassword  = (email:string) => async dispatch=>{
     try {
         dispatch({type:LODING})
         const response = await API.forgotPassword(email)
@@ -149,12 +146,21 @@ export const resetPassword = (resettoken:string, data:ITypeResetPassword) => asy
 }
 
 export const updatePassword = (data:ITypeUpdatePassword) => async dispatch => {
-    const response = await API.updatePassword(data);
-    if (!response.success) {
+    console.log('updatePassword action', data);
+    try {
+        dispatch({type:LODING})
+        const response = await API.updatePassword(data);
+        console.log('update response ========>', response);
+        
+        if (!response.success) {
+            return dispatch({type:API_ERROR})
+        }
+        if(response && response.success){
+            dispatch({type:UPDATE_PASSWORD, payload: response})
+        }
+    } catch (error) {
+        console.log('updateErr',error)     
         return dispatch({type:API_ERROR})
-    }
-    if(response && response.success){
-        dispatch({type:UPDATE_PASSWORD, payload: response})
     }
 }
 
@@ -172,14 +178,12 @@ export const updateProfileData = (profileData) => async dispatch => {
     try {
         dispatch({type:LODING})
         const response = await API.updateProfile(profileData);
-        // console.log('updateProfileData ACTION', response);
         if (!response.success) {
             return dispatch({type:API_ERROR})
         }
         if(response && response.success){
             dispatch({type:UPDATE_PROFILE, payload: response})
         } 
-        
     } catch (error) {
         console.log('updateProfileErr',error)     
         return dispatch({type:API_ERROR})
@@ -196,8 +200,8 @@ export const logout = ()=> async dispatch=>{
     }
 }
 
-export const deleteAccount= () => async (dispatch)=>{
-    const response = await API.logout()
+export const deleteAccount= (email:string) => async (dispatch)=>{
+    const response = await API.deleteAccount(email)
     if (!response.success) {
         return dispatch({type:API_ERROR})
     }

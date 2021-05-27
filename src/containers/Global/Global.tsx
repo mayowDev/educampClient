@@ -22,11 +22,11 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/" component={HomePage}/>
                 <Route exact path="/courses" component={CoursesPage}/>
                 <Route exact path="/courses/:id" component={CourseDetails}/>
-                <Route exact path="/auth/reset"  component={ResetPage}/>
+                <Route exact path="/reset"  component={ResetPage}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/register" component={SignUp.Signup}/>
                 <Route exact path="/resend-email" component={SignUp.Resend}/>
-                <Route exact path="/auth/verify" component={Verify}/>
+                <Route exact path="/verify" component={Verify}/>
                 <Route exact path="/forgot-password" component={ForgotPassword}/>
                 <Redirect exact from="/signup" to="/register"/>
                 <Redirect exact from="/signin" to="/login"/>
@@ -35,17 +35,7 @@ const RenderRoutes = ({isLoggedIn}) => {
             </Switch>
      )
 };
-const Global = ({isLoggedIn, userProfile, getUserData}) => { 
-    useEffect(() => {
-        getUserData()
-    },[])
-    useEffect(() => {
-        if(userProfile && userProfile.id){
-            // console.log('userProfile in 123 : ', userProfile);
-            const { id, name, email, role } = userProfile;
-            console.log('global profile ====>', name)
-        }
-    }, [userProfile.id]); 
+const Global = ({isLoggedIn}) => { 
     return (
         <BrowserRouter>
             <RenderRoutes isLoggedIn={isLoggedIn}/>

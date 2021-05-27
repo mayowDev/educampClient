@@ -48,7 +48,8 @@ export interface IVerifyProps{
 }
 export interface IForgotProps{
     isLoading:boolean,
-    isApiError:boolean
+    isApiError:boolean,
+    isForgotPasswordSuccess:boolean,
     forgotPassword:(email:object)=>{
         type: string,
         payload:{

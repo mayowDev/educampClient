@@ -23,7 +23,7 @@ export default(state = initialState, action) =>{
             console.log('FETCH_COURSES reducer = ', action.payload.rows);
             return {
                 ...state,
-                courses:  [...state.courses, ...action.payload.rows],
+                courses:  [...action.payload.rows],
                 pages: action.payload.pagination,
                 coursesLoading: false,
             };
@@ -35,7 +35,6 @@ export default(state = initialState, action) =>{
         case SET_COURSES_LOADER:
             return {
                 ...state,
-                galleries: [],
                 coursesLoading: true,
                 canLoadMore: true,
                 currentPage: 0,

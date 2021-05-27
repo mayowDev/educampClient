@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 import Reset from './Reset'
 import {resetPassword} from '../redux/actions'
-// import '../../assets/fonts/fonts.css'
+import './style.scss'
 
 const mapStatesToProps = ({auth}) => {
-    console.log('reset state', auth);
     return {
         isLoggedIn: auth.isLoggedIn,
         isResetPasswordSuccess: auth.isResetPasswordSuccess,

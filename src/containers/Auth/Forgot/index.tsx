@@ -1,12 +1,11 @@
-import './style.scss'
 import Forgot from './Forgot'
 import { connect } from 'react-redux'
 import {forgotPassword} from '../redux/actions'
-const mapStatesToProps = (state) => {
+import './style.scss'
+const mapStatesToProps = ({auth}) => {
   return {
-    // state: state.auth.forgotPassword,
-    isApiError: state.auth.isApiError,
-    isLoading: state.auth.loading
+    isForgotPasswordSuccess: auth.isForgotPasswordSuccess,
+    isLoading: auth.loading
   }
 }
 

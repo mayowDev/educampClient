@@ -109,7 +109,7 @@ export const loginWithFacebook = async () => {
     }
 };
 
-export const forgotPassword = async (email:IForgotPassword)=> {
+export const forgotPassword = async (email:string)=> {
     try {
         const result = await axios.post("/auth/forgot", email)
             .catch((err: any) => {
@@ -145,6 +145,8 @@ export const resetPassword = async (resettoken, data ) => {
 
 export const updatePassword = async (data) => {
     try {
+        console.log('API update pss', data);
+        
         const result = await axios.put("/auth/", data)
             .catch((err: any) => {
                 if (err && err.response && err.response.status === 400) {
@@ -264,21 +266,21 @@ export const logout = async () => {
     }
 };
 
-export const deleteAccount = async (email) => {
+export const deleteAccount = async (email:string) => {        
     try {
-        const result = await axios.delete(`/auth/me`, email)
-            .catch((err: any) => {
-                console.log('err = ', err);
-                if (err && err.response && err.response.status === 400) {
-                    return Promise.reject(
-                        new Error("Request failed with status code 400")
-                    );
-                }
-                return Promise.reject(new Error(JSON.stringify(err.response.data)));
+        const result = await axios(`/auth/me`, { method: 'DELETE', data: {email}})
+        .catch((err: any) => {
+            console.log('err = ', err);
+            if (err && err.response && err.response.status === 400) {
+                return Promise.reject(
+                    new Error("Request failed with status code 400")
+                );
+            }
+            return Promise.reject(new Error(JSON.stringify(err.response.data)));
             });
-        if (result) {
-            return result.data;
-        }
+            if (result) {                
+                return result.data;
+            }
     } catch (e) {
         return Promise.reject(new Error(e.message));
     }

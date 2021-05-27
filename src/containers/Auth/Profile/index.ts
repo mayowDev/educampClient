@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import Profile from './Profile'
 import {getUserData, logout, updateProfileData, updateProfileImage, updatePassword, deleteAccount } from '../redux/actions'
-
+import './style.scss'
 const mapStatesToProps = ( {auth}) => {  
   // console.log('profile auth',auth);
   return {
@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
   updateProfileData:(data)=> dispatch(updateProfileData(data)),
   updateProfileImage:(imgFile)=> dispatch(updateProfileImage(imgFile)),
   updatePassword:(data)=> dispatch(updatePassword(data)),
-  deleteAccount:()=> dispatch(deleteAccount()),
+  deleteAccount:(email:string)=> dispatch(deleteAccount(email)),
   logout:()=> dispatch(logout())
 })
 

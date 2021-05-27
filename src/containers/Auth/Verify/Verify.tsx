@@ -35,7 +35,7 @@ const Verify = (props:IVerifyProps) => {
                         <Paragraph className="success-message" 
                         value={isVerified?`Your Account was verified successfully!, Please login to your account`:'Sorry your account verification failed'}
                         />
-                        <Link  to={isVerified?'/login':"/"} className="btn  btn-primary link-primary" type='primary'>{isVerified? "Login":"Go Home"}</Link>
+                        <Link  to={isVerified?'/login':"/"} className="link-primary">{isVerified? "Login":"Go Home"}</Link>
                     </div>	                             
                 </div>
              }

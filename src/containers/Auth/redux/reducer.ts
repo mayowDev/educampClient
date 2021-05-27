@@ -71,6 +71,12 @@ export default(state = initialState, action)=>{
         isProfileUpdated:action.payload.success,
         loading: false
       }
+    case UPDATE_PASSWORD:
+      return {
+        ...state,
+        isPasswordUpdated: action.payload.success,
+        loading: false
+      }
     case API_ERROR:
     case RESET_PAGE:
       return {

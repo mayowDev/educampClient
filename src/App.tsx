@@ -11,7 +11,7 @@ const App = ()=> {
   return (
     <Fragment>
     <Provider store={store}>
-    <ToastContainer/>
+    <ToastContainer position="bottom-left"/>
      <Router>
         <GlobalPage />
       </Router>

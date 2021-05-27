@@ -26,7 +26,7 @@
     "start-dev": "webpack serve  --env NODE_ENV=development API_URL=https://api-geekcamp.herokuapp.com/api/v1  --config webpack.config.js  --profile --content-base src/ ",
     "start-prod": "npm-run-all --parallel build server",
     "storybook": "start-storybook -p 6006 -s public",
-    "serve": "webpack serve --config webpack.config.js --progress --profile --watch --content-base src/",
+    "serve": "webpack serve --config webpack.config.js --profile --watch --content-base src/",
     "build": "npm run clean-dist && cross-env NODE_ENV=production webpack",
     "lint": "eslint  src/**/*.{js,jsx,ts,tsx} --format stylish --project . --force",
     "lint:fix": "eslint src/**/*.{js,jsx,ts,tsx} --fix",

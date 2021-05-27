@@ -1,20 +1,20 @@
 import React, {useState, } from 'react'
 import {Link, Redirect, useHistory} from 'react-router-dom';
-import qs from 'querystring'
+import qs from 'querystring';
+import {toast} from 'react-toastify'
 import Button from '../../../components/Button'
 import { Heading, Paragraph } from '../../../components/Typography';
 import Spinner from '../../../components/Spinner';
 import Sidebar from '../../../components/Sidebar';
 
 const Reset = (props) => {
-    const {resetPassword, isLoading, isApiError, isResetPasswordSuccess, isLoggedIn} = props
-    const [userPassword, setUserPassword] = useState({ password:'', confirmPassword:"" })
+    const {resetPassword, isLoading, isResetPasswordSuccess, isLoggedIn} = props
     const history = useHistory();
-    isLoggedIn&& <Redirect to="/"/>
+    const [userPassword, setUserPassword] = useState({ password:'', confirmPassword:"" })
     
-    const query = qs.parse(history.location.search)    
+    const query = qs.parse(history.location.search)  
     const token = query["?token"]
-
+    if(isLoggedIn || !token) return <Redirect to="/" />;
     const isPasswordMatch = ({password, confirmPassword}) => {
         return password === confirmPassword;
     };
@@ -33,12 +33,11 @@ const Reset = (props) => {
     const handleReset = async (e) => {
         e.preventDefault();
         try {
-            const result = await resetPassword(token,userPassword);
-            console.log('reset.tsx Result', result)
-
+            await resetPassword(token,userPassword);
+            setUserPassword({password:"", confirmPassword: ""})
         }
         catch(e) {
-            console.log('resetErr',e.message);
+            console.log('reset.tsx Error', e.message);
         }
     };
     return <div className="reset">

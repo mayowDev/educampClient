@@ -5,7 +5,7 @@ import {login, loginWithGoogle} from '../redux/actions'
 
 import './style.scss';
 const mapStatesToProps = ({auth}) => {
-    console.log('auth login mapStatesToProps',auth);
+    // console.log('auth login ',auth);
     return {
         isLoggedIn: auth.isLoggedIn,
         isApiError: auth.isApiError,

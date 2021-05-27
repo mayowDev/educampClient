@@ -69,7 +69,7 @@ module.exports={
         port:3000,
         compress: true,
         open: true,
-        progress:true,
+        progress:false,
         // contentBase: path.join(__dirname, 'build'),
         hot: true,
     },
