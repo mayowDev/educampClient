@@ -39,10 +39,10 @@
         display: flex;
         flex-direction: column;
         background: black;
-        color: white;
+        color: white!important;
         width: 20%;
-        height: 50vh;
-        max-height: 40vh;
+        
+        max-height: 60vh;
         border-radius: 10px;
         // border: 2px solid gray;
         margin-right: 50px;
@@ -54,8 +54,23 @@
             h4{
                 color: white;
                 font-size:1rem;
-                // padding: .5rem;  
+                text-align: center
             }
+            .image-wrapper{
+                margin-top: 20px;
+                .hide-photo-input{
+                    display:none
+                }
+                .user-profile-photo{
+                    width: 118px;
+                    border-radius: 100%;
+                }
+                .photo-title{
+                    color: white;
+                    text-align: center;
+                }
+            }
+            
         }
         .nav-links{
             display: flex;
@@ -73,6 +88,7 @@
         width: 50vw;
         padding: 50px;
         .details-form, .password-form{
+            padding: 0px 10%;
             h4{
                 text-align: center;
                 font-size: 1.75rem;
@@ -82,9 +98,17 @@
                 margin-bottom: 25px;
                 padding: 15px;
             }
+            .password-error{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 17px;
+                padding: 0 10px;
+                color: red;
+            }
             .form-group{
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 // justify-content: center;
                 align-items: baseline;
                 .form-label{
@@ -99,13 +123,6 @@
                         width:  30vw;
                     }
                 }
-                .password-error{
-                    // margin: 10px;
-                    font-size: 15px;
-                    padding: 0 10px;
-                    color: red;
-                }
-               
             }
         }
         .password-form{

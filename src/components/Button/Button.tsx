@@ -3,10 +3,10 @@ import React from 'react';
 import IButtonProps from './types';
 import { Link } from 'react-router-dom';
 
-const Button: React.FC<IButtonProps> = ({className, disable, onClick, value, type, size, to, iconType}) => {
+const Button: React.FC<IButtonProps> = ({className, disable, onClick, value, type, authType, to, iconType}) => {
 
     const button = () => (
-        <button disabled={disable} className={`button ${`${'button__'+size}` || ''} ${type || ''} ${className || ''} ${iconType === "next" ? 'button__icon-animate' : ''}`} onClick={onClick}>
+        <button disabled={disable} className={`button ${`${'button__'+authType}` || ''} ${type || ''} ${className || ''} ${iconType === "next" ? 'button__icon-animate' : ''}`} onClick={onClick}>
             {iconType === "next" &&
             <>
               <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">

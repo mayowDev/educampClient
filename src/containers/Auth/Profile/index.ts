@@ -5,6 +5,7 @@ import './style.scss'
 const mapStatesToProps = ( {auth}) => {  
   // console.log('profile auth',auth);
   return {
+    isApiError: auth.isApiError,
     isLoading: auth.loading,
     isLoggedIn: auth.isLoggedIn,
     userProfile: auth.userProfile,

@@ -9,7 +9,6 @@ import Dropdown from '../Dropdown';
 
 
 const Header: React.FC<IHeaderProps> = (props) => {
-    // console.log('Header props', props);
     const {  isLoggedIn,routeName,changeSearch,searchQuery,isHome, isProfile, logout} = props;    
     
     const history = useHistory();
@@ -50,30 +49,29 @@ const Header: React.FC<IHeaderProps> = (props) => {
                 <div className="header--flex">
                     <nav className='header__nav'>
                         <ul>
-                            <li/>
-                            <li onClick={() => setNavBright(false)}>
+                            <li >
                                 <MenuItem value='Courses' to="/courses" className={isLinkActive('/courses') || isLinkActive('/')}/>
                             </li>
-                            <li onClick={() => setNavBright(false)}>
+                            <li >
                                 <MenuItem value='Categories' to="/categories" className={isLinkActive('/categories')}/>
                             </li>
-                            <li onClick={() => setNavBright(false)}>
+                            <li >
                                 <MenuItem value='Instructors' to="/instructors" className={isLinkActive('/instructors')}/>
                             </li>
-                            <li onClick={() => setNavBright(false)}>
+                            <li >
                                 <MenuItem value='Teach on Educamp' to="/teach" className={isLinkActive('/teach')}/>
                             </li>
-                            <li onClick={() => setNavBright(false)} className={!isLoggedIn ? 'not-logged-in' : ''}>
+                            <li  className={!isLoggedIn ? 'not-logged-in' : ''}>
                                 {
                                 !isLoggedIn &&
                                 <>
-                                    <Button value='Sign In' className='' type='primary' to='/login'/> 
-                                    <Button value='Sign Up' className='' type='primary' to='/register'/> 
+                                    <Button value='Sign In' authType='login' type='primary' to='/login'/> 
+                                    <Button value='Sign Up' authType='register' type='primary' to='/register'/> 
                                 </>
                                 }
                             </li>
                             {isLoggedIn &&
-                                <li onClick={() => setNavBright(false)} className={!isLoggedIn ? 'not-logged-in' : 'logged-in'}>
+                                <li  className={!isLoggedIn ? 'not-logged-in' : 'logged-in'}>
                                     <div className={`${isLinkActive('/profile')}`}>
                                         <Dropdown icon={<IconBtn className="user--profile" type="user" />}>
                                             <Link to="/profile">My Profile</Link>

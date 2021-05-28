@@ -52,7 +52,7 @@ const Reset = (props) => {
                 }
 
             </div>	
-            <form method="post" onSubmit={(e)=>handleReset(e)}>
+            <form className="reset-form" method="post" onSubmit={(e)=>handleReset(e)}>
             {
                 isResetPasswordSuccess ?
                 <>

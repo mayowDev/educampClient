@@ -108,24 +108,9 @@ $dark-gray: #8d8d8d;
       }
     }
   }
+  &__login, &__register{
+    padding:0 30px !important;
+    font-size: 1rem;
+    color: white;
+  }
 }
-
-  // .button{
-  //   font-size: 12px;
-  //   line-height: 12px;
-  //   height: 36px;
-  //   padding: 0 25px;
-  //   width: max-content;
-  //   cursor: pointer;
-  // }
-
-  // .zoom{
-    //.button{
-    //  font-size: 15px;
-    //  line-height: 15px;
-    //  height: 56px;
-    //  padding: 0 30px;
-    //  width: max-content;
-    //  cursor: pointer;
-    //}
-  // }
