@@ -1,6 +1,7 @@
 import axios from "./axios";
 import {ITypeLoginData, ITypeSignUpData} from './types'
 import {LOCAL_STORAGE_KEYS} from "../components/Constants"
+import {BACKEND_URL} from "../configs"
 
 export const signup = async (data:ITypeSignUpData) => {
     try {
@@ -75,21 +76,11 @@ export const login = async (data:ITypeLoginData) => {
     }
 };
 
-export const loginWithGoogle = async () => {
-    const result = await axios.get("/auth/google")
-        .catch((err: any) => {
-            if (err && err.response && err.response.status === 400) {
-                return Promise.reject(
-                    new Error("Request failed with status code 400")
-                );
-            }
-            return Promise.reject(new Error(JSON.stringify(err.message)));
-        });
-    console.log('loginWithGoogle api', result);
-    
-    if (result && result.data) {
-        localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, result.data.success)
-        return result && result.data
+export const loginWithGoogle = () => {
+    try {
+        window.open(`${BACKEND_URL}/auth/google`, '_self')        
+    } catch (error) {
+        console.log('google auth error: ' + error);
     }
 };
 

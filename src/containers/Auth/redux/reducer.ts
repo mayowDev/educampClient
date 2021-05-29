@@ -7,6 +7,7 @@ const initialState = {
   isRegistered:false,
   isVerified:false,
   isLoggedIn: !!localStorage.getItem(LOCAL_STORAGE_KEYS.LOGIN_STATE),
+  userId:null,
   isForgotPasswordSuccess: false,
   isResetPasswordSuccess: false,
   isResendEmailSuccess: false,

@@ -77,13 +77,11 @@ export const login = (data:ITypeLogin)=> async dispatch=>{
     }
 }
 
-export const loginWithGoogle  = () => async dispatch=>{
-    const response = await API.loginWithGoogle()
-    if (!response.success) {
-        return dispatch({type:API_ERROR})
-    }
-    if(response && response.success){
-        dispatch({type:LOGIN_SUCCESS, payload: response})
+export const loginWithGoogle  = () =>  dispatch=>{
+    try {
+        API.loginWithGoogle()
+    } catch (error) {
+        dispatch({type:API_ERROR})
     }
 }
 

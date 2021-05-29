@@ -36,17 +36,16 @@ const RenderRoutes = ({isLoggedIn}) => {
      )
 };
 const Global = ({isLoggedIn, getUserData, userProfile}) => { 
+    // console.log('isLoggedIn', isLoggedIn);
     useEffect(() => {
-        getUserData();       
+        if(isLoggedIn){
+            getUserData();       
+        }    
     }, []);
 
     useEffect(() => {
         if(userProfile && userProfile.id){
-            console.log('userProfile in global.tsx',userProfile.name);
-            // const {  name, email, avatar } = userProfile;
-            // setName(name);
-            // setEmail(email);
-            // setPhoto(avatar)     
+            console.log('userProfile in global.tsx',userProfile.name);   
         }
     }, [userProfile.id]); 
 

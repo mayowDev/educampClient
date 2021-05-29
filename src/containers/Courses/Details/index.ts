@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 // import {setConversation, setRedirectPath} from "../../containers/Global/redux/actions";
 // import {setCurrentConversation, setEnquireMessage} from "../../containers/Conversation/redux/actions";
 
-const mapStatesToProps = ({ global, courses }) => {
+const mapStatesToProps = ({ auth, courses }) => {
     return {
-        isLoggedIn: global.isLoggedIn,
+        isLoggedIn: auth.isLoggedIn,
         courses: courses.data
     };
 };

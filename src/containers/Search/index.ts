@@ -4,9 +4,9 @@ import './style.scss'
 import { changeSearch } from '../Global/redux/actions'
 import {fetchSearchInit, resetSearch, setRecentSearch} from "./redux/actions";
 
-const mapStatesToProps = ({global, search}) => {
+const mapStatesToProps = ({ search}) => {
     return {
-        searchQuery: global.searchQuery,
+        // searchQuery: global.searchQuery,
         ...search
     };
 };

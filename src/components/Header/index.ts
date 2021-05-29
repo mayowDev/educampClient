@@ -7,7 +7,6 @@ import './style.scss'
 
 const mapStatesToProps = (state) => {    
     return {
-        // searchQuery: global.searchQuery,
         isLoggedIn: state.auth.isLoggedIn,
         profileData: state.auth.userProfileData,
     };

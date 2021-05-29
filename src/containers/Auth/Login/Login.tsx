@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import {Redirect, Link, useHistory} from 'react-router-dom'
 import Sidebar from '../../../components/Sidebar'
+import {LOCAL_STORAGE_KEYS} from "../../../components/Constants"
 
 const Login = (props) => {
     const {location:{state}, isLoggedIn, loginWithGoogle, login} = props
     const [user, setUser] = useState({ email:'', password:''})
     const [remember, setRemember] = useState(false)
-    const history = useHistory()
+    // const history = useHistory()
     const handleInputChange = (e)=>{
         setUser({
           ...user,
@@ -25,9 +26,14 @@ const Login = (props) => {
         }    
     }
     const handleLoginWithGoogle =(e)=>{
-        e.preventDefault();
-        const response =loginWithGoogle()
-        console.log('login with google.tsx', response);
+        try {
+            e.preventDefault();
+            const response =loginWithGoogle()
+            console.log('login with google.tsx', response);
+            localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, 'true');
+        } catch (error) {
+            console.log(error);
+        }
     }
     if(isLoggedIn) return <Redirect to={state?state.from.pathname:"/"} />
     return (
