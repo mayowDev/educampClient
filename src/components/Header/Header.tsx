@@ -65,8 +65,8 @@ const Header: React.FC<IHeaderProps> = (props) => {
                                 {
                                 !isLoggedIn &&
                                 <>
-                                    <Button value='Sign In' authType='login' type='primary' to='/login'/> 
-                                    <Button value='Sign Up' authType='register' type='primary' to='/register'/> 
+                                    <Button value='Sign In' actionType='login' type='primary' to='/login'/> 
+                                    <Button value='Sign Up' actionType='register' type='primary' to='/register'/> 
                                 </>
                                 }
                             </li>

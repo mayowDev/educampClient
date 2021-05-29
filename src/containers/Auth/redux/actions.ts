@@ -146,12 +146,9 @@ export const resetPassword = (resettoken:string, data:ITypeResetPassword) => asy
 }
 
 export const updatePassword = (data:ITypeUpdatePassword) => async dispatch => {
-    console.log('updatePassword action', data);
     try {
         dispatch({type:LODING})
-        const response = await API.updatePassword(data);
-        console.log('update response ========>', response);
-        
+        const response = await API.updatePassword(data);        
         if (!response.success) {
             return dispatch({type:API_ERROR})
         }
@@ -164,14 +161,20 @@ export const updatePassword = (data:ITypeUpdatePassword) => async dispatch => {
     }
 }
 
-export const updateProfileImage = (imgFile) => async dispatch=>{
-    const response = await API.updateProfileImage(imgFile);
-    if (!response.success) {
+export const updateProfileImage = (file) => async dispatch=>{   
+    try {
+        dispatch({type:LODING})
+        const response = await API.updateProfileImage(file);
+        if (!response.success) {
+            return dispatch({type:API_ERROR})
+        }
+        if(response && response.success){
+            dispatch({type:UPDATE_PROFILE_IMAGE, payload: response})
+        }  
+    } catch (error) {
+        console.log('updateProfileimg Err',error)     
         return dispatch({type:API_ERROR})
-    }
-    if(response && response.success){
-        dispatch({type:UPDATE_PROFILE_IMAGE, payload: response})
-    }
+    } 
 }
 
 export const updateProfileData = (profileData) => async dispatch => {

@@ -113,4 +113,13 @@ $dark-gray: #8d8d8d;
     font-size: 1rem;
     color: white;
   }
+  &__save-photo{
+    background-color: $blackClick;
+    color: white;
+    margin: 5px 10px!important;
+    font-size: 15px;
+    &:hover{
+      transform: translateY(-2px);
+    }
+  }
 }

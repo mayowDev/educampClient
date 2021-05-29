@@ -1,5 +1,5 @@
 import axios from "./axios";
-import {ITypeLoginData, ITypeSignUpData, IForgotPassword} from './types'
+import {ITypeLoginData, ITypeSignUpData} from './types'
 import {LOCAL_STORAGE_KEYS} from "../components/Constants"
 
 export const signup = async (data:ITypeSignUpData) => {
@@ -183,9 +183,8 @@ export const updateProfile = async (data) => {
 };
 
 export const updateProfileImage = async (file) => {
-    console.log('profileImg file', file);
     try {
-        const result = await axios.patch(`/auth/me`, file)
+        const result = await axios.patch("/auth/me",file)
             .catch((err: any) => {
                 console.log('err = ', err);
                 if (err && err.response && err.response.status === 400) {
@@ -193,13 +192,13 @@ export const updateProfileImage = async (file) => {
                         new Error("Request failed with status code 400")
                     );
                 }
-                return Promise.reject(new Error(JSON.stringify(err.response.data)));
+                return Promise.reject(new Error(JSON.stringify(err)));
             });
         if (result) {
             return result.data;
         }
     } catch (e) {
-        return Promise.reject(new Error(e.message));
+        return Promise.reject(new Error(e));
     }
 };
 
@@ -216,7 +215,6 @@ export const getUserProfile = async () => {
                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
             });
         if (result) {
-            // console.log('GET_PROFILE_DATA_API', result.data.data);
             return result.data;
         }
     } catch (e) {

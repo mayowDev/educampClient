@@ -4,13 +4,11 @@ import {toast} from 'react-toastify'
 import {H1, H3, P2, P1, Title} from '../../../components/Typography'
 // import Input from '../../../components/Input'
 import Button from '../../../components/Button'
-
 import Spinner from '../../../components/Spinner'
-import defaultUserImage from "../../../assets/images/defaults/avatar.jpeg"
 
 
 const Profile = (props) => {    
-    const {isLoading, getUserData, updateProfileImage, updatePassword, updateProfileData, isProfileUpdated, isLoggedIn, userProfile, logout, deleteAccount} = props;
+    const {isLoading, getUserData, updateProfileImage, updatePassword, updateProfileData, isProfileUpdated, isProfileImgUpdated, userProfile, logout, deleteAccount} = props;
     // console.log('this logs on each key, so use memo ' + userProfile)
 
     const [name, setName] = useState('')
@@ -24,18 +22,19 @@ const Profile = (props) => {
     const [photoChanged,setPhotoChanged] = useState(false)
     const [photoFile, setPhotoFile] = useState('')
     const [photo, setPhoto] = useState('')
-
     // const [activeTab, setActiveTab] = useState('details');
     const history = useHistory()
-    useEffect(() => {
-        getUserData();       
-    }, []);
+    // useEffect(() => {
+    //     getUserData();       
+    // }, []);
 
     useEffect(() => {
         if(userProfile && userProfile.id){
-            const {  name, email } = userProfile;
+            const {  name, email, avatar } = userProfile;
             setName(name);
-            setEmail(email)        }
+            setEmail(email);
+            setPhoto(avatar)     
+        }
     }, [userProfile.id]); 
 
     const isPasswordValid = (pass:string) => {
@@ -95,34 +94,29 @@ const Profile = (props) => {
         history.push('/')
     }
     const handlePhotoChange = async (e) => {
-        if (e.target.files.length > 0) {
-            console.log('e.target.files', e.target.files);
-            
-            const selectedFile = e.target.files[0];
-            const dot = selectedFile.name.lastIndexOf('.');
-            const extension = selectedFile.name.substr(dot, selectedFile.name.length).toLowerCase();            
-            if (extension === '.jpeg' || extension === '.jpg' || extension === '.png' || extension === '.gif') {
+        if (e.target.files.length > 0) {            
+            const file = e.target.files[0];
+            const dot = file.name.lastIndexOf('.');
+            const extension = file.name.substr(dot, file.name.length).toLowerCase();            
+            if (extension === '.jpeg' || extension === '.jpg' || extension === '.png') {
                 setPhotoChanged(true);
-                setPhotoFile(selectedFile);
-                const url = await URL.createObjectURL(selectedFile);
-                // console.log('photoUrl', url);
+                setPhotoFile(file);
+                const url = await URL.createObjectURL(file);
                 setPhoto(url);
                 setErrMsg('');
             } else {
-                setErrMsg('Only file with the extension of jpeg, jpg, png and gif are allowed!');
-                // setTimeout(() => {
-                //     setErrMsg('');
-                // }, 2000)
+                toast.error('Only file with the extension of jpeg, jpg, png and gif are allowed!');
+                setPhotoChanged(false)
             }
         }
     };
-    console.log('photoFile', photoFile);
-    
     const handleUpdateProfileImage = async ()=>{
-        const response = await updateProfileImage(photoFile)
-        console.log('saved profile image', response);
+        let fd = new FormData();
+        fd.append('file', photoFile)
+        await updateProfileImage(fd)
+        setPhotoChanged(false)
+        toast.dark("Profile image updated succesfully")
     }
-    
 
     return (
         <>
@@ -136,12 +130,15 @@ const Profile = (props) => {
                 <div className="user-info">
                     <div className={`image-wrapper`}>
                           <label>
-                            <input className="hide-photo-input" type='file' onChange={handlePhotoChange}/>
+                            <input className="hide-photo-input" type='file' accept=".png, .jpg, .jpeg"  onChange={handlePhotoChange}/>
                               {
                                   photo
                                       ? <>
                                           <img className="user-profile-photo" src={photo} alt={'change photo'}/>
+                                          {!photoChanged&&
                                           <P2 className='photo-title' value='Change photo'/>
+                                          }
+                                          
                                       </>
                                       : <>
                                           <svg
@@ -157,13 +154,15 @@ const Profile = (props) => {
                                                   fill='#7D7D7D'
                                               />
                                           </svg>
-                                          <P2 className='photo-title' value='Add a photo'/>
+                                          {/* <P2 className='photo-title' value='Add photo'/> */}
                                       </>
+                              }
+                              {
+                                  photoChanged&&
+                                  <Button value="Save photo" actionType="save-photo" onClick={handleUpdateProfileImage}/>
                               }
                           </label>
                         </div>
-                    <Button value="Save photo" onClick={handleUpdateProfileImage}/>
-                    {/* <h4>{userProfile.email}</h4> */}
                 </div>
                 <ul className="nav-links">
                     <NavLink to="/courses">Courses</NavLink>

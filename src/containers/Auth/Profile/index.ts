@@ -9,7 +9,8 @@ const mapStatesToProps = ( {auth}) => {
     isLoading: auth.loading,
     isLoggedIn: auth.isLoggedIn,
     userProfile: auth.userProfile,
-    isProfileUpdated: auth.isProfileUpdated
+    isProfileUpdated: auth.isProfileUpdated,
+    isProfileImgUpdated: auth.isProfileImgUpdated
   }
 }
 
