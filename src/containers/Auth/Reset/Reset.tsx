@@ -15,6 +15,7 @@ const Reset = (props) => {
     const query = qs.parse(history.location.search)  
     const token = query["?token"]
     if(isLoggedIn || !token) return <Redirect to="/" />;
+    
     const isPasswordMatch = ({password, confirmPassword}) => {
         return password === confirmPassword;
     };

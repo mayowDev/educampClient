@@ -71,7 +71,9 @@ export const login = async (data:ITypeLoginData) => {
             return Promise.reject(new Error(JSON.stringify(err.message)));
         });
     if (result && result.data) {
-        localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, result.data.success)
+        const isUser =Boolean(result.data.data)
+        console.log('isUser' ,result.data, isUser)
+        localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, isUser.toString())
         return result && result.data
     }
 };
@@ -80,23 +82,15 @@ export const loginWithGoogle = () => {
     try {
         window.open(`${BACKEND_URL}/auth/google`, '_self')        
     } catch (error) {
-        console.log('google auth error: ' + error);
+        console.log('google Oauth API error: ' + error);
     }
 };
 
-export const loginWithFacebook = async () => {
-    const result = await axios.get("/auth/facebook")
-        .catch((err: any) => {
-            if (err && err.response && err.response.status === 400) {
-                return Promise.reject(
-                    new Error("Request failed with status code 400")
-                );
-            }
-            return Promise.reject(new Error(JSON.stringify(err.message)));
-        });
-    if (result && result.data) {
-        localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, result.data.success)
-        return result && result.data
+export const loginWithFacebook = () => {
+    try {
+        window.open(`${BACKEND_URL}/auth/facebook`, '_self')        
+    } catch (error) {
+        console.log('facebook Oauth API error: ' + error);
     }
 };
 
@@ -206,6 +200,8 @@ export const getUserProfile = async () => {
                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
             });
         if (result) {
+            const isUser =Boolean(result.data.data.id)
+            localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, isUser.toString())
             return result.data;
         }
     } catch (e) {

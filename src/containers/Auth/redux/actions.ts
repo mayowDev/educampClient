@@ -85,13 +85,11 @@ export const loginWithGoogle  = () =>  dispatch=>{
     }
 }
 
-export const loginWithFacebook  = () => async dispatch=>{
-    const response = await API.loginWithFacebook()
-    if (!response.success) {
-        return dispatch({type:API_ERROR})
-    }
-    if(response && response.success){
-        dispatch({type:LOGIN_SUCCESS, payload: response})
+export const loginWithFacebook  = () =>  dispatch=>{
+    try {
+        API.loginWithFacebook()
+    } catch (error) {
+        dispatch({type:API_ERROR})
     }
 }
 

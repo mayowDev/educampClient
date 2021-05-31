@@ -1,13 +1,27 @@
 import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import qs from 'querystring';
+
 import {H1, H2, H3, P1, SubTitle} from '../../components/Typography';
 import Button from '../../components/Button';
-import { Link, useHistory } from 'react-router-dom';
-import {IHomeProps} from './types';
+import {LOCAL_STORAGE_KEYS} from "../../components/Constants"
 import Header from '../../components/Header'
 
-const HomePage:React.FC<IHomeProps> = ({isLoggedIn}) => {
-    //     const {isLoggedIn,  global, courses,  fetchCourses} = props;
-    const history = useHistory();
+import {IHomeProps} from './types';
+
+const HomePage = ({isLoggedIn, user, isLoading}) => {
+    //const {isLoggedIn,  courses,  fetchCourses} = props;
+    const history = useHistory()
+    const query = qs.parse(history.location.search)  
+    const token = query["?googleId"]
+    console.log('token', token)
+    if(token) {
+        const isUser =Boolean(token)
+        localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, isUser.toString())
+        window.location.href = "/"
+    }
+
+    
     return (
         <>
         <Header/>

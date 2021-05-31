@@ -36,7 +36,7 @@ const RenderRoutes = ({isLoggedIn}) => {
      )
 };
 const Global = ({isLoggedIn, getUserData, userProfile}) => { 
-    // console.log('isLoggedIn', isLoggedIn);
+    console.log('global.tsx isLoggedIn', isLoggedIn,);
     useEffect(() => {
         if(isLoggedIn){
             getUserData();       
@@ -45,7 +45,7 @@ const Global = ({isLoggedIn, getUserData, userProfile}) => {
 
     useEffect(() => {
         if(userProfile && userProfile.id){
-            console.log('userProfile in global.tsx',userProfile.name);   
+            console.log('userProfile.name',userProfile.name);   
         }
     }, [userProfile.id]); 
 

@@ -14,7 +14,6 @@ const initialState = {
   isProfileUpdated: false,
   isProfileImgUpdated:false,
   loading:false,
-  profileLoading:true,
   userProfile:[],
   isApiError: false,
 };
@@ -48,7 +47,9 @@ export default(state = initialState, action)=>{
     case LOGIN_SUCCESS:
       return { ...state, isLoggedIn: true, loading:false, };
     case LOGOUT:
-      return { ...state, isLoggedIn: false };
+      return { 
+        ...state, isLoggedIn: false, userProfile:[], loading:false,
+      };
     case FORGOT_PASSWORD_SUCCESS:
       return { 
         ...state,  

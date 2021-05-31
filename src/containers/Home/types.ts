@@ -1,3 +1,4 @@
 export interface IHomeProps {
-    isLoggedIn?: boolean
+    isLoggedIn?: boolean,
+    user?: object
 }

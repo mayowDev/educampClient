@@ -4,7 +4,7 @@ import Sidebar from '../../../components/Sidebar'
 import {LOCAL_STORAGE_KEYS} from "../../../components/Constants"
 
 const Login = (props) => {
-    const {location:{state}, isLoggedIn, loginWithGoogle, login} = props
+    const {location:{state}, isLoggedIn, loginWithGoogle, loginWithFacebook, login} = props
     const [user, setUser] = useState({ email:'', password:''})
     const [remember, setRemember] = useState(false)
     // const history = useHistory()
@@ -28,9 +28,9 @@ const Login = (props) => {
     const handleLoginWithGoogle =(e)=>{
         try {
             e.preventDefault();
-            const response =loginWithGoogle()
-            console.log('login with google.tsx', response);
-            localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, 'true');
+            loginWithGoogle();
+            // localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, 'true');
+            // window.location.href = '/'
         } catch (error) {
             console.log(error);
         }
@@ -52,7 +52,7 @@ const Login = (props) => {
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
-                            <input name="password" onChange={handleInputChange} value={user.password} type="password" className="form-control" placeholder="Your Password" id="password"/>
+                            <input autoComplete="off" name="password" onChange={handleInputChange} value={user.password} type="password" className="form-control" placeholder="Your Password" id="password"/>
                         </div>
                         
                         <div className="forgot-remember">
@@ -67,7 +67,7 @@ const Login = (props) => {
 
                         <span className="seprater">OR</span>    
                         <div className="icons">
-                            <Link to="#" className="btn btn-block auth-btn fb"> <span></span> Login  with facebook</Link>
+                            {/* <input type="button" value="Login with facebook" onClick={handleLoginWithFacebook} className="btn btn-block auth-btn fb"/>needs to bee https client and server */}
                             <input type="button" value="Login with Google" onClick={handleLoginWithGoogle} className="btn btn-block auth-btn gl"/>
                         </div>
                     </form>

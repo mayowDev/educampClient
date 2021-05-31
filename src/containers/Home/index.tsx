@@ -5,8 +5,9 @@ import './style.scss'
 
 const mapStatesToProps = (state) => {    
     return {
+        isLoading: state.auth.loading,
         isLoggedIn: state.auth.isLoggedIn,
-        global: state.global,
+        user: state.auth.userProfile,
         courses: state.courses
     };
 };

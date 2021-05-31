@@ -10,7 +10,7 @@ import Dropdown from '../Dropdown';
 
 const Header: React.FC<IHeaderProps> = (props) => {
     const {  isLoggedIn,routeName,changeSearch,searchQuery,isHome, isProfile, logout} = props;    
-    
+    console.log('isLoggedIn', isLoggedIn)
     const history = useHistory();
     const [nav, setNav] = useState(false);
     const [navBright, setNavBright] = useState(false);
