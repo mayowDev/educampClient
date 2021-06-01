@@ -1,5 +1,5 @@
 // Messages =CONSTANTS
-import { FETCH_COURSES, FETCH_COURSE, CREATE_COURSE, UPDATE_COURSE, DELETE_COURSE, SORT_COURSES, 
+import { FETCH_COURSES, FETCH_COURSE, CREATE_COURSE, UPDATE_COURSE, DELETE_COURSE, LOADING, SORT_COURSES, 
   API_ERROR, RESET_COURSES } from './constants'
 import * as API from "../../../services"
 //action-creator aka messenggers/delivery
@@ -19,12 +19,21 @@ export const fetchCourses = () => async dispatch => {
 }
 
 export const fetchCourse = (id) => async dispatch => {
-  const response = await API.getCourse(id)
-  console.log('FETCH_COURSE action => ', response);
-  dispatch({
-    type: FETCH_COURSE,
-    payload: id
-  })
+  try {
+    dispatch({type:LOADING})
+    const response = await API.getCourse(id)
+    if(response.success){
+      dispatch({
+        type: FETCH_COURSE,
+        payload: response.data
+      })
+    }
+  } catch (error) {
+    console.log('editCourseError', error);
+    dispatch({
+      type: API_ERROR
+    })
+  }
 }
 
 export const createCourse = (data)=> async dispatch =>{

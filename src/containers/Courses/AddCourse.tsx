@@ -7,7 +7,7 @@ const AddCourse = (props) => {
     const [skillValue,setSkillValue] = useState('beginner');
     const [courseData,setCourse] = useState({title: '', description: '', duration:"", price: 0, minimumSkill:[skillValue]});
     const history = useHistory()
-    const {createCourse, iscourseCreated, isLoading, isApiError} = props
+    const {createCourse, isCourseCreated, isLoading, isApiError} = props
 
     const handleInputChange = (e)=>{
         setCourse({
@@ -39,14 +39,14 @@ const AddCourse = (props) => {
         await createCourse(courseData)
     }
     useEffect(() => {
-        if(iscourseCreated) {
+        if(isCourseCreated) {
             toast.dark('Course Created Successfully')
             history.push('/courses')
         }
         // return () => {
         //     cleanup
         // }
-    }, [iscourseCreated])
+    }, [isCourseCreated])
 
     return (
         <Fragment>

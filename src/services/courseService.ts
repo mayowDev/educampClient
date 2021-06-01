@@ -2,7 +2,7 @@
 import axios from "./axios";
 
 // Features Todo: 
-//search course by category and by keyword match aka full text search
+//search course by category and by keyword aka full text search
 // user should be able to review a course after 50% completion, and remind him after 10% of the 50% remaining
 //if user->buys-a-Courses -> authenticat him to that course, else just show him 3-5 random videos of the course 
 
@@ -59,7 +59,6 @@ export const getCourse = async (id) => {
             }
             return Promise.reject(new Error(JSON.stringify(err.response.data)));
         });
-        console.log('fetchCourse = ', result)
         if (result) {
             return result.data;
         }
@@ -110,8 +109,9 @@ export const createCourse = async (data) => {
 };
 
 export const updateCourse = async (id, data) => {
+    console.log('updatedCourse Api data', data);
     try {
-        const result = await axios.put(`/courses/${id}`, data)
+        const result = await axios.patch(`/courses/details/${id}`, data)
         .catch((err: any) => {
             console.log('err = ', err);
             if (err && err.response && err.response.status === 400) {

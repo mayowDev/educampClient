@@ -24,10 +24,6 @@ const Profile = (props) => {
     const [photo, setPhoto] = useState('')
     // const [activeTab, setActiveTab] = useState('details');
     const history = useHistory()
-    // useEffect(() => {
-    //     getUserData();       
-    // }, []);
-
     useEffect(() => {
         if(userProfile && userProfile.id){
             const {  name, email, avatar } = userProfile;

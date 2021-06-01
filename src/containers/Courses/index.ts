@@ -3,22 +3,25 @@ import CourseList from './CourseList';
 import AddCourse from './AddCourse';
 import EditCourse from './EditCourse';
 import CourseDetails from './CourseDetails';
-import {fetchCourses, createCourse, updateCourse, deleteCourse} from './redux/actions'
+import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse} from './redux/actions'
 import './style.scss'
 
 const mapStateToProps = (state) => {  
   return {
     isLoading: state.courses.loading,
-    canLoadMore: state.courses.canLoadMore,
     isLoggedIn: state.auth.isLoggedIn,
-    iscourseCreated: state.courses.iscourseCreated,
+    currentUser: state.auth.userProfile,
+    isCourseCreated: state.courses.isCourseCreated,
+    isCourseUpdated: state.courses.isCourseUpdated,
     isApiError: state.courses.isApiError,
-    courses: state.courses.coursesList
+    courses: state.courses.coursesList,
+    courseDetails: state.courses.courseDetails
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
     fetchCourses: () => dispatch(fetchCourses()),
+    fetchCourse :(id:string) => dispatch(fetchCourse(id)),
     createCourse: (data) => dispatch(createCourse(data)),
     updateCourse: (id:string, data) => dispatch(updateCourse(id, data)),
     deleteCourse: (id:string) => dispatch(deleteCourse(id))
