@@ -27,4 +27,4 @@ const mapDispatchToProps = dispatch => ({
 export default {
     Signup: connect(mapStateToProps, mapDispatchToProps)(Signup),
     Resend: connect(mapStateToProps, mapDispatchToProps)(Resend)
-  }
+}

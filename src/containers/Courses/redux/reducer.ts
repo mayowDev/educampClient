@@ -1,48 +1,50 @@
-import {FETCH_COURSES, SET_COURSES_LOADER, SORT_COURSES, FETCH_COURSES_FAILED} from './constants'
+import { LODING } from '../../Auth/redux/constants';
+import {FETCH_COURSES, CREATE_COURSE, FETCH_COURSE, API_ERROR,  LOADING, SORT_COURSES} from './constants'
 
 
 const initialState = {
-    courses: [],
-    coursesLoading: true,
+    coursesList: [],
+    iscourseCreated: false,
     canLoadMore: true,
-    networkError: false,
+    apiError: false,
+    loading:false,
     currentPage: 0,
     pages: {},
     sortBy: 'alphabetical',
 }
 
-export default(state = initialState, action) =>{
+export default(state = initialState, action)=>{
     switch (action.type) {
-        case FETCH_COURSES_FAILED:
-            return{
+        case LODING: 
+            return {
                 ...state,
-                courses:  [],
-                networkError:true
+                laoding: true, 
             }
         case FETCH_COURSES:
             console.log('FETCH_COURSES reducer = ', action.payload.rows);
             return {
                 ...state,
-                courses:  [...action.payload.rows],
+                coursesList:  [...action.payload.rows],
                 pages: action.payload.pagination,
-                coursesLoading: false,
+                loading: false,
             };
-
+        case CREATE_COURSE: 
+        console.log('iscourseCreated reducer', action.payload.success,)
+            return {
+                ...state,
+                iscourseCreated: action.payload.success,
+                loading: false,
+            }
         case SORT_COURSES:
             console.log('SORT_COURSES = ', action.payload);
             return {...state, sortBy: action.payload};
-
-        case SET_COURSES_LOADER:
-            return {
-                ...state,
-                coursesLoading: true,
-                canLoadMore: true,
-                currentPage: 0,
-                pages: {},
-                sortBy: 'alphabetical',
-                type: '',
-            };
-
+        case API_ERROR: 
+        return{
+            ...state,
+            // courses:  [],
+            loading: false,
+            apiError:true
+        }
         default:
             return state;
     }

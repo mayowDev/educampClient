@@ -11,8 +11,8 @@ import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 
 const Courses = (props) => {
     const history = useHistory()
-    const {   fetchCourses, data, data:{courses, canLoadMore, coursesLoading}} = props;
-    console.log('data,', data);
+    const {   fetchCourses, courses, isLoading, canLoadMore,} = props;
+    // console.log('data,', data);
     
     const [isLoadingMore, setIsLoadingMore] = useState(false);
     useEffect(() => {
@@ -26,7 +26,7 @@ const Courses = (props) => {
     const infiniteRef = useInfiniteScroll({
         loading: isLoadingMore,
         hasNextPage: canLoadMore,
-        onLoadMore: ()=>{console.log("loading infinite scroll")}
+        onLoadMore: ()=>{console.log("loading more content on scroll")}
     });
 
     return (
@@ -36,7 +36,7 @@ const Courses = (props) => {
                     <H1 className='big' value='Courses'/>
                 </div>
                 {
-                    coursesLoading ?
+                    isLoading ?
                         <Spinner type="cover" />
                         :
                         // @ts-ignore

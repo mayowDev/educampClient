@@ -13,15 +13,16 @@ import ForgotPassword from '../Auth/Forgot';
 import ResetPage from '../Auth/Reset'
 import ProfilePage from '../Auth/Profile'
 /** Course components */
-import CourseDetails from "../Courses/Details"
-import CoursesPage from "../Courses";
+import Courses from "../Courses";
 
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
             <Switch>
                 <Route exact path="/" component={HomePage}/>
-                <Route exact path="/courses" component={CoursesPage}/>
-                <Route exact path="/courses/:id" component={CourseDetails}/>
+                <Route exact path="/courses" component={Courses.Courses}/>
+                <Route exact path="/courses/new" component={Courses.AddCourse}/>
+                <Route exact path="/courses/edit/:id" component={Courses.EditCourse}/>
+                <Route exact path="/courses/:id" component={Courses.CourseDetails}/>
                 <Route exact path="/reset"  component={ResetPage}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/register" component={SignUp.Signup}/>
@@ -35,8 +36,9 @@ const RenderRoutes = ({isLoggedIn}) => {
             </Switch>
      )
 };
+
 const Global = ({isLoggedIn, getUserData, userProfile}) => { 
-    console.log('global.tsx isLoggedIn', isLoggedIn,);
+    // console.log('global.tsx isLoggedIn', isLoggedIn,);
     useEffect(() => {
         if(isLoggedIn){
             getUserData();       
@@ -45,7 +47,7 @@ const Global = ({isLoggedIn, getUserData, userProfile}) => {
 
     useEffect(() => {
         if(userProfile && userProfile.id){
-            console.log('userProfile.name',userProfile.name);   
+            // console.log('userProfile.name',userProfile.name);   
         }
     }, [userProfile.id]); 
 

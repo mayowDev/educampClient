@@ -30,6 +30,7 @@ instance.interceptors.response.use(response =>{return response}, error => {
         if(!expectdError){
             toast.error(error.message)
         }else{
+            console.log('error.response', error.response.data)
             const errorArray = error.response.data.message.split(",")
             errorArray.map(err=> err.length > 1 && toast.error(err));
         }

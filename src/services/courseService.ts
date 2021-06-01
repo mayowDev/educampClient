@@ -68,28 +68,28 @@ export const getCourse = async (id) => {
     }
 };
 
-export const getCoursesByBootcamp = async (bootcampId) => {
-    try {
-        const result = await axios.get(`/bootcamps/${bootcampId}/courses/`)
-        .catch((err: any) => {
-            console.log('err = ', err);
-            if (err && err.response && err.response.status === 400) {
-                return Promise.reject(
-                    new Error("Request failed with status code 400")
-                );
-            }
-            return Promise.reject(new Error(JSON.stringify(err.response.data)));
-        });
-        console.log('createCourse = ', result)
-        if (result) {
-            return result.data;
-        }
-    } catch (e) {
-        return Promise.reject(new Error(e.message));
-    }
-};
+// export const getCoursesByBootcamp = async (bootcampId) => {
+//     try {
+//         const result = await axios.get(`/bootcamps/${bootcampId}/courses/`)
+//         .catch((err: any) => {
+//             console.log('err = ', err);
+//             if (err && err.response && err.response.status === 400) {
+//                 return Promise.reject(
+//                     new Error("Request failed with status code 400")
+//                 );
+//             }
+//             return Promise.reject(new Error(JSON.stringify(err.response.data)));
+//         });
+//         console.log('createCourse = ', result)
+//         if (result) {
+//             return result.data;
+//         }
+//     } catch (e) {
+//         return Promise.reject(new Error(e.message));
+//     }
+// };
 
-export const createCourse = async (data, userId) => {
+export const createCourse = async (data) => {
     try {
         const result = await axios.post(`/courses/`, data)
         .catch((err: any) => {
@@ -101,7 +101,6 @@ export const createCourse = async (data, userId) => {
             }
             return Promise.reject(new Error(JSON.stringify(err.response.data)));
         });
-        console.log('createCourse = ', result)
         if (result) {
             return result.data;
         }
