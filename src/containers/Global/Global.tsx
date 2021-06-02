@@ -4,6 +4,7 @@ import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import HomePage from "../Home"
 import NotFound from "../../views/404/NoFound";
 import ProtectedRoute from '../../components/Common/protectedRoute'
+import Header from '../../components/Header'
 
 /** Auth components */
 import Login from '../Auth/Login';
@@ -53,6 +54,7 @@ const Global = ({isLoggedIn, getUserData, userProfile}) => {
 
     return (
         <BrowserRouter>
+            <Header/>
             <RenderRoutes isLoggedIn={isLoggedIn}/>
         </BrowserRouter>
     )

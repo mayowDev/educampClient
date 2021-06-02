@@ -5,7 +5,7 @@
   height: 24px;
   display: flex;
   flex-shrink: 0;
-  background: #1A1A1A;
+  // background: #1A1A1A;
   border: 0;
   border-radius: 50%;
   outline: 0;
@@ -17,6 +17,7 @@
 
   img {
     margin: auto;
+    // background-color: black;
     &.cross {
       width: 8px;
       height: 8px;
@@ -39,16 +40,26 @@
   &.user--profile {
     height: 10px;
     width: 10px;
+    background-color: black!important;
     margin-bottom: 0!important;
   }
-
-  &--secondary{
-    background: gray;
+  &.user--cart, &.user--favourites, &.user--notifications {
+    width: 40px;
+    background-color: white;
+    color: gray;
+    margin-right: 10px;
+    &.user--notifications {
+      margin-right: 30px;
+    }
   }
 
-  &:hover{
-    background: black;
-  }
+  // &--secondary{
+  //   // background: gray;
+  // }
+
+  // &:hover{
+  //   // background: black;
+  // }
   @media screen and (max-width: 768px){
     &:hover{
       background: black!important;

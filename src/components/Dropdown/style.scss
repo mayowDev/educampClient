@@ -7,10 +7,10 @@
           display: block;    
           margin-top: 1px;
         }
-        .dropbtn {background-color: black;}
+        .dropbtn {background-color: black!important;}
     } 
     .dropbtn {
-        background-color: black;
+        background-color: black!important;
         color: white;
         padding: 10px;
         border-radius: 45px;
@@ -33,7 +33,7 @@
         text-decoration: none;
         text-align: center;
         display: block;
-        &:hover {background-color: #f1f1f1;}
+        // &:hover {background-color: #f1f1f1;}
       }
       .logout-btn{
         background-color:black;

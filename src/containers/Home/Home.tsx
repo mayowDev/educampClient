@@ -5,16 +5,13 @@ import qs from 'querystring';
 import {H1, H2, H3, P1, SubTitle} from '../../components/Typography';
 import Button from '../../components/Button';
 import {LOCAL_STORAGE_KEYS} from "../../components/Constants"
-import Header from '../../components/Header'
-
 import {IHomeProps} from './types';
 
-const HomePage = ({isLoggedIn, user, isLoading}) => {
+const HomePage = ({isLoggedIn, isLoading}) => {
     //const {isLoggedIn,  courses,  fetchCourses} = props;
     const history = useHistory()
     const query = qs.parse(history.location.search)  
     const token = query["?googleId"]
-    console.log('token', token)
     if(token) {
         const isUser =Boolean(token)
         localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, isUser.toString())
@@ -24,7 +21,6 @@ const HomePage = ({isLoggedIn, user, isLoading}) => {
     
     return (
         <>
-        <Header/>
         <section className='home'>
             <div className='home__container'>
                 <H1 className='home__heading dark' value='Course on demand: a new way to learn any skill without leaving your home.' />

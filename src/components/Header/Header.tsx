@@ -1,6 +1,6 @@
 import React, { useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
-import Logo from '../../assets/images/logo-white@2x.png';
+import Logo from '../../assets/images/udemy-logo-coral.svg';
 import {IHeaderProps} from './types';
 import MenuItem from '../MenuItem';
 import Button from '../Button';
@@ -16,10 +16,10 @@ const Header: React.FC<IHeaderProps> = (props) => {
     const [navBright, setNavBright] = useState(false);
 
     const handleSearchChange = (value) => {
-        if (value?.length > 2 && history.location.pathname !== "/search") {
-            history.push('/search')
-        }
-        if(changeSearch) changeSearch(value);
+        // if (value?.length > 2 && history.location.pathname !== "/search") {
+        //     history.push('/search')
+        // }
+        // if(changeSearch) changeSearch(value);
     };
 
     const handleLogout =async ()=>{
@@ -29,20 +29,26 @@ const Header: React.FC<IHeaderProps> = (props) => {
     const isLinkActive = (route) => {
         return routeName === route ? "active" : '';
     };
+    const handleMouseEnter = ()=>{
+        console.log(onmouseenter)
+        // alert('onmouseenter')
+    }
 
     return (
         <>
             <header className={`header ${history.location.pathname === '/' && ''} ${!isHome ? 'header--bright' : 'header--default'} ${isHome && nav ? 'active' : ''} ${!isHome && navBright ? 'active' : ''} ${isProfile ? 'header--gray' : ''}  ${isLoggedIn ? 'header--logged-in' : ''}`}>     
-                <div className="header--flex">
+                <div className="header--flex -one">
                     <Link to='/' className='header__logo'>
-                        <img src={Logo} alt="Logo" height={14} onClick={() => setNav(false)}/>
+                        <img src={Logo} alt="Logo" height={18} onClick={() => setNav(false)}/>
                     </Link>
+                    {/* <Link to='/' className='category'>Categories</Link> */}
+                    <MenuItem value=" Categories" to="/categories"/>
                     <label
                         className={`search_bar `}>
-                        <MenuItem value="Search" to="/search"/>
                         <input value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)}
                                 autoFocus={true}
                                 type="text"
+                                placeholder="Search anything"
                         />
                     </label>
                 </div>
@@ -65,23 +71,26 @@ const Header: React.FC<IHeaderProps> = (props) => {
                                 {
                                 !isLoggedIn &&
                                 <>
+                                    <IconBtn onMouseEnter={handleMouseEnter} onClick={e=> alert("Your cart is empty!")} className="user--cart" type="cart" />
                                     <Button value='Sign In' actionType='login' type='primary' to='/login'/> 
                                     <Button value='Sign Up' actionType='register' type='primary' to='/register'/> 
                                 </>
                                 }
                             </li>
                             {isLoggedIn &&
+                            <>
+                                <IconBtn onClick={e=> alert("Your cart is empty!")} className="user--cart" type="cart" />
+                                <IconBtn className="user--favourites" type="heart" />
+                                <IconBtn className="user--notifications" type="bell" />
                                 <li  className={!isLoggedIn ? 'not-logged-in' : 'logged-in'}>
-                                    <div className={`${isLinkActive('/profile')}`}>
-                                        <Dropdown icon={<IconBtn className="user--profile" type="user" />}>
-                                            <Link to="/profile">My Profile</Link>
-                                            <Link to="/settings">Settings</Link>
-                                            <Link to="/help">Help</Link>
-                                            <Link className="logout-btn" to="/" onClick={()=>handleLogout()}>Logout</Link>
-                                        </Dropdown>
-                                    
-                                    </div>
+                                    <Dropdown icon={<IconBtn className="user--profile" type="user" />}>
+                                        <Link to="/profile">My Profile</Link>
+                                        <Link to="/settings">Settings</Link>
+                                        <Link to="/help">Help</Link>
+                                        <Link className="logout-btn" to="/" onClick={()=>handleLogout()}>Logout</Link>
+                                    </Dropdown>                                    
                                 </li>
+                            </>
                             }
                             
 
