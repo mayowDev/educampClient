@@ -4,7 +4,7 @@ import {toast} from 'react-toastify';
 import Spinner from '../../components/Spinner';
 
 const EditCourse = (props) => {
-    const {fetchCourse, courseDetails, updateCourse, currentUser, isLoading, isCourseUpdated} = props
+    const {fetchCourse, getUserData, courseDetails, updateCourse, userProfile, isLoading, isCourseUpdated} = props
     const [title, setTitle] =  useState('');
     const [thumbnail, setThumbnail] = useState('');
     const [description, setDescription] = useState('');
@@ -15,7 +15,8 @@ const EditCourse = (props) => {
     const courseId = props.match.params.id
 
     useEffect(() => {
-        fetchCourse(courseId)
+        fetchCourse(courseId);
+        getUserData();
     },[])
 
     useEffect(() => {
@@ -31,11 +32,11 @@ const EditCourse = (props) => {
     }, [courseDetails.id]); 
 
     useEffect(() => {
-        if(currentUser && currentUser.id !== owner){
-            console.log('owner', currentUser.id, owner);
-            history.replace(("/"))
+        if(userProfile && !!owner && userProfile.id !==  owner){
+            // console.log('courseOwner',owner, 'current', userProfile.id);
+            history.replace("/")
         }
-    },[currentUser && currentUser.id])
+    },[userProfile && userProfile.id])
 
     const handleUpdateCourseDetails = async (e) =>{
         e.preventDefault();
@@ -44,8 +45,9 @@ const EditCourse = (props) => {
     }
     useEffect(() => {
         if(isCourseUpdated) {
+            console.log('isCourseUpdated', isCourseUpdated)
             toast.dark('Course Updated Successfully')
-            history.push('/courses')
+            history.push('/profile')
         }
     }, [isCourseUpdated])
 
@@ -87,8 +89,8 @@ const EditCourse = (props) => {
                         {handleDisableButton()&&
                         <div className="cta-btn-section">
                             
-                            <button onClick={handleUpdateCourseDetails} type="submit" className="btn">Save changes</button>
-                            <button onClick={handleResetCourseDetails} type="reset" className="btn">Cancel changes</button>
+                            <button onClick={e=> handleUpdateCourseDetails(e)} type="submit" className="btn">Save changes</button>
+                            <button onClick={e=>  handleResetCourseDetails} type="reset" className="btn">Cancel changes</button>
                         </div>
                         }
                 </form>

@@ -1,13 +1,8 @@
-
-//getAllUsers
-//getUser
-// https://api-geekcamp.herokuapp.com/api/v1
 import axios from "./axios";
-import {LOCAL_STORAGE_KEYS} from "../components/Constants"
 
-export const createUser = async (data) => {
+export const getAllUsers = async () =>{
     try {
-        const result = await axios.post(`/users/`, data)
+        const result = await axios.get(`/users/`)
             .catch((err: any) => {
                 if (err && err.response && err.response.status === 400) {
                     return Promise.reject(
@@ -24,45 +19,9 @@ export const createUser = async (data) => {
     }
 }
 
-export const login = async (email: string, password: string) => {
-    const result = await axios.post("/auth/signin", {
-            email, password,
-        })
-        .catch((err: any) => {
-            return Promise.reject(err.response);
-        });
-    if (result && result.data && result.data.token) {
-        //handle session here
-        localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, JSON.stringify(result.data.token))
-        return result && result.data
-    }
-};
-
-export const loginWithGoogle = async () => {
-    const result = await axios.get("/auth/google")
-        .catch((err: any) => {
-            return Promise.reject(err.response);
-        });
-    if (result && result.data && result.data) {
-        //handle session here
-        return result && result.data
-    }
-};
-
-export const loginWithFacebook = async () => {
-    const result = await axios.get("/auth/facebook")
-        .catch((err: any) => {
-            return Promise.reject(err.response);
-        });
-    if (result && result.data) {
-        //handle session here
-        return result && result.data
-    }
-};
-
-export const forgotPassword = async (data:string) => {
+export const getUser = async (id) => {
     try {
-        const result = await axios.post("/auth/forgot", data)
+        const result = await axios.get(`/users/${id}`)
             .catch((err: any) => {
                 console.log('err = ', err);
                 if (err && err.response && err.response.status === 400) {
@@ -70,19 +29,19 @@ export const forgotPassword = async (data:string) => {
                         new Error("Request failed with status code 400")
                     );
                 }
-                return Promise.reject(new Error(JSON.stringify(err)));
+                return Promise.reject(new Error(JSON.stringify(err.response.data)));
             });
-        return result && result.data;
+        if (result) {
+            return result.data;
+        }
     } catch (e) {
-        console.log('e = ', e);
-
         return Promise.reject(new Error(e.message));
     }
 };
 
-export const resetPassword = async (data, resettoken) => {
+export const createUser = async (data) => {
     try {
-        const result = await axios.put(`/auth/${resettoken}`, data)
+        const result = await axios.post(`/users/`, data)
             .catch((err: any) => {
                 if (err && err.response && err.response.status === 400) {
                     return Promise.reject(
@@ -91,7 +50,9 @@ export const resetPassword = async (data, resettoken) => {
                 }
                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
             });
-        return result && result.data;
+        if (result) {
+            return result.data;
+        }
     } catch (e) {
         return Promise.reject(new Error(e.message));
     }
@@ -114,10 +75,9 @@ export const updatePassword = async (data) => {
     }
 }
 
-export const updateProfile = async (data) => {
-    console.log('data in Apis', data);
+export const updateUserDetails = async (id, data) => {
     try {
-        const result = await axios.put(`/auth/me`, data)
+        const result = await axios.put(`/users/${id}`, data)
             .catch((err: any) => {
                 console.log('err = ', err);
                 if (err && err.response && err.response.status === 400) {
@@ -156,25 +116,7 @@ export const updateProfileImage = async (data) => {
     }
 };
 
-export const getUserProfile = async () => {
-    try {
-        const result = await axios.get(`/auth/me`)
-            .catch((err: any) => {
-                console.log('err = ', err);
-                if (err && err.response && err.response.status === 400) {
-                    return Promise.reject(
-                        new Error("Request failed with status code 400")
-                    );
-                }
-                return Promise.reject(new Error(JSON.stringify(err.response.data)));
-            });
-        if (result) {
-            return result.data;
-        }
-    } catch (e) {
-        return Promise.reject(new Error(e.message));
-    }
-};
+
 
 export const fetchFavourites = async () => {
     try {
@@ -197,29 +139,9 @@ export const fetchFavourites = async () => {
     }
 };
 
-export const logout = async () => {
-    try {
-        const result = await axios.get(`/auth/`)
-            .catch((err: any) => {
-                console.log('err = ', err);
-                if (err && err.response && err.response.status === 400) {
-                    return Promise.reject(
-                        new Error("Request failed with status code 400")
-                    );
-                }
-                return Promise.reject(new Error(JSON.stringify(err.response.data)));
-            });
-        if (result) {
-            return result.data;
-        }
-    } catch (e) {
-        return Promise.reject(new Error(e.message));
-    }
-};
-
 export const deleteAccount = async (email) => {
     try {
-        const result = await axios.delete(`/auth/me`, email)
+        const result = await axios.delete(`/users/`, email)
             .catch((err: any) => {
                 console.log('err = ', err);
                 if (err && err.response && err.response.status === 400) {

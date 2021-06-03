@@ -4,3 +4,11 @@
     }
 
 }
+.courses-wrapper{
+    margin: 0 155px;
+    .courses-cards{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

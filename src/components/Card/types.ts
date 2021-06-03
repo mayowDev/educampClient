@@ -21,8 +21,6 @@ export interface ICardProps {
     handleRegister?: () => void,
     handleUnRegister?: () => void,
     registered?: boolean,
-    bootcamp?: boolean,
-    bootcampName?: string,
     course?: boolean,
     courseName?: string,
     defaultEvent?: boolean,

@@ -63,7 +63,7 @@ module.exports={
         //   })
 
     ],
-    devtool: 'inline-source-map',
+    devtool: 'inline-source-map',//"source-map"
     devServer:{
         historyApiFallback:true,
         port:3000,

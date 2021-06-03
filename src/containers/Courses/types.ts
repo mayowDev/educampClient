@@ -31,7 +31,6 @@ export interface ICourseDetails{
     minimumskill?:SkillLevel,
     scholarshipavailable?:boolean,
     coursecontent?:string[],
-    bootcampid?: string,
     userid?: string,
     published?: boolean,
     thumbnail?:string,

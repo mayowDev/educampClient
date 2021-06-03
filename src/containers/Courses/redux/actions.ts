@@ -6,7 +6,6 @@ import * as API from "../../../services"
 
 export const fetchCourses = () => async dispatch => {
   const response = await API.getAllCourses()
-  console.log('FETCH_COURSES action => ', response.success);
   if(!response.success){
     dispatch({
       type: API_ERROR,
@@ -39,7 +38,6 @@ export const fetchCourse = (id) => async dispatch => {
 export const createCourse = (data)=> async dispatch =>{
   try {
     const response = await API.createCourse(data)
-    console.log('CREATE_COURSE action => ', response);
     if(response.success){
       dispatch({
         type: CREATE_COURSE,
@@ -57,7 +55,6 @@ export const createCourse = (data)=> async dispatch =>{
 export const updateCourse = (id, data)=> async dispatch =>{
   try {
     const response = await API.updateCourse(id, data)
-    console.log('UPDATE_COURSE action => ', response);
     dispatch({
       type: UPDATE_COURSE,
       payload: response

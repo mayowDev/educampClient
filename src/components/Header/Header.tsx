@@ -10,7 +10,6 @@ import Dropdown from '../Dropdown';
 
 const Header: React.FC<IHeaderProps> = (props) => {
     const {  isLoggedIn,routeName,changeSearch,searchQuery,isHome, isProfile, logout} = props;    
-    console.log('isLoggedIn', isLoggedIn)
     const history = useHistory();
     const [nav, setNav] = useState(false);
     const [navBright, setNavBright] = useState(false);
@@ -78,10 +77,16 @@ const Header: React.FC<IHeaderProps> = (props) => {
                                 }
                             </li>
                             {isLoggedIn &&
-                            <>
-                                <IconBtn onClick={e=> alert("Your cart is empty!")} className="user--cart" type="cart" />
-                                <IconBtn className="user--favourites" type="heart" />
-                                <IconBtn className="user--notifications" type="bell" />
+                            <> 
+                                <Dropdown type="cart" icon={<IconBtn onClick={e=> alert("Your cart is empty!")} className="user--cart" type="cart" />}>
+                                    <div className="cart-items">Your cart is Empty</div>
+                                </Dropdown>
+                                <Dropdown type="cart" icon={<IconBtn onClick={e=> alert("Your wishlist is empty!")} className="user--favourites" type="heart" />}>
+                                    <div className="facourite-items">Your wishlist is Empty</div>
+                                </Dropdown>
+                                <Dropdown type="cart" icon={<IconBtn onClick={e=> alert("Your have no Notifications")} className="user--notifications" type="bell" />}>
+                                    <div className="facourite-items">No notifications</div>
+                                </Dropdown>
                                 <li  className={!isLoggedIn ? 'not-logged-in' : 'logged-in'}>
                                     <Dropdown icon={<IconBtn className="user--profile" type="user" />}>
                                         <Link to="/profile">My Profile</Link>

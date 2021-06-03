@@ -1,7 +1,5 @@
 
 import axios from "./axios";
-// import axios from "axios";
-import {ICreateBootcamp} from './types'
 
 export const getAllBootcamps = async () => {
     try {
@@ -65,7 +63,7 @@ export const getBootcampByDistance = async (zipcode:number, distance:number) => 
     }
 };
 
-export const createBootcamp = async (data:ICreateBootcamp) => {
+export const createBootcamp = async (data) => {
     try {
         const result = await axios.post(`/bootcamps/`, data)
         .catch((err: any) => {

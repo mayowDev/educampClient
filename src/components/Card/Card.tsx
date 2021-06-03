@@ -1,39 +1,26 @@
 import React from 'react';
-import {H2, P1, P3,} from '../Typography';
-
+import {H2, P1} from '../Typography';
 import {ICardProps} from './types';
-import './style.scss';
-
 import Button from "../Button";
 import ImageLoader from "../ImageLoader";
 import defaultCourseImage from "../../assets/images/defaultCourseImage.png"
 import ScrollAnimation from "../ScrollAnimation/ScrollAnimation";
+import './style.scss';
 
-const Card: React.FC<ICardProps> = ({style,    event, imgSrc=defaultCourseImage, title, description, onClick, 
-    horizontal, address,  handleRegister, handleUnRegister, noBorder, registered, className, course, noFade}) => {
 
-    // const [isdisable, handleDisable] = useState(false);
-    // const [isInfo, handleInfo] = useState(false);
+const Card: React.FC<ICardProps> = ({imgSrc=defaultCourseImage, title, description, onClick, 
+    horizontal,  handleRegister, handleUnRegister, registered, noFade}) => {
 
     const RenderContent = () => (
         <>
-            <div
-                className={`card ${horizontal ? '' : 'card--horizontal'} ${event ? 'card--event' : ''} ${noBorder ? 'no-border' : ''} ${className || ''} 
-                ${course ? 'card--course' : ''}`}
-                onClick={ () => {console.log('course onClick ')}} style={style || undefined}
-                >
-
-                <div className={`img ${address ? 'address' : ''}`}>
+            <div className={`card ${horizontal ? '' : 'card--horizontal'}`} onClick={ () => {console.log('course onClick ')}}>
+                <div className={`card__img`}>
                     <ImageLoader imgUrls={Array.isArray(imgSrc) ? [...imgSrc] : [imgSrc]}/>
                 </div>
-
-                <div className={`${title ? 'right' : ''}`}>
+                <div className={`card__content`}>
                     <H2 value={title}/>
-                    
-                    
                     <P1 className="description" value={description || 'loremipsum'}/>
-                   
-                    <div className='buttons-flex'>
+                    {/* <div className='buttons-flex'>
                         <Button
                             value='Learn more'
                             size="medium"
@@ -61,7 +48,7 @@ const Card: React.FC<ICardProps> = ({style,    event, imgSrc=defaultCourseImage,
                             </>
                         }
 
-                    </div>
+                    </div> */}
                     
                 </div>
             </div>

@@ -1,3 +1,3 @@
 export interface IResponseType{
-    bootcamps: Object
+    courses: Object
 }

@@ -49,7 +49,7 @@ const ImageLoader: React.FC<ImageLoaderProps> = memo(({imgUrls, isOverlayed, onC
     return (
         <div className={isLoading ? "image-loader-container image-loading" : "image-loader"} style={style ? style : {}}>
 
-            <img width={1154} onLoad={ () => setLoading(false)} height={721} onClick={onClick && onClick} src={imgSrc} className={`${isLoading ? " actual-image anime-loader" : " actual-image"} `}/>
+            <img width={540} onLoad={ () => setLoading(false)} height={721} onClick={onClick && onClick} src={imgSrc} className={`${isLoading ? " actual-image anime-loader" : " actual-image"} `}/>
 
             {
                 isLoading && <Loader />

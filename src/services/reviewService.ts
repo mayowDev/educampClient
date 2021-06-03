@@ -43,26 +43,6 @@ export const getReview = async (id) => {
     }
 };
 
-export const getBootcampReviews = async (id) => {
-    try {
-        const result = await axios.get(`/bootcamps/${id}/reviews`)
-        .catch((err: any) => {
-            console.log('err = ', err);
-            if (err && err.response && err.response.status === 400) {
-                return Promise.reject(
-                    new Error("Request failed with status code 400")
-                );
-            }
-            return Promise.reject(new Error(JSON.stringify(err.response.data)));
-        });
-        console.log('getBootcampReviews = ', result)
-        if (result) {
-            return result.data;
-        }
-    } catch (e) {
-        return Promise.reject(new Error(e.message));
-    }
-};
 
 export const createReview = async (data) => {
     try {

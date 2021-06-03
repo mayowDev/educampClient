@@ -1,14 +1,17 @@
-import React, {useEffect, useState, Fragment} from 'react';
-import {Link,NavLink, useHistory} from 'react-router-dom'
+import React, {useEffect, useState} from 'react';
+import { useHistory} from 'react-router-dom'
 import {toast} from 'react-toastify'
-import {H1, H3, P2, P1, Title} from '../../../components/Typography'
+import { P2,  Title} from '../../../components/Typography'
 // import Input from '../../../components/Input'
 import Button from '../../../components/Button'
 import Spinner from '../../../components/Spinner'
+// import Card from '../../../components/Card'
+import Pagination from "../../../components/Common/Pagination";
+import { paginate } from "../../../utils/paginate";
 
 
 const Profile = (props) => {    
-    const {isLoading, getUserData, updateProfileImage, updatePassword, updateProfileData, isProfileUpdated, isProfileImgUpdated, userProfile, logout, deleteAccount} = props;
+    const {isLoading, getUserData, fetchCourses, courses, updateProfileImage, updatePassword, updateProfileData, isProfileUpdated, isProfileImgUpdated, userProfile, logout, deleteAccount} = props;
     // console.log('this logs on each key, so use memo ' + userProfile)
 
     const [name, setName] = useState('')
@@ -21,18 +24,31 @@ const Profile = (props) => {
     const [errorMsg,setErrMsg] = useState('');
     const [photoChanged,setPhotoChanged] = useState(false)
     const [photoFile, setPhotoFile] = useState('')
-    const [photo, setPhoto] = useState('')
-    // const [activeTab, setActiveTab] = useState('details');
+    const [photo, setPhoto] = useState('');
+    const [currentPage,setCurrentPage] =  useState(0)
+    const [pageSize, setPageSize] = useState(6)
+    const [currentUserCourses, setUserCourses] = useState([])
+    const [activeTab, setActiveTab] = useState('details');
     const history = useHistory()
+
+    useEffect(() => {
+        fetchCourses();
+        getUserData();
+    }, []);
+
     useEffect(() => {
         if(userProfile && userProfile.id){
             const {  name, email, avatar } = userProfile;
             setName(name);
             setEmail(email);
-            setPhoto(avatar)     
+            setPhoto(avatar)   
+            if(courses && courses.length > 0){ 
+                const myCourses = courses.map(course=> course.UserId === userProfile.id && course )
+                setUserCourses(myCourses)
+            }  
         }
-    }, [userProfile.id]); 
-
+    }, [userProfile && userProfile.id, courses && courses.length]); 
+   
     const isPasswordValid = (pass:string) => {
         return pass.length > 7 && /^(?=.*\d)(?=.*[!@$*()]).{8,}$/i.test(pass)
     };
@@ -113,7 +129,14 @@ const Profile = (props) => {
         setPhotoChanged(false)
         toast.dark("Profile image updated succesfully")
     }
+    const handleEditCourse = (id)=>{
+        history.push(`/courses/edit/${id}`)
+    }
+    const movies = paginate(currentUserCourses, pageSize, currentPage);
 
+    const handlePageChange = page => {
+        setCurrentPage(page);
+    };
     return (
         <>
         <div className="background-hero">
@@ -121,8 +144,8 @@ const Profile = (props) => {
         </div>
         {
             isLoading?<Spinner/>:
-            <div className='profile'>
-            <div className="profile__sidebar">
+            <div className={`profile ${activeTab === "courses" && 'profile__courses'}`}>
+            <div className={`profile__sidebar ${activeTab === "courses" && 'profile__sidebar-courses'}`}>
                 <div className="user-info">
                     <div className={`image-wrapper`}>
                           <label>
@@ -160,17 +183,16 @@ const Profile = (props) => {
                           </label>
                         </div>
                 </div>
-                <ul className="nav-links">
-                    <NavLink to="/courses">Courses</NavLink>
-                    <NavLink to="/payments">Payment Methods</NavLink>
-                    <NavLink to="#">Change Password</NavLink>
-
-                    <NavLink to="#">Delete Account</NavLink>
+                <ul className={`nav-links ${activeTab === "courses" && 'nav-links-courses'}`}>
+                    <li onClick={() => setActiveTab("details")}>Account Setting</li>
+                    <li onClick={() => setActiveTab("courses")}>Courses</li>
+                    <li onClick={() => setActiveTab("payments")}>Payment Methods</li>
+                    {/* <li onClick={() => setActiveTab("password")}>Change Password</li> */}
                 </ul>
             </div>
-
-			<div className="profile__edit-details">				
-                <form className="details-form">
+            { activeTab === "details" &&
+                <div className="profile__edit-details">
+                    <form className="details-form">
                         <h4> Edit Profile Details</h4>
                         <div className="form-group">
                             <label className="form-label">Name</label>
@@ -188,8 +210,8 @@ const Profile = (props) => {
                             <button onClick={handleUpdateUserDetails} type="submit" className="btn">Save changes</button>
                             <button type="reset" className="btn">Cancel</button>
                         </div>
-                </form>
-                <form className="password-form">
+                    </form>
+                    <form className="password-form">
                         <h4> Change Password</h4>
                         <div className="form-group">
                             <label className="form-label">Current Password</label>
@@ -220,26 +242,62 @@ const Profile = (props) => {
                                 <button onClick={handlePasswordChangeDiscard} type="reset" className="btn">Discard Changes</button>
                             </div>
                         }
-                </form>
-                <div className="danger-area">
-                    <h4 className="social__section">Delete Account</h4>
-                    <p>Once you delete your account, there is no going back. Please be certain.</p>
-                    <div className="form-group">
-                            <label className="form-label">Email</label>
-                            <div className="input-container">
-                                <input autoComplete="off" name="deleteEmail" id="deleteEmail" 
-                                value={deleteEmail} 
-                                onChange={(e) => setDeleteEmail(e.target.value)} className="form-control" type="email"  
-                                placeholder="Enter your email to delete this account"/>
-                            </div>
-                    </div>
-                    {validEmail() &&
-                        <div onClick={handleDeleteAccount} className="delete-btn-container">
-                            <Button value="Delete Your Account"/>
+                    </form>
+                    <div className="danger-area">
+                        <h4 className="social__section">Delete Account</h4>
+                        <p>Once you delete your account, there is no going back. Please be certain.</p>
+                        <div className="form-group">
+                                <label className="form-label">Email</label>
+                                <div className="input-container">
+                                    <input autoComplete="off" name="deleteEmail" id="deleteEmail" 
+                                    value={deleteEmail} 
+                                    onChange={(e) => setDeleteEmail(e.target.value)} className="form-control" type="email"  
+                                    placeholder="Enter your email to delete this account"/>
+                                </div>
                         </div>
+                        {validEmail() &&
+                            <div onClick={handleDeleteAccount} className="delete-btn-container">
+                                <Button value="Delete Your Account"/>
+                            </div>
+                        }
+                 </div>
+                </div>
+            }
+            { activeTab === "courses" &&
+            <>
+                <h1>Courses teached by  Mr {name}</h1>
+                <div className="courses-container">
+                    { currentUserCourses && currentUserCourses.map((course: any) => {
+                        console.log('currentUserCourses.length', currentUserCourses.length)
+                            const {id,  title, description, slug, duration, price, minimumskill,scholarshipavailable, published, image, courseContent} = course;                                    
+                            return (
+                                    //data-aos="fade-up" data-aos-duration="500"
+                                    <div key={id} className="courses-container__card">
+                                        <Title value={title}/>
+                                        <img src={image&&image} alt="" />
+                                        <p>{description}</p>
+                                        <div className="cta-btn">
+                                            <Button type="primary" value="Edit Course" onClick={e=> handleEditCourse(id)}/>
+                                            <Button type="primary" value="Delete Course" onClick={e=> alert("Delet Course ")}/>
+
+                                        </div>
+                                    </div>
+                            )
+                        })
                     }
                 </div>
-			</div>
+                <Pagination
+                        itemsCount={currentUserCourses.length}
+                        pageSize={3}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                />
+                </>
+            }
+            { activeTab === "payments" && 
+                <h1> payment settings for {name}</h1>
+            
+            }
         </div>
         }
     </>

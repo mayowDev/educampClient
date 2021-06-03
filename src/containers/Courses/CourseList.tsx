@@ -5,7 +5,6 @@ import Card from "../../components/Card";
 import {H1} from '../../components/Typography'
 import Spinner from '../../components/Spinner';
 // import {paginate} from '../../utils/paginate'
-// import Dropdown from "../../components/Dropdown";
 
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 
@@ -31,8 +30,8 @@ const Courses = (props) => {
 
     return (
         <ScrollAnimation>
-            <div className="courses-wrapper container">
-                <div className="flex">
+            <div className="courses-wrapper">
+                <div className="course-title">
                     <H1 className='big' value='Courses'/>
                 </div>
                 {
@@ -40,7 +39,7 @@ const Courses = (props) => {
                         <Spinner type="cover" />
                         :
                         // @ts-ignore
-                        <div className="cards-container courses-cards" ref={infiniteRef}>
+                        <div className="courses-cards" ref={infiniteRef}>
                             {
                                 courses && courses.map((course: any) => {
                                     console.log('courses.tsx',course)
