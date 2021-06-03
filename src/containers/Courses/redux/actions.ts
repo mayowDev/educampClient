@@ -71,10 +71,12 @@ export const deleteCourse = (id:string) => async dispatch => {
   try {
     const response = await API.deleteCourse(id)
     console.log('DELETE_COURSE action => ', response);
-    dispatch({
-      type: DELETE_COURSE,
-      payload: response
-    })
+    if(response.success){
+      dispatch({
+        type: DELETE_COURSE,
+        payload: {id, response}
+      })
+    }
   } catch (error) {
     console.log('deleteCourseError', error);
     dispatch({

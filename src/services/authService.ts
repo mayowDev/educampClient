@@ -72,7 +72,6 @@ export const login = async (data:ITypeLoginData) => {
         });
     if (result && result.data) {
         const isUser =Boolean(result.data.data)
-        console.log('isUser' ,result.data, isUser)
         localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, isUser.toString())
         return result && result.data
     }

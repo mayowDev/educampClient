@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import Profile from './Profile'
 import {getUserData, logout, updateProfileData, updateProfileImage, updatePassword, deleteAccount } from '../redux/actions'
-import {fetchCourses} from '../../Courses/redux/actions'
+import {fetchCourses, deleteCourse} from '../../Courses/redux/actions'
 import './style.scss'
 const mapStatesToProps = ( {auth, courses}) => {  
   // console.log('profile auth',auth);
@@ -13,6 +13,7 @@ const mapStatesToProps = ( {auth, courses}) => {
     isProfileUpdated: auth.isProfileUpdated,
     isProfileImgUpdated: auth.isProfileImgUpdated,
     courses: courses.coursesList,
+    isCourseDeleted: courses.isCourseDeleted,
   }
 }
 
@@ -23,6 +24,7 @@ const mapDispatchToProps = dispatch => ({
   updateProfileImage:(imgFile)=> dispatch(updateProfileImage(imgFile)),
   updatePassword:(data)=> dispatch(updatePassword(data)),
   deleteAccount:(email:string)=> dispatch(deleteAccount(email)),
+  deleteCourse:(id)=> dispatch(deleteCourse(id)),
   logout:()=> dispatch(logout())
 })
 

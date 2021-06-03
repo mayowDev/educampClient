@@ -164,7 +164,6 @@ export const deleteCourse = async (id) => {
             }
             return Promise.reject(new Error(JSON.stringify(err.response.data)));
         });
-        console.log('createCourse = ', result)
         if (result) {
             return result.data;
         }

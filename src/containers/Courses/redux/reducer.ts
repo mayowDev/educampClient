@@ -1,4 +1,4 @@
-import {FETCH_COURSES, CREATE_COURSE, FETCH_COURSE, UPDATE_COURSE, API_ERROR,  LOADING, SORT_COURSES} from './constants'
+import {FETCH_COURSES, CREATE_COURSE, FETCH_COURSE, UPDATE_COURSE, API_ERROR, DELETE_COURSE, LOADING, SORT_COURSES} from './constants'
 
 
 const initialState = {
@@ -6,6 +6,7 @@ const initialState = {
     courseDetails:{},
     isCourseCreated: false,
     isCourseUpdated: false,
+    isCourseDeleted: false,
     canLoadMore: true,
     apiError: false,
     loading:false,
@@ -35,7 +36,6 @@ export default(state = initialState, action)=>{
                 loading: false
             }
         case CREATE_COURSE: 
-        console.log('isCourseCreated reducer', action.payload.success,)
             return {
                 ...state,
                 isCourseCreated: action.payload.success,
@@ -48,13 +48,20 @@ export default(state = initialState, action)=>{
                 courseDetails: {...action.payload},
                 loading: false,
             }
+        case DELETE_COURSE: 
+        return {
+            ...state,
+            //@ts-ignore
+            coursesList: state.coursesList.filter(course=> course.id !== action.payload.id),
+            isCourseDeleted: action.payload.response.success,
+            loading :false
+        }
         case SORT_COURSES:
             console.log('SORT_COURSES = ', action.payload);
             return {...state, sortBy: action.payload};
         case API_ERROR: 
         return{
             ...state,
-            // courses:  [],
             loading: false,
             apiError:true
         }

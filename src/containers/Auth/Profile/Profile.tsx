@@ -11,8 +11,8 @@ import { paginate } from "../../../utils/paginate";
 
 
 const Profile = (props) => {    
-    const {isLoading, getUserData, fetchCourses, courses, updateProfileImage, updatePassword, updateProfileData, isProfileUpdated, isProfileImgUpdated, userProfile, logout, deleteAccount} = props;
-    // console.log('this logs on each key, so use memo ' + userProfile)
+    const {isLoading, getUserData, fetchCourses, courses, updateProfileImage, updatePassword, updateProfileData, isProfileUpdated, 
+        isProfileImgUpdated, userProfile, logout, deleteCourse, deleteAccount, isCourseDeleted} = props;
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -118,7 +118,9 @@ const Profile = (props) => {
                 setErrMsg('');
             } else {
                 toast.error('Only file with the extension of jpeg, jpg, png and gif are allowed!');
-                setPhotoChanged(false)
+                setPhotoChanged(false);
+                setPhotoFile('');
+                setPhoto('')
             }
         }
     };
@@ -132,8 +134,16 @@ const Profile = (props) => {
     const handleEditCourse = (id)=>{
         history.push(`/courses/edit/${id}`)
     }
-    const movies = paginate(currentUserCourses, pageSize, currentPage);
+    const handleDeleteCourse = async  (id)=>{
+        await deleteCourse(id)
+    }
+    useEffect(() => {
+        if(isCourseDeleted) {
+            toast.dark("Course was deleted succesfully")
+        }
+    }, [courses && courses.length])
 
+    // const crs = paginate(currentUserCourses, pageSize, currentPage);
     const handlePageChange = page => {
         setCurrentPage(page);
     };
@@ -268,7 +278,6 @@ const Profile = (props) => {
                 <h1>Courses teached by  Mr {name}</h1>
                 <div className="courses-container">
                     { currentUserCourses && currentUserCourses.map((course: any) => {
-                        console.log('currentUserCourses.length', currentUserCourses.length)
                             const {id,  title, description, slug, duration, price, minimumskill,scholarshipavailable, published, image, courseContent} = course;                                    
                             return (
                                     //data-aos="fade-up" data-aos-duration="500"
@@ -278,7 +287,7 @@ const Profile = (props) => {
                                         <p>{description}</p>
                                         <div className="cta-btn">
                                             <Button type="primary" value="Edit Course" onClick={e=> handleEditCourse(id)}/>
-                                            <Button type="primary" value="Delete Course" onClick={e=> alert("Delet Course ")}/>
+                                            <Button type="primary" value="Delete Course" onClick={e=> handleDeleteCourse(id)}/>
 
                                         </div>
                                     </div>
