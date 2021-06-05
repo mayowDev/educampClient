@@ -4,7 +4,6 @@ import {getUserData, logout, updateProfileData, updateProfileImage, updatePasswo
 import {fetchCourses, deleteCourse} from '../../Courses/redux/actions'
 import './style.scss'
 const mapStatesToProps = ( {auth, courses}) => {  
-  // console.log('profile auth',auth);
   return {
     isApiError: auth.isApiError,
     isLoading: auth.loading,

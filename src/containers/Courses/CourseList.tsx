@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {useHistory} from "react-router-dom";
 import useInfiniteScroll from 'react-infinite-scroll-hook';
 import Card from "../../components/Card";
@@ -10,20 +10,14 @@ import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 
 const Courses = (props) => {
     const history = useHistory()
-    const {   fetchCourses, courses, isLoading, canLoadMore,} = props;
-    // console.log('data,', data);
-    
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
-    useEffect(() => {
-        fetchCourses()
-    }, []);
+    const { courses, isLoading, canLoadMore,} = props;
 
     const handleCourseClick = (courseId: number) => {
         history.push(`/courses/${courseId}`)
     };
 
     const infiniteRef = useInfiniteScroll({
-        loading: isLoadingMore,
+        loading: isLoading,
         hasNextPage: canLoadMore,
         onLoadMore: ()=>{console.log("loading more content on scroll")}
     });
@@ -57,7 +51,7 @@ const Courses = (props) => {
                                 })
                             }
                             {
-                                isLoadingMore &&
+                                isLoading &&
                                 <Spinner/>
                             }
                         </div>

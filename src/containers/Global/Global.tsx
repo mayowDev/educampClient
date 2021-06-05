@@ -1,19 +1,16 @@
 import React, {lazy, Suspense, useEffect, useState} from 'react';
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
-/** Shared components */
 import HomePage from "../Home"
 import NotFound from "../../views/404/NoFound";
 import ProtectedRoute from '../../components/Common/protectedRoute'
 import Header from '../../components/Header'
-
-/** Auth components */
+import Footer from '../../components/Footer'
 import Login from '../Auth/Login';
 import SignUp from '../Auth/Signup';
 import Verify from '../Auth/Verify';
 import ForgotPassword from '../Auth/Forgot';
 import ResetPage from '../Auth/Reset'
 import ProfilePage from '../Auth/Profile'
-/** Course components */
 import Courses from "../Courses";
 
 const RenderRoutes = ({isLoggedIn}) => {  
@@ -38,17 +35,17 @@ const RenderRoutes = ({isLoggedIn}) => {
      )
 };
 
-const Global = ({isLoggedIn, getUserData, userProfile}) => { 
-    // console.log('global.tsx isLoggedIn', isLoggedIn,);
+const Global = ({isLoggedIn, getUserData, fetchCourses, userProfile}) => { 
     useEffect(() => {
         if(isLoggedIn){
             getUserData();       
-        }    
+        }
+        fetchCourses();
     }, []);
 
     useEffect(() => {
         if(userProfile && userProfile.id){
-            // console.log('userProfile.name',userProfile.name);   
+            console.log('username',userProfile.name);   
         }
     }, [userProfile.id]); 
 
@@ -56,6 +53,7 @@ const Global = ({isLoggedIn, getUserData, userProfile}) => {
         <BrowserRouter>
             <Header/>
             <RenderRoutes isLoggedIn={isLoggedIn}/>
+            <Footer/>
         </BrowserRouter>
     )
 };

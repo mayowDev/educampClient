@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import GlobalPage from './Global'
 import '../../assets/fonts/fonts.css'
 import { getUserData } from '../Auth/redux/actions';
+import {fetchCourses} from '../Courses/redux/actions'
 
 const mapStatesToProps = ({auth, courses}) => {    
     return {
@@ -13,7 +14,8 @@ const mapStatesToProps = ({auth, courses}) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getUserData: () => dispatch(getUserData())
+        getUserData: () => dispatch(getUserData()),
+        fetchCourses: () => dispatch(fetchCourses())
     }
 };
 

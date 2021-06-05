@@ -6,13 +6,14 @@ import { P2,  Title} from '../../../components/Typography'
 import Button from '../../../components/Button'
 import Spinner from '../../../components/Spinner'
 // import Card from '../../../components/Card'
-import Pagination from "../../../components/Common/Pagination";
-import { paginate } from "../../../utils/paginate";
+// import Pagination from "../../../components/Common/Pagination";
+import MaterialPagination from "../../../components/Common/materialPagination";
+// import { paginate } from "../../../utils/paginate";
 
 
 const Profile = (props) => {    
     const {isLoading, getUserData, fetchCourses, courses, updateProfileImage, updatePassword, updateProfileData, isProfileUpdated, 
-        isProfileImgUpdated, userProfile, logout, deleteCourse, deleteAccount, isCourseDeleted} = props;
+        isProfileImgUpdated, isLoggedIn, userProfile, logout, deleteCourse, deleteAccount, isCourseDeleted} = props;
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -30,11 +31,6 @@ const Profile = (props) => {
     const [currentUserCourses, setUserCourses] = useState([])
     const [activeTab, setActiveTab] = useState('details');
     const history = useHistory()
-
-    useEffect(() => {
-        fetchCourses();
-        getUserData();
-    }, []);
 
     useEffect(() => {
         if(userProfile && userProfile.id){
@@ -295,12 +291,18 @@ const Profile = (props) => {
                         })
                     }
                 </div>
-                <Pagination
+                <MaterialPagination
+                        count={currentUserCourses.length}
+                        // pageSize={3}
+                        page={currentPage}
+                        onChange={handlePageChange}
+                />
+                {/* <Pagination
                         itemsCount={currentUserCourses.length}
                         pageSize={3}
                         currentPage={currentPage}
                         onPageChange={handlePageChange}
-                />
+                /> */}
                 </>
             }
             { activeTab === "payments" && 

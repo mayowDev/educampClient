@@ -11,3 +11,56 @@
         background:white;
     }
 }
+
+.MuiPagination-root {
+    .MuiPagination-ul {
+        justify-content:center;
+        flex-wrap: nowrap;
+        margin: 20px 0;
+       li {
+            button{
+            color: white;
+            background-color: black;
+            &:hover{
+                background-color: #3f51b5;
+                color: white;
+
+            }
+           }
+         &:first-child {
+          button{
+            // border-radius: 0;
+            background-color: #3f51b5;
+            color: white;
+            border: 2px solid #3f51b5;
+            // color: blue;
+          }
+           flex-basis: 10%;
+           display: flex;
+           justify-content: flex-start;
+           align-items: center;
+           > button::after {
+             margin-left: 10px;
+             content: 'previous';
+           }
+         }
+         &:last-child {
+          button{
+            background-color: #3f51b5;
+            color: white;
+            border: 2px solid #3f51b5;
+          }
+           flex-basis: 10%;
+           display: flex;
+           justify-content: flex-end;
+           align-items: center;
+           > button::before {
+             margin-right: 10px;
+             content: 'next';
+           }
+         }
+       }
+     }
+   }
+  
+  

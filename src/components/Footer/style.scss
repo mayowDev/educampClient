@@ -3,7 +3,7 @@ $gray: whitesmoke;
 $darkGray: #7D8488;
 
 footer.footer{
-  margin-top: 40px !important;
+  // margin-top: 40px !important;
   background: $gray;
   border-top: 1px solid #D8D8D8;
   .container{
@@ -17,7 +17,7 @@ footer.footer{
 
   & > div{
 
-    padding: 52px 0 47px 0;
+    padding: 45px  0;
     display: flex;
     justify-content: space-between;
     .p1{
@@ -72,19 +72,6 @@ footer.footer{
         margin-right: 40px;
       }
     }
-
-    //@media screen and (max-width: 687px){
-    //  .footer-nav{
-    //    width: 100px;
-    //    &.first-nav{
-    //      margin-right: 40px;
-    //      width: 160px;
-    //    }
-    //  }
-    //  .footer-logo{
-    //    margin-right: 40px;
-    //  }
-    //}
 
     @media screen and (max-width: 510px){
           max-width: 100%;

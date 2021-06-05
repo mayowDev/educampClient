@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-// import Logo from '../../assets/images/bright-logo.svg';
+import Logo from '../../assets/images/udemy-logo-coral.svg';
 import { P1 } from '../Typography';
 
 const Footer = () => {
@@ -8,65 +8,42 @@ const Footer = () => {
         <footer className="footer">
             <div className="container">
                 <div>
-                    <Link to='/' className="footer-logo">
-                        <>
-                            <svg width="149" height="20" viewBox="0 0 149 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M87.8711 3.30753H93.6452V19.3704H96.9673V3.30753H102.821V0.31543H87.8711V3.30753Z" fill="black"/>
-                                <path d="M119.197 0.314453H115.875V19.3694H119.197V0.314453Z" fill="black"/>
-                                <path d="M11.4692 13.4642L3.7967 0.157227H0L11.4692 19.9995L22.9384 0.157227H19.2208L11.4692 13.4642Z" fill="black"/>
-                                <path d="M76.806 6.29867C76.806 2.75538 74.3539 0.314453 70.5572 0.314453H62.1729V19.2907H65.495V12.2041H68.8171L73.0093 19.2907H76.8851L72.2183 11.8104C74.5912 11.4955 76.806 9.68447 76.806 6.29867ZM65.495 9.36951V3.30656H70.0826C71.981 3.30656 73.3256 4.48765 73.3256 6.29867C73.3256 8.18842 71.981 9.36951 70.0826 9.36951H65.495Z" fill="black"/>
-                                <path d="M40.4146 0C34.9568 0 30.5273 4.40943 30.5273 9.84248C30.5273 15.2755 34.9568 19.685 40.4146 19.685C45.8723 19.685 50.3018 15.2755 50.3018 9.84248C50.3018 4.40943 45.8723 0 40.4146 0ZM40.4146 16.7716C36.6179 16.7716 33.5331 13.7007 33.5331 9.92122C33.5331 6.14171 36.6179 3.07085 40.4146 3.07085C44.2113 3.07085 47.2961 6.14171 47.2961 9.92122C47.2961 13.7007 44.2113 16.7716 40.4146 16.7716Z" fill="black"/>
-                                <path d="M144.19 0.236219C143.557 0.0787396 142.845 0 142.212 0C141.184 0 140.235 0.157479 139.286 0.472438C138.653 0.629917 138.099 0.944876 137.546 1.18109C136.676 1.65353 135.964 2.20471 135.252 2.91337C135.015 3.14959 134.777 3.3858 134.619 3.62202C134.382 3.85824 134.224 4.09446 134.065 4.40942C133.67 4.9606 133.433 5.51177 133.116 6.06295C133.037 6.29917 132.879 6.61413 132.8 6.85035C132.8 6.92909 132.721 7.00783 132.721 7.08657C132.642 7.32279 132.642 7.48027 132.562 7.71648C132.562 7.79522 132.562 7.87396 132.483 7.9527C132.404 8.26766 132.404 8.50388 132.325 8.81884C132.325 9.1338 132.246 9.44876 132.246 9.84245C132.246 10.2362 132.246 10.5511 132.325 10.8661C132.404 11.496 132.562 12.2046 132.721 12.7558C133.116 14.0157 133.749 15.118 134.54 16.0629C134.777 16.2991 134.935 16.5353 135.173 16.7715C135.41 17.0078 135.647 17.244 135.885 17.4015C136.676 18.1101 137.625 18.5826 138.653 18.9763L140.156 16.3778C139.919 16.2991 139.681 16.2204 139.444 16.1416C139.365 16.1416 139.286 16.0629 139.207 16.0629C139.049 15.9841 138.89 15.9054 138.732 15.8267C138.653 15.7479 138.574 15.7479 138.495 15.6692C138.337 15.5904 138.178 15.5117 138.02 15.3542C137.941 15.2755 137.862 15.2755 137.862 15.1967C137.704 15.0393 137.467 14.8818 137.308 14.7243C137.15 14.5668 136.992 14.3306 136.834 14.1731C136.755 14.0944 136.755 14.0157 136.676 14.0157C136.596 13.8582 136.438 13.7007 136.359 13.5432C136.28 13.4645 136.28 13.3857 136.201 13.307C136.122 13.1495 136.043 12.992 135.964 12.8346C135.964 12.7558 135.885 12.6771 135.885 12.5983C135.806 12.3621 135.726 12.1259 135.647 11.8897C135.489 11.496 135.41 11.0235 135.41 10.5511C135.41 10.3149 135.41 10.0787 135.41 9.84245C135.41 9.29128 135.489 8.81884 135.568 8.26766C135.647 7.87396 135.805 7.48027 135.964 7.16531C136.122 6.77161 136.359 6.37791 136.596 5.98421C136.834 5.59051 137.15 5.27556 137.467 4.9606C137.941 4.48816 138.495 4.09446 139.049 3.7795C139.998 3.22833 141.184 2.91337 142.371 2.91337C143.003 2.91337 143.636 2.99211 144.269 3.14959C144.427 3.14959 144.506 3.22832 144.664 3.30706C144.902 3.3858 145.139 3.46454 145.376 3.62202C146.009 3.93698 146.563 4.33068 147.037 4.80312L148.54 2.20471C147.196 1.25983 145.772 0.551177 144.19 0.236219Z" fill="black"/>
-                            </svg>
-                        </>
-                        {/*<img width={37} height={39} src={Logo} alt={Logo} />*/}
+                    <Link to='/' className="header__logo">
+                        <img width={37} height={39} src={Logo} alt={Logo} />
                     </Link>
                     <nav className="footer-nav first-nav">
                         <ul>
-                            <a target="_blank" href='https://vorticxr.com/about/'>
+                            <Link target="_blank" to='/about'>
                                 <P1 value="About" />
-                            </a>
-                            <a target="_blank" href='https://www.instagram.com/vortic.art/'>
+                            </Link>
+                            <Link target="_blank" to='https://instagram.com/'>
                                 <P1 value="Instagram" />
-                            </a>
-                            <a target="_blank" href='https://vorticxr.com/contact/'>
+                            </Link>
+                            <Link target="_blank" to='/contact'>
                                 <P1 value="Contact Us" />
-                            </a>
-                            <a target="_blank" href='https://vorticxr.com/'>
-                                <P1 value="Gallery Enquiries" />
-                            </a>
-                            <a target="_blank" href='https://mailchi.mp/d4cccc074a68/vorticartnewsletter'>
+                            </Link>
+                            <Link target="_blank" to='/courses'>
+                                <P1 value="Courses" />
+                            </Link>
+                            <Link target="_blank" to='#'>
                                 <P1 value="Join our Mailing List" />
-                            </a>
+                            </Link>
                         </ul>
                     </nav>
-                    {/*<nav className="footer-nav">*/}
-                    {/*    <ul>*/}
-                    {/*        <Link to='https://instagram.com'>*/}
-                    {/*            <P1 value="Instagram" />*/}
-                    {/*        </Link>*/}
-                    {/*        <Link to='https://twitter.com'>*/}
-                    {/*            <P1 value="Twitter" />*/}
-                    {/*        </Link>*/}
-                    {/*        <Link to='https://facebook.com'>*/}
-                    {/*            <P1 value="Facebook" />*/}
-                    {/*        </Link>*/}
-                    {/*    </ul>*/}
-                    {/*</nav>*/}
                 </div>
                 <div className="policies-wrapper">
                     <P1 value="This site uses cookies, please see our privacy policy." />
-                    <P1 value="© 2021 Vortic Limited" />
+                    <P1 value="© 2021 Educamp Limited" />
                     <div className="flex">
-                        <a target="_blank" href='https://vorticxr.com/privacy-notice'>
+                        <Link target="_blank" to='/privacy-notice'>
                             Privacy Policy
-                        </a>
+                        </Link>
                             &nbsp;
                             |
                             &nbsp;
-                        <a target="_blank" href='https://vorticxr.com/terms-and-conditions/'>
+                        <Link target="_blank" to='/terms-and-conditions/'>
                             Terms of Service
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
