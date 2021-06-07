@@ -40,7 +40,6 @@ const Header: React.FC<IHeaderProps> = (props) => {
                     <Link to='/' className='header__logo'>
                         <img src={Logo} alt="Logo" height={18} onClick={() => setNav(false)}/>
                     </Link>
-                    {/* <Link to='/' className='category'>Categories</Link> */}
                     <MenuItem value=" Categories" to="/categories"/>
                     <label
                         className={`search_bar `}>

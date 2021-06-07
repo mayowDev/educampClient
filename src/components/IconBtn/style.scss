@@ -53,13 +53,6 @@
     }
   }
 
-  // &--secondary{
-  //   // background: gray;
-  // }
-
-  // &:hover{
-  //   // background: black;
-  // }
   @media screen and (max-width: 768px){
     &:hover{
       background: black!important;
@@ -78,11 +71,4 @@
       background: yellow;
     }
   }
-
-  //&--bright{
-  //  background: #FFFFFF;
-  //  img{
-  //    fill: #1A1A1A !important;
-  //  }
-  //}
 }

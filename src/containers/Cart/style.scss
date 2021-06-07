@@ -1,0 +1,164 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+
+/** mixins */
+@mixin checkoutBtn {
+    button{
+        cursor: pointer;
+        background-color: #E44F4F;
+        font-size: 1rem;
+        font-weight:700;
+        padding: 8px 85px;
+        color: white;
+        border: none;
+        border-radius:3px;
+        margin-left:  -10px;
+        &:hover{
+            background-color: #992337
+        }
+    }
+}
+
+.cart{
+    &__header{
+        background-color:#14171C;
+        color: white;
+        vertical-align: middle;
+        width: 100%;
+        h1{
+            padding: 50px 300px;
+            text-transform: capitalize;
+            font-family: 'Limelight', cursive;
+            font-size: 40px;
+            font-weight: 400;
+            line-height: 1.287;
+            margin: 0;
+        }
+    }
+    &__content{
+        padding: 50px 300px;
+        display:flex;
+        justify-content: space-between;
+        &--items{
+            h3{
+                color: #021e31;
+                text-transform: capitalize;
+                font-weight: 500;
+            }
+            // .cart-container{// }
+            .save-for-later{
+                margin-top:50px
+            }
+            .empty-item-card{
+                display: flex; 
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+                margin: 10px auto;
+                padding:50px;
+                border: 1px solid lightgray;
+                .user--cart {
+                    height: 55px;
+                    width: 95px;
+                    background: none;;
+                    margin-top: 20px;
+                }
+                p{  
+                    font-size:1rem;
+                    opacity:.7;
+                    margin-top: 50px;
+                    margin-bottom: 0;
+                }
+                .checkout-btn{
+                    margin-top: 20px;
+                    @include checkoutBtn
+                }
+            }
+            .item-card{
+                display: flex;
+                justify-content: space-between;
+                flex-direction:row;
+                padding: 10px;
+                border: 1px solid lightgray;
+                border-width: thin;
+                img{
+                    width: 155px;
+                    height: 100px;
+                }
+                .item-content{
+                    display: flex;
+                    flex-direction: column;
+                    h4{
+                        margin-bottom: 0;
+                        color: #3D303B
+                    }
+                    p{
+                        margin-top:0;
+                        opacity:  .5;
+                    }
+                }
+                .item-actions{
+                    display: flex;
+                    flex-direction: column;
+                    padding: 15px;
+                    a{
+                        padding:2px 0px;
+                        color: #2F6990;
+                        text-transform: capitalize;
+                    }
+                }
+                .item-price{
+                    padding: 15px;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                    color: #E44F4F
+                }
+            }
+        }
+        .checkout-sidebar{
+            margin-top: 20px;
+            height: 500px;
+            .price{
+                span{
+                    opacity: .6;
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                }
+                h3{
+                    font-size: 25px;
+                    margin-top:10px;
+                }
+            }
+            .checkout-btn{
+                padding: 10px;
+                width: 100%;
+                @include checkoutBtn
+            }
+            input{
+                border: 1px solid gray;
+                border-width: thin;
+                margin-top: 5px;
+                padding: 8px;
+                outline: none;
+
+                &:active{
+                    outline: none;
+                    box-shadow: none; 
+                }
+            }
+            .aplly-btn{
+                cursor: pointer;
+                border: none;
+                padding: 10px 10px;
+                background-color: #E44F4F;
+                color: white;
+                &:hover{
+                    background-color: #992337
+                }
+            }
+
+        }
+    }
+}
+

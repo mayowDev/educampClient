@@ -12,24 +12,27 @@ import ForgotPassword from '../Auth/Forgot';
 import ResetPage from '../Auth/Reset'
 import ProfilePage from '../Auth/Profile'
 import Courses from "../Courses";
-
+import Checkout from '../checkout/anothercheckout'
+import Cart from '../Cart/Cart'
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
             <Switch>
                 <Route exact path="/" component={HomePage}/>
+                <Route exact path="/register" component={SignUp.Signup}/>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/resend-email" component={SignUp.Resend}/>
+                <Route exact path="/verify" component={Verify}/>
+                <ProtectedRoute exact path="/profile" isLoggedIn={isLoggedIn}  component={ProfilePage}/>
+                <Redirect exact from="/signup" to="/register"/>
+                <Redirect exact from="/signin" to="/login"/>
+                <Route exact path="/forgot-password" component={ForgotPassword}/>
+                <Route exact path="/reset"  component={ResetPage}/>
                 <Route exact path="/courses" component={Courses.Courses}/>
                 <Route exact path="/courses/new" component={Courses.AddCourse}/>
                 <Route exact path="/courses/edit/:id" component={Courses.EditCourse}/>
                 <Route exact path="/courses/:id" component={Courses.CourseDetails}/>
-                <Route exact path="/reset"  component={ResetPage}/>
-                <Route exact path="/login" component={Login}/>
-                <Route exact path="/register" component={SignUp.Signup}/>
-                <Route exact path="/resend-email" component={SignUp.Resend}/>
-                <Route exact path="/verify" component={Verify}/>
-                <Route exact path="/forgot-password" component={ForgotPassword}/>
-                <Redirect exact from="/signup" to="/register"/>
-                <Redirect exact from="/signin" to="/login"/>
-                <ProtectedRoute exact path="/profile" isLoggedIn={isLoggedIn}  component={ProfilePage}/>
+                <Route exact path="/cart" component={Cart}/>
+                <Route exact path="/cart/checkout" component={Checkout}/>
                <Route component={NotFound}/>
             </Switch>
      )
