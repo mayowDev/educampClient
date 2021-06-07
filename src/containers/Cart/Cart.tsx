@@ -1,9 +1,12 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
 import './style.scss'
 import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
+import  course2Thumbnail  from '../../assets/images/coursesThumbnails/google-cloud.jpg'
 import IconBtn from '../../components/IconBtn';
 
 const Cart = () => {
+    const history = useHistory()
     return (
         <div className="cart">
             <div className="cart__header"> <h1>Shopping cart</h1> </div>
@@ -19,7 +22,7 @@ const Cart = () => {
                                 <button className="btn">Keep shopping</button>
                             </div>
                         </div>
-                        <div className="item-card">
+                        {/* <div className="item-card">
                             <img src={courseThumbnail} alt="course-item-img"/>
                             <div className="item-content">
                                 <h4>Machine Learning A-Z™: Hands-On Python & R In Data Science</h4>
@@ -31,7 +34,7 @@ const Cart = () => {
                                 <a href="#">move to wishlist</a>
                             </div>
                             <div className="item-price">$11.99</div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="save-for-later">
                          <h3 className="item-header"> Saved for Later</h3>
@@ -51,7 +54,7 @@ const Cart = () => {
                     <div className="whislist">
                          <h3 className="item-header"> Recently wishlisted</h3>
                          <div className="item-card">
-                            <img src={courseThumbnail} alt="course-item-img"/>
+                            <img src={course2Thumbnail} alt="course-item-img"/>
                             <div className="item-content">
                                 <h4>Machine Learning A-Z™: Hands-On Python & R In Data Science</h4>
                                 <p>By Stephen Graider</p>
@@ -70,7 +73,7 @@ const Cart = () => {
                         <h3>$35.98</h3>
                     </div>
                     <div className="checkout-btn">
-                        <button className="btn">Checkout</button>
+                        <button onClick={e=>history.push('/cart/checkout')} className="btn">Checkout</button>
                     </div>
                     <input type="text" placeholder="Enter discount Code"/>
                     <input className="aplly-btn" value="apply" type="submit" placeholder="Enter discount Code"/>

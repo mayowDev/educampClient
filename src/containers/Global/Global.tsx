@@ -14,7 +14,7 @@ import ProfilePage from '../Auth/Profile'
 import Courses from "../Courses";
 import Teachers from '../Teachers'
 import TeacherDetails from '../Teachers/TeacherDetails'
-import Checkout from '../Checkout/anothercheckout'
+import Checkout from '../Checkout/Checkout'
 import Cart from '../Cart/Cart'
 const RenderRoutes = ({isLoggedIn}) => {  
     return (

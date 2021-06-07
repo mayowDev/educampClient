@@ -1,4 +1,165 @@
+
+/** mixins */
+@mixin checkoutBtn {
+    button{
+        cursor: pointer;
+        background-color: #E44F4F;
+        font-size: 1rem;
+        font-weight:700;
+        padding: 8px 85px;
+        color: white;
+        border: none;
+        border-radius:3px;
+        // margin-left:  25px;
+        width: 100%;
+        &:hover{
+            background-color: #992337
+        }
+    }
+}
 .checkout{
-    padding: 100px;
+    // padding: 100px;
     margin: auto;
+    &__header{
+        background-color:#14171C;
+        color: white;
+        vertical-align: middle;
+        width: 100%;
+        h1{
+            padding: 60px 300px;
+            text-transform: capitalize;
+            font-family: 'ui-sans-serif',  cursive;
+            font-size: 3rem;
+            line-height: 1.287;
+            margin: 0;
+        }
+    }
+    &__content{
+        padding: 50px 25rem;
+        display:flex;
+        justify-content: space-between;
+        &--user-info{
+            display: flex;
+            flex-direction: column;
+            h3{
+                font-size: 1.5rem;
+                color: #14171C;
+                margin: 0;
+            }
+            p{  
+                font-size:1.25rem;
+                opacity:.7;
+                // margin-top: 50px;
+                // margin-bottom: 0;
+            }
+            .country-options{
+                padding:.75rem 1.75rem;
+                margin-bottom: 1rem;
+                width: 150px;
+            }
+            .input-group{
+                display: flex;
+                font-size:1.13rem;
+                margin: .75rem 0;
+                input[type=radio]{
+                    margin-right: .5rem;
+                    &:before {
+                        border: 2px solid lightgray;
+                    }
+                }
+                label{
+                    opacity:.85;
+                }
+                img{
+                    width: 70px;
+                    margin-left:1rem;
+                }
+                // justify-content: space-between;
+            }
+            .card-form{
+                background: #F8F8F9;
+                padding: 25px;
+                width: 550px;
+                .name-number{
+                    display: flex;
+                    flex-direction: column;
+                    .input-group{
+                        input{
+                            outline: none;
+                            border:1px solid lightgray;
+                            padding: .85rem 0;
+                            margin: .75rem 0;
+                            width: 90%   
+                        }
+                    }
+                }
+                .date-csv{
+                    display: flex;
+                    .input-group{
+                        input{
+                            outline: none;
+                            border:1px solid lightgray;
+                            padding: .7rem 2rem;
+                            margin: .75rem 0;
+                            width: 90% ;
+                            &:first-child{
+                                margin-right: 2rem;
+                            }  
+                        }
+                    }
+                    
+                }
+            }
+        }
+
+        &--sidebar{
+            margin-top: 20px;
+            padding:2rem;
+            border: 1px solid lightgray;
+            text-align: left;
+            h3{
+                font-size: 1.5rem;
+                color: #14171C;
+                margin: 0;
+                margin-bottom: 1rem;
+            }
+            .original, .discounted, .total{
+                margin: 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                p{
+                    margin: 5px 0;
+                }
+            }
+            .discounted{
+                border-bottom: 1px solid lightgray;
+                margin-bottom: 1rem;
+            }
+            .total{
+                p, span{
+                    font-weight: 700;
+                }
+            }
+            .legal-message{
+                color: #29303b;
+                // opacity: 0.5;
+                font-size: .85rem;
+                line-height: 19px;
+                margin-bottom: 8px;
+                p{
+                    a{
+                        text-decoration:none;
+                        color: #2F6990;
+                        font-weight: 700;
+                        &:hover{
+                          color:  #143845
+                        }
+                    }
+                }
+            }
+            
+            @include checkoutBtn;
+        }
+    }
 }

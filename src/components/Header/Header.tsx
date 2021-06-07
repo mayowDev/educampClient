@@ -69,7 +69,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
                                 {
                                 !isLoggedIn &&
                                 <>
-                                    <IconBtn onMouseEnter={handleMouseEnter} onClick={e=> alert("Your cart is empty!")} className="user--cart" type="cart" />
+                                    <IconBtn to="/cart" onMouseEnter={handleMouseEnter} className="user--cart" type="cart"/>
                                     <Button value='Sign In' actionType='login' type='primary' to='/login'/> 
                                     <Button value='Sign Up' actionType='register' type='primary' to='/register'/> 
                                 </>
@@ -77,7 +77,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
                             </li>
                             {isLoggedIn &&
                             <> 
-                                <Dropdown type="cart" icon={<IconBtn onClick={e=> alert("Your cart is empty!")} className="user--cart" type="cart" />}>
+                                <Dropdown type="cart" icon={<IconBtn onClick={e=> alert("Your cart is empty!")} className="user--cart" type="cart"  to="/cart"/>}>
                                     <div className="cart-items">Your cart is Empty</div>
                                 </Dropdown>
                                 <Dropdown type="cart" icon={<IconBtn onClick={e=> alert("Your wishlist is empty!")} className="user--favourites" type="heart" />}>
