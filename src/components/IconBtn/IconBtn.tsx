@@ -16,6 +16,8 @@ import favouriteOn2 from '../../assets/icons/favouriteOn2.svg';
 import heart from '../../assets/icons/heart.svg';
 import cart from '../../assets/icons/shopping-cart.svg'
 import map from '../../assets/icons/map.svg';
+import book from '../../assets/icons/books.svg'
+
 import { IIconBtnProps } from './types';
 import { Link } from 'react-router-dom';
 
@@ -37,8 +39,8 @@ const Icon = {
     events,
     bell,
     heart,
-    cart
-
+    cart,
+    book
 };
 
 const IconBtn:React.FC<IIconBtnProps> = ({type, onClick, to, className, secondary, onMouseEnter, onMouseLeave, noHover, onMouseDown, onMouseUp}) => {
@@ -53,6 +55,7 @@ const IconBtn:React.FC<IIconBtnProps> = ({type, onClick, to, className, secondar
                      ${type === 'bell' ? 'bell' : ''} 
                      ${type === 'heart' ? 'heart' : ''} 
                      ${type === 'cart' ? 'cart' : ''} 
+                     ${type === 'book' ? 'book' : ''} 
                      ${(type === 'back' || type === 'next') ? 'arrow' : ''}`}
                  src={!secondary ? Icon[type] : Icon[type + "Secondary"]}
             />

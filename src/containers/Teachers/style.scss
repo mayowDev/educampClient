@@ -1,0 +1,179 @@
+.teachers{
+    background-color: #222222;
+    height: 920px;
+    h1{
+        width: 53%;
+        color: white;
+        margin: 0 auto;
+        padding: 40px;
+        margin-left: 21%;
+        letter-spacing:.15rem;
+        border-bottom: 1px solid lightgray;
+        margin-bottom: 10px;
+    }
+    .teacherList{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        column-gap: 10px;
+
+        .teacher-container{
+            cursor: pointer;
+            background-color: black;
+            padding: 25px;
+            color: white;
+            .teacher{
+                h3{
+                    font-size:1.5rem;
+                    color: #861D18;
+                    margin: 0;
+                }
+                h5{
+                    letter-spacing:.15rem;
+                    font-size:1.15rem;
+                    margin-top:8px;
+                    color:#8D8D82;
+                }
+                img{
+                    width: 300px;
+                    height: 300px;
+                }
+            }        
+        }
+    }    
+}
+
+.teacherDetails{
+    background-color: #222222;
+    padding: 50px;
+    &--hero{
+        background-color: #222222;
+        display: flex;
+        align-items: center;
+        height: 650px;
+        color: white;
+        background-image: url('../../assets//images/banner/banner1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        &:after{
+            opacity:0.9;
+            content:"";
+            position:absolute;
+            left:0;
+            top:0;
+            z-index:1;
+            width:100%;
+            height:715px;
+            background: #424242; /* Old browsers */
+            // background: -moz-linear-gradient(45deg, #4c1864 0%, #4c1864 100%); /* FF3.6-15 */
+            // background: -webkit-linear-gradient(45deg, #4c1864 0%,#4c1864 100%); /* Chrome10-25,Safari5.1-6 */
+            // background: linear-gradient(45deg, #4c1864 0%,#4c1864 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c1864', endColorstr='#4c1864',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        }
+        
+    }
+    &__info{
+        z-index: 5;
+        width: 45%;
+        height: 50%;
+        margin-left: 50px;
+        background: #222222;
+        padding: 25px;
+        letter-spacing: .2rem;
+        .who{
+            display: flex; 
+            align-items: center;
+            img{
+                width: 150px;
+                border-radius: 100%;
+            }
+            &__headers{
+                margin-left: 20px;
+                h2{
+                    color: #C02D28;
+                    font-size: 2.5rem;
+                    margin:0;
+                    margin-top: -50px;
+                }
+                h5{
+                    letter-spacing:.15rem;
+                    font-size:1.15rem;
+                    color:#8D8D82;
+                    margin:0;
+                }
+            }
+            
+        }
+        .biography{
+            color: lightgray;
+            display: block;
+            line-height: 1.75;
+        }
+    }
+    
+    &__courses{
+        .title{
+            letter-spacing:.15rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            margin: auto;
+            gap: 100px;
+            width: 50%;
+            border-bottom: 1px solid lightgray;
+            .icon-btn{
+                background:none;
+                width:0;
+            }
+            h2{
+                margin: 0;
+                font-size:3rem;
+                font-weight: 500;
+                color: whitesmoke;
+                margin-left: 7rem;
+            }
+        }
+        .items-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            margin: 50px auto;
+            .item{
+                background: brown;
+                color: white;
+                cursor: pointer;
+                height: min-content;
+                width: 400px;
+                padding:20px;
+                h3{
+                    font-size:1.5rem;
+                }
+                img{
+                    width: -webkit-fill-available;
+                    margin: 0 auto;
+                    display: block;
+                }
+                p{
+                    line-height:1.75;
+                }
+                .cta-btn{
+                    display: flex;
+                    justify-content: space-between;
+                    Button{
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }  
+        
+
+    }
+}

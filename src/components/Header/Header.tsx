@@ -60,7 +60,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
                                 <MenuItem value='Categories' to="/categories" className={isLinkActive('/categories')}/>
                             </li>
                             <li >
-                                <MenuItem value='Instructors' to="/instructors" className={isLinkActive('/instructors')}/>
+                                <MenuItem value='Instructors' to="/teachers" className={isLinkActive('/teachers')}/>
                             </li>
                             <li >
                                 <MenuItem value='Teach on Educamp' to="/teach" className={isLinkActive('/teach')}/>

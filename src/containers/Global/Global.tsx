@@ -4,7 +4,7 @@ import HomePage from "../Home"
 import NotFound from "../../views/404/NoFound";
 import ProtectedRoute from '../../components/Common/protectedRoute'
 import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+// import Footer from '../../components/Footer'
 import Login from '../Auth/Login';
 import SignUp from '../Auth/Signup';
 import Verify from '../Auth/Verify';
@@ -12,7 +12,9 @@ import ForgotPassword from '../Auth/Forgot';
 import ResetPage from '../Auth/Reset'
 import ProfilePage from '../Auth/Profile'
 import Courses from "../Courses";
-import Checkout from '../checkout/anothercheckout'
+import Teachers from '../Teachers'
+import TeacherDetails from '../Teachers/TeacherDetails'
+import Checkout from '../Checkout/anothercheckout'
 import Cart from '../Cart/Cart'
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
@@ -31,6 +33,8 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/courses/new" component={Courses.AddCourse}/>
                 <Route exact path="/courses/edit/:id" component={Courses.EditCourse}/>
                 <Route exact path="/courses/:id" component={Courses.CourseDetails}/>
+                <Route exact path="/teachers" component={Teachers}/>
+                <Route exact path="/teachers/:name" component={TeacherDetails}/>
                 <Route exact path="/cart" component={Cart}/>
                 <Route exact path="/cart/checkout" component={Checkout}/>
                <Route component={NotFound}/>
@@ -56,7 +60,7 @@ const Global = ({isLoggedIn, getUserData, fetchCourses, userProfile}) => {
         <BrowserRouter>
             <Header/>
             <RenderRoutes isLoggedIn={isLoggedIn}/>
-            <Footer/>
+            {/* <Footer/> */}
         </BrowserRouter>
     )
 };
