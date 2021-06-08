@@ -1,3 +1,21 @@
+
+/** mixins */
+@mixin checkoutBtn {
+    button{
+        cursor: pointer;
+        background-color: #E44F4F;
+        font-size: 1rem;
+        font-weight:700;
+        padding: 8px 85px;
+        color: white;
+        border: none;
+        border-radius:3px;
+        margin-left:  -10px;
+        &:hover{
+            background-color: #992337
+        }
+    }
+}
 .teachers{
     background-color: #222222;
     height: 920px;
@@ -67,10 +85,10 @@
             width:100%;
             height:715px;
             background: #424242; /* Old browsers */
-            // background: -moz-linear-gradient(45deg, #4c1864 0%, #4c1864 100%); /* FF3.6-15 */
-            // background: -webkit-linear-gradient(45deg, #4c1864 0%,#4c1864 100%); /* Chrome10-25,Safari5.1-6 */
-            // background: linear-gradient(45deg, #4c1864 0%,#4c1864 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c1864', endColorstr='#4c1864',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+            background: -moz-linear-gradient(45deg, #424242 0%, #424242 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(45deg, #424242 0%,#424242 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(45deg, #424242 0%,#424242 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#424242', endColorstr='#424242',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
         }
         
     }
@@ -154,7 +172,9 @@
                 width: 400px;
                 padding:20px;
                 h3{
+                    text-transform: capitalize;
                     font-size:1.5rem;
+                    opacity: 0.7;
                 }
                 img{
                     width: -webkit-fill-available;
@@ -170,6 +190,23 @@
                     Button{
                         font-size: 1rem;
                     }
+                }
+            }
+            .empty-courses{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-left: 50px;
+                p{
+                    font-size:2rem;
+                    opacity: 0.8;
+                    color: white
+                }
+                .primary-btn{
+                    padding: 10px;
+                    // width: 100%;
+                    @include checkoutBtn
                 }
             }
         }  

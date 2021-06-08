@@ -1,16 +1,31 @@
-import React from 'react'
-import Teacher from './Teacher'
-const TeachersList = () => {
+import React,{useEffect} from 'react'
+import Teacher from './Teacher';
+import Spinner from '../../components/Spinner'
+const TeachersList = (props) => {
+    const {getTeachers, teachers, loading} = props
+    useEffect(() => {
+        console.log('teachers&&teachers.length', teachers&&teachers.length)
+        // if(teachers&&teachers.length)//Todo memoize refercthing teachers if there length didnt change
+        getTeachers()
+    },[])
     return (
         <div className="teachers">
-        <h1>Educamp Teachers</h1>
-        <div className="teacherList">
-            <Teacher/>
-            <Teacher/>
-            <Teacher/>
-
-        </div>
-        </div>
+            {loading === true? <Spinner type="cover" />:
+                <>
+                <h1>Educamp Teachers</h1>
+                <div className="teacherList">
+                    {teachers.map(teacher =>{
+                        return(
+                            <div key={teacher.id}>
+                                <Teacher teacher={teacher}/>
+                            </div>
+                        )
+                    })}
+                </div>
+                </>
+            }
+            
+    </div>
     )
 }
 

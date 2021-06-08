@@ -4,8 +4,8 @@ import AddCourse from './AddCourse';
 import EditCourse from './EditCourse';
 import CourseDetails from './CourseDetails';
 import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse} from './redux/actions'
-import './style.scss'
 import { getUserData } from '../Auth/redux/actions';
+import './style.scss'
 
 const mapStateToProps = (state) => {  
   return {

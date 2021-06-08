@@ -13,8 +13,7 @@ import ResetPage from '../Auth/Reset'
 import ProfilePage from '../Auth/Profile'
 import Courses from "../Courses";
 import Teachers from '../Teachers'
-import TeacherDetails from '../Teachers/TeacherDetails'
-import Checkout from '../Checkout/Checkout'
+import Checkout from '../Cart/Checkout/Checkout'
 import Cart from '../Cart/Cart'
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
@@ -33,8 +32,8 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/courses/new" component={Courses.AddCourse}/>
                 <Route exact path="/courses/edit/:id" component={Courses.EditCourse}/>
                 <Route exact path="/courses/:id" component={Courses.CourseDetails}/>
-                <Route exact path="/teachers" component={Teachers}/>
-                <Route exact path="/teachers/:name" component={TeacherDetails}/>
+                <Route exact path="/teachers" component={Teachers.Teachers}/>
+                <Route exact path="/teachers/:id" component={Teachers.TeacherDetails}/>
                 <Route exact path="/cart" component={Cart}/>
                 <Route exact path="/cart/checkout" component={Checkout}/>
                <Route component={NotFound}/>

@@ -1,8 +1,8 @@
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {Elements,CardElement,useStripe,useElements} from "@stripe/react-stripe-js";
-import axios from "../../services/axios";
-import {STRIPE_PUBLISH_KEY} from "../../configs"
+import axios from "../../../services/axios";
+import {STRIPE_PUBLISH_KEY} from "../../../configs"
 const stripePromise = loadStripe(STRIPE_PUBLISH_KEY);
 
 const CheckoutForm = ({ success }) => {

@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
 import StripeCheckout from 'react-stripe-checkout';
-import {STRIPE_PUBLISH_KEY} from "../../configs"
+import {STRIPE_PUBLISH_KEY} from "../../../configs"
 import PaypalImage from '../../assets/images/paypal-icon.jpg'
+import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
+
 import './style.scss'
 const Checkout = () => {
     const [product, setProduct] = useState({
@@ -65,8 +67,13 @@ const Checkout = () => {
                         </div>
                         
                     </form>
-                    <div>
+                    <div className="order-details">
                         <h3>Order Details</h3>
+                        <div className="item-card">
+                            <img src={courseThumbnail} alt="course-item-img"/>
+                            <h4>Machine Learning A-Z™: Hands-On Python & R In Data Science</h4>
+                            <div className="item-price">$11.99</div>
+                        </div>
                     </div>
                 </div>
                 <div className="checkout__content--sidebar">

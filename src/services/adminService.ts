@@ -19,7 +19,26 @@ export const getAllUsers = async () =>{
     }
 }
 
-export const getUser = async (id) => {
+export const getAllTeachers = async () =>{
+    try {
+        const result = await axios.get(`/users/`,{params: {role:'teacher'}})
+            .catch((err: any) => {
+                if (err && err.response && err.response.status === 400) {
+                    return Promise.reject(
+                        new Error("Request failed with status code 400")
+                    );
+                }
+                return Promise.reject(new Error(JSON.stringify(err.response.data)));
+            });
+        if (result) {
+            return result.data;
+        }
+    } catch (e) {
+        return Promise.reject(new Error(e.message));
+    }
+}
+
+export const getTeacher = async (id) => {
     try {
         const result = await axios.get(`/users/${id}`)
             .catch((err: any) => {
@@ -58,7 +77,7 @@ export const createUser = async (data) => {
     }
 }
 
-export const updatePassword = async (data) => {
+export const updateUserPassword = async (data) => {
     try {
         const result = await axios.put("/auth/", data)
             .catch((err: any) => {
@@ -95,7 +114,7 @@ export const updateUserDetails = async (id, data) => {
     }
 };
 
-export const updateProfileImage = async (data) => {
+export const updateUserProfileImage = async (data) => {
     console.log('data in Apis', data);
     try {
         const result = await axios.post(`/auth/me`, data)
@@ -118,28 +137,28 @@ export const updateProfileImage = async (data) => {
 
 
 
-export const fetchFavourites = async () => {
-    try {
-        const result = await axios
-            .get(`user/favourites`)
-            .catch((err: any) => {
-                console.log('err = ', err);
-                if (err && err.response && err.response.status === 400) {
-                    return Promise.reject(
-                        new Error("Request failed with status code 400")
-                    );
-                }
-                return Promise.reject(new Error(JSON.stringify(err.response.data)));
-            });
-        if (result) {
-            return {...result.data};
-        }
-    } catch (e) {
-        return Promise.reject(new Error(e.message));
-    }
-};
+// export const fetchFavourites = async () => {
+//     try {
+//         const result = await axios
+//             .get(`user/favourites`)
+//             .catch((err: any) => {
+//                 console.log('err = ', err);
+//                 if (err && err.response && err.response.status === 400) {
+//                     return Promise.reject(
+//                         new Error("Request failed with status code 400")
+//                     );
+//                 }
+//                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
+//             });
+//         if (result) {
+//             return {...result.data};
+//         }
+//     } catch (e) {
+//         return Promise.reject(new Error(e.message));
+//     }
+// };
 
-export const deleteAccount = async (email) => {
+export const deleteUserAccount = async (email) => {
     try {
         const result = await axios.delete(`/users/`, email)
             .catch((err: any) => {
