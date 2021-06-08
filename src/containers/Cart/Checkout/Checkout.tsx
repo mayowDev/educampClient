@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 import {STRIPE_PUBLISH_KEY} from "../../../configs"
-import PaypalImage from '../../assets/images/paypal-icon.jpg'
-import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
+import PaypalImage from '../../../assets/images/paypal-icon.jpg'
+import  courseThumbnail  from '../../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
 
 import './style.scss'
 const Checkout = () => {

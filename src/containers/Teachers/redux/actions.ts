@@ -1,4 +1,4 @@
-import { FETCH_TEACHERS, FETCH_TEACHER, UPDATE_USER, DELETE_USER, LOADING, API_ERROR } from './constants'
+import { FETCH_TEACHERS, FETCH_TEACHER, NULL_RESPONSE, UPDATE_USER, DELETE_USER, LOADING, API_ERROR } from './constants'
 import * as API from "../../../services"
 
 export const getAllTeachers = () => async dispatch => {
@@ -23,6 +23,17 @@ export const getTeacher = (id) => async dispatch => {
   }
 }
 
+export const getTeacherByName = (slug) => async dispatch => {
+  try {
+    dispatch({type:LOADING})
+    const response = await API.getAllTeachersBySlug(slug)
+    if(response&&response.data === null) return   dispatch({type: NULL_RESPONSE})
+    if(response&&response.success&&response.data !== null) return dispatch({type: FETCH_TEACHER, payload: response.data})
+  } catch (error) {
+    console.log('fetchTeacherError', error);
+    dispatch({type: API_ERROR})
+  }
+}
 // export const createTeacher = (data)=> async dispatch =>{
 //   try {
 //     const response = await API.createCourse(data)

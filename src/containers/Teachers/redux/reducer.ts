@@ -1,4 +1,4 @@
-import { FETCH_TEACHERS, FETCH_TEACHER, UPDATE_USER, DELETE_USER, LOADING, API_ERROR } from './constants'
+import { FETCH_TEACHERS, FETCH_TEACHER, NULL_RESPONSE, UPDATE_USER, DELETE_USER, LOADING, API_ERROR } from './constants'
 
 
 const initialState = {
@@ -6,7 +6,7 @@ const initialState = {
     teacherDetails:{},
     lastFetch: '',
 
-    // isCourseCreated: false,
+    isNull: false,
     // isCourseUpdated: false,
     // isCourseDeleted: false,
     apiError: false,
@@ -61,11 +61,13 @@ export default(state = initialState, action)=>{
         // case SORT_COURSES:
         //     console.log('SORT_COURSES = ', action.payload);
         //     return {...state, sortBy: action.payload};
-        case API_ERROR: 
+        case API_ERROR:
+        case NULL_RESPONSE: 
         return{
             ...state,
             loading: false,
-            apiError:true
+            apiError:true,
+            isNull: true
         }
         default:
             return state;

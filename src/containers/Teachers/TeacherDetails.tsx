@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import {useHistory, Redirect} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import TeacherImage from '../../assets/images/teachers/teacher.jpg'
 import courseThumbnail from '../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
 import IconBtn from '../../components/IconBtn';
@@ -8,37 +8,36 @@ import Spinner from '../../components/Spinner';
 
 const TeacherDetails = (props) => {
     const [teacherCourses, setTeacherCourses] = useState([])
-    const {teacherDetails, getTeacher, loading} = props;
+    const {teacherDetails, getTeacher, getTeacherByName, loading, isNull} = props;
     const history = useHistory()
-    const teacherId = props.match.params.id;
-    
-    const isValiduuid =  (uuid)=>{
-        return /[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}/.test(uuid) === true;
-    }
-    if(!isValiduuid(teacherId)) return <Redirect to={"/teachers"} />
+    const teacherSlug = props.match.params.id;
+    // const isValiduuid =  (uuid)=>{
+    //     return /[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}/.test(uuid) === true;
+    // }
     useEffect(() => {
-        if(isValiduuid(teacherId)){
-            if(teacherDetails &&  teacherDetails.id !==teacherId){
-                getTeacher(teacherId);   
-            }
+        if(teacherDetails &&  teacherDetails.slug !==teacherSlug){
+            getTeacherByName(teacherSlug)
         }
-    },[])
+    },[teacherDetails && teacherDetails.id])
     useEffect(() => {
-        if(teacherDetails &&  teacherDetails.id){
-            console.log('teacherDetails', teacherDetails.courses.length>0)
-
-        }
-        if(teacherDetails&&teacherDetails.courses && teacherDetails.courses.length>0){
+        if(!isNull&&teacherDetails&&teacherDetails.courses && teacherDetails.courses.length>0){
             const myCourses = teacherDetails.courses.map(course=> course)
             setTeacherCourses(myCourses)
-        }  
+        }else{
+            console.log('empty courses ')
+            setTeacherCourses([])
+        }
     },[teacherDetails && teacherDetails.id])
     const handleCourseClick = (courseId) => {
         history.push(`/courses/${courseId}`)
     }
+    if(isNull && !loading) {
+        // history.replace('/teachers')//dont use history here it throws warning Cannot update during an existing state transition 
+        window.location.href = "/404"
+    }
     return (
         <>
-            {loading === true? <Spinner type="cover" />:
+            {loading === true?<Spinner type="cover" />:
             <>
             <div className="teacherDetails--hero">
                 <div className="teacherDetails__info">

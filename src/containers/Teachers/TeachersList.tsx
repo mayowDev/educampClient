@@ -4,7 +4,6 @@ import Spinner from '../../components/Spinner'
 const TeachersList = (props) => {
     const {getTeachers, teachers, loading} = props
     useEffect(() => {
-        console.log('teachers&&teachers.length', teachers&&teachers.length)
         // if(teachers&&teachers.length)//Todo memoize refercthing teachers if there length didnt change
         getTeachers()
     },[])

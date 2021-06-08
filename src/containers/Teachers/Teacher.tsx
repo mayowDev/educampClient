@@ -5,7 +5,7 @@ const Teacher = ({teacher}) => {
     const history = useHistory()
     
     const handleTeacherSelection = () => {
-        history.push(`/teachers/${teacher.id}`)
+        history.push(`/teachers/${teacher.slug}`)
     }
     return (
         <div className="teacher-container" onClick={handleTeacherSelection}>

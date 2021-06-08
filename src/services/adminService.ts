@@ -58,6 +58,25 @@ export const getTeacher = async (id) => {
     }
 };
 
+export const getAllTeachersBySlug = async (slug) =>{
+    try {
+        const result = await axios.get(`/users/slug/${slug}`)
+            .catch((err: any) => {
+                if (err && err.response && err.response.status === 400) {
+                    return Promise.reject(
+                        new Error("Request failed with status code 400")
+                    );
+                }
+                return Promise.reject(new Error(JSON.stringify(err.response.data)));
+            });
+        if (result) {
+            return result.data;
+        }
+    } catch (e) {
+        return Promise.reject(new Error(e.message));
+    }
+}
+
 export const createUser = async (data) => {
     try {
         const result = await axios.post(`/users/`, data)
