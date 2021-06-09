@@ -3,6 +3,7 @@ import * as API from "../../../services"
 
 export const fetchCourses = () => async dispatch => {
   try {
+    dispatch({type:LOADING})
     const response = await API.getAllCourses()
     if(response&&response.success) return dispatch({type: FETCH_COURSES, payload: response.data})
   } catch (error) {

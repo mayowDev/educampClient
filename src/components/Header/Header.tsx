@@ -29,8 +29,8 @@ const Header: React.FC<IHeaderProps> = (props) => {
         return routeName === route ? "active" : '';
     };
     const handleMouseEnter = ()=>{
-        console.log(onmouseenter)
-        // alert('onmouseenter')
+        // console.log(onmouseenter)
+        alert('onmouseenter')
     }
 
     return (
@@ -69,7 +69,10 @@ const Header: React.FC<IHeaderProps> = (props) => {
                                 {
                                 !isLoggedIn &&
                                 <>
-                                    <IconBtn to="/cart" onMouseEnter={handleMouseEnter} className="user--cart" type="cart"/>
+                                    <Dropdown type="cart" icon={<IconBtn onClick={e=> alert("Your cart is empty!")} className="user--cart" type="cart"  to="/cart"/>}>
+                                        <div className="cart-items">Your cart is Empty</div>
+                                    </Dropdown>
+                                    {/* <IconBtn to="/cart" onMouseEnter={handleMouseEnter} className="user--cart" type="cart"/> */}
                                     <Button value='Sign In' actionType='login' type='primary' to='/login'/> 
                                     <Button value='Sign Up' actionType='register' type='primary' to='/register'/> 
                                 </>

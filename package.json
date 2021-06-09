@@ -18,10 +18,12 @@
     "react-infinite-scroll-hook": "^4.0.1",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
+    "react-slick": "^0.28.1",
     "react-stripe-checkout": "^2.6.3",
     "react-toastify": "^7.0.4",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "build-betaaa": "npm run clean-dist && ./node_modules/.bin/cross-env NODE_OPTIONS='--max-old-space-size=4096' webpack --config configs/webpack/prod.js --env API_URL=https://api.vortic.io/",
