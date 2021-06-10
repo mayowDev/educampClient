@@ -1,24 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
-
-
-/** mixins */
-@mixin checkoutBtn {
-    button{
-        cursor: pointer;
-        background-color: #E44F4F;
-        font-size: 1rem;
-        font-weight:700;
-        padding: 8px 85px;
-        color: white;
-        border: none;
-        border-radius:3px;
-        margin-left:  -10px;
-        &:hover{
-            background-color: #992337
-        }
-    }
-}
+@import  '../../styles/mixins.scss';
 
 .cart{
     &__header{
@@ -89,9 +71,18 @@
                 .item-content{
                     display: flex;
                     flex-direction: column;
-                    margin-left: 10px;
+                    // margin-left: 10px;
+                    width: 50%;
+                    text-overflow: ellipsis;
+                    text-transform: capitalize;
+                    line-height: 1.2;
                     h4{
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: normal;
                         margin-bottom: 0;
+                        max-height: 37px;
+                        -webkit-line-clamp: 2;
                         color: #3D303B
                     }
                     p{

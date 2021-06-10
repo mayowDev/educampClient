@@ -43,7 +43,7 @@ const Icon = {
     book
 };
 
-const IconBtn:React.FC<IIconBtnProps> = ({type, onClick, to, className, secondary, onMouseEnter, onMouseLeave, noHover, onMouseDown, onMouseUp}) => {
+const IconBtn:React.FC<IIconBtnProps> = ({type, badge, onClick, to, className, secondary, onMouseEnter, onMouseLeave, noHover, onMouseDown, onMouseUp}) => {
     const button = () => (
         <button className={'icon-btn icon-btn--bright' + (className ? (' ' + className) : '') + (secondary ? ' icon-btn--secondary' : '') + (type === "favouriteOn2" ? ' icon-btn--favourite' : '') + (noHover ? ' icon-btn--no-hover' : '')} onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
             <img alt='icon'
@@ -59,6 +59,7 @@ const IconBtn:React.FC<IIconBtnProps> = ({type, onClick, to, className, secondar
                      ${(type === 'back' || type === 'next') ? 'arrow' : ''}`}
                  src={!secondary ? Icon[type] : Icon[type + "Secondary"]}
             />
+            {badge ? <span className="badge">{badge}</span> : ''} 
         </button>
     );
 

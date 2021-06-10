@@ -6,7 +6,6 @@ import {fetchSearchInit, resetSearch, setRecentSearch} from "./redux/actions";
 
 const mapStatesToProps = ({ search}) => {
     return {
-        // searchQuery: global.searchQuery,
         ...search
     };
 };

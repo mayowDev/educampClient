@@ -1,21 +1,7 @@
 
 /** mixins */
-@mixin checkoutBtn {
-    button{
-        cursor: pointer;
-        background-color: #E44F4F;
-        font-size: 1rem;
-        font-weight:700;
-        padding: 8px 85px;
-        color: white;
-        border: none;
-        border-radius:3px;
-        margin-left:  -10px;
-        &:hover{
-            background-color: #992337
-        }
-    }
-}
+@import  '../../styles/mixins.scss';
+
 .teachers{
     background-color: #222222;
     height: 920px;

@@ -20,7 +20,10 @@
         font-size: 16px;
         border: none;
         cursor: pointer;
-        &-cart{
+        &-primary{
+          margin-top: 10px;
+        }
+        &-cart,&-primary{
           background-color: transparent;
           &:hover{
             background-color: transparent;

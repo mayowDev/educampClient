@@ -1,5 +1,6 @@
 export interface IIconBtnProps {
     type: string,
+    badge?: number
     onClick?: (e?:any) => void,
     onMouseEnter?: () => void,
     onMouseLeave?: () => void,

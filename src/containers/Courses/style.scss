@@ -1,3 +1,5 @@
+@import  '../../styles/mixins.scss';
+
 // .edit-course{
     // background-color: red;
     // .background-hero{
@@ -57,6 +59,29 @@
             flex-direction: column;
             max-width: 15rem;
             min-width: 17rem;
+            &:hover{
+                .content-hover {
+                    /* display: flex; */
+                    /* flex-direction: column; */
+                    /* max-width: 15rem; */
+                    min-width: inherit;
+                    display: block;
+                    // margin-left: 7.5rem;
+                    // margin-top: -5rem;
+                    background-color: yellow;
+                    padding: 20px;
+                    position: absolute;
+                    z-index: 999999;
+                    top: 1%;
+                    margin-left: 20%;
+                    height: 100%;
+                    .cart-btn{
+                        padding: 10px;
+                        width: 100%;
+                        @include checkoutBtn
+                    }
+                }
+            }
             .content{
                 background-color:burlywood;
                 padding:1rem;
@@ -80,20 +105,42 @@
                     margin: 10px 0;
                     line-height: 1.25;
                     font-size: 1rem;
+                    text-transform: capitalize;
                 }
                 p{
                     font-size: .9rem;
                     margin: .5rem 0;
                 }
             }
+            .content-hover{
+                display: none;
+            }
+            // &:hover{
+            //     .content-hover {
+            //         /* display: flex; */
+            //         /* flex-direction: column; */
+            //         /* max-width: 15rem; */
+            //         min-width: min-content;
+            //         display: block;
+            //         // margin-left: 7.5rem;
+            //         // margin-top: -5rem;
+            //         background-color: yellow;
+            //         padding: 20px;
+            //         position: absolute;
+            //         z-index: 999999;
+            //         top: 1%;
+            //         left: 20%;
+            //         height: 100%;
+            //     }
+            // }
         }
     }
 }
 
-h1, h2, h3, h4, h5, h6, p{
-    margin:0;
-    color: #3c3b37;
-}
+// h1, h2, h3, h4, h5, h6, p{
+//     margin:0;
+//     color: #3c3b37;
+// }
 
 .arrow {
     position: absolute;

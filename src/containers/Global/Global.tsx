@@ -14,7 +14,7 @@ import ProfilePage from '../Auth/Profile'
 import Courses from "../Courses";
 import Teachers from '../Teachers'
 import Checkout from '../Cart/Checkout/Checkout'
-import Cart from '../Cart/Cart'
+import Cart from '../Cart'
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
             <Switch>

@@ -63,14 +63,17 @@ const Header: React.FC<IHeaderProps> = (props) => {
                                 <MenuItem value='Instructors' to="/teachers" className={isLinkActive('/teachers')}/>
                             </li>
                             <li >
-                                <MenuItem value='Teach on Educamp' to="/teach" className={isLinkActive('/teach')}/>
+                                {/* <MenuItem value='Teach on Educamp' to="/teach" className={isLinkActive('/teach')}/> */}
+                                <Dropdown type="primary" icon={<MenuItem value='Teach on Educamp' to="/teach" className={isLinkActive('/teach')}/> }>
+                                    <div className="dropdown-items">Turn what you know into an opportunity and reach millions around the world.</div>
+                                </Dropdown>
                             </li>
                             <li  className={!isLoggedIn ? 'not-logged-in' : ''}>
                                 {
                                 !isLoggedIn &&
                                 <>
-                                    <Dropdown type="cart" icon={<IconBtn onClick={e=> alert("Your cart is empty!")} className="user--cart" type="cart"  to="/cart"/>}>
-                                        <div className="cart-items">Your cart is Empty</div>
+                                    <Dropdown type="cart" icon={<IconBtn badge={2} className="user--cart" type="cart"  to="/cart"/>}>
+                                        <div className="cart-items">Your is Empty</div>
                                     </Dropdown>
                                     {/* <IconBtn to="/cart" onMouseEnter={handleMouseEnter} className="user--cart" type="cart"/> */}
                                     <Button value='Sign In' actionType='login' type='primary' to='/login'/> 
@@ -80,7 +83,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
                             </li>
                             {isLoggedIn &&
                             <> 
-                                <Dropdown type="cart" icon={<IconBtn onClick={e=> alert("Your cart is empty!")} className="user--cart" type="cart"  to="/cart"/>}>
+                                <Dropdown type="cart" icon={<IconBtn  className="user--cart" type="cart"  to="/cart"/>}>
                                     <div className="cart-items">Your cart is Empty</div>
                                 </Dropdown>
                                 <Dropdown type="cart" icon={<IconBtn onClick={e=> alert("Your wishlist is empty!")} className="user--favourites" type="heart" />}>
