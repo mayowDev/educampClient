@@ -8,6 +8,7 @@ const initialState = {
     isNull: false,
     apiError: false,
     isAddedToCart: false,
+    isRemovedFromCart: false,
     loading:false,
 }
 
@@ -35,6 +36,14 @@ export default(state = initialState, action)=>{
                 apiError:false
 
             }
+        case REMOVE_FROM_CART: 
+            return {
+                ...state,
+                //@ts-ignore
+                cartItems: state.cartItems.filter(course=> course.id !== action.payload),
+                isRemovedFromCart: true,
+                loading :false
+            }
         case GET_ORDER_ITEMS:
             return {
                 ...state,
@@ -49,14 +58,6 @@ export default(state = initialState, action)=>{
                 lastFetch: Date.now(),
                 loading: false
             }
-        case REMOVE_FROM_CART: 
-        return {
-            ...state,
-            //@ts-ignore
-            cartItems: state.cartItems.filter(course=> course.id !== action.payload.id),
-            // isCourseDeleted: action.payload.response.success,
-            loading :false
-        }
         case API_ERROR:
         // case NULL_RESPONSE: 
         return{

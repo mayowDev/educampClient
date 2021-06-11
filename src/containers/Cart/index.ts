@@ -10,6 +10,7 @@ const mapStateToProps = ({cart}) => {
     isApiError: cart.isApiError,
     orderItems: cart.orderItems,
     cartItems: cart.cartItems,
+    isRemovedFromCart: cart.isRemovedFromCart,
     orderDetails: cart.orderDetails
   }
 }

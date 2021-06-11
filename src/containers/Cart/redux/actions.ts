@@ -16,7 +16,6 @@ export const addToCart = (courseid) => async dispatch => {
     try {
       dispatch({type:LOADING})
       const response = await API.addItemToCart(courseid)
-      console.log('ACTION response', response)
       if(response&&response.success) return dispatch({type: ADD_TO_CART, payload: response})
     } catch (error) {
       console.log('addToCartError', error);
@@ -28,7 +27,7 @@ export const removeFromCart = (courseid) => async dispatch => {
     try {
       dispatch({type:LOADING})
       const response = await API.removeItemFromCart(courseid)
-      if(response&&response.success) return dispatch({type: REMOVE_FROM_CART, payload: response.data})
+      if(response&&response.success) return dispatch({type: REMOVE_FROM_CART, payload: courseid})
     } catch (error) {
       console.log('removeFromCartError', error);
       return dispatch({type: API_ERROR})

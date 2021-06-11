@@ -51,9 +51,9 @@ const Global = ({isLoggedIn, getUserData, fetchCourses, getRouteName, getCartIte
         }
         fetchCourses();
     }, []);
-    useEffect(() => {
-        getRouteName()
-    },[routeName])
+    // useEffect(() => {
+    //     getRouteName()
+    // },[routeName])
 
     useEffect(() => {
         if(userProfile && userProfile.id){

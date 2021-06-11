@@ -14,7 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Courses = (props) => {
     const history = useHistory()
-    const { courses, isLoading, addToCart,isAddedToCart, isCartApiError} = props;
+    const { courses, isLoading, addToCart,isAddedToCart} = props;
 
     const handleCourseClick = (courseId) => {
         history.push(`/courses/${courseId}`)

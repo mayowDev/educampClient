@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import { useHistory } from 'react-router-dom';
-import './style.scss'
+import { useHistory, Link } from 'react-router-dom';
+import {toast} from 'react-toastify'
 import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
 import  course2Thumbnail  from '../../assets/images/coursesThumbnails/google-cloud.jpg'
 import IconBtn from '../../components/IconBtn';
 import Spinner from '../../components/Spinner'
-const Cart = ({getCartItems, cartItems, isLoading}) => {
+const Cart = ({getCartItems, cartItems, isLoading, removeFromCart, isRemovedFromCart}) => {
     const history = useHistory()
     const [items, setItems] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
@@ -28,6 +28,15 @@ const Cart = ({getCartItems, cartItems, isLoading}) => {
             setTotalPrice(total)
         }
     }, [cartItems.length]); 
+    useEffect(() => {
+        if(isRemovedFromCart) {
+            toast.dark("item was removed")
+        }
+    },[isRemovedFromCart, cartItems.length]);
+
+    const handleRemoveFromCart =async (courseid) => {
+        await removeFromCart(courseid)
+    }
 
     // if(!isLoading){ console.log('items', items)} //is working
     return (
@@ -45,7 +54,7 @@ const Cart = ({getCartItems, cartItems, isLoading}) => {
                                 <IconBtn onClick={e=> alert("Your cart is empty!")} className="user--cart" type="cart" />
                                 <p>Your cart is empty. Keep shopping to find courses</p>
                                 <div className="checkout-btn">
-                                    <button className="btn">Keep shopping</button>
+                                    <button onClick={()=>history.push('/courses')} className="btn">Keep shopping</button>
                                 </div>
                             </div>
                         :
@@ -59,9 +68,9 @@ const Cart = ({getCartItems, cartItems, isLoading}) => {
                                         <p>By Stephen Graider</p>
                                     </div>
                                     <div className="item-actions">
-                                        <a href="#">Remove</a>
-                                        <a href="#">Save for later</a>
-                                        <a href="#">move to wishlist</a>
+                                        <Link onClick={()=>handleRemoveFromCart(item.id)} to="#">Remove</Link>
+                                        <Link to="#">Save for later</Link>
+                                        <Link to="#">move to wishlist</Link>
                                     </div>
                                     <div className="item-price">${item.price}</div>
                                 </div>

@@ -140,11 +140,11 @@ const Header: React.FC<IHeaderProps> = (props) => {
 
                         </ul>
                     </nav>
-                    <div className="mobile-btn">
+                    {/* <div className="mobile-btn">
                         <IconBtn onClick={() => setNavBright(!navBright)}
                                     noHover={true}
                                     type={navBright ? "cross" : 'menu'}/>
-                    </div>
+                    </div> */}
                 </div>
             </header>
         </>
