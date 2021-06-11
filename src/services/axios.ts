@@ -25,7 +25,7 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(response =>{return response}, error => {
-        // console.log('axios error', error.message);
+        console.log('axios error', error.message);
         const expectdError = error.response && error.response.status >= 400 && error.response.status < 500
         if(!expectdError){
             toast.error(error.message)

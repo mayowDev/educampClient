@@ -1,13 +1,12 @@
 
 // @ts-ignore
-import React, { useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
-// import useInfiniteScroll from 'react-infinite-scroll-hook';
-// import Card from "../../components/Card";
 import courseThumbnail from '../../assets/images/coursesThumbnails/react-thumbnail.jpg'
 // import {H1, H2, H3, H4} from '../../components/Typography'
 import Spinner from '../../components/Spinner';
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
+import {toast} from 'react-toastify'
 // import {paginate} from '../../utils/paginate'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -15,14 +14,19 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Courses = (props) => {
     const history = useHistory()
-    const { courses, isLoading,} = props;
+    const { courses, isLoading, addToCart,isAddedToCart, isCartApiError} = props;
 
     const handleCourseClick = (courseId) => {
         history.push(`/courses/${courseId}`)
     };
-    const handleAddToCart = () => {
-        history.push('/cart')
+    const handleAddToCart =async (courseid) => {
+        await addToCart({courseid})
     }
+    useEffect(() => {
+        if(isAddedToCart) {
+            toast.dark("Course Added to Cart")
+        }
+    },[isAddedToCart])
 
     function Arrow(props) {
         let className = props.type === "next" ? "nextArrow" : "prevArrow";
@@ -64,7 +68,7 @@ const Courses = (props) => {
                     <div className="review">5 reviews</div>
                     <div className="price">${course.price}.99</div>
                     <div className="cart-btn">
-                        <button onClick={handleAddToCart} className="btn">Add to Cart</button>
+                        <button onClick={()=>handleAddToCart(course.id)} className="btn">Add to Cart</button>
                     </div>
 
                 </div>

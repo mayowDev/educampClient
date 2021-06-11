@@ -28,7 +28,6 @@ const Cart = ({getCartItems, cartItems, isLoading}) => {
             setTotalPrice(total)
         }
     }, [cartItems.length]); 
-    console.log('totalPrice', totalPrice);
 
     // if(!isLoading){ console.log('items', items)} //is working
     return (

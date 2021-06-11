@@ -21,6 +21,7 @@ export const getCartItems = async () =>{
 
 export const addItemToCart = async (courseid) =>{
     try {
+        console.log('Api data courseid' , courseid)
         const result = await axios.post(`/cart/`, courseid)
             .catch((err: any) => {
                 if (err && err.response && err.response.status === 400) {
@@ -31,6 +32,7 @@ export const addItemToCart = async (courseid) =>{
                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
             });
         if (result) {
+            console.log('addToCart API call' , result)
             return result.data;
         }
     } catch (e) {

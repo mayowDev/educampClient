@@ -7,6 +7,7 @@ const initialState = {
     lastFetch: '',
     isNull: false,
     apiError: false,
+    isAddedToCart: false,
     loading:false,
 }
 
@@ -16,6 +17,23 @@ export default(state = initialState, action)=>{
             return {
                 ...state,
                 loading: true, 
+            }
+        case GET_CART_ITEMS: 
+            return {
+                ...state,
+                cartItems: [...action.payload],
+                lastFetch: Date.now(),
+                loading: false,
+                apiError:false
+            }
+        case ADD_TO_CART: 
+            return {
+                ...state,
+                cartItems:{...state.cartItems, ...action.payload},
+                isAddedToCart: true,
+                loading: false,
+                apiError:false
+
             }
         case GET_ORDER_ITEMS:
             return {
@@ -30,19 +48,6 @@ export default(state = initialState, action)=>{
                 orderDetails: {...action.payload},
                 lastFetch: Date.now(),
                 loading: false
-            }
-        case GET_CART_ITEMS: 
-            return {
-                ...state,
-                cartItems: [...action.payload],
-                lastFetch: Date.now(),
-                loading: false,
-            }
-        case ADD_TO_CART: 
-            return {
-                ...state,
-                cartItems:{...state.cartItems, ...action.payload}
-
             }
         case REMOVE_FROM_CART: 
         return {

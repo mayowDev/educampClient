@@ -5,16 +5,22 @@ import EditCourse from './EditCourse';
 import CourseDetails from './CourseDetails';
 import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse} from './redux/actions'
 import { getUserData } from '../Auth/redux/actions';
+import { addToCart } from '../Cart/redux/actions';
+
 import './style.scss'
 
 const mapStateToProps = (state) => {  
+  // console.log('state', state)
   return {
     isLoading: state.courses.loading,
     isLoggedIn: state.auth.isLoggedIn,
     userProfile: state.auth.userProfile,
     isCourseCreated: state.courses.isCourseCreated,
     isCourseUpdated: state.courses.isCourseUpdated,
-    isApiError: state.courses.isApiError,
+    isApiError: state.courses.apiError,
+    isCartApiError : state.cart.apiError,
+    isCartLoading: state.cart.loading,
+    isAddedToCart: state.cart.isAddedToCart,
     courses: state.courses.coursesList,
     courseDetails: state.courses.courseDetails
   }
@@ -26,6 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
     createCourse: (data) => dispatch(createCourse(data)),
     updateCourse: (id:string, data) => dispatch(updateCourse(id, data)),
     deleteCourse: (id:string) => dispatch(deleteCourse(id)),
+    addToCart:(id:string) => dispatch(addToCart(id)),
     getUserData:() => dispatch(getUserData())
 
 })
