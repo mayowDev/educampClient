@@ -1,44 +1,45 @@
 import React, {useEffect, useState} from 'react'
 import { useHistory, Link } from 'react-router-dom';
-import {toast} from 'react-toastify'
 import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
 import  course2Thumbnail  from '../../assets/images/coursesThumbnails/google-cloud.jpg'
 import IconBtn from '../../components/IconBtn';
 import Spinner from '../../components/Spinner'
-const Cart = ({getCartItems, cartItems, isLoading, removeFromCart, isRemovedFromCart}) => {
+
+const Cart = (props) => {
+    const {getCartItems, addToCart, removeFromCart, getWishlistItems, addToWishlist, 
+        removeFromWishlist, cartItems, favouriteItems, isLoading} = props;
+
     const history = useHistory()
-    const [items, setItems] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
+
     useEffect(() => {
         getCartItems()
+        getWishlistItems()
     },[])
+
     useEffect(() => {
         if(cartItems ){
-            setItems(cartItems)
-            // let total;
-            // cartItems.forEach((item, index)=> {
-            //     console.log('a', item.price, 'index', index);
-            //   total = item.price
-            // });
             let total = cartItems.reduce((a, b) => {
-                // console.log('a', a);
-                // console.log('b---', b);
                return  a + b.price
-            }, 0);//is working
+            }, 0);
             setTotalPrice(total)
         }
     }, [cartItems.length]); 
-    useEffect(() => {
-        if(isRemovedFromCart) {
-            toast.dark("item was removed")
-        }
-    },[isRemovedFromCart, cartItems.length]);
 
+    const handleMoveToCart = async (courseid:string)=>{
+        await addToCart({courseid})
+        await removeFromWishlist(courseid)
+    }
     const handleRemoveFromCart =async (courseid) => {
         await removeFromCart(courseid)
     }
-
-    // if(!isLoading){ console.log('items', items)} //is working
+    const handleMoveToWishlist = async (courseid:string) =>{
+        await addToWishlist({courseid})
+        await removeFromCart(courseid)
+    }
+    const  handleRemoveFromWishlist = async (courseid:string) =>{
+        await removeFromWishlist(courseid)
+    }
     return (
         <div className="cart">
             <div className="cart__header"> <h1>Shopping cart</h1> </div>
@@ -47,11 +48,11 @@ const Cart = ({getCartItems, cartItems, isLoading, removeFromCart, isRemovedFrom
                 :
                 <div className="cart__content">
                 <div className="cart__content--items">
-                    <div className="cart-container">
+                    <div>
                         <h3 className="item-header"> {cartItems.length} course in cart</h3>
                         { cartItems.length == 0?
                             <div className="empty-item-card">
-                                <IconBtn onClick={e=> alert("Your cart is empty!")} className="user--cart" type="cart" />
+                                <IconBtn onClick={()=> console.log("Your cart is empty!")} className="user--cart" type="cart" />
                                 <p>Your cart is empty. Keep shopping to find courses</p>
                                 <div className="checkout-btn">
                                     <button onClick={()=>history.push('/courses')} className="btn">Keep shopping</button>
@@ -64,13 +65,11 @@ const Cart = ({getCartItems, cartItems, isLoading, removeFromCart, isRemovedFrom
                                     <img src={courseThumbnail} alt="course-item-img"/>
                                     <div className="item-content">
                                         <h4>{item.title}</h4>
-                                        {/* <h4>Blockchain for Business: The New Industrial Revolution</h4> */}
                                         <p>By Stephen Graider</p>
                                     </div>
                                     <div className="item-actions">
                                         <Link onClick={()=>handleRemoveFromCart(item.id)} to="#">Remove</Link>
-                                        <Link to="#">Save for later</Link>
-                                        <Link to="#">move to wishlist</Link>
+                                        <Link onClick={()=>handleMoveToWishlist(item.id)} to="#">Move to wishlist</Link>
                                     </div>
                                     <div className="item-price">${item.price}</div>
                                 </div>
@@ -79,35 +78,31 @@ const Cart = ({getCartItems, cartItems, isLoading, removeFromCart, isRemovedFrom
                         })
                     }
                     </div>
-                    <div className="save-for-later">
-                         <h3 className="item-header"> Saved for Later</h3>
-                         <div className="item-card">
-                            <img src={courseThumbnail} alt="course-item-img"/>
-                            <div className="item-content">
-                                <h4>Machine Learning A-Z™: Hands-On Python & R In Data Science</h4>
-                                <p>By Stephen Graider</p>
-                            </div>
-                            <div className="item-actions">
-                                <a href="#">Remove</a>
-                                <a href="#">Move to Cart</a>
-                            </div>
-                            <div className="item-price">$11.99</div>
-                         </div>
-                    </div>
                     <div className="whislist">
                          <h3 className="item-header"> Recently wishlisted</h3>
-                         <div className="item-card">
-                            <img src={course2Thumbnail} alt="course-item-img"/>
-                            <div className="item-content">
-                                <h4>Machine Learning A-Z™: Hands-On Python & R In Data Science</h4>
-                                <p>By Stephen Graider</p>
+                         {favouriteItems && favouriteItems.length == 0?
+                            <div className="empty-item-card">
+                                <p>You haven't added any courses to your wishlist.</p>
                             </div>
-                            <div className="item-actions">
-                                <a href="#">Remove</a>
-                                <a href="#">Move to Cart</a>
-                            </div>
-                            <div className="item-price">$11.99</div>
-                         </div>
+                        :
+                         favouriteItems.map(item =>{
+                            return (
+                                <div key={item.id} className="item-card">
+                                    <img src={course2Thumbnail} alt="course-item-img"/>
+                                    <div className="item-content">
+                                        <h4>{item.title}</h4>
+                                        <p>By Stephen Graider</p>
+                                    </div>
+                                    <div className="item-actions">
+                                        <Link onClick={()=>handleRemoveFromWishlist(item.id)} to="#">Remove</Link>
+                                        <Link onClick={()=>handleMoveToCart(item.id)} to="#">Move to cart</Link>
+                                    </div>
+                                    <div className="item-price">${item.price}</div>
+                                </div>
+
+                            )
+                        })
+                    }
                     </div>
                 </div>
                 <div className="checkout-sidebar">

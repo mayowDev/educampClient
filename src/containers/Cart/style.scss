@@ -18,10 +18,14 @@
         }
     }
     &__content{
-        padding: 50px 300px;
-        display:flex;
-        justify-content: space-between;
+        // padding: 50px 300px;
+        // display:flex;
+        // justify-content: space-between;
+        padding: 50px 100px;
+        display: flex;
+        justify-content: space-around;
         &--items{
+            width: 700px;
             h3{
                 color: #021e31;
                 text-transform: capitalize;
@@ -93,7 +97,8 @@
                 .item-actions{
                     display: flex;
                     flex-direction: column;
-                    padding: 15px;
+                    justify-content: center;
+                    // padding: 15px;
                     a{
                         padding:2px 0px;
                         color: #2F6990;

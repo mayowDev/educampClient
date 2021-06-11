@@ -58,6 +58,64 @@ export const removeItemFromCart = async (courseid) =>{
     }
 }
 
+export const getFavouriteItems = async () =>{
+    try {
+        const result = await axios.get(`/favourites/`)
+            .catch((err: any) => {
+                if (err && err.response && err.response.status === 400) {
+                    return Promise.reject(
+                        new Error("Request failed with status code 400")
+                    );
+                }
+                return Promise.reject(new Error(JSON.stringify(err.response.data)));
+            });
+        if (result) {
+            return result.data;
+        }
+    } catch (e) {
+        return Promise.reject(new Error(e.message));
+    }
+}
+
+export const addItemToFavourites = async (courseid) =>{
+    try {
+        const result = await axios.post(`/favourites/`, courseid)
+            .catch((err: any) => {
+                if (err && err.response && err.response.status === 400) {
+                    return Promise.reject(
+                        new Error("Request failed with status code 400")
+                    );
+                }
+                return Promise.reject(new Error(JSON.stringify(err.response.data)));
+            });
+        if (result) {
+            return result.data;
+        }
+    } catch (e) {
+        return Promise.reject(new Error(e.message));
+    }
+}
+
+export const removeItemFromFavourites = async (courseid) =>{
+    try {
+        console.log('Api courseid' , courseid)
+        const result = await axios.delete(`/favourites/${courseid}`)
+            .catch((err: any) => {
+                if (err && err.response && err.response.status === 400) {
+                    return Promise.reject(
+                        new Error("Request failed with status code 400")
+                    );
+                }
+                return Promise.reject(new Error(JSON.stringify(err.response.data)));
+            });
+        if (result) {
+            return result.data;
+        }
+    } catch (e) {
+        return Promise.reject(new Error(e.message));
+    }
+}
+
 export const createOrder = async () =>{
     try {
         const result = await axios.post(`/cart/order`)
@@ -97,4 +155,4 @@ export const getOrder = async () =>{
 }
 
 
-// request refund
+//export const askRefund
