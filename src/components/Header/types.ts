@@ -24,6 +24,7 @@ export interface IHeaderProps {
     isChat?: boolean,
     isSidebar?: boolean
     logout: () => LogoutResponse,
+    getCartItems: ()=> LogoutResponse,
     cartItems?: [{
         id:string,
         price:number
@@ -34,8 +35,8 @@ export interface IHeaderProps {
 export interface LogoutResponse {
     success : boolean, 
     message: string, 
-    data: object
-
+    data?: object
+    cart?:object
 }
 
 export interface IConversationIconProps {

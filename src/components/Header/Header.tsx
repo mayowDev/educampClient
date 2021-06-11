@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Fragment} from 'react'
+import React, {useEffect, useState, Fragment} from 'react';
 import {Link, useHistory} from 'react-router-dom'
 import Logo from '../../assets/images/udemy-logo-coral.svg';
 import {IHeaderProps} from './types';
@@ -10,12 +10,11 @@ import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-reac
 
 
 const Header: React.FC<IHeaderProps> = (props) => {
-    const {  isLoggedIn,routeName,searchQuery,isHome, isProfile, logout, cartItems} = props;    
+    const {  isLoggedIn,routeName,searchQuery,isHome, isProfile, logout, cartItems, getCartItems} = props;    
     const history = useHistory();
     const [nav, setNav] = useState(false);
     const [navBright, setNavBright] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
-
     const handleSearchChange = (value) => {
         // if (value?.length > 2 && history.location.pathname !== "/search") {
         //     history.push('/search')
@@ -40,7 +39,9 @@ const Header: React.FC<IHeaderProps> = (props) => {
     //     alert('onmouseenter')
     // }
     useEffect(() => {
+        // getCartItems()
         if(cartItems ){
+            console.log('cartItems', cartItems.length)
             let total = cartItems.reduce((a, b) => {
                return  a + b.price
             }, 0);
@@ -112,13 +113,16 @@ const Header: React.FC<IHeaderProps> = (props) => {
                                         </Fragment>
                                     ):
                                     <div className="cart-items">Your cart is Empty</div>
-                                    
                                 }
-                                <div className="total-price">
-                                    <h3>Total: ${totalPrice}</h3>
-                                </div>
+                                {cartItems && cartItems.length > 0 &&
+                                <>
+                                    <div className="total-price">
+                                        <h3>Total: ${totalPrice}</h3>
+                                    </div>
+                                    <Link className="go-to-cart" to="/cart"> Go to Cart </Link>
+                                </>
+                                }
                                 {/* route !== '/cart' && {<Link className="go-to-cart" to="/cart"> Go to Cart </Link>} this is not working */}
-                                {<Link className="go-to-cart" to="/cart"> Go to Cart </Link>}
                                 </Dropdown>
                                 <Dropdown type="cart" icon={<IconBtn onClick={()=> alert("Your wishlist is empty!")} className="user--favourites" type="heart" />}>
                                     <div className="facourite-items">Your wishlist is Empty</div>

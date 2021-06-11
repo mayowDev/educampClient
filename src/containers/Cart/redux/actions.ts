@@ -16,7 +16,8 @@ export const addToCart = (courseid) => async dispatch => {
     try {
       dispatch({type:LOADING})
       const response = await API.addItemToCart(courseid)
-      if(response&&response.success) return dispatch({type: ADD_TO_CART, payload: response})
+      console.log('response', response)
+      if(response&&response.success) return dispatch({type: ADD_TO_CART, payload: response.cart.items})
     } catch (error) {
       console.log('addToCartError', error);
       dispatch({type: API_ERROR})

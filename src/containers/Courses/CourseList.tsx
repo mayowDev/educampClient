@@ -3,7 +3,6 @@
 import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import courseThumbnail from '../../assets/images/coursesThumbnails/react-thumbnail.jpg'
-// import {H1, H2, H3, H4} from '../../components/Typography'
 import Spinner from '../../components/Spinner';
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 import {toast} from 'react-toastify'
@@ -14,7 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Courses = (props) => {
     const history = useHistory()
-    const { courses, isLoading, addToCart,isAddedToCart} = props;
+    const { courses, isLoading, addToCart,isAddedToCart, cartItems} = props;
 
     const handleCourseClick = (courseId) => {
         history.push(`/courses/${courseId}`)
@@ -22,11 +21,13 @@ const Courses = (props) => {
     const handleAddToCart =async (courseid) => {
         await addToCart({courseid})
     }
+    
     useEffect(() => {
+        console.log('isAddedToCart', isAddedToCart, 'cartItems.length', cartItems.length)
         if(isAddedToCart) {
             toast.dark("Course Added to Cart")
         }
-    },[isAddedToCart])
+    },[isAddedToCart, cartItems.length])
 
     function Arrow(props) {
         let className = props.type === "next" ? "nextArrow" : "prevArrow";

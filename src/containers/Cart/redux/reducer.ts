@@ -30,7 +30,7 @@ export default(state = initialState, action)=>{
         case ADD_TO_CART: 
             return {
                 ...state,
-                cartItems:{...state.cartItems, ...action.payload},
+                cartItems:[...action.payload],
                 isAddedToCart: true,
                 loading: false,
                 apiError:false

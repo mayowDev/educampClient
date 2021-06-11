@@ -21,6 +21,7 @@ const mapStateToProps = (state) => {
     isCartApiError : state.cart.apiError,
     isCartLoading: state.cart.loading,
     isAddedToCart: state.cart.isAddedToCart,
+    cartItems: state.cart.cartItems,
     courses: state.courses.coursesList,
     courseDetails: state.courses.courseDetails
   }
