@@ -55,8 +55,8 @@ const Cart = ({getCartItems, cartItems, isLoading}) => {
                                 <div key={item.id} className="item-card">
                                     <img src={courseThumbnail} alt="course-item-img"/>
                                     <div className="item-content">
-                                        {/* <h4>{item.title}</h4> */}
-                                        <h4>Blockchain for Business: The New Industrial Revolution</h4>
+                                        <h4>{item.title}</h4>
+                                        {/* <h4>Blockchain for Business: The New Industrial Revolution</h4> */}
                                         <p>By Stephen Graider</p>
                                     </div>
                                     <div className="item-actions">

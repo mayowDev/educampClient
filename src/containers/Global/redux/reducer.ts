@@ -1,11 +1,12 @@
-import { CHANGE_SEARCH, SET_REDIRECT_PATH } from './constants';
+import { CHANGE_SEARCH, SET_REDIRECT_PATH, SET_ROUTE_NAME } from './constants';
 
 const initialState = {
   searchQuery: '',
   redirectPath: '',
+  routeName: ''
 };
 
-function getLogin (state = initialState, action) {
+export default(state = initialState, action) => {
   switch (action.type) {
    
     case CHANGE_SEARCH:
@@ -13,11 +14,12 @@ function getLogin (state = initialState, action) {
 
     case SET_REDIRECT_PATH:
       return { ...state, redirectPath: action.payload };
-
+    case SET_ROUTE_NAME: 
+      return{...state, routeName: action.payload}
     
     default:
       return state
     }
 }
 
-export default getLogin
+

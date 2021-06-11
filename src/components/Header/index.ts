@@ -5,10 +5,11 @@ import {logout} from '../../containers/Auth/redux/actions'
 
 import './style.scss'
 
-const mapStatesToProps = (state) => {    
+const mapStatesToProps = ({auth, cart}) => {    
     return {
-        isLoggedIn: state.auth.isLoggedIn,
-        profileData: state.auth.userProfileData,
+        isLoggedIn: auth.isLoggedIn,
+        profileData: auth.userProfileData,
+        cartItems: cart.cartItems,
     };
 };
 

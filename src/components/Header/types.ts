@@ -24,6 +24,11 @@ export interface IHeaderProps {
     isChat?: boolean,
     isSidebar?: boolean
     logout: () => LogoutResponse,
+    cartItems?: [{
+        id:string,
+        price:number
+        title:string
+    }]
 }
 
 export interface LogoutResponse {

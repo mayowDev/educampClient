@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, {useEffect, useState, Fragment} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import Logo from '../../assets/images/udemy-logo-coral.svg';
 import {IHeaderProps} from './types';
@@ -6,10 +6,11 @@ import MenuItem from '../MenuItem';
 import Button from '../Button';
 import IconBtn from '../IconBtn';
 import Dropdown from '../Dropdown';
+import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
 
 
 const Header: React.FC<IHeaderProps> = (props) => {
-    const {  isLoggedIn,routeName,changeSearch,searchQuery,isHome, isProfile, logout} = props;    
+    const {  isLoggedIn,routeName,searchQuery,isHome, isProfile, logout, cartItems} = props;    
     const history = useHistory();
     const [nav, setNav] = useState(false);
     const [navBright, setNavBright] = useState(false);
@@ -21,17 +22,22 @@ const Header: React.FC<IHeaderProps> = (props) => {
         // if(changeSearch) changeSearch(value);
     };
 
-    const handleLogout =async ()=>{
-       await logout();
+    const handleLogout = ()=>{
+        logout();
     }
-   
+    const route = window.location.pathname
+    // console.log('windowRouteName', route);
+    useEffect(()=>{
+        console.log('headerCalled', history.location.pathname)
+        history.location.pathname
+    }, [history.location.pathname.length])
     const isLinkActive = (route) => {
         return routeName === route ? "active" : '';
     };
-    const handleMouseEnter = ()=>{
-        // console.log(onmouseenter)
-        alert('onmouseenter')
-    }
+    // const handleMouseEnter = ()=>{
+    //     // console.log(onmouseenter)
+    //     alert('onmouseenter')
+    // }
 
     return (
         <>
@@ -84,12 +90,31 @@ const Header: React.FC<IHeaderProps> = (props) => {
                             {isLoggedIn &&
                             <> 
                                 <Dropdown type="cart" icon={<IconBtn  className="user--cart" type="cart"  to="/cart"/>}>
+                                    {cartItems && cartItems.length > 0 ? cartItems.map(item=>
+                                        <Fragment key={item.id}>
+                                        <div  className="cart-items">
+                                            <img src={courseThumbnail} alt="course-item-img"/>
+                                            <div className="item">
+                                                <h4>{item.title}</h4>
+                                                <p>Stephen Graider</p>
+                                                <div className="item-price">${item.price}</div>
+                                            </div>
+                                        </div>
+                                        <div className="total-price">
+                                            <h3>Total: $35.99</h3>
+                                        </div>
+                                        {/* route !== '/cart' && {<Link className="go-to-cart" to="/cart"> Go to Cart </Link>} this is not working */}
+                                        {<Link className="go-to-cart" to="/cart"> Go to Cart </Link>}
+                                        </Fragment>
+                                    ):
                                     <div className="cart-items">Your cart is Empty</div>
+                                    
+                                }
                                 </Dropdown>
-                                <Dropdown type="cart" icon={<IconBtn onClick={e=> alert("Your wishlist is empty!")} className="user--favourites" type="heart" />}>
+                                <Dropdown type="cart" icon={<IconBtn onClick={()=> alert("Your wishlist is empty!")} className="user--favourites" type="heart" />}>
                                     <div className="facourite-items">Your wishlist is Empty</div>
                                 </Dropdown>
-                                <Dropdown type="cart" icon={<IconBtn onClick={e=> alert("Your have no Notifications")} className="user--notifications" type="bell" />}>
+                                <Dropdown type="cart" icon={<IconBtn onClick={()=> alert("Your have no Notifications")} className="user--notifications" type="bell" />}>
                                     <div className="facourite-items">No notifications</div>
                                 </Dropdown>
                                 <li  className={!isLoggedIn ? 'not-logged-in' : 'logged-in'}>

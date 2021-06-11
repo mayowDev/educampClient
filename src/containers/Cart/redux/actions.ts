@@ -5,7 +5,6 @@ export const getCartItems = () => async dispatch => {
   try {
     dispatch({type:LOADING})
     const response = await API.getCartItems();
-    // console.log('response', response.cart.items)
     if(response&&response.success) return dispatch({type: GET_CART_ITEMS, payload: response.cart.items})
   } catch (error) {
     console.log('getCartItemsError', error);

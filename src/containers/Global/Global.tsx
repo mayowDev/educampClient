@@ -1,5 +1,7 @@
 import React, {lazy, Suspense, useEffect, useState} from 'react';
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Redirect, useHistory} from 'react-router-dom';
+import browserHistory from '../../services/history' 
+
 import HomePage from "../Home"
 import NotFound from "../../views/404/NoFound";
 import ProtectedRoute from '../../components/Common/protectedRoute'
@@ -41,13 +43,17 @@ const RenderRoutes = ({isLoggedIn}) => {
      )
 };
 
-const Global = ({isLoggedIn, getUserData, fetchCourses, userProfile}) => { 
+const Global = ({isLoggedIn, getUserData, fetchCourses, getRouteName, getCartItems, userProfile, routeName}) => { 
     useEffect(() => {
         if(isLoggedIn){
-            getUserData();       
+            getUserData();  
+            getCartItems()     
         }
         fetchCourses();
     }, []);
+    useEffect(() => {
+        getRouteName()
+    },[routeName])
 
     useEffect(() => {
         if(userProfile && userProfile.id){

@@ -1,4 +1,5 @@
-import { CHANGE_SEARCH, SET_REDIRECT_PATH } from './constants';
+import browserHistory from '../../../services/history' 
+import { CHANGE_SEARCH, SET_REDIRECT_PATH, SET_ROUTE_NAME } from './constants';
 
 export function changeSearch(value){
     return {
@@ -13,5 +14,10 @@ export function setRedirectPath(value){
         payload: value
     }
 }
-
-
+export function getRouteName(){
+    const history = browserHistory;
+    return {
+        type: SET_ROUTE_NAME,
+        payload: history.location.pathname
+    }
+}
