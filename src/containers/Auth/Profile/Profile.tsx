@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import { useHistory} from 'react-router-dom'
 import {toast} from 'react-toastify'
-import { P2,  Title} from '../../../components/Typography'
+import { P2,  Title, H3} from '../../../components/Typography'
 // import Input from '../../../components/Input'
 import Button from '../../../components/Button'
 import Spinner from '../../../components/Spinner'
 // import Card from '../../../components/Card'
 // import Pagination from "../../../components/Common/Pagination";
-import MaterialPagination from "../../../components/Common/materialPagination";
+// import MaterialPagination from "../../../components/Common/materialPagination";
 // import { paginate } from "../../../utils/paginate";
 
 
@@ -278,7 +278,7 @@ const Profile = (props) => {
                             return (
                                     //data-aos="fade-up" data-aos-duration="500"
                                     <div key={id} className="courses-container__card">
-                                        <Title value={title}/>
+                                        <H3 value={title}/>
                                         <img src={image&&image} alt="" />
                                         <p>{description}</p>
                                         <div className="cta-btn">
@@ -291,12 +291,12 @@ const Profile = (props) => {
                         })
                     }
                 </div>
-                <MaterialPagination
+                {/* <MaterialPagination
                         count={currentUserCourses.length}
                         // pageSize={3}
                         page={currentPage}
                         onChange={handlePageChange}
-                />
+                /> */}
                 {/* <Pagination
                         itemsCount={currentUserCourses.length}
                         pageSize={3}

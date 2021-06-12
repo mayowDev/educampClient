@@ -257,17 +257,23 @@
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
-        gap: 20px;
+        gap: 1rem;
         align-items: center;
         justify-content: space-between;
-        margin: 15px auto;
+        margin: 1rem auto;
         &__card{
             background: brown;
             color: white;
-            // height: 300px;
-            // height: max-content;
+            height: 300px;
             width: 350px;
             padding:20px;
+            h3{
+                color: white;
+                text-transform: capitalize;
+                font-weight: 600;
+                opacity: 0.85;
+                font-size: 1.25rem;
+            }
             p{
                 line-height:1.75;
             }
