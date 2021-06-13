@@ -23,7 +23,7 @@ const Courses = (props) => {
     }
     
     useEffect(() => {
-        console.log('isAddedToCart', isAddedToCart, 'cartItems.length', cartItems.length)
+        // console.log('isAddedToCart', isAddedToCart, 'cartItems.length', cartItems.length)
         if(isAddedToCart) {
             toast.dark("Course Added to Cart")
         }

@@ -14,6 +14,7 @@ import ForgotPassword from '../Auth/Forgot';
 import ResetPage from '../Auth/Reset'
 import ProfilePage from '../Auth/Profile'
 import Courses from "../Courses";
+import CourseDetails from '../Courses/CourseDetails'
 import Teachers from '../Teachers'
 import Checkout from '../Cart/Checkout/Checkout'
 import Cart from '../Cart'
@@ -33,7 +34,7 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/courses" component={Courses.Courses}/>
                 <Route exact path="/courses/new" component={Courses.AddCourse}/>
                 <Route exact path="/courses/edit/:id" component={Courses.EditCourse}/>
-                <Route exact path="/courses/:id" component={Courses.CourseDetails}/>
+                <Route exact path="/courses/:id" component={CourseDetails}/>
                 <Route exact path="/teachers" component={Teachers.Teachers}/>
                 <Route exact path="/teachers/:id" component={Teachers.TeacherDetails}/>
                 <Route exact path="/cart" component={Cart}/>
@@ -43,14 +44,14 @@ const RenderRoutes = ({isLoggedIn}) => {
      )
 };
 
-const Global = ({isLoggedIn, getUserData, fetchCourses, getRouteName, getCartItems, userProfile, routeName}) => { 
+const Global = ({isLoggedIn, getUserData, fetchCourses, getRouteName, getCartItems, userProfile, cartItems, routeName}) => { 
     useEffect(() => {
         if(isLoggedIn){
             getUserData();  
-            getCartItems()     
+            getCartItems();     
         }
         fetchCourses();
-    }, []);
+    }, [isLoggedIn]);
     // useEffect(() => {
     //     getRouteName()
     // },[routeName])

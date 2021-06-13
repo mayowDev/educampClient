@@ -23,14 +23,14 @@ const Header: React.FC<IHeaderProps> = (props) => {
     };
 
     const handleLogout = ()=>{
-        logout();
+        logout(); setTimeout(()=>{window.location.reload()},50)
     }
     // const route = window.location.pathname
     // console.log('windowRouteName', route);
-    useEffect(()=>{
-        console.log('headerCalled', history.location.pathname)
-        history.location.pathname
-    }, [history.location.pathname.length])
+    // useEffect(()=>{
+    //     console.log('headerCalled', history.location.pathname)
+    //     history.location.pathname
+    // }, [history.location.pathname.length])
     const isLinkActive = (route) => {
         return routeName === route ? "active" : '';
     };
@@ -88,7 +88,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
                                 {
                                 !isLoggedIn &&
                                 <>
-                                    <Dropdown type="cart" icon={<IconBtn badge={2} className="user--cart" type="cart"  to="/cart"/>}>
+                                    <Dropdown type="cart" icon={<IconBtn badge={cartItems && cartItems.length} className="user--cart" type="cart"  to="/cart"/>}>
                                         <div className="cart-items">Your is Empty</div>
                                     </Dropdown>
                                     {/* <IconBtn to="/cart" onMouseEnter={handleMouseEnter} className="user--cart" type="cart"/> */}
@@ -99,7 +99,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
                             </li>
                             {isLoggedIn &&
                             <> 
-                                <Dropdown type="cart" icon={<IconBtn  className="user--cart" type="cart"  to="/cart"/>}>
+                                <Dropdown type="cart" icon={<IconBtn badge={cartItems && cartItems.length} className="user--cart" type="cart"  to="/cart"/>}>
                                     {cartItems && cartItems.length > 0 ? cartItems.map(item=>
                                         <Fragment key={item.id}>
                                         <div  className="cart-items">
