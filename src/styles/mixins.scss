@@ -1,6 +1,10 @@
 /** global mixins */
 @mixin checkoutBtn {
-    button{
+    .btn, .primary-btn{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
         background-color: #E44F4F;
         font-size: 1rem;
@@ -10,8 +14,30 @@
         border: none;
         border-radius:3px;
         margin-left:  -10px;
+        height: 50px;
+        min-width: 260px;
         &:hover{
             background-color: #992337
         }
+    }
+}
+
+@mixin secondaryBtn{
+    .secondary-btn{
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        margin-top: .1rem;
+        color: #0f7c90;
+        border: 1px solid #0f7c90;
+        font-size:1rem;
+        font-weight:bold;
+        border-radius: 3px;
+        padding: 8px 85px;
+        min-width: 260px;
+        height: 50px;
     }
 }

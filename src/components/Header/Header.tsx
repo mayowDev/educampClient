@@ -41,7 +41,6 @@ const Header: React.FC<IHeaderProps> = (props) => {
     useEffect(() => {
         // getCartItems()
         if(cartItems ){
-            console.log('cartItems', cartItems.length)
             let total = cartItems.reduce((a, b) => {
                return  a + b.price
             }, 0);

@@ -3,7 +3,8 @@ import CourseList from './CourseList';
 import AddCourse from './AddCourse';
 import EditCourse from './EditCourse';
 import CourseDetails from './CourseDetails';
-import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse} from './redux/actions'
+import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse, getCourseByName} from './redux/actions'
+import {getTeacher} from  '../Teachers/redux/actions'
 import { getUserData } from '../Auth/redux/actions';
 import { addToCart } from '../Cart/redux/actions';
 
@@ -30,10 +31,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     fetchCourses: () => dispatch(fetchCourses()),
     fetchCourse :(id:string) => dispatch(fetchCourse(id)),
+    getCourseByName: (slug:string) => dispatch(getCourseByName(slug)),
     createCourse: (data) => dispatch(createCourse(data)),
     updateCourse: (id:string, data) => dispatch(updateCourse(id, data)),
     deleteCourse: (id:string) => dispatch(deleteCourse(id)),
     addToCart:(id:string) => dispatch(addToCart(id)),
+    getTeacher:(id:string) => dispatch(getTeacher(id)),
     getUserData:() => dispatch(getUserData())
 
 })

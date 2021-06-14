@@ -23,6 +23,19 @@ export const fetchCourse = (id) => async dispatch => {
   }
 }
 
+export const getCourseByName = (slug) => async dispatch => {
+  try {
+    dispatch({type:LOADING})
+    const response = await API.getCourseBySlug(slug)
+    // if(response&&response.data === null) return   dispatch({type: NULL_RESPONSE})
+    if(response&&response.success&&response.data !== null) return dispatch({type: FETCH_COURSE, payload: response.data})
+  } catch (error) {
+    console.log('fetchCourseError', error);
+    dispatch({type: API_ERROR})
+  }
+}
+
+
 export const createCourse = (data)=> async dispatch =>{
   try {
     const response = await API.createCourse(data)

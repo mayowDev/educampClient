@@ -1,0 +1,163 @@
+@import  '../../styles/mixins.scss';
+.courseDetails{
+    // display:flex;
+    // justify-content: space-around;
+    // background-color:red;  
+    padding: 0;  
+    font-family: sf pro text,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+    &__contetnt{
+        // flex-direction: column;
+        padding: 0 350px;
+        background-color:#1E1E1C;
+        &--hero-section{
+            width: 60%;
+            height: 28rem;
+            color: white;
+            vertical-align: middle;
+            padding: 2rem 0;
+            // width: 90%;
+            // color: #14171C;
+            .course-category{
+                display: flex;
+                padding: .85rem;
+                margin: 0;
+                color: #8ED1C4;
+                font-weight: bold;
+                li{
+                    list-style-type: disclosure-closed;
+                    margin-right:1.2rem;
+                    padding-right: 1rem;
+                    cursor: pointer;
+                    a{
+                        text-decoration: none;
+                        color: #8ED1C4;
+                    }
+                }
+            }
+            h1{
+                color: whitesmoke;
+                margin-bottom: .8rem;
+                text-transform: capitalize;
+            }
+            p{
+                font-size: 1.1rem;
+                margin-bottom: 0;
+                line-height: 1.5;
+                color: whitesmoke;
+            }
+            .course-rating{
+                display: flex;
+                align-items: center;
+                color: #F6C38B;
+                font-weight: 700;
+                font-size: .9rem;
+                span{
+                    color:lightgray;
+                    font-size: .8rem;
+                    margin: 0 1px;
+                }
+                h5{margin-right: 4px;}
+                .count{margin-left: 8px;}
+                .checked{
+                    color: #F6C38B;
+                }
+            }
+            .teacher{
+                display: flex;
+                align-items: center;
+                font-size:.9rem;
+                a{
+                    text-decoration: underline;
+                    color: #8ED1C4;
+                    font-weight: 400;
+                    font-size:.9rem;
+                    margin: 0 .5rem;
+                }
+            }
+            .btn-actions{
+                display: flex;
+                align-items: center;
+                font-size:.8rem;
+                font-weight: bold;
+                text-align: center;
+                .actions-icons{
+                    display: flex;
+                    justify-content: space-around;
+                }
+                div{
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+                    padding: .5rem;
+                    height: 30px;
+                    width: 100px;
+                    border: 1px solid rgb(241, 229, 206);
+                    border-radius:3px;
+                    margin-right: .37rem;
+                    margin-top: .5rem;
+                    button{
+                        background-color: transparent;
+                        vertical-align: middle;
+                        font-weight: 700;
+                        zoom: 130%;
+                    }
+                    h6{font-size: .85rem;}
+                }
+            }
+        }
+    }
+    &__sidebar{
+        display: flex;
+        flex-direction:column;
+        position: absolute;
+        right:15%;
+        top: 15%;
+        height: 65%;
+        background-color: whitesmoke;
+        // margin-left: 1rem;
+        &--course-intro{
+            background-color: whitesmoke;
+            display: flex;
+            min-height: 15rem;
+            max-width: 10rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items:center;
+            video{
+                width: 15rem;
+                margin: 0 auto;
+                padding: 1rem;
+            }
+            .play-btn{
+                color: #fff;
+                background-color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                margin: 0 auto;
+                top: 40%;
+                // left: 0;
+                height: 1rem;
+                width: 3rem;
+            }
+            // background-image: url('../../assets/images/coursesThumbnails/react-thumbnail.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            h4{
+                color: white;
+            }
+        }
+        .cta-btns{
+            @include checkoutBtn;
+            @include secondaryBtn;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+            padding: 1rem;
+        }
+    }
+
+}

@@ -33,9 +33,13 @@ module.exports={
                 use:[{loader:'html-loader'}]
             },
             {
-                test: /\.(jpe?g|png|woff(2)?|ttf|eot|otf|svg|gif|glb|hdr|gltf)$/i,
+                test: /\.(jpe?g|png|mp4|woff(2)?|ttf|eot|otf|svg|gif|glb|hdr|gltf)$/i,
                 use:[{loader:'file-loader'}]
             },
+            // {
+            //     test: /\.mp4$/,
+            //     use: 'file-loader?name=videos/[name].[ext]',
+            // },
             {
                 test: /\.scss$/,
                 use: ["style-loader", "css-loader", "sass-loader"]

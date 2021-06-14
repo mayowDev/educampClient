@@ -34,7 +34,7 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/courses" component={Courses.Courses}/>
                 <Route exact path="/courses/new" component={Courses.AddCourse}/>
                 <Route exact path="/courses/edit/:id" component={Courses.EditCourse}/>
-                <Route exact path="/courses/:id" component={CourseDetails}/>
+                <Route exact path="/courses/:slug" component={Courses.CourseDetails}/>
                 <Route exact path="/teachers" component={Teachers.Teachers}/>
                 <Route exact path="/teachers/:id" component={Teachers.TeacherDetails}/>
                 <Route exact path="/cart" component={Cart}/>
@@ -58,7 +58,6 @@ const Global = ({isLoggedIn, getUserData, fetchCourses, getRouteName, getCartIte
 
     useEffect(() => {
         if(userProfile && userProfile.id){
-            console.log('username',userProfile.name);   
         }
     }, [userProfile.id]); 
 
