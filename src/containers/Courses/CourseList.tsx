@@ -53,7 +53,6 @@ const Courses = (props) => {
         // appendDots: appendDots
     };
     const renderCourses = () =>
-    // [0,1,2,3,4,5,6,7,8,9]
         courses&&courses.map((course) => (
             <div key={course.id} onClick={()=>handleCourseClick(course.slug)} className="courses__card--item" data-aos="fade-up" data-aos-duration="500">
                 <div className="content">
@@ -69,7 +68,7 @@ const Courses = (props) => {
                     <div className="review">5 reviews</div>
                     <div className="price">${course.price}.99</div>
                     <div className="cart-btn">
-                        <button onClick={()=>handleAddToCart(course.slug)} className="btn">Add to Cart</button>
+                        <button onClick={()=>handleAddToCart(course.id)} className="btn">Add to Cart</button>
                     </div>
 
                 </div>

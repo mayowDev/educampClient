@@ -97,12 +97,18 @@
                 }
             }
             .order-details{
+                display: flex;
+                flex-direction: column;
+                align-items: baseline;
                 .item-card{
                     display:flex;
                     justify-content: space-evenly;
                     align-items: center;
                     margin-top:1rem;
                     margin-left:-2rem;
+                    & > *{
+                        margin: 0 .5rem;
+                    }
                     h4{
                         font-size: .85rem;
                         opacity: .75;
@@ -110,6 +116,7 @@
                     img{
                         width:50px;
                         height:50px;
+                        margin-left: 2rem;
                     }
                 }
             }
@@ -161,8 +168,11 @@
                     }
                 }
             }
-            
             @include checkoutBtn;
+            .btn{
+                width: 100%;
+                margin-left: 0;
+            }
         }
     }
 }

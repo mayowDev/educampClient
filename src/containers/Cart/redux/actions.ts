@@ -1,4 +1,5 @@
-import {CREATE_ORDER, GET_ORDER_ITEMS, GET_CART_ITEMS, ADD_TO_CART, REMOVE_FROM_CART, GET_FAVOURITE_ITEMS, ADD_TO_FAVOURITE, REMOVE_FROM_FAVOURITE, LOADING, API_ERROR 
+import {CREATE_ORDER, GET_ORDER_ITEMS, GET_CART_ITEMS, ADD_TO_CART, REMOVE_FROM_CART, GET_FAVOURITE_ITEMS, CHECKOUT,
+  ADD_TO_FAVOURITE, REMOVE_FROM_FAVOURITE, LOADING, API_ERROR 
 } from './constants'
 import * as API from "../../../services"
 
@@ -17,7 +18,6 @@ export const addToCart = (courseid) => async dispatch => {
     try {
       dispatch({type:LOADING})
       const response = await API.addItemToCart(courseid)
-      console.log('response', response)
       if(response&&response.success) return dispatch({type: ADD_TO_CART, payload: response.cart.items})
     } catch (error) {
       console.log('addToCartError', error);
@@ -40,7 +40,6 @@ export const getWishlistItems = () => async dispatch => {
   try {
     dispatch({type:LOADING})
     const response = await API.getFavouriteItems();
-    console.log('getFavouriteItems', response);
     if(response&&response.success) return dispatch({type: GET_FAVOURITE_ITEMS, payload: response.favourites.items})
   } catch (error) {
     console.log('getFavouritesError', error);
@@ -52,7 +51,6 @@ export const addToWishlist = (courseid) => async dispatch => {
   try {
     dispatch({type:LOADING})
     const response = await API.addItemToFavourites(courseid)
-    console.log('addToWishlist response', response)
     if(response&&response.success) return dispatch({type: ADD_TO_FAVOURITE, payload: response.favourites.items})
   } catch (error) {
     console.log('addToFavouritetError', error);
@@ -64,7 +62,6 @@ export const removeFromWishlist = (courseid) => async dispatch => {
   try {
     dispatch({type:LOADING})
     const response = await API.removeItemFromFavourites(courseid)
-    console.log('removeFromWishlist response', response)
     if(response&&response.success) return dispatch({type: REMOVE_FROM_FAVOURITE, payload: courseid})
   } catch (error) {
     console.log('removeFromFavouriteError', error);
@@ -92,4 +89,17 @@ export const getOrder = () => async dispatch => {
       console.log('createOrderError', error);
       return dispatch({type: API_ERROR})
     }
+}
+
+export const postCheckout = (data: any) => async dispatch =>{
+  try {
+    dispatch({type:LOADING})
+    const response = await API.postCheckout(data)
+    console.log('postCheckout action ===> ', response)
+    if(response&&response.success) return dispatch({type: CHECKOUT, payload: response.data})
+  } catch (error) {
+    console.log('postCheckoutError', error);
+    return dispatch({type: API_ERROR})
+  }
+
 }

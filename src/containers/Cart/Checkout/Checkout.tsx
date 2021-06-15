@@ -1,16 +1,40 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react';
+import { loadStripe } from "@stripe/stripe-js";
+import {Elements,CardElement,useStripe,useElements} from "@stripe/react-stripe-js";
 import StripeCheckout from 'react-stripe-checkout';
 import {STRIPE_PUBLISH_KEY} from "../../../configs"
 import PaypalImage from '../../../assets/images/paypal-icon.jpg'
 import  courseThumbnail  from '../../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
-
 import './style.scss'
-const Checkout = () => {
-    const [product, setProduct] = useState({
-        name:'test product', 
-        price: 10,
-        description: 'product description'
-    })
+
+const Checkout = (props) => {
+    const {getCartItems, cartItems, isLoading} = props;
+    const [product, setProduct] = useState<any>()
+    const [originalPrice, setOriginalPrice] = useState<number>(0)
+    const [discountedAmount, setDiscountedAmount] = useState<number>(0)
+    const [totalPrice, setTotalPrice] = useState(0)
+    
+    const stripePromise = loadStripe(STRIPE_PUBLISH_KEY)
+    useEffect(() => {
+        getCartItems()
+    },[])
+
+    useEffect(() => {
+        if(cartItems &&cartItems.length > 0){
+            console.log('cartItems', cartItems)
+            let total = cartItems.reduce((a, b) => {
+               return  a + b.price
+            }, 0);
+            setTotalPrice(total)
+            setOriginalPrice(total*8)
+            setDiscountedAmount(Math.abs(originalPrice - total*7))
+            setProduct(cartItems)
+        }
+    }, [cartItems.length]); 
+
+    const handleCardChange  = ()=>{
+        console.log('payment changed')
+    }
     const paymentToken = token =>{
         const body ={
             token, product
@@ -38,7 +62,7 @@ const Checkout = () => {
                     <p>Billing address</p>
                     <input className="country-options" type="text" placeholder="Select your Country"/>
                     <div className="input-group" >   
-                        <input type="radio" checked />
+                        <input onChange={handleCardChange} type="radio" checked />
                         <label>New payment Card</label>
                     </div>
                     <div className="input-group" >   
@@ -69,26 +93,29 @@ const Checkout = () => {
                     </form>
                     <div className="order-details">
                         <h3>Order Details</h3>
-                        <div className="item-card">
-                            <img src={courseThumbnail} alt="course-item-img"/>
-                            <h4>Machine Learning A-Z™: Hands-On Python & R In Data Science</h4>
-                            <div className="item-price">$11.99</div>
-                        </div>
+
+                        {product&&product.map(item =>
+                        <div key={item.id} className="item-card">
+                             <img src={courseThumbnail} alt="course-item-img"/>
+                             <h4>{item.title}</h4>
+                             <div className="item-price">${item.price}.99</div>
+                         </div>
+                        )}
                     </div>
                 </div>
                 <div className="checkout__content--sidebar">
                     <h3>Summary</h3>
                     <div className="original">
-                        <p>Original price:</p>
-                        <span>$89.99</span>
+                        <p>Original amount:</p>
+                        <span>${originalPrice}.99</span>
                     </div>
                     <div className="discounted">
                         <p>Discounted price:</p>
-                        <span>$78.99</span>
+                        <span>${discountedAmount}</span>
                     </div>
                     <div className="total">
                         <p>Total:</p>
-                        <span>$11.99</span>
+                        <span>${totalPrice}.99</span>
                     </div>
                     <div className="legal-message">
                         <p> Educamp is required by law to collect applicable transaction taxes for purchases made in certain tax jurisdictions.</p>
@@ -98,7 +125,7 @@ const Checkout = () => {
                     <StripeCheckout 
                         stripeKey={STRIPE_PUBLISH_KEY&&STRIPE_PUBLISH_KEY || ''} 
                         token={paymentToken}
-                        amount={product.price * 100}
+                        amount={totalPrice * 100}
                     >
                         <button onClick={e=>console.log('/cart/checkout')} className="btn">Complete payment</button>
                     </StripeCheckout>

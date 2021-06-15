@@ -1,22 +1,18 @@
 @import  '../../styles/mixins.scss';
 .courseDetails{
     // display:flex;
-    // justify-content: space-around;
     background-color:white;  
     padding: 0;  
     font-family: sf pro text,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
     &__contetnt{
         display:flex;
         flex-direction: column;
-        // justify-content: space-between;
-        // background-color:#1E1E1C;
         &--hero-section{
             padding: 2rem 20rem;
             background-color:#1E1E1C;
             // width: 60%;
             height: 20rem;
             color: white;
-            // color: #14171C;
             .course-category{
                 display: flex;
                 padding: .85rem;
@@ -43,7 +39,7 @@
                 font-size: 1.1rem;
                 margin-bottom: 0;
                 line-height: 1.5;
-                width: 80%;
+                width: 65%;
                 color: whitesmoke;
             }
             .course-rating{
@@ -138,47 +134,148 @@
                 }
             }
         }
+        &--cuririculum-section{
+            padding: 2rem 20rem;
+            &-header{
+                width: 70%;
+            }
+            &-container{
+                width: 70%;
+                padding: 1rem;
+                background-color: #fbfbf8;
+                border: 1px solid #DADADA;
+                border-radius: 10px;
+                .accord-cover{
+                    display: flex;
+                    align-items: center;
+                    .arrow-down{
+                        background-color: #eee;
+                        display: flex;
+                        align-items: center;
+                        width:5px;
+                    }
+                }
+                .panel {
+                    padding: 0 18px;
+                    display: none;
+                    background-color: white;
+                    overflow: hidden;
+                }
+                .accordion {
+                    background-color: #eee;
+                    color: #444;
+                    cursor: pointer;
+                    padding: 18px;
+                    width: 100%;
+                    border: none;
+                    text-align: left;
+                    outline: none;
+                    font-size: 15px;
+                    transition: 0.4s;
+                    // &:before {
+                    //     text-align:center;
+                    //     padding-right: .4rem;
+                    //     // margin: 0;
+                    //     // margin-left: -1rem;
+                    //     content: '^';
+                    //     color: #73726c;
+                    // }
+                    &__active {
+                        // background-color: red;
+                        .panel{
+                            display: block;    
+                            margin-top: 15px;
+                            z-index: 10;
+                            padding: 0 18px;
+                            background-color: white;
+                            overflow: hidden;
+                        }
+                    }
+                }
+                .active, .accordion:hover {
+                    background-color: #ccc; 
+                } 
+            }
+            h3{
+                padding-left:1.5rem;
+                color: #222222;
+                font-size: 1.5rem;
+                opacity: .85;
+            }
+            .course-length{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                ul{
+                    display: flex;
+                    opacity: .8;
+                }
+                li{
+                    margin-right: 1.5rem;
+                }
+                button{
+                    cursor: pointer;
+                    border:  none;
+                    font-size:1rem;
+                    font-weight: bold;
+                    background-color:white;
+                    color: #2f679c;
+                    &::first-letter{text-transform: capitalize;}
+                }
+
+            }
+        }
     }
     &__sidebar{
         display: flex;
         flex-direction:column;
         position: absolute;
+        position: fixed;
         right:15%;
         top: 15%;
         height: 65%;
+        width: 20rem;
         background-color: whitesmoke;
-        // margin-left: 1rem;
+        border: 1px solid #DADADA;
+        border-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-left: 1rem;
         &--course-intro{
-            background-color: whitesmoke;
+            cursor: pointer;
             display: flex;
-            min-height: 15rem;
-            max-width: 10rem;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
             align-items:center;
-            video{
-                width: 15rem;
-                margin: 0 auto;
-                padding: 1rem;
-            }
+            min-height: 12rem;
+            flex-direction: column;
+            background: linear-gradient(rgba(51, 34, 61, 0.8), rgba(black, .8)),
+            url('../../assets/images/coursesThumbnails/react-thumbnail.jpg');
+           background-size: cover;
+           background-repeat: no-repeat;
+           background-position: center;
+           backface-visibility: hidden;
+           border-top-right-radius: 10px;
+           border-top-left-radius: 10px;
+
             .play-btn{
-                color: #fff;
-                background-color: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: absolute;
-                margin: 0 auto;
-                top: 40%;
-                // left: 0;
-                height: 1rem;
-                width: 3rem;
+                height: 3.5rem;
+                width: 3.5rem;
+                img{
+                    margin-left: 5px;
+                }
             }
-            background-image: url('../../assets/images/coursesThumbnails/react-thumbnail.jpg');
-            background-position: center;
-            background-repeat: no-repeat;
             h4{
                 color: white;
+            }
+        }
+        .course-price{
+            display: flex;
+            padding: .5rem 2rem;
+            span{
+                font-weight: 700;
+                line-height: 1.2;
+                letter-spacing: -.02rem;
+                font-size: 2rem;
+                color: #3c3b37;
             }
         }
         .cta-btns{
@@ -190,6 +287,7 @@
             gap: 1rem;
             align-items: center;
             padding: 1rem;
+           
         }
     }
 

@@ -1,6 +1,7 @@
 import React, {lazy, Suspense, useEffect, useState} from 'react';
 import {BrowserRouter, Switch, Route, Redirect, useHistory} from 'react-router-dom';
-import browserHistory from '../../services/history' 
+import { loadStripe } from "@stripe/stripe-js";
+import {Elements,CardElement,useStripe,useElements} from "@stripe/react-stripe-js";
 
 import HomePage from "../Home"
 import NotFound from "../../views/404/NoFound";
@@ -14,9 +15,7 @@ import ForgotPassword from '../Auth/Forgot';
 import ResetPage from '../Auth/Reset'
 import ProfilePage from '../Auth/Profile'
 import Courses from "../Courses";
-import CourseDetails from '../Courses/CourseDetails'
 import Teachers from '../Teachers'
-import Checkout from '../Cart/Checkout/Checkout'
 import Cart from '../Cart'
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
@@ -37,8 +36,8 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/courses/:slug" component={Courses.CourseDetails}/>
                 <Route exact path="/teachers" component={Teachers.Teachers}/>
                 <Route exact path="/teachers/:id" component={Teachers.TeacherDetails}/>
-                <Route exact path="/cart" component={Cart}/>
-                <Route exact path="/cart/checkout" component={Checkout}/>
+                <Route exact path="/cart" component={Cart.Cart}/>
+                <Route exact path="/cart/checkout" component={Cart.Checkout}/>
                <Route component={NotFound}/>
             </Switch>
      )

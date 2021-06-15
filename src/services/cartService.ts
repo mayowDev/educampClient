@@ -155,4 +155,25 @@ export const getOrder = async () =>{
 }
 
 
+export const postCheckout = async (data) =>{
+    try {
+        const result = await axios.get(`/cart/checkout`, data)
+        .catch((err: any) => {
+            if (err && err.response && err.response.status === 400) {
+                return Promise.reject(
+                    new Error("Request failed with status code 400")
+                );
+            }
+            return Promise.reject(new Error(JSON.stringify(err.response.data)));
+        });
+    console.log('checkout API result', result);
+    if (result) {
+        return result.data;
+    }
+        
+    } catch (error) {
+        return Promise.reject(new Error(error.message));
+    }
+}
+
 //export const askRefund

@@ -1,4 +1,4 @@
-import React,{useState, useEffect, Fragment} from 'react';
+import React,{useState, useEffect, useRef, Fragment} from 'react';
 import {Link, useHistory, useParams} from 'react-router-dom'
 // import Card from "../../components/Card";
 // import {ICourseDetails} from './types';
@@ -10,6 +10,7 @@ const CourseDetails = (props) => {
     const { addToCart, getCourseByName, getTeacher, courseDetails} = props
     const [teacher, setTeacher]= useState<any>({})
     const [details, setDetails] = useState<any>({})
+    const [active , setActive] = useState<any>(false)
     const {slug}:any = useParams()
     const history = useHistory()
     const handleAddToCart =async (courseid) => {
@@ -27,6 +28,9 @@ const CourseDetails = (props) => {
             setDetails(courseDetails)
         }
     },[courseDetails && courseDetails.id])
+    const handleAccordian = ()=>{
+        setActive(!active)
+    }
     return (
         <Fragment>
             <div className="courseDetails">
@@ -70,17 +74,40 @@ const CourseDetails = (props) => {
                             </ul>
                         </div>
                     </div>
-                    <div className="courseDetails__contetnt--video-section"></div>
+                    <div className="courseDetails__contetnt--cuririculum-section">
+                        <div  className="courseDetails__contetnt--cuririculum-section-header">
+                            <h3>Course content</h3>
+                            <div className="course-length">
+                                <ul>
+                                    <li>7 sections</li>
+                                    <li>95 lectures</li>
+                                    <li>9h 3m total length</li>
+                                </ul>
+                                <button className="expand-sections">expand all sections</button>
+                            </div>
+                        </div>
+                        <div  className="courseDetails__contetnt--cuririculum-section-container">
+                            <div className="accord-cover">
+                                <IconBtn className="arrow-down" type="arrow2"/>
+                                <button onClick={handleAccordian} className={active ?"accordion__active": "accordion"}>Section</button>
+                            </div>
+                            <div className="panel">
+                                <p>111Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </div>
+                    </div>
                     <div className="courseDetails__contetnt--requirement-section"></div>
                 </div>
                 <div className="courseDetails__sidebar">
                     <div className="courseDetails__sidebar--course-intro">
-                        {/* <h4>Preview this course</h4> */}
-                        {/* <video src={SampleVideo} /> */}
-                        {/* <img src={sampleImage} alt="course-thumbnail" /> */}
-                        {/* <IconBtn className="play-btn" type="play"/> */}
+                        <IconBtn className="play-btn" type="play"/>
+                        <h4>Preview this course</h4>
                     </div>
-                    <div className="cta-btns">
+                    <div className="course-price">
+                        <span>${details.price}.99</span>
+                        <span className="fa fa-clock"/>
+                    </div>
+                    <div className="cta-btns purchase-section">
                         <button onClick={()=>handleAddToCart(details.id)} className="btn cart-btn">Add to cart</button>
                         <button onClick={()=>handleExpressCheckout(slug)} className="secondary-btn">Buy Now</button>
                     </div>

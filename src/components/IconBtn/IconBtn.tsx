@@ -9,7 +9,7 @@ import share2 from '../../assets/icons/share2.svg';
 import bell from '../../assets/icons/bell.svg';
 import next from '../../assets/icons/bold-next.svg';
 import heart2 from '../../assets/icons/white-heart.svg';
-// import ArrowRight from '../../assets/icons/arrowRight.svg'
+import arrow2 from '../../assets/icons/arrow-down.svg'
 import back from '../../assets/icons/bold-back.svg';
 import cross from '../../assets/icons/bold-cross.svg';
 import question from '../../assets/icons/question.svg';
@@ -43,6 +43,7 @@ const Icon = {
     bell,
     heart,
     heart2,
+    arrow2,
     cart,
     book,
     play,
@@ -63,6 +64,7 @@ const IconBtn:React.FC<IIconBtnProps> = ({type, badge, onClick, to, className, s
                      ${type === 'cart' ? 'cart' : ''} 
                      ${type === 'book' ? 'book' : ''} 
                      ${type === 'play' ? 'play' : ''} 
+                     ${type === 'arrow2' ? 'arrow2' : ''} 
                      ${(type === 'back' || type === 'next') ? 'arrow' : ''}`}
                  src={!secondary ? Icon[type] : Icon[type + "Secondary"]}
             />
