@@ -65,7 +65,7 @@ const Cart = (props) => {
                                     <img src={courseThumbnail} alt="course-item-img"/>
                                     <div className="item-content">
                                         <h4>{item.title}</h4>
-                                        <p>By Stephen Graider</p>
+                                        <p>By {item.createdBy}</p>
                                     </div>
                                     <div className="item-actions">
                                         <Link onClick={()=>handleRemoveFromCart(item.id)} to="#">Remove</Link>
@@ -91,7 +91,7 @@ const Cart = (props) => {
                                     <img src={course2Thumbnail} alt="course-item-img"/>
                                     <div className="item-content">
                                         <h4>{item.title}</h4>
-                                        <p>By Stephen Graider</p>
+                                        <p>By {item.createdBy}</p>
                                     </div>
                                     <div className="item-actions">
                                         <Link onClick={()=>handleRemoveFromWishlist(item.id)} to="#">Remove</Link>

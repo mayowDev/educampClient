@@ -2,20 +2,20 @@
 .courseDetails{
     // display:flex;
     // justify-content: space-around;
-    // background-color:red;  
+    background-color:white;  
     padding: 0;  
     font-family: sf pro text,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
     &__contetnt{
-        // flex-direction: column;
-        padding: 0 350px;
-        background-color:#1E1E1C;
+        display:flex;
+        flex-direction: column;
+        // justify-content: space-between;
+        // background-color:#1E1E1C;
         &--hero-section{
-            width: 60%;
-            height: 28rem;
+            padding: 2rem 20rem;
+            background-color:#1E1E1C;
+            // width: 60%;
+            height: 20rem;
             color: white;
-            vertical-align: middle;
-            padding: 2rem 0;
-            // width: 90%;
             // color: #14171C;
             .course-category{
                 display: flex;
@@ -43,6 +43,7 @@
                 font-size: 1.1rem;
                 margin-bottom: 0;
                 line-height: 1.5;
+                width: 80%;
                 color: whitesmoke;
             }
             .course-rating{
@@ -83,9 +84,7 @@
                 .actions-icons{
                     display: flex;
                     justify-content: space-around;
-                }
-                div{
-                    display: flex;
+                    cursor: pointer;
                     align-items: center;
                     text-align: center;
                     padding: .5rem;
@@ -102,6 +101,40 @@
                         zoom: 130%;
                     }
                     h6{font-size: .85rem;}
+                }
+            }
+        }
+        &--briefIntro-section{
+            padding: 2rem 20rem;
+            &-container{
+                width: 70%;
+                padding: 1rem;
+                background-color: #fbfbf8;
+                border: 1px solid #DADADA;
+                border-radius: 10px;
+            }
+            h3{
+                padding-left:1.5rem;
+                color: #222222;
+                font-size: 1.5rem;
+                opacity: .85;
+
+            }
+            .course-objectives{
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                margin: 0;
+                li {
+                    list-style: none;
+                    padding: .8rem;
+                    &:before {
+                        padding-right: .8rem;
+                        margin: 0;
+                        margin-left: -2rem;
+                        content: '✓';
+                        color: #73726c;
+                    }
                 }
             }
         }
@@ -141,7 +174,7 @@
                 height: 1rem;
                 width: 3rem;
             }
-            // background-image: url('../../assets/images/coursesThumbnails/react-thumbnail.jpg');
+            background-image: url('../../assets/images/coursesThumbnails/react-thumbnail.jpg');
             background-position: center;
             background-repeat: no-repeat;
             h4{
