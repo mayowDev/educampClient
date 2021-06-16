@@ -12,7 +12,10 @@
             margin-top: 0px;
             padding: 1rem;
             width: 15rem;
-            .cart-items{
+            .favourite-items{
+
+            }
+            .cart-items, .favourite-items{
               border-bottom: 1px solid lightgray;
               display: flex;
               cursor: pointer;

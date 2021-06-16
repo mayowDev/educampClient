@@ -9,8 +9,8 @@ import Dropdown from '../Dropdown';
 import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
 
 
-const Header: React.FC<IHeaderProps> = (props) => {
-    const {  isLoggedIn,routeName,searchQuery,isHome, isProfile, logout, cartItems, getCartItems} = props;    
+const Header = (props) => {
+    const {  isLoggedIn,routeName,searchQuery,isHome, isProfile, logout, cartItems, favouriteItems, addToCart} = props;    
     const history = useHistory();
     const [nav, setNav] = useState(false);
     const [navBright, setNavBright] = useState(false);
@@ -25,21 +25,15 @@ const Header: React.FC<IHeaderProps> = (props) => {
     const handleLogout = ()=>{
         logout(); setTimeout(()=>{window.location.reload()},50)
     }
-    // const route = window.location.pathname
-    // console.log('windowRouteName', route);
-    // useEffect(()=>{
-    //     console.log('headerCalled', history.location.pathname)
-    //     history.location.pathname
-    // }, [history.location.pathname.length])
+    const handleAddToCart =  async (courseid) => {
+        await addToCart({courseid})
+        history.push('/cart')
+    }
     const isLinkActive = (route) => {
         return routeName === route ? "active" : '';
     };
-    // const handleMouseEnter = ()=>{
-    //     // console.log(onmouseenter)
-    //     alert('onmouseenter')
-    // }
+   
     useEffect(() => {
-        // getCartItems()
         if(cartItems ){
             let total = cartItems.reduce((a, b) => {
                return  a + b.price
@@ -124,7 +118,24 @@ const Header: React.FC<IHeaderProps> = (props) => {
                                 {/* route !== '/cart' && {<Link className="go-to-cart" to="/cart"> Go to Cart </Link>} this is not working */}
                                 </Dropdown>
                                 <Dropdown type="cart" icon={<IconBtn onClick={()=> alert("Your wishlist is empty!")} className="user--favourites" type="heart" />}>
-                                    <div className="facourite-items">Your wishlist is Empty</div>
+                                    {favouriteItems && favouriteItems.length> 0 ? favouriteItems.map((item):any=>{
+                                        return (
+                                            <Fragment key={item.id}>
+                                                <div  className="favourite-items">
+                                                    <img src={courseThumbnail} alt="course-item-img"/>
+                                                    <div className="item">
+                                                        <h4>{item.title}</h4>
+                                                        <p>Stephen Graider</p>
+                                                        <div className="item-price">${item.price}</div>
+                                                    </div>
+                                                </div>
+                                                <Link onClick={() =>handleAddToCart(item.id)} className="go-to-cart" to="/cart"> Add to Cart </Link>
+                                        </Fragment>
+                                        )  
+                                    }):
+                                    <div className="favourite-items">Your wishlist is Empty</div>
+                                }
+
                                 </Dropdown>
                                 <Dropdown type="cart" icon={<IconBtn onClick={()=> alert("Your have no Notifications")} className="user--notifications" type="bell" />}>
                                     <div className="facourite-items">No notifications</div>

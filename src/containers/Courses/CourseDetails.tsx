@@ -75,7 +75,7 @@ const CourseDetails = (props) => {
                         </div>
                     </div>
                     <div className="courseDetails__contetnt--cuririculum-section">
-                        <div  className="courseDetails__contetnt--cuririculum-section-header">
+                        <div className="courseDetails__contetnt--cuririculum-section-header">
                             <h3>Course content</h3>
                             <div className="course-length">
                                 <ul>
@@ -88,7 +88,28 @@ const CourseDetails = (props) => {
                         </div>
                         <div  className="courseDetails__contetnt--cuririculum-section-container">
                             <div className="accord-cover">
-                                <IconBtn className="arrow-down" type="arrow2"/>
+                                {/* <IconBtn className="arrow-down" type="arrow2"/> */}
+                                <button onClick={handleAccordian} className={active ?"accordion__active": "accordion"}>Section</button>
+                            </div>
+                            <div className="panel">
+                                <p>111Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                            <div className="accord-cover">
+                                {/* <IconBtn className="arrow-down" type="arrow2"/> */}
+                                <button onClick={handleAccordian} className={active ?"accordion__active": "accordion"}>Section</button>
+                            </div>
+                            <div className="panel">
+                                <p>111Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                            <div className="accord-cover">
+                                {/* <IconBtn className="arrow-down" type="arrow2"/> */}
+                                <button onClick={handleAccordian} className={active ?"accordion__active": "accordion"}>Section</button>
+                            </div>
+                            <div className="panel">
+                                <p>111Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                            <div className="accord-cover">
+                                {/* <IconBtn className="arrow-down" type="arrow2"/> */}
                                 <button onClick={handleAccordian} className={active ?"accordion__active": "accordion"}>Section</button>
                             </div>
                             <div className="panel">
@@ -96,7 +117,15 @@ const CourseDetails = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="courseDetails__contetnt--requirement-section"></div>
+                    <div className="courseDetails__contetnt--requirement-section">
+                        <div className="courseDetails__contetnt--requirement-section-header">
+                            <h3>Requirements</h3>
+                        </div>
+                        <ul>
+                            <li>Some programming experience</li>
+                            <li>Basic computer / laptop and internet </li>
+                        </ul>
+                    </div>
                 </div>
                 <div className="courseDetails__sidebar">
                     <div className="courseDetails__sidebar--course-intro">
@@ -105,11 +134,40 @@ const CourseDetails = (props) => {
                     </div>
                     <div className="course-price">
                         <span>${details.price}.99</span>
-                        <span className="fa fa-clock"/>
-                    </div>
-                    <div className="cta-btns purchase-section">
-                        <button onClick={()=>handleAddToCart(details.id)} className="btn cart-btn">Add to cart</button>
-                        <button onClick={()=>handleExpressCheckout(slug)} className="secondary-btn">Buy Now</button>
+                        <div className="warning">
+                            <span className="fa fa-clock-o"/>
+                            <p>12 hours left at this price!</p>
+                        </div>
+                        <div className="cta-btns purchase-section">
+                            <button onClick={()=>handleAddToCart(details.id)} className="btn cart-btn">Add to cart</button>
+                            <button onClick={()=>handleExpressCheckout(slug)} className="secondary-btn">Buy Now</button>
+                        </div>
+                        <div className="refund-message">
+                            <p> 30-Day Money-Back Guarantee.</p>
+                        </div>
+                        <div className="summary-info">
+                            <h3>This course includes:</h3>
+                            <div className="info-icons">
+                                <span className="fa fa-tv"/>
+                                <p>25 hours on-demand video</p>
+                            </div>
+                            <div className="info-icons">
+                                <span className="fa fa-file"/>
+                                <p>13 articles</p>
+                            </div>
+                            <div className="info-icons">
+                                <span className="fa fa-clock-o"/>
+                                <p>Full lifetime access</p>
+                            </div>
+                            <div className="info-icons">
+                                <span className="fa fa-certificate"/>
+                                <p>Certificate of completion</p>
+                            </div>
+                            <div className="info-icons">
+                                <span className="fa fa-mobile"/>
+                                <p>Access on mobile and TV</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

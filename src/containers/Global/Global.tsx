@@ -43,11 +43,12 @@ const RenderRoutes = ({isLoggedIn}) => {
      )
 };
 
-const Global = ({isLoggedIn, getUserData, fetchCourses, getRouteName, getCartItems, userProfile, cartItems, routeName}) => { 
+const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems, getRouteName, getCartItems, userProfile, cartItems, routeName}) => { 
     useEffect(() => {
         if(isLoggedIn){
             getUserData();  
-            getCartItems();     
+            getCartItems();  
+            getWishlistItems()   
         }
         fetchCourses();
     }, [isLoggedIn]);

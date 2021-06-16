@@ -25,6 +25,12 @@ export interface IHeaderProps {
     isSidebar?: boolean
     logout: () => LogoutResponse,
     getCartItems: ()=> LogoutResponse,
+    addToCart?:()=> void,
+    favouriteItems?:[{
+        id:string,
+        price:number
+        title:string
+    }]
     cartItems?: [{
         id:string,
         price:number
