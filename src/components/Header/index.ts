@@ -5,12 +5,12 @@ import {logout} from '../../containers/Auth/redux/actions'
 import {addToCart, getCartItems} from '../../containers/Cart/redux/actions'
 import './style.scss'
 
-const mapStatesToProps = ({auth, cart}) => {    
+const mapStatesToProps = ({auth, cart, favourites}) => {    
     return {
         isLoggedIn: auth.isLoggedIn,
         profileData: auth.userProfileData,
         cartItems: cart.cartItems,
-        favouriteItems: cart.favouriteItems
+        favouriteItems: favourites.favouriteItems
     };
 };
 

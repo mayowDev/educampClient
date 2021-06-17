@@ -6,12 +6,11 @@ import CourseDetails from './CourseDetails';
 import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse, getCourseByName} from './redux/actions'
 import {getTeacher} from  '../Teachers/redux/actions'
 import { getUserData } from '../Auth/redux/actions';
-import { addToCart } from '../Cart/redux/actions';
+import { addToCart, addToWishlist, removeFromWishlist } from '../Cart/redux/actions';
 
 import './style.scss'
 
 const mapStateToProps = (state) => {  
-  // console.log('state', state)
   return {
     isLoading: state.courses.loading,
     isLoggedIn: state.auth.isLoggedIn,
@@ -24,7 +23,8 @@ const mapStateToProps = (state) => {
     isAddedToCart: state.cart.isAddedToCart,
     cartItems: state.cart.cartItems,
     courses: state.courses.coursesList,
-    courseDetails: state.courses.courseDetails
+    courseDetails: state.courses.courseDetails,
+    favouriteItems: state.cart.favouriteItems
   }
 }
 
@@ -37,7 +37,10 @@ const mapDispatchToProps = (dispatch) => ({
     deleteCourse: (id:string) => dispatch(deleteCourse(id)),
     addToCart:(id:string) => dispatch(addToCart(id)),
     getTeacher:(id:string) => dispatch(getTeacher(id)),
-    getUserData:() => dispatch(getUserData())
+    getUserData:() => dispatch(getUserData()),
+    addToWishlist:(id:object) => dispatch(addToWishlist(id)),
+    removeFromWishlist: (id:object) => dispatch(removeFromWishlist(id))
+
 
 })
 

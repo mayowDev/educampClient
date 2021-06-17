@@ -34,7 +34,7 @@ const Profile = (props) => {
 
     useEffect(() => {
         if(userProfile && userProfile.id){
-            const {  name, email, avatar } = userProfile;
+            const {  name, email, avatar, courses } = userProfile;
             setName(name);
             setEmail(email);
             setPhoto(avatar)   

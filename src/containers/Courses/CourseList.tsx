@@ -60,13 +60,13 @@ const Courses = (props) => {
                     <h3 className='big'>{course.title}</h3>
                     <p className="teacher">{course.createdBy}</p>
                     <div className="review">5 reviews</div>
-                    <div className="price">${course.price}.99</div>
+                    <div className="price">{course.price == 0? 'Free': `$${course.price + .99 }` }</div>
                 </div>
                 <div onClick={e=>e.stopPropagation()}  className="content-hover">
                     <h3 className='big'>{course.title}</h3>
                     <p className="teacher">{course.createdBy}</p>
                     <div className="review">5 reviews</div>
-                    <div className="price">${course.price}.99</div>
+                    <div className="price">{course.price == 0? 'Free': `$${course.price + .99 }` }</div>
                     <div className="cart-btn">
                         <button onClick={()=>handleAddToCart(course.id)} className="btn">Add to Cart</button>
                     </div>

@@ -1,63 +1,59 @@
-import {GET_FAVOURITES_SUCCESS, UPDATE_FAVOURITE, UPDATE_DATA_IN_FAVOURITE} from './actionTypes';
-
+import {GET_FAVOURITE_ITEMS, ADD_TO_FAVOURITE, REMOVE_FROM_FAVOURITE, LOADING, API_ERROR } from './constants'
 const initialState = {
-    favourites: {
-        organisations: [],
-        artists: [],
-        artworks: [],
-        exhibitions: []
-    },
-    currentPage: 0,
-    canLoadMore: true,
-    favouritesLoading: true,
-    isFavouritesUpdated: false,
-    pages: {}
-};
+    favouriteItems: [],
+    lastFetch: '',
+    isNull: false,
+    apiError: false,
+    isAddedToCart: false,
+    isRemovedFromCart: false,
+    isRemovedFromFavorite: false,
+    loading:false,
+}
 
-function GetFavourites(state = initialState, action) {
+export default(state = initialState, action)=>{
     switch (action.type) {
-        case GET_FAVOURITES_SUCCESS:
-            if (state.currentPage === action.payload.currentPage) {
-                return {
-                    ...state,
-                    favouritesLoading: false,
-                    isFavouritesUpdated: false
-                }
+        case LOADING: 
+            return {
+                ...state,
+                loading: true, 
             }
+        case GET_FAVOURITE_ITEMS: 
             return {
                 ...state,
-                favouritesLoading: false,
-                favourites: action.payload,
-                isFavouritesUpdated: false
-            };
-
-        case UPDATE_FAVOURITE:
-            // const newFavourites = [...state.favourites];
-            console.log('+++>>>>>', state.favourites);
+                favouriteItems: [...action.payload],
+                lastFetch: Date.now(),
+                loading: false,
+                apiError:false
+            }
+        case ADD_TO_FAVOURITE: 
             return {
                 ...state,
-                favouritesLoading: true,
-                isFavouritesUpdated: true
-            };
+                favouriteItems:[...action.payload],
+                isAddedToFavourite: true,
+                isAddedToCart: false,
+                loading: false,
+                apiError:false
 
-        case UPDATE_DATA_IN_FAVOURITE:
-            const newExhibitions = [...state.favourites[action.payload.favouriteType]];
-            const newFavourites = newExhibitions.filter((exhibition) => exhibition.data.id === action.payload.id)[0];
-            newFavourites.data.isFavourite = false;
-            const newIndex = newExhibitions.indexOf(newFavourites);
-            newExhibitions[newIndex] = newFavourites;
-            newExhibitions.splice(newIndex, 1);
+            }
+        case REMOVE_FROM_FAVOURITE: 
             return {
                 ...state,
-                favourites: {
-                    ...state.favourites,
-                    [action.payload.favouriteType]: [...newExhibitions]
-                }
-            };
-
+                //@ts-ignore
+                favouriteItems: state.favouriteItems.filter(course=> course.id !== action.payload),
+                isRemovedFromFavorite: true,
+                isAddedToCart: false,
+                loading :false
+            }
+        case API_ERROR:
+        // case NULL_RESPONSE: 
+        return{
+            ...state,
+            loading: false,
+            apiError:true,
+            isNull: true
+        }
         default:
-            return state
+            return state;
     }
 }
 
-export default GetFavourites;

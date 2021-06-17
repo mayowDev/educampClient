@@ -1,19 +1,20 @@
 import { connect } from 'react-redux'
 import Cart from './Cart';
 import Checkout from './Checkout/Checkout';
-import {getCartItems, addToCart, removeFromCart, getWishlistItems, addToWishlist, removeFromWishlist, createOrder} from './redux/actions'
+import CheckoutForm from './Checkout/CheckoutForm';
+import {getWishlistItems, addToWishlist, removeFromWishlist} from '../Favourites/redux/actions'
+import {getCartItems, addToCart, removeFromCart,  createOrder} from './redux/actions'
 import './style.scss'
 
-const mapStateToProps = ({cart}) => { 
-    // console.log('cart', cart)
+const mapStateToProps = ({cart, favourites}) => { 
   return {
     isLoading: cart.loading,
     isApiError: cart.isApiError,
     orderItems: cart.orderItems,
     cartItems: cart.cartItems,
-    favouriteItems: cart.favouriteItems,
+    favouriteItems: favourites.favouriteItems,
     isRemovedFromCart: cart.isRemovedFromCart,
-    isRemovedFromFavorite: cart.isRemovedFromFavorite,
+    isRemovedFromFavorite: favourites.isRemovedFromFavorite,
     orderDetails: cart.orderDetails
   }
 }
@@ -31,8 +32,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default {
   Cart: connect(mapStateToProps, mapDispatchToProps)(Cart),
-  Checkout: connect(mapStateToProps, mapDispatchToProps)(Checkout)
+  Checkout: connect(mapStateToProps, mapDispatchToProps)(Checkout),
+  CheckoutForm: connect(mapStateToProps, mapDispatchToProps)(CheckoutForm)
 }
-    // AddCourse: connect(mapStateToProps, mapDispatchToProps)(AddCourse),
-    // EditCourse: connect(mapStateToProps, mapDispatchToProps)(EditCourse),
-    // CourseDetails: connect(mapStateToProps, mapDispatchToProps)(CourseDetails

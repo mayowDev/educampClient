@@ -7,15 +7,24 @@ import IconBtn from '../../components/IconBtn';
 import Rating from '../../components/Rating'
 import './CourseDetails.scss'
 const CourseDetails = (props) => {
-    const { addToCart, getCourseByName, getTeacher, courseDetails} = props
-    const [teacher, setTeacher]= useState<any>({})
+    const { addToCart, addToWishlist, getCourseByName, removeFromWishlist, favouriteItems, courseDetails} = props
+    const [isFavourite, setIsFavourite]= useState<boolean>(false)
     const [details, setDetails] = useState<any>({})
     const [active , setActive] = useState<any>(false)
     const {slug}:any = useParams()
     const history = useHistory()
     const handleAddToCart =async (courseid) => {
         await addToCart({courseid})
+        await removeFromWishlist(courseid)
         history.push('/cart')
+    }
+    const handleAddToWishlist = async (courseid:string) =>{
+        if(favouriteItems  &&favouriteItems.length > 0 && favouriteItems.map(item => item.id === courseid)){
+            console.log('isFavourite')
+            setIsFavourite(true)
+        } 
+        await addToWishlist({courseid})
+        // history.push('/favourites')
     }
     const handleExpressCheckout = async (courseid) => {
         //redirect to 'localhots:3000/cart/checkout/express/course/903744/?discountCode=KEEPLEARNING'
@@ -31,6 +40,7 @@ const CourseDetails = (props) => {
     const handleAccordian = ()=>{
         setActive(!active)
     }
+    // console.log('details', details)
     return (
         <Fragment>
             <div className="courseDetails">
@@ -50,7 +60,7 @@ const CourseDetails = (props) => {
                                 <Link to="#">{details.createdBy}</Link>
                             </div>
                             <div className="btn-actions">
-                                <div className="actions-icons">
+                                <div onClick={()=>handleAddToWishlist(details.id)} className="actions-icons">
                                     <h6>Wishlist</h6> 
                                     <IconBtn type="heart2"/>
                                 </div>

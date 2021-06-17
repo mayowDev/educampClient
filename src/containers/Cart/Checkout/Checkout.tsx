@@ -1,6 +1,4 @@
 import React,{useState, useEffect} from 'react';
-import { loadStripe } from "@stripe/stripe-js";
-import {Elements,CardElement,useStripe,useElements} from "@stripe/react-stripe-js";
 import StripeCheckout from 'react-stripe-checkout';
 import {STRIPE_PUBLISH_KEY} from "../../../configs"
 import PaypalImage from '../../../assets/images/paypal-icon.jpg'
@@ -14,7 +12,6 @@ const Checkout = (props) => {
     const [discountedAmount, setDiscountedAmount] = useState<number>(0)
     const [totalPrice, setTotalPrice] = useState(0)
     
-    const stripePromise = loadStripe(STRIPE_PUBLISH_KEY)
     useEffect(() => {
         getCartItems()
     },[])

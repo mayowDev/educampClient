@@ -117,7 +117,7 @@ const Header = (props) => {
                                 }
                                 {/* route !== '/cart' && {<Link className="go-to-cart" to="/cart"> Go to Cart </Link>} this is not working */}
                                 </Dropdown>
-                                <Dropdown type="cart" icon={<IconBtn onClick={()=> alert("Your wishlist is empty!")} className="user--favourites" type="heart" />}>
+                                <Dropdown type="cart" icon={<IconBtn onClick={()=> history.push('/favourites')} className="user--favourites" type="heart" />}>
                                     {favouriteItems && favouriteItems.length> 0 ? favouriteItems.map((item):any=>{
                                         return (
                                             <Fragment key={item.id}>

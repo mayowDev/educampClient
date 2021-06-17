@@ -1,8 +1,5 @@
-import React, {lazy, Suspense, useEffect, useState} from 'react';
-import {BrowserRouter, Switch, Route, Redirect, useHistory} from 'react-router-dom';
-import { loadStripe } from "@stripe/stripe-js";
-import {Elements,CardElement,useStripe,useElements} from "@stripe/react-stripe-js";
-
+import React, {useEffect} from 'react';
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import HomePage from "../Home"
 import NotFound from "../../views/404/NoFound";
 import ProtectedRoute from '../../components/Common/protectedRoute'
@@ -17,6 +14,8 @@ import ProfilePage from '../Auth/Profile'
 import Courses from "../Courses";
 import Teachers from '../Teachers'
 import Cart from '../Cart'
+import Favourites from '../Favourites';
+// import Checkout from '../Cart/Checkout/CheckoutForm';
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
             <Switch>
@@ -37,13 +36,14 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/teachers" component={Teachers.Teachers}/>
                 <Route exact path="/teachers/:id" component={Teachers.TeacherDetails}/>
                 <Route exact path="/cart" component={Cart.Cart}/>
-                <Route exact path="/cart/checkout" component={Cart.Checkout}/>
+                <Route exact path="/favourites" component={Favourites}/>
+                <Route exact path="/cart/checkout" component={Cart.CheckoutForm}/>
                <Route component={NotFound}/>
             </Switch>
      )
 };
 
-const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems, getRouteName, getCartItems, userProfile, cartItems, routeName}) => { 
+const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems,  getCartItems, userProfile}) => { 
     useEffect(() => {
         if(isLoggedIn){
             getUserData();  

@@ -87,18 +87,21 @@
                         margin-bottom: 0;
                         max-height: 37px;
                         -webkit-line-clamp: 2;
-                        color: #3D303B
+                        color: #3D303B;
+                        cursor: pointer;
                     }
                     p{
-                        margin-top:0;
+                        // margin-top:0;
+                        cursor: pointer;
                         opacity:  .5;
                     }
                 }
                 .item-actions{
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
-                    // padding: 15px;
+                    // justify-content: center;
+                    
+                    padding: 1rem 0;
                     a{
                         padding:2px 0px;
                         color: #2F6990;

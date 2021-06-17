@@ -59,7 +59,6 @@
                     width: 70px;
                     margin-left:1rem;
                 }
-                // justify-content: space-between;
             }
             .card-form{
                 background: #F8F8F9;
@@ -73,10 +72,20 @@
                         input{
                             outline: none;
                             border:1px solid lightgray;
-                            padding: .85rem 0;
+                            padding: .85rem;
                             margin: .75rem 0;
                             width: 90%   
                         }
+                    }
+                    .stripe-card{
+                        font-size: 1.13rem;
+                        margin: .75rem 0;
+                        background-color: white;
+                        outline: none;
+                        border: 1px solid lightgray;
+                        padding: .85rem;
+                        margin: .75rem 0;
+                        width: 90%;
                     }
                 }
                 .date-csv{

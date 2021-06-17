@@ -25,7 +25,9 @@ const Cart = (props) => {
             setTotalPrice(total)
         }
     }, [cartItems.length]); 
-
+    const handleCourseClick = (slug:string)=>{
+        history.push(`/courses/${slug}`)
+    }
     const handleMoveToCart = async (courseid:string)=>{
         await addToCart({courseid})
         await removeFromWishlist(courseid)
@@ -63,7 +65,7 @@ const Cart = (props) => {
                             return (
                                 <div key={item.id} className="item-card">
                                     <img src={courseThumbnail} alt="course-item-img"/>
-                                    <div className="item-content">
+                                    <div onClick={()=>handleCourseClick(item.slug)}  className="item-content">
                                         <h4>{item.title}</h4>
                                         <p>By {item.createdBy}</p>
                                     </div>
@@ -105,7 +107,8 @@ const Cart = (props) => {
                     }
                     </div>
                 </div>
-                <div className="checkout-sidebar">
+                {cartItems.length > 0&&
+                    <div className="checkout-sidebar">
                     <div className="price">
                         <span>Total:</span>
                         <h3>${totalPrice}</h3>
@@ -115,8 +118,8 @@ const Cart = (props) => {
                     </div>
                     <input type="text" placeholder="Enter discount Code"/>
                     <input className="aplly-btn" value="apply" type="submit" placeholder="Enter discount Code"/>
-                </div>
-
+                    </div>
+                }
             </div>
             }
             

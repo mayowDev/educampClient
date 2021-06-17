@@ -1,18 +1,20 @@
 import { connect } from 'react-redux'
 import Favourites from './Favourites'
-import { fetchFavouritesInit, updateFavourite, updateDataInFavourite } from './redux/actions'
+import { getWishlistItems, addToWishlist, removeFromWishlist } from './redux/actions'
 import './style.scss'
 
-const mapStatesToProps = ({favourite}) => {
+const mapStatesToProps = ({favourites}) => {
     return {
-    favourite
+      isLoading: favourites.loading,
+      favouriteItems: favourites.favouriteItems,
+      isRemovedFromFavorite: favourites.isRemovedFromFavorite,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-    fetchFavourites: (page) => dispatch(fetchFavouritesInit(page)),
-    updateFavourite: () => dispatch(updateFavourite()),
-    updateDataInFavourite: (favouriteType, id, currentState) => dispatch(updateDataInFavourite(favouriteType, id, currentState)),
+    getWishlistItems:() => dispatch(getWishlistItems()),
+    addToWishlist:(id:object) => dispatch(addToWishlist(id)),
+    removeFromWishlist:(id:string) => dispatch(removeFromWishlist(id)),
     // toggleFavourite: (itemId, isFavourite) => dispatch(toggleFavourite(itemId, isFavourite)),
 });
 
