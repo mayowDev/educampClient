@@ -14,7 +14,13 @@
   min-height: 24px;
   transition: all 0.23s ease-in-out;
   position: relative;
-
+  &--favourite {
+    background: red !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px!important;
+  }
   img {
     margin: auto;
     // background-color: black;

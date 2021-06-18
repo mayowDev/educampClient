@@ -1,46 +1,65 @@
-import React,{useState, useEffect, useRef, Fragment} from 'react';
+import React,{useState, useEffect,  Fragment} from 'react';
 import {Link, useHistory, useParams} from 'react-router-dom'
 // import Card from "../../components/Card";
 // import {ICourseDetails} from './types';
-import sampleImage from '../../assets/images/coursesThumbnails/react-thumbnail.jpg';
+// import sampleImage from '../../assets/images/coursesThumbnails/react-thumbnail.jpg';
 import IconBtn from '../../components/IconBtn';
 import Rating from '../../components/Rating'
 import './CourseDetails.scss'
+
 const CourseDetails = (props) => {
-    const { addToCart, addToWishlist, getCourseByName, removeFromWishlist, favouriteItems, courseDetails} = props
+    const { addToCart, addToWishlist, getCourseByName, removeFromCart, removeFromWishlist, favouriteItems,  cartItems, courseDetails} = props
     const [isFavourite, setIsFavourite]= useState<boolean>(false)
+    const [isCartitem, setIsCartitem]= useState<boolean>(false)
     const [details, setDetails] = useState<any>({})
     const [active , setActive] = useState<any>(false)
     const {slug}:any = useParams()
     const history = useHistory()
+
     const handleAddToCart =async (courseid) => {
+        if(isCartitem){return history.push(`/cart`)}
         await addToCart({courseid})
-        await removeFromWishlist(courseid)
-        history.push('/cart')
+        if(favouriteItems && favouriteItems.some(item => item.id === courseDetails.id)){await removeFromWishlist(courseid)}
+        // history.push('/cart')
     }
     const handleAddToWishlist = async (courseid:string) =>{
-        if(favouriteItems  &&favouriteItems.length > 0 && favouriteItems.map(item => item.id === courseid)){
-            console.log('isFavourite')
+        if(favouriteItems && favouriteItems.some(item => item.id === courseDetails.id)){
+            await removeFromWishlist(courseid)
+            setIsFavourite(false)
+        }else{
+            await addToWishlist({courseid})
             setIsFavourite(true)
-        } 
-        await addToWishlist({courseid})
-        // history.push('/favourites')
+            if(isCartitem){removeFromCart(courseid)}
+        }
     }
     const handleExpressCheckout = async (courseid) => {
+        console.log('express checkout ! buy now', courseid)
         //redirect to 'localhots:3000/cart/checkout/express/course/903744/?discountCode=KEEPLEARNING'
     }
+    
     useEffect(() =>{
         getCourseByName(slug)
-    },[])
+    },[slug])
+
     useEffect(() =>{
         if(courseDetails && courseDetails.id){
             setDetails(courseDetails)
+            if(cartItems && cartItems.some(item => item.id === courseDetails.id)){
+                setIsCartitem(true)
+            }else{
+                setIsCartitem(false)
+            }
+            if(favouriteItems && favouriteItems.some(item => item.id === courseDetails.id)){
+                setIsFavourite(true)
+            }else{
+                setIsFavourite(false)
+            }
         }
-    },[courseDetails && courseDetails.id])
+    },[cartItems&&cartItems.length, courseDetails&&courseDetails.id, favouriteItems&&favouriteItems.length])
+
     const handleAccordian = ()=>{
         setActive(!active)
     }
-    // console.log('details', details)
     return (
         <Fragment>
             <div className="courseDetails">
@@ -61,8 +80,8 @@ const CourseDetails = (props) => {
                             </div>
                             <div className="btn-actions">
                                 <div onClick={()=>handleAddToWishlist(details.id)} className="actions-icons">
-                                    <h6>Wishlist</h6> 
-                                    <IconBtn type="heart2"/>
+                                    <h6>{isFavourite? 'Wishlisted' : 'Wishlist'}</h6> 
+                                    <IconBtn className={isFavourite? 'icon-btn--favourite' : ''} type="heart2"/>
                                 </div>
                                 <div className="actions-icons">
                                     <h6>Share</h6>
@@ -149,7 +168,7 @@ const CourseDetails = (props) => {
                             <p>12 hours left at this price!</p>
                         </div>
                         <div className="cta-btns purchase-section">
-                            <button onClick={()=>handleAddToCart(details.id)} className="btn cart-btn">Add to cart</button>
+                            <button onClick={()=>handleAddToCart(details.id)} className="btn cart-btn">{isCartitem? 'Go to Cart': 'Add to cart'}</button>
                             <button onClick={()=>handleExpressCheckout(slug)} className="secondary-btn">Buy Now</button>
                         </div>
                         <div className="refund-message">

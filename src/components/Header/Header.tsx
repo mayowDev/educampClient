@@ -10,7 +10,7 @@ import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-reac
 
 
 const Header = (props) => {
-    const {  isLoggedIn,routeName,searchQuery,isHome, isProfile, logout, cartItems, favouriteItems, addToCart} = props;    
+    const {  isLoggedIn,routeName,searchQuery,isHome, isProfile, logout, cartItems, favouriteItems, addToCart, removeFromWishlist} = props;    
     const history = useHistory();
     const [nav, setNav] = useState(false);
     const [navBright, setNavBright] = useState(false);
@@ -26,8 +26,10 @@ const Header = (props) => {
         logout(); setTimeout(()=>{window.location.reload()},50)
     }
     const handleAddToCart =  async (courseid) => {
+        // await addToCart({courseid})
+        // history.push('/cart')
         await addToCart({courseid})
-        history.push('/cart')
+        await removeFromWishlist(courseid)
     }
     const isLinkActive = (route) => {
         return routeName === route ? "active" : '';
@@ -95,11 +97,11 @@ const Header = (props) => {
                                 <Dropdown type="cart" icon={<IconBtn badge={cartItems && cartItems.length} className="user--cart" type="cart"  to="/cart"/>}>
                                     {cartItems && cartItems.length > 0 ? cartItems.map(item=>
                                         <Fragment key={item.id}>
-                                        <div  className="cart-items">
+                                        <div  className="cart-items" onClick={()=>history.push(`/courses/${item.slug}`)}>
                                             <img src={courseThumbnail} alt="course-item-img"/>
                                             <div className="item">
                                                 <h4>{item.title}</h4>
-                                                <p>Stephen Graider</p>
+                                                <p>{item.createdBy}</p>
                                                 <div className="item-price">${item.price}</div>
                                             </div>
                                         </div>
@@ -121,11 +123,11 @@ const Header = (props) => {
                                     {favouriteItems && favouriteItems.length> 0 ? favouriteItems.map((item):any=>{
                                         return (
                                             <Fragment key={item.id}>
-                                                <div  className="favourite-items">
+                                                <div  className="favourite-items" onClick={()=>history.push(`/courses/${item.slug}`)}>
                                                     <img src={courseThumbnail} alt="course-item-img"/>
                                                     <div className="item">
                                                         <h4>{item.title}</h4>
-                                                        <p>Stephen Graider</p>
+                                                        <p>{item.createdBy}</p>
                                                         <div className="item-price">${item.price}</div>
                                                     </div>
                                                 </div>

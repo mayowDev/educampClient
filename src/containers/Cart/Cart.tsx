@@ -3,11 +3,11 @@ import { useHistory, Link } from 'react-router-dom';
 import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
 import  course2Thumbnail  from '../../assets/images/coursesThumbnails/google-cloud.jpg'
 import IconBtn from '../../components/IconBtn';
-import Spinner from '../../components/Spinner'
+// import Spinner from '../../components/Spinner'
 
 const Cart = (props) => {
     const {getCartItems, addToCart, removeFromCart, getWishlistItems, addToWishlist, 
-        removeFromWishlist, cartItems, favouriteItems, isLoading} = props;
+        removeFromWishlist, cartItems, favouriteItems} = props;
 
     const history = useHistory()
     const [totalPrice, setTotalPrice] = useState(0)
@@ -45,9 +45,7 @@ const Cart = (props) => {
     return (
         <div className="cart">
             <div className="cart__header"> <h1>Shopping cart</h1> </div>
-            {isLoading ?
-                <Spinner type="cover" />
-                :
+            {
                 <div className="cart__content">
                 <div className="cart__content--items">
                     <div>
