@@ -1,7 +1,7 @@
 import React, {useEffect, useState, Fragment} from 'react';
 import {Link, useHistory} from 'react-router-dom'
 import Logo from '../../assets/images/udemy-logo-coral.svg';
-import {IHeaderProps} from './types';
+// import {IHeaderProps} from './types';
 import MenuItem from '../MenuItem';
 import Button from '../Button';
 import IconBtn from '../IconBtn';

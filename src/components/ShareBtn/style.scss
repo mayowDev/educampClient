@@ -1,0 +1,133 @@
+$black: #1A1A1A;
+.share-btn{
+  position: relative;
+  cursor: pointer;
+  .tooltip {
+    min-width: 77px;
+    position: absolute;
+    padding: 8px 10px;
+    margin: .8rem;
+    border-radius: 12px;
+    justify-content: space-between;
+    background: $black;
+    left: 50%;
+    top: 45px;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    display: none;
+    opacity: 0;
+    animation: tooltip 0.23s ease-in-out forwards;
+    &::after{
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      border-radius: 0;
+      transform: translateX(-50%);
+      border-width: 12px;
+      border-style: solid;
+      border-color: transparent transparent $black transparent;
+      z-index: -11111;
+    }
+
+    &::before{
+      content: "";
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      border-radius: 0;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 100%;
+      z-index: -111111;
+    }
+
+    & > button {
+      // margin: 0 !important;
+      outline: none;
+      padding: .5erm !important;
+      // cursor: pointer;
+      svg{
+        circle{
+          display: none;
+        }
+      }
+      &.copy-icon{
+        background-color: transparent;
+        border: 0;
+        & > .tooltip{
+          top: 38px;
+          display: none;
+          opacity: 0;
+          &.active{
+              display: block;
+              opacity: 1;
+              animation: tooltip 0.23s ease-in-out forwards;
+          }
+        }
+        //&:hover{
+        //  display: flex;
+        //  opacity: 1;
+        //  animation: tooltip 0.23s ease-in-out forwards;
+        //}
+      }
+    }
+
+    @keyframes tooltip {
+      from {
+        display: flex;
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+  &:hover{
+    .tooltip{
+      display: flex;
+      opacity: 1;
+      .share-icons {
+        padding: .5rem !important;
+      }
+    }
+  }
+  .tooltip-hide{
+    display: none!important;
+    opacity: 1!important;
+  }
+  .tooltip-show{
+    display: flex;
+    opacity: 0;
+  }
+  &--up{
+    .tooltip{
+      top: auto !important;
+      bottom: 45px;
+      &::after{
+        top: auto;
+        bottom: -20px;
+        transform: translateX(-50%);
+        border-color: $black transparent transparent transparent;
+      }
+      &::before{
+        top: 24px;
+      }
+    }
+
+
+    & > button {
+      &.copy-icon{
+        & > .tooltip{
+          bottom: 30px;
+          top: auto !important;
+          &.active{
+            display: block;
+            opacity: 1;
+            animation: tooltip 0.23s ease-in-out forwards;
+          }
+        }
+      }
+    }
+  }
+}

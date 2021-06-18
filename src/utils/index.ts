@@ -74,7 +74,7 @@ export const getIdFromSlug = (slug) => {
 }
 
 export const getShareURL = (type, id) => {
-    const SHARE_APP = 'https://app.vortic.io/'
+    const SHARE_APP = 'http://localhost:3000/'
     return `${SHARE_APP}${type}/${id}`
 };
 export const isMobileDevice = () => {

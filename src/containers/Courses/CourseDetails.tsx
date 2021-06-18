@@ -4,7 +4,10 @@ import {Link, useHistory, useParams} from 'react-router-dom'
 // import {ICourseDetails} from './types';
 // import sampleImage from '../../assets/images/coursesThumbnails/react-thumbnail.jpg';
 import IconBtn from '../../components/IconBtn';
+import ShareBtn from '../../components/ShareBtn'
 import Rating from '../../components/Rating'
+import { getShareURL} from '../../utils'
+
 import './CourseDetails.scss'
 
 const CourseDetails = (props) => {
@@ -85,7 +88,7 @@ const CourseDetails = (props) => {
                                 </div>
                                 <div className="actions-icons">
                                     <h6>Share</h6>
-                                    <IconBtn type="share2"/>                            
+                                    <ShareBtn up shareUrl={getShareURL('courses', slug || details.slug)}/>
                                 </div>
                                 <div onClick={()=>history.push(`/gift/${details.slug}`)} className="actions-icons">Gift this course</div>
                             </div>
