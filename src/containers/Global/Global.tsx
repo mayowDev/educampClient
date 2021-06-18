@@ -15,7 +15,7 @@ import Courses from "../Courses";
 import Teachers from '../Teachers'
 import Cart from '../Cart'
 import Favourites from '../Favourites';
-// import Checkout from '../Cart/Checkout/CheckoutForm';
+// import Gift from '../Cart/Checkout/CheckoutForm';
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
             <Switch>
@@ -33,6 +33,7 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/courses/new" component={Courses.AddCourse}/>
                 <Route exact path="/courses/edit/:id" component={Courses.EditCourse}/>
                 <Route exact path="/courses/:slug" component={Courses.CourseDetails}/>
+                <Route exact path="/gift/:slug" component={Courses.CourseGift}/>
                 <Route exact path="/teachers" component={Teachers.Teachers}/>
                 <Route exact path="/teachers/:id" component={Teachers.TeacherDetails}/>
                 <Route exact path="/cart" component={Cart.Cart}/>

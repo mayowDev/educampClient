@@ -68,7 +68,7 @@ const CourseDetails = (props) => {
                                     <h6>Share</h6>
                                     <IconBtn type="share2"/>                            
                                 </div>
-                                <div className="actions-icons">Gift this course</div>
+                                <div onClick={()=>history.push(`/gift/${details.slug}`)} className="actions-icons">Gift this course</div>
                             </div>
                         </div>
                     </div>

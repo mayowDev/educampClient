@@ -1,11 +1,77 @@
 @import  '../../styles/mixins.scss';
 
-// .edit-course{
-    // background-color: red;
-    // .background-hero{
-    // }
+.courseGift{
+    padding: 5rem 20rem;
+    font-family: sf pro text,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Arial,sans-serif,apple color ,segoe ui emoji,segoe ui symbol;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    h2{
+        font-weight: 600;
+        line-height: 1.4;
+        font-size: 2.5rem;
+        color: #3c3b37;
+    }
+    &__content{
+        display: flex;
+        justify-content:center;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        &--receiver{
+             display: flex;
+                flex-direction: column;
+                align-items: center;
+            form{
+                width: 500px;
+                text-align: center;
+                input, textarea{
+                    padding: 1rem;
+                    margin: .5rem 0;
+                    width: 90%;
+                }
+                .cart-btn{
+                    @include checkoutBtn;
+                    button[type="submit"]{margin: auto;}
+                }
+            }
+        }
+        &--item{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .img-container{
+                display: flex;
+                width: 80%;
+                img{
+                    margin: auto;
+                    width: 30rem;
+                }
+                border: 1px solid #DADADA;
+            }
+            .text-container{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                h3{
+                    cursor: pointer;
+                    text-align: center;
+                    width:75%;
+                    color: #1D4C59;
+                    margin-bottom: 0;
+                }
+                p{
+                    font-weight: 400;
+                    font-size: 1.2rem;
+                    color: #3c3b37;
+            
+                }
+            }
+        }
+    }
 
-// }
+}
 .courses{
     padding: 0 240px;
     font-family: sf pro text,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
@@ -61,24 +127,24 @@
             min-width: 17rem;
             &:hover{
                 .content-hover {
-                    /* display: flex; */
-                    /* flex-direction: column; */
-                    /* max-width: 15rem; */
+                    display: flex;
+                     flex-direction: column;
+                    max-width: 10rem;
                     min-width: inherit;
                     display: block;
                     // margin-left: 7.5rem;
                     // margin-top: -5rem;
                     background-color: yellow;
-                    padding: 20px;
+                    padding: 0 20px;
                     position: absolute;
                     z-index: 999999;
                     top: 1%;
-                    margin-left: 20%;
-                    height: 100%;
+                    margin-left: 2%;
+                    height: 90%;
                     .cart-btn{
                         padding: 10px;
-                        width: 100%;
-                        @include checkoutBtn
+                        @include checkoutBtn;
+                        margin: 0;
                     }
                 }
             }
@@ -115,32 +181,10 @@
             .content-hover{
                 display: none;
             }
-            // &:hover{
-            //     .content-hover {
-            //         /* display: flex; */
-            //         /* flex-direction: column; */
-            //         /* max-width: 15rem; */
-            //         min-width: min-content;
-            //         display: block;
-            //         // margin-left: 7.5rem;
-            //         // margin-top: -5rem;
-            //         background-color: yellow;
-            //         padding: 20px;
-            //         position: absolute;
-            //         z-index: 999999;
-            //         top: 1%;
-            //         left: 20%;
-            //         height: 100%;
-            //     }
-            // }
         }
     }
 }
 
-// h1, h2, h3, h4, h5, h6, p{
-//     margin:0;
-//     color: #3c3b37;
-// }
 
 .arrow {
     position: absolute;

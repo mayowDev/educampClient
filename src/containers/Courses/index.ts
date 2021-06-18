@@ -3,10 +3,12 @@ import CourseList from './CourseList';
 import AddCourse from './AddCourse';
 import EditCourse from './EditCourse';
 import CourseDetails from './CourseDetails';
+import CourseGift from './CourseGift';
 import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse, getCourseByName} from './redux/actions'
 import {getTeacher} from  '../Teachers/redux/actions'
 import { getUserData } from '../Auth/redux/actions';
-import { addToCart, addToWishlist, removeFromWishlist } from '../Cart/redux/actions';
+import { addToWishlist, removeFromWishlist } from '../Favourites/redux/actions';
+import { addToCart} from '../Cart/redux/actions';
 
 import './style.scss'
 
@@ -40,13 +42,12 @@ const mapDispatchToProps = (dispatch) => ({
     getUserData:() => dispatch(getUserData()),
     addToWishlist:(id:object) => dispatch(addToWishlist(id)),
     removeFromWishlist: (id:object) => dispatch(removeFromWishlist(id))
-
-
 })
 
 export default {
   Courses: connect(mapStateToProps, mapDispatchToProps)(CourseList),
   AddCourse: connect(mapStateToProps, mapDispatchToProps)(AddCourse),
   EditCourse: connect(mapStateToProps, mapDispatchToProps)(EditCourse),
-  CourseDetails: connect(mapStateToProps, mapDispatchToProps)(CourseDetails)
+  CourseDetails: connect(mapStateToProps, mapDispatchToProps)(CourseDetails),
+  CourseGift: connect(mapStateToProps, mapDispatchToProps)(CourseGift)
 }
