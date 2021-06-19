@@ -10,6 +10,7 @@ const mapStatesToProps = ({auth, cart, favourites}) => {
     return {
         isLoggedIn: auth.isLoggedIn,
         userProfile: auth.userProfile,
+        isLoading: auth.authLoading,
         cartItems: cart.cartItems,
         favouriteItems: favourites.favouriteItems
     };

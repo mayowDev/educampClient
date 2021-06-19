@@ -6,6 +6,8 @@ import {fetchCourses} from '../Courses/redux/actions';
 import {getCartItems} from '../Cart/redux/actions';
 import { getWishlistItems} from '../Favourites/redux/actions';
 import { getRouteName } from './redux/actions';
+import { RESET_PAGE} from '../Auth/redux/constants';
+
 
 const mapStatesToProps = ({auth, global, cart, favourites}) => {    
     // console.log('global state', auth.loading)
@@ -25,7 +27,9 @@ const mapDispatchToProps = dispatch => {
         fetchCourses: () => dispatch(fetchCourses()), 
         getCartItems: () => dispatch(getCartItems()),
         getWishlistItems: () => dispatch(getWishlistItems()),
-        getRouteName:() => dispatch(getRouteName())
+        getRouteName:() => dispatch(getRouteName()),
+        resetPage: () => dispatch({type: RESET_PAGE})
+
     }
 };
 

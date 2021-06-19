@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Redirect, Link, useHistory} from 'react-router-dom'
-import Logo from '../../../assets/images/Logo-small.png';
+// import Logo from '../../../assets/images/Logo-small.png';
 import Google from '../../../assets/images/icon-google.png';
 import Button from '../../../components/Button'
 import { Heading, Paragraph } from '../../../components/Typography';

@@ -7,10 +7,10 @@ import Button from '../Button';
 import IconBtn from '../IconBtn';
 import Dropdown from '../Dropdown';
 import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
-
+import Spinner from '../../components/Spinner'
 
 const Header = (props) => {
-    const {  isLoggedIn,routeName,searchQuery,isHome, userProfile, logout, cartItems, favouriteItems, addToCart, removeFromWishlist} = props;    
+    const {isLoading, routeName,searchQuery,isHome, userProfile, logout, cartItems, favouriteItems, addToCart, removeFromWishlist} = props;    
     const history = useHistory();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
@@ -31,7 +31,11 @@ const Header = (props) => {
     const isLinkActive = (route) => {
         return routeName === route ? "active" : '';
     };
-   
+    useEffect(() => {
+        if(userProfile&& userProfile.id){
+            setIsAuthenticated(true)
+        }
+    }, [userProfile&&userProfile.id]); 
     useEffect(() => {
         if(cartItems ){
             let total = cartItems.reduce((a, b) => {
@@ -40,10 +44,10 @@ const Header = (props) => {
             setTotalPrice(total)
         }
     }, [cartItems&&cartItems.length]); 
-
+    if(isLoading) return <Spinner type="cover"/>
     return (
         <>
-            <header className={`header ${!isHome ? 'header--bright' : 'header--default'}  ${isLoggedIn ? 'header--logged-in' : ''}`}>     
+            <header className={`header ${!isHome ? 'header--bright' : 'header--default'}  ${isAuthenticated ? 'header--logged-in' : ''}`}>     
                 <div className="header--flex -one">
                     <Link to='/' className='header__logo'>
                         <img src={Logo} alt="Logo" height={18}/>
@@ -76,9 +80,9 @@ const Header = (props) => {
                                     <div className="dropdown-items">Turn what you know into an opportunity and reach millions around the world.</div>
                                 </Dropdown>
                             </li>
-                            <li  className={!isLoggedIn ? 'not-logged-in' : ''}>
+                            <li  className={!isAuthenticated ? 'not-logged-in' : ''}>
                                 {
-                                !isLoggedIn &&
+                                !isAuthenticated &&
                                 <>
                                     <Dropdown type="cart" icon={<IconBtn badge={cartItems && cartItems.length} className="user--cart" type="cart"  to="/cart"/>}>
                                         <div className="cart-items">Your is Empty</div>
@@ -89,7 +93,7 @@ const Header = (props) => {
                                 </>
                                 }
                             </li>
-                            {isLoggedIn &&
+                            {isAuthenticated &&
                             <> 
                                 <Dropdown type="cart" icon={<IconBtn badge={cartItems && cartItems.length} className="user--cart" type="cart"  to="/cart"/>}>
                                     {cartItems && cartItems.length > 0 ? cartItems.map(item=>
@@ -139,7 +143,7 @@ const Header = (props) => {
                                 <Dropdown type="cart" icon={<IconBtn onClick={()=> alert("Your have no Notifications")} className="user--notifications" type="bell" />}>
                                     <div className="facourite-items">No notifications</div>
                                 </Dropdown>
-                                <li  className={!isLoggedIn ? 'not-logged-in' : 'logged-in'}>
+                                <li  className={!isAuthenticated ? 'not-logged-in' : 'logged-in'}>
                                     <Dropdown icon={<IconBtn className="user--profile" type="user" />}>
                                         <Link to="/profile">My Profile</Link>
                                         <Link to="/settings">Settings</Link>

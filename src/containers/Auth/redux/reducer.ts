@@ -105,8 +105,9 @@ export default(state = initialState, action)=>{
       userProfile:[],
       isApiError: false,
     }
-    case API_ERROR:
     case RESET_PAGE:
+      return {...state, isLoggedIn: false, userProfile:[], authLoading: false}
+    case API_ERROR:
       return {
          ...state,
         authLoading: false, 

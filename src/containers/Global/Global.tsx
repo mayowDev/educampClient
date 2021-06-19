@@ -44,10 +44,11 @@ const RenderRoutes = ({isLoggedIn}) => {
      )
 };
 
-const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems,  getCartItems, userProfile, favouriteItems, isLoading}) => { 
+const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems,  getCartItems, userProfile, resetPage}) => { 
     useEffect(() => {
         if( isLoggedIn === true&& !!userProfile.id === false){
-            localStorage.clear()//this is working properly now always add dependency of all the if statement 
+            localStorage.clear()
+            resetPage()
         }
     },[userProfile&&userProfile.id, isLoggedIn]); 
     useEffect(() => {
