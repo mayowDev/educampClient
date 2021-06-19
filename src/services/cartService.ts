@@ -40,7 +40,7 @@ export const addItemToCart = async (courseid) =>{
 
 export const removeItemFromCart = async (courseid) =>{
     try {
-        console.log('Api courseid' , courseid)
+        // console.log('Api courseid' , courseid)
         const result = await axios.delete(`/cart/${courseid}`)
             .catch((err: any) => {
                 if (err && err.response && err.response.status === 400) {
@@ -98,7 +98,7 @@ export const addItemToFavourites = async (courseid) =>{
 
 export const removeItemFromFavourites = async (courseid) =>{
     try {
-        console.log('Api courseid' , courseid)
+        // console.log('Api courseid' , courseid)
         const result = await axios.delete(`/favourites/${courseid}`)
             .catch((err: any) => {
                 if (err && err.response && err.response.status === 400) {

@@ -11,8 +11,9 @@ import { getShareURL} from '../../utils'
 import './CourseDetails.scss'
 
 const CourseDetails = (props) => {
-    const { addToCart, addToWishlist, getCourseByName, removeFromCart, removeFromWishlist, favouriteItems,  cartItems, courseDetails} = props
+    const { addToCart, addToWishlist, getCourseByName, removeFromCart, removeFromWishlist, userProfile, favouriteItems,  cartItems, courseDetails} = props
     const [isFavourite, setIsFavourite]= useState<boolean>(false)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [isCartitem, setIsCartitem]= useState<boolean>(false)
     const [details, setDetails] = useState<any>({})
     const [active , setActive] = useState<any>(false)
@@ -23,18 +24,26 @@ const CourseDetails = (props) => {
         if(isCartitem){return history.push(`/cart`)}
         await addToCart({courseid})
         if(favouriteItems && favouriteItems.some(item => item.id === courseDetails.id)){await removeFromWishlist(courseid)}
-        // history.push('/cart')
     }
     const handleAddToWishlist = async (courseid:string) =>{
         if(favouriteItems && favouriteItems.some(item => item.id === courseDetails.id)){
             await removeFromWishlist(courseid)
             setIsFavourite(false)
         }else{
-            await addToWishlist({courseid})
-            setIsFavourite(true)
-            if(isCartitem){removeFromCart(courseid)}
+            if(isAuthenticated){
+                console.log('isAuthenticated', isAuthenticated)
+                await addToWishlist({courseid})
+                setIsFavourite(true)
+                if(isCartitem){removeFromCart(courseid)}
+            }
+            return history.push(`/login`)   
         }
     }
+    useEffect(() => {
+        if(userProfile&& userProfile.id){
+            setIsAuthenticated(true)
+        }
+    }, [userProfile&&userProfile.id]); 
     const handleExpressCheckout = async (courseid) => {
         console.log('express checkout ! buy now', courseid)
         //redirect to 'localhots:3000/cart/checkout/express/course/903744/?discountCode=KEEPLEARNING'
@@ -120,21 +129,18 @@ const CourseDetails = (props) => {
                         </div>
                         <div  className="courseDetails__contetnt--cuririculum-section-container">
                             <div className="accord-cover">
-                                {/* <IconBtn className="arrow-down" type="arrow2"/> */}
                                 <button onClick={handleAccordian} className={active ?"accordion__active": "accordion"}>Section</button>
                             </div>
                             <div className="panel">
                                 <p>111Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             </div>
                             <div className="accord-cover">
-                                {/* <IconBtn className="arrow-down" type="arrow2"/> */}
                                 <button onClick={handleAccordian} className={active ?"accordion__active": "accordion"}>Section</button>
                             </div>
                             <div className="panel">
                                 <p>111Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             </div>
                             <div className="accord-cover">
-                                {/* <IconBtn className="arrow-down" type="arrow2"/> */}
                                 <button onClick={handleAccordian} className={active ?"accordion__active": "accordion"}>Section</button>
                             </div>
                             <div className="panel">

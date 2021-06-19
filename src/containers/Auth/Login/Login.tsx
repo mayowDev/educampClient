@@ -1,14 +1,13 @@
 import React, {useState} from 'react'
 import {Redirect, Link, useHistory} from 'react-router-dom'
 import Sidebar from '../../../components/Sidebar'
-import {LOCAL_STORAGE_KEYS} from "../../../components/Constants"
+// import {LOCAL_STORAGE_KEYS} from "../../../components/Constants"
 
 const Login = (props) => {
     const {location:{state}, isLoggedIn, loginWithGoogle, loginWithFacebook, login} = props
     const [user, setUser] = useState({ email:'', password:''})
     const [remember, setRemember] = useState(false)
-    // const history = useHistory()
-    console.log('props', props.isLoggedIn)
+    const history = useHistory()
     const handleInputChange = (e)=>{
         setUser({
           ...user,
