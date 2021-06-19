@@ -12,9 +12,9 @@ import Spinner from '../../../components/Spinner'
 
 
 const Profile = (props) => {    
-    const {isLoading, getUserData, fetchCourses, courses, updateProfileImage, updatePassword, updateProfileData, isProfileUpdated, 
-        isProfileImgUpdated, isLoggedIn, userProfile, logout, deleteCourse, deleteAccount, isCourseDeleted} = props;
-
+    const {courses, updateProfileImage, updatePassword, updateProfileData, isProfileUpdated, 
+        isProfileImgUpdated, userProfile, logout, deleteCourse, deleteAccount, isCourseDeleted} = props;
+    
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [oldPassword, setOldPassword] = useState('');
@@ -26,15 +26,17 @@ const Profile = (props) => {
     const [photoChanged,setPhotoChanged] = useState(false)
     const [photoFile, setPhotoFile] = useState('')
     const [photo, setPhoto] = useState('');
-    const [currentPage,setCurrentPage] =  useState(0)
+    const [currentPage,setCurrentPage] =  useState(0);
+    const [isLoading, setIsLoading] = useState(true);
     // const [pageSize, setPageSize] = useState(6)
     const [currentUserCourses, setUserCourses] = useState([])
     const [activeTab, setActiveTab] = useState('details');
     const history = useHistory()
 
     useEffect(() => {
-        if(userProfile && userProfile.id){
+        // if(userProfile && userProfile.id){
             const {  name, email, avatar, courses } = userProfile;
+            setIsLoading(false)
             setName(name);
             setEmail(email);
             setPhoto(avatar)   
@@ -42,8 +44,9 @@ const Profile = (props) => {
                 const myCourses = courses.map(course=> course.UserId === userProfile.id && course )
                 setUserCourses(myCourses)
             }  
-        }
-        if(userProfile && userProfile.length < 1){window.location.href = "/login"}
+        // }//this works fine for profile
+        console.log('isLoading',isLoading, '!!userProfile', !!userProfile.id)
+        if(isLoading === false && !!userProfile.id === false){window.location.href = "/login"}
     }, [userProfile && userProfile.id, courses && courses.length]); 
    
     const isPasswordValid = (pass:string) => {

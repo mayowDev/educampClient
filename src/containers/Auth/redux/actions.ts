@@ -72,8 +72,7 @@ export const getUserData = () => async dispatch => {
     try {
         dispatch({type:LODING})
         const response = await API.getUserProfile();        
-        if (!response.success) return dispatch({type:API_ERROR})
-        if(response && response.success) return dispatch({type:GET_USER_DATA, payload: response})
+        if(response && response.success)  dispatch({type:GET_USER_DATA, payload: response})
     } catch (error) {
         console.log('getUserErr',error)     
         dispatch({type:API_ERROR})       

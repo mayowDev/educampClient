@@ -22,7 +22,7 @@ const Header = (props) => {
     };
 
     const handleLogout = ()=>{
-        logout(); setTimeout(()=>{window.location.reload()},100)
+        logout(); setTimeout(()=>{window.location.href="/"},100)
     }
     const handleAddToCart =  async (courseid) => {
         await addToCart({courseid})

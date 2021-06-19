@@ -21,10 +21,12 @@ const RenderRoutes = ({isLoggedIn}) => {
             <Switch>
                 <Route exact path="/" component={HomePage}/>
                 <Route exact path="/register" component={SignUp.Signup}/>
-                <Route exact path="/login" component={Login}/>
+                <Route exact path="/login" render={(props) => <Login isLoggedIn={isLoggedIn} {...props} />} />
+                {/* <Route exact path="/login" isLoggedIn={isLoggedIn} component={Login}/> */}
                 <Route exact path="/resend-email" component={SignUp.Resend}/>
                 <Route exact path="/verify" component={Verify}/>
-                <ProtectedRoute exact path="/profile" isLoggedIn={isLoggedIn}  component={ProfilePage}/>
+                <Route exact path="/profile" render={(props) => <ProfilePage isLoggedIn={isLoggedIn} {...props} />} />
+                {/* <ProtectedRoute exact path="/profile" isLoggedIn={isLoggedIn}  component={ProfilePage}/> */}
                 <Redirect exact from="/signup" to="/register"/>
                 <Redirect exact from="/signin" to="/login"/>
                 <Route exact path="/forgot-password" component={ForgotPassword}/>
@@ -45,8 +47,10 @@ const RenderRoutes = ({isLoggedIn}) => {
 };
 
 const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems,  getCartItems, userProfile, resetPage}) => { 
+    const [isAuthenticated, setIsAuthenticated] = React.useState(false)
+
     useEffect(() => {
-        if( isLoggedIn === true&& !!userProfile.id === false){
+        if( isLoggedIn&& !!userProfile.id === false){
             localStorage.clear()
             resetPage()
         }
@@ -56,9 +60,10 @@ const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems,  getCa
             getUserData();  
         }
         fetchCourses();
-    }, [isLoggedIn && userProfile&& userProfile.id]); 
+    }, [isAuthenticated, isLoggedIn && userProfile&& userProfile.id]); 
     useEffect(() => {
         if(userProfile&& userProfile.id){
+            setIsAuthenticated(true)
             getCartItems();  
             getWishlistItems();
         }
@@ -66,7 +71,7 @@ const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems,  getCa
     return (
         <BrowserRouter>
             <Header/>
-            <RenderRoutes isLoggedIn={isLoggedIn}/>
+            <RenderRoutes isLoggedIn={isAuthenticated}/>
             {/* <Footer/> */}
         </BrowserRouter>
     )

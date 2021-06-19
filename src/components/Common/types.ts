@@ -7,5 +7,7 @@ export interface IProtectedRoute{
     component: any, 
     render?: any, 
     exact:boolean,
-    isLoggedIn:boolean
+    userProfile?: any, 
+    isLoggedIn:boolean,
+    isLoading:boolean,
 }

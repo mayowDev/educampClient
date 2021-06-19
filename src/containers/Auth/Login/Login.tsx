@@ -8,6 +8,7 @@ const Login = (props) => {
     const [user, setUser] = useState({ email:'', password:''})
     const [remember, setRemember] = useState(false)
     // const history = useHistory()
+    console.log('props', props.isLoggedIn)
     const handleInputChange = (e)=>{
         setUser({
           ...user,
@@ -35,7 +36,7 @@ const Login = (props) => {
             console.log(error);
         }
     }
-    if(isLoggedIn) return <Redirect to={state?state.from.pathname:"/"} />
+    if(isLoggedIn) return <Redirect to={"/"} />//state?state.from.pathname:
     return (
         <div className="login">
             <Sidebar/>

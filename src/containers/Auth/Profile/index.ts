@@ -6,7 +6,7 @@ import './style.scss'
 const mapStatesToProps = ( {auth, courses}) => {  
   return {
     isApiError: auth.isApiError,
-    isLoading: auth.loading,
+    isLoading: auth.authLoading,
     isLoggedIn: auth.isLoggedIn,
     userProfile: auth.userProfile,
     isProfileUpdated: auth.isProfileUpdated,
