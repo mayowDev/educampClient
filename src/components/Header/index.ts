@@ -9,7 +9,7 @@ import { removeFromWishlist } from '../../containers/Favourites/redux/actions'
 const mapStatesToProps = ({auth, cart, favourites}) => {    
     return {
         isLoggedIn: auth.isLoggedIn,
-        profileData: auth.userProfileData,
+        userProfile: auth.userProfile,
         cartItems: cart.cartItems,
         favouriteItems: favourites.favouriteItems
     };

@@ -42,7 +42,7 @@ export const verify = (token:string)=> async dispatch=>{
 
 export const login = (data:ITypeLogin)=> async dispatch=>{
     try {
-        dispatch({type:LODING})
+        // dispatch({type:LODING})
         const response = await API.login(data)
         if (!response.success) return dispatch({type:API_ERROR})
         if(response && response.success) return dispatch({type:LOGIN_SUCCESS, payload: response})

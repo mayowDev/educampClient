@@ -10,10 +10,9 @@ import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-reac
 
 
 const Header = (props) => {
-    const {  isLoggedIn,routeName,searchQuery,isHome, isProfile, logout, cartItems, favouriteItems, addToCart, removeFromWishlist} = props;    
+    const {  isLoggedIn,routeName,searchQuery,isHome, userProfile, logout, cartItems, favouriteItems, addToCart, removeFromWishlist} = props;    
     const history = useHistory();
-    const [nav, setNav] = useState(false);
-    const [navBright, setNavBright] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
     const handleSearchChange = (value) => {
         // if (value?.length > 2 && history.location.pathname !== "/search") {
@@ -23,11 +22,9 @@ const Header = (props) => {
     };
 
     const handleLogout = ()=>{
-        logout(); setTimeout(()=>{window.location.reload()},50)
+        logout(); setTimeout(()=>{window.location.reload()},100)
     }
     const handleAddToCart =  async (courseid) => {
-        // await addToCart({courseid})
-        // history.push('/cart')
         await addToCart({courseid})
         await removeFromWishlist(courseid)
     }
@@ -46,10 +43,10 @@ const Header = (props) => {
 
     return (
         <>
-            <header className={`header ${history.location.pathname === '/' && ''} ${!isHome ? 'header--bright' : 'header--default'} ${isHome && nav ? 'active' : ''} ${!isHome && navBright ? 'active' : ''} ${isProfile ? 'header--gray' : ''}  ${isLoggedIn ? 'header--logged-in' : ''}`}>     
+            <header className={`header ${!isHome ? 'header--bright' : 'header--default'}  ${isLoggedIn ? 'header--logged-in' : ''}`}>     
                 <div className="header--flex -one">
                     <Link to='/' className='header__logo'>
-                        <img src={Logo} alt="Logo" height={18} onClick={() => setNav(false)}/>
+                        <img src={Logo} alt="Logo" height={18}/>
                     </Link>
                     <MenuItem value=" Categories" to="/categories"/>
                     <label

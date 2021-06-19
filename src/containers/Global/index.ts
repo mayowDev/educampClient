@@ -7,12 +7,14 @@ import {getCartItems} from '../Cart/redux/actions';
 import { getWishlistItems} from '../Favourites/redux/actions';
 import { getRouteName } from './redux/actions';
 
-const mapStatesToProps = ({auth, global, cart}) => {    
-    // console.log('cart state', cart.cartItems)
+const mapStatesToProps = ({auth, global, cart, favourites}) => {    
+    // console.log('global state', auth.loading)
     return {
         isLoggedIn: auth.isLoggedIn,
+        isLoading: auth.authLoading,
         userProfile: auth.userProfile,
         cartItems: cart.cartItems,
+        favouriteItems: favourites.favouriteItems,
         routeName: global.routeName
     }
 };

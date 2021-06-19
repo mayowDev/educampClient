@@ -15,7 +15,7 @@ import Courses from "../Courses";
 import Teachers from '../Teachers'
 import Cart from '../Cart'
 import Favourites from '../Favourites';
-// import Gift from '../Cart/Checkout/CheckoutForm';
+
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
             <Switch>
@@ -44,24 +44,24 @@ const RenderRoutes = ({isLoggedIn}) => {
      )
 };
 
-const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems,  getCartItems, userProfile}) => { 
+const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems,  getCartItems, userProfile, favouriteItems, isLoading}) => { 
+    useEffect(() => {
+        if( isLoggedIn === true&& !!userProfile.id === false){
+            localStorage.clear()//this is working properly now always add dependency of all the if statement 
+        }
+    },[userProfile&&userProfile.id, isLoggedIn]); 
     useEffect(() => {
         if(isLoggedIn){
             getUserData();  
-            getCartItems();  
-            getWishlistItems()   
         }
         fetchCourses();
-    }, [isLoggedIn]);
-    // useEffect(() => {
-    //     getRouteName()
-    // },[routeName])
-
+    }, [isLoggedIn && userProfile&& userProfile.id]); 
     useEffect(() => {
-        if(userProfile && userProfile.id){
+        if(userProfile&& userProfile.id){
+            getCartItems();  
+            getWishlistItems();
         }
-    }, [userProfile.id]); 
-
+    }, [userProfile&&userProfile.id]); 
     return (
         <BrowserRouter>
             <Header/>

@@ -3,7 +3,13 @@ import { SIGNUP_SUCCESS, VERIFY_SUCCESS, GET_USER_DATA, RESET_PAGE, LOGOUT,  LOD
 } from './constants';
 import {LOCAL_STORAGE_KEYS} from "../../../components/Constants"
 
+// const isLogged = ()=>{
+//   console.log()
+//   if(initialState.userProfile.length > 0){return true}else{return false}
+// }
+
 const initialState = {
+  userProfile:[],
   isRegistered:false,
   isVerified:false,
   isLoggedIn: !!localStorage.getItem(LOCAL_STORAGE_KEYS.LOGIN_STATE),
@@ -13,8 +19,7 @@ const initialState = {
   isResendEmailSuccess: false,
   isProfileUpdated: false,
   isProfileImgUpdated:false,
-  loading:false,
-  userProfile:[],
+  authLoading:false,
   isApiError: false,
 };
 
@@ -23,68 +28,68 @@ export default(state = initialState, action)=>{
     case LODING:
       return{
         ...state, 
-        loading:true,
+        authLoading:true,
       }
     case SIGNUP_SUCCESS:
       return { 
         ...state, 
         isRegistered: action.payload.success,
-        loading:false,
+        authLoading:false,
 
       };
     case RESEND_VERIFICATION_SUCCESS: 
       return  {
         ...state,
         isResendEmailSuccess:true,
-        loading:false
+        authLoading:false
       }
     case VERIFY_SUCCESS: 
       return{
         ...state, 
         isVerified: action.payload.success,
-        loading:false
+        authLoading:false
       }
     case LOGIN_SUCCESS:
-      return { ...state, isLoggedIn: true, loading:false, };
+      return { ...state, isLoggedIn: true, authLoading:false, };
     case LOGOUT:
       return { 
-        ...state, isLoggedIn: false, userProfile:[], loading:false,
+        ...state, isLoggedIn: false, userProfile:[], authLoading:false,
       };
     case FORGOT_PASSWORD_SUCCESS:
       return { 
         ...state,  
         isForgotPasswordSuccess: action.payload.success, 
-        loading:false
+        authLoading:false
       }
     case RESET_PASSWORD_SUCCESS:
       return { 
         ...state,  
         isResetPasswordSuccess: action.payload.success, 
-        loading:false
+        authLoading:false
       }
     case GET_USER_DATA:
       return {
           ...state,
           userProfile:  {...action.payload.data},
-          loading: false,
+          authLoading: false,
       }
     case UPDATE_PROFILE:
       return {
         ...state,
         isProfileUpdated:action.payload.success,
-        loading: false
+        authLoading: false
     }
     case UPDATE_PROFILE_IMAGE: 
       return {
        ...state,
        isProfileImgUpdated:action.payload.success,
-       loading: false
+       authLoading: false
       }
     case UPDATE_PASSWORD:
       return {
         ...state,
         isPasswordUpdated: action.payload.success,
-        loading: false
+        authLoading: false
       }
     case DELETE_ACCOUNT: 
     return {
@@ -96,7 +101,7 @@ export default(state = initialState, action)=>{
       isResetPasswordSuccess: false,
       isResendEmailSuccess: false,
       isProfileUpdated: false,
-      loading:false,
+      authLoading:false,
       userProfile:[],
       isApiError: false,
     }
@@ -104,7 +109,7 @@ export default(state = initialState, action)=>{
     case RESET_PAGE:
       return {
          ...state,
-        loading: false, 
+        authLoading: false, 
         isApiError: true ,
         // isRegistered: false,
         // isVerified:false,

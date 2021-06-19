@@ -27,7 +27,7 @@ const Profile = (props) => {
     const [photoFile, setPhotoFile] = useState('')
     const [photo, setPhoto] = useState('');
     const [currentPage,setCurrentPage] =  useState(0)
-    const [pageSize, setPageSize] = useState(6)
+    // const [pageSize, setPageSize] = useState(6)
     const [currentUserCourses, setUserCourses] = useState([])
     const [activeTab, setActiveTab] = useState('details');
     const history = useHistory()
@@ -43,6 +43,7 @@ const Profile = (props) => {
                 setUserCourses(myCourses)
             }  
         }
+        if(userProfile && userProfile.length < 1){window.location.href = "/login"}
     }, [userProfile && userProfile.id, courses && courses.length]); 
    
     const isPasswordValid = (pass:string) => {
