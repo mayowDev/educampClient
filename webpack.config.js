@@ -9,7 +9,7 @@ module.exports={
     mode:'development',
     entry:'./src/index.tsx',
     output:{
-        path:path.resolve(__dirname, 'build'),
+        path:path.resolve(__dirname, 'dist'),
         publicPath: '/',//for react-router-dom nested-routes
         filename:'bundle.js'
     },
@@ -75,7 +75,7 @@ module.exports={
         compress: true,
         open: true,
         progress:false,
-        // contentBase: path.join(__dirname, 'build'),
+        // contentBase: path.join(__dirname, 'dist'),
         hot: true,
     },
 }
