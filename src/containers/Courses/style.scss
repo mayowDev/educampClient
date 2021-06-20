@@ -1,5 +1,14 @@
 @import  '../../styles/mixins.scss';
+.courses{
+    font-family: sf pro text,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+    padding: 0 240px;
+    h1,h2,h3{color: #3C3B37;line-height: 1.4;}
+    
+}
 
+p, h1, h2, h3, h4, h5, h6, ul, ol {
+    max-width: 60rem;
+}
 .courseGift{
     padding: 5rem 20rem;
     font-family: sf pro text,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Arial,sans-serif,apple color ,segoe ui emoji,segoe ui symbol;
@@ -73,8 +82,6 @@
 
 }
 .courses{
-    padding: 0 240px;
-    font-family: sf pro text,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
     &__hero{
         display: flex;
         min-height: 25rem;
@@ -88,9 +95,7 @@
             margin-left: 3rem;
             h2{
                 font-weight: 600;
-                line-height: 1.4;
                 font-size: 2.5rem;
-                color: #3c3b37;
                 margin: 0;
             }
             p{
@@ -128,23 +133,39 @@
             &:hover{
                 .content-hover {
                     display: flex;
-                     flex-direction: column;
+                    flex-direction: column;
                     max-width: 10rem;
                     min-width: inherit;
                     display: block;
                     // margin-left: 7.5rem;
                     // margin-top: -5rem;
-                    background-color: yellow;
-                    padding: 0 20px;
+                    background-color: white;
+                    padding: 0 1.5rem;
                     position: absolute;
                     z-index: 999999;
                     top: 1%;
                     margin-left: 2%;
                     height: 90%;
-                    .cart-btn{
-                        padding: 10px;
-                        @include checkoutBtn;
-                        margin: 0;
+                    border: 1px solid #DADADA;
+                    border-radius: .25rem;
+                    .btn-actions{
+                        display: flex;
+                        align-items: center;
+                        // justify-content: space-between;
+                        padding: 10px;  
+                        .cart-btn{
+                            margin-right: .5rem;
+                            @include checkoutBtn;
+                            .btn{
+                                min-width: 100px!important;
+                                padding: 8px 40px!important;
+
+                            }
+
+                        }
+                        .wishlist-icon{
+                            background-color: red;
+                        }
                     }
                 }
             }
@@ -155,6 +176,7 @@
                 // padding: 4rem;
                 margin:0 11px;
                 cursor: pointer;
+                min-height: 18rem;
                 img{
                     display: block;
                     margin: auto;
@@ -182,6 +204,123 @@
                 display: none;
             }
         }
+    }
+    .categories{
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 1rem;
+        h2{margin: 3rem 1.35rem;}
+        &__items{
+            display: flex;
+            flex-direction:row;
+            flex-wrap: wrap;
+            padding: 0 3rem;
+            gap: 1rem;
+            &--item{
+                display: flex;
+                flex-direction: column;
+                // align-items: center;
+                border: 1px solid lightgray;
+                border-radius: .5rem;
+                cursor: pointer;
+                h3{
+                    padding: .5rem;
+                }
+                // margin-bottom: 1rem;
+            }
+        }
+    }
+    .featured{
+        display: flex;
+        flex-direction:column;
+        flex-wrap: wrap;
+        column-gap: 1rem;
+        h2{
+            padding: 2rem 0;
+        }
+        &__items{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;           
+            &--item{
+                display: flex;
+                flex-direction: column;
+                width: 22%;
+                .content{
+                    h3{color: #2f6990; cursor: pointer;}
+                    span{
+                        font-size: 1rem;
+                        opacity: .75;
+                    }
+                }
+            }
+        }
+    }
+}
+.teacherPromo{
+    background: #FBFBF8;
+    width: 100%;
+    margin: 7.5rem 0;
+    .container{
+        display: flex;
+        padding:1rem 0;
+        img{
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            // margin-bottom: -5rem;
+            bottom: 9%;
+        }
+        .content{
+            display: flex;
+            flex-direction: column;
+            z-index: 5;
+            right: -50%;
+            position: relative;
+            h2{
+                font-family: SuisseWorks,Georgia,Times,times new roman,serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+                font-weight: 700;
+                font-size: 3.2rem;
+                line-height: 1.25;
+                letter-spacing: -.05rem;
+                margin-bottom:0
+            }
+            p{
+                width:35rem;
+                opacity: .75;
+                font-size:1.5rem
+            }
+            button{
+                background-color: #094c59;
+                color:white;
+                font-size:1.35rem;
+                padding:1rem ;
+                width: 45%;
+                border: none;
+                border-radius: 2px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+.social-proof{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #DADADA;
+    // margin-bottom:  1rem;
+    h2{font-size:2rem}
+    .companies{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 2rem;
+        img{
+            width: 50%;
+            margin: 0 1rem;
+        }
+
     }
 }
 

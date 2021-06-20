@@ -56,16 +56,13 @@ module.exports={
             template:"./public/index.html"
         }), 
         new MiniCssExtractPlugin(),
-        // new Dotenv({
-        //     path: './.env',
-        // }),
-        new Webpack.EnvironmentPlugin({
-        path: './.env', // Path to .env file (this is the default)
-        // safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
-        //     // THIS allows us to access the node_env in our code
-            NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
-            DEBUG: false,
-          })
+        new Dotenv({
+            path: './.env',
+        }),
+        // new Webpack.EnvironmentPlugin({
+        // path: './.env',
+        // path: './src/configs.ts', // Path to .env file (this is the default)// DEBUG: false,
+        //   })
 
     ],
     devtool: 'inline-source-map',//"source-map"

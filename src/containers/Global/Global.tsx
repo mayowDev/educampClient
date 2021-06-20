@@ -19,7 +19,7 @@ import Favourites from '../Favourites';
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
             <Switch>
-                <Route exact path="/" component={HomePage}/>
+                <Route exact path="/" component={Courses.Courses}/>
                 <Route exact path="/register" component={SignUp.Signup}/>
                 <Route exact path="/login" render={(props) => <Login isLoggedIn={isLoggedIn} {...props} />} />
                 {/* <Route exact path="/login" isLoggedIn={isLoggedIn} component={Login}/> */}
@@ -29,9 +29,9 @@ const RenderRoutes = ({isLoggedIn}) => {
                 {/* <ProtectedRoute exact path="/profile" isLoggedIn={isLoggedIn}  component={ProfilePage}/> */}
                 <Redirect exact from="/signup" to="/register"/>
                 <Redirect exact from="/signin" to="/login"/>
+                <Redirect exact from="/courses" to="/"/>
                 <Route exact path="/forgot-password" component={ForgotPassword}/>
                 <Route exact path="/reset"  component={ResetPage}/>
-                <Route exact path="/courses" component={Courses.Courses}/>
                 <Route exact path="/courses/new" component={Courses.AddCourse}/>
                 <Route exact path="/courses/edit/:id" component={Courses.EditCourse}/>
                 <Route exact path="/courses/:slug" component={Courses.CourseDetails}/>
