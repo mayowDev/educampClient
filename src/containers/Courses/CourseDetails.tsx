@@ -70,7 +70,7 @@ const CourseDetails = (props) => {
     },[cartItems&&cartItems.length, courseDetails&&courseDetails.id, favouriteItems&&favouriteItems.length])
 
     const handleAccordian = ()=>{
-        setActive(!active)
+        console.log('active')
     }
     return (
         <Fragment>
@@ -128,27 +128,31 @@ const CourseDetails = (props) => {
                             </div>
                         </div>
                         <div  className="courseDetails__contetnt--cuririculum-section-container">
-                            <div className="accord-cover">
-                                <button onClick={handleAccordian} className={active ?"accordion__active": "accordion"}>Section</button>
+                            <div className="accord" onClick={handleAccordian}>
+                                <span className={active ?"accord__active": ""}>Section</span>
+                                <ul><li>2 lectures</li><li>5 min</li></ul>
+
                             </div>
                             <div className="panel">
                                 <p>111Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             </div>
-                            <div className="accord-cover">
-                                <button onClick={handleAccordian} className={active ?"accordion__active": "accordion"}>Section</button>
+                            <div className="accord" onClick={handleAccordian}>
+                                <span className={active ?"accord__active": ""}>Section</span>
+                                <ul><li>2 lectures</li><li>5 min</li></ul>
                             </div>
                             <div className="panel">
                                 <p>111Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             </div>
-                            <div className="accord-cover">
-                                <button onClick={handleAccordian} className={active ?"accordion__active": "accordion"}>Section</button>
+                            <div className="accord" onClick={handleAccordian}>
+                                <span className={active ?"accord__active": ""}>Section</span>
+                                <ul><li>2 lectures</li><li>5 min</li></ul>
                             </div>
                             <div className="panel">
                                 <p>111Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             </div>
-                            <div className="accord-cover">
-                                {/* <IconBtn className="arrow-down" type="arrow2"/> */}
-                                <button onClick={handleAccordian} className={active ?"accordion__active": "accordion"}>Section</button>
+                            <div className="accord" onClick={handleAccordian}>
+                                <span className={active ?"accord__active": ""}>Section</span>
+                                <ul><li>2 lectures</li><li>5 min</li></ul>
                             </div>
                             <div className="panel">
                                 <p>111Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -163,6 +167,36 @@ const CourseDetails = (props) => {
                             <li>Some programming experience</li>
                             <li>Basic computer / laptop and internet </li>
                         </ul>
+                    </div>
+                    <div className="courseDetails__contetnt--reviews-section">
+                        <h4>Student feedback</h4>
+                        <div className="container">
+                            <div className="summary">
+                                <p>4.5</p>
+                                {/* <Rating/> */}
+                                <div className="stars">
+                                    <span className="fa fa-star checked"></span>
+                                    <span className="fa fa-star checked"></span>
+                                    <span className="fa fa-star checked"></span>
+                                    <span className="fa fa-star checked"></span>
+                                    <span className="fa fa-star"></span>
+                                </div>
+                            </div>
+                            <div className="ratings-percentages">
+                                <div className="item">
+                                    <span>5 star</span>
+                                    <span>55%</span>
+                                </div>
+                                <div className="item">
+                                    <span>4 star</span>
+                                    <span>32%</span>
+                                </div>
+                                <div className="item">
+                                    <span> 3 star</span>
+                                    <span>4%</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="courseDetails__sidebar">
