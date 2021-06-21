@@ -4,7 +4,7 @@ import HomePage from "../Home"
 import NotFound from "../../views/404/NoFound";
 import ProtectedRoute from '../../components/Common/protectedRoute'
 import Header from '../../components/Header'
-// import Footer from '../../components/Footer'
+import Footer from '../../components/Footer'
 import Login from '../Auth/Login';
 import SignUp from '../Auth/Signup';
 import Verify from '../Auth/Verify';
@@ -72,7 +72,7 @@ const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems,  getCa
         <BrowserRouter>
             <Header/>
             <RenderRoutes isLoggedIn={isAuthenticated}/>
-            {/* <Footer/> */}
+            <Footer/>
         </BrowserRouter>
     )
 };
