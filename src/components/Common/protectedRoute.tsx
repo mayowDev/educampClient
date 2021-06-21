@@ -4,8 +4,14 @@ import {connect} from "react-redux"
 import {getUserData } from '../../containers/Auth/redux/actions'
 
 import {IProtectedRoute} from './types'
-const ProtectedRoute = ({path, component: Component, render, isLoading, isLoggedIn, ...rest }:IProtectedRoute) => {
-    console.log('isLoading', isLoading, 'isLoggedIn',isLoggedIn)
+const ProtectedRoute = ({path, component: Component, render, isLoading, isLoggedIn, userProfile, ...rest }:IProtectedRoute) => {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    useEffect(() => {
+        if(userProfile&& userProfile.id){
+            setIsAuthenticated(true)
+        }
+    }, [userProfile&&userProfile.id]);
+    console.log('isLoading', isLoading, 'isLoggedIn',isLoggedIn, 'isAuthenticated', isAuthenticated)
     return (
         <Route
         {...rest}

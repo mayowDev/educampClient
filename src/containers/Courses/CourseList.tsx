@@ -40,13 +40,12 @@ const Courses = (props) => {
     const handleAddToCart =async (courseid) => {
         await addToCart({courseid})
     }
-    console.log('isFavourite', isFavourite)
     const handleAddToWishlist = async (courseid:string) =>{
         if(isFavourite){
             await removeFromWishlist(courseid)
             setIsFavourite(false)
         }else{
-            console.log('isAuthenticated', isAuthenticated)
+            // console.log('isAuthenticated', isAuthenticated)
             if(isAuthenticated){
                 await addToWishlist({courseid})
                 setIsFavourite(true)

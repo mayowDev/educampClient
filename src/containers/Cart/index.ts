@@ -6,7 +6,7 @@ import {getWishlistItems, addToWishlist, removeFromWishlist} from '../Favourites
 import {getCartItems, addToCart, removeFromCart,  createOrder} from './redux/actions'
 import './style.scss'
 
-const mapStateToProps = ({cart, favourites}) => { 
+const mapStateToProps = ({cart, favourites, auth}) => { 
   return {
     isLoading: cart.loading,
     isApiError: cart.isApiError,
@@ -15,7 +15,8 @@ const mapStateToProps = ({cart, favourites}) => {
     favouriteItems: favourites.favouriteItems,
     isRemovedFromCart: cart.isRemovedFromCart,
     isRemovedFromFavorite: favourites.isRemovedFromFavorite,
-    orderDetails: cart.orderDetails
+    orderDetails: cart.orderDetails,
+    userProfile: auth.userProfile
   }
 }
 

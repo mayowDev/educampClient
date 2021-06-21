@@ -6,16 +6,25 @@ import IconBtn from '../../components/IconBtn';
 // import Spinner from '../../components/Spinner'
 
 const Cart = (props) => {
-    const {getCartItems, addToCart, removeFromCart, getWishlistItems, addToWishlist, 
+    const {getCartItems, addToCart, removeFromCart, getWishlistItems, addToWishlist, userProfile,
         removeFromWishlist, cartItems, favouriteItems} = props;
 
     const history = useHistory()
     const [totalPrice, setTotalPrice] = useState(0)
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        getCartItems()
-        getWishlistItems()
-    },[])
+        if(userProfile&& userProfile.id){
+            setIsAuthenticated(true)
+        }
+    }, [userProfile&&userProfile.id]);
+    useEffect(() => {
+        // console.log('isAuthenticated', isAuthenticated)
+        if(isAuthenticated){
+            getCartItems()
+            getWishlistItems()
+        }        
+    },[userProfile&&userProfile.id,isAuthenticated])
 
     useEffect(() => {
         if(cartItems ){

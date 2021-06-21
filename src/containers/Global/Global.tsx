@@ -26,7 +26,6 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/resend-email" component={SignUp.Resend}/>
                 <Route exact path="/verify" component={Verify}/>
                 <Route exact path="/profile" render={(props) => <ProfilePage isLoggedIn={isLoggedIn} {...props} />} />
-                {/* <ProtectedRoute exact path="/profile" isLoggedIn={isLoggedIn}  component={ProfilePage}/> */}
                 <Redirect exact from="/signup" to="/register"/>
                 <Redirect exact from="/signin" to="/login"/>
                 <Redirect exact from="/courses" to="/"/>
@@ -39,6 +38,8 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/teachers" component={Teachers.Teachers}/>
                 <Route exact path="/teachers/:id" component={Teachers.TeacherDetails}/>
                 <Route exact path="/cart" component={Cart.Cart}/>
+                <ProtectedRoute exact path="/cart" isLoggedIn={isLoggedIn}  component={Cart.Cart}/>
+
                 <Route exact path="/favourites" component={Favourites}/>
                 <Route exact path="/cart/checkout" component={Cart.CheckoutForm}/>
                <Route component={NotFound}/>
