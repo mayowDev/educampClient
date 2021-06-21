@@ -6,7 +6,7 @@ const Dotenv = require('dotenv-webpack');
 const path = require("path");
 module.exports={
     target:'web', 
-    mode:'development',
+    mode:process.env.NODE_ENV,
     entry:'./src/index.tsx',
     output:{
         path:path.resolve(__dirname, 'dist'),
@@ -56,13 +56,16 @@ module.exports={
             template:"./public/index.html"
         }), 
         new MiniCssExtractPlugin(),
-        new Dotenv({
-            path: './.env',
-        }),
         // new Webpack.EnvironmentPlugin({
-        // path: './.env',
-        // path: './src/configs.ts', // Path to .env file (this is the default)// DEBUG: false,
-        //   })
+        //     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+        // }),
+        // new Webpack.DefinePlugin({
+        //     // PRODUCTION: JSON.stringify(true),
+        //     // VERSION: JSON.stringify('5fa3b9'),
+        //     // BROWSER_SUPPORTS_HTML5: true,
+        //     'typeof window': JSON.stringify('object'),
+        //     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+        // })
 
     ],
     devtool: 'inline-source-map',//"source-map"
