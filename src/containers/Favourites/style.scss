@@ -6,23 +6,29 @@
   &__header{
     display: flex;
     flex-direction: column;
-    background-color: brown;
+    background-color: #505763;
     padding: 1.5rem 20rem;
+    padding-bottom: .5rem;
     h2{
       color: whitesmoke;
-      opacity: 0.8;
-      line-height: 1.4;
-      letter-spacing:2px;
+      // opacity: 0.8;
+      line-height: 1.2;
+      letter-spacing:1px;
 
     }
     ul{
       display: flex;
       gap: 1rem;
       list-style: none;
-      color: lightgray;
+      color: white;
       margin: 0;
       padding: 0;
       cursor: pointer;
+      .active-link{
+        margin-bottom: 0;
+        padding: 0;
+        border-bottom: 5px solid lightgray;
+      }
     }
   }
   &__items{
@@ -63,6 +69,29 @@
         align-items: center;
         h3{    padding-top: .75rem;}
         // flex-direction: column;
+      }
+    }
+    &--collections{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      margin-top:3rem;
+      h3{    
+        font-weight: 400;
+        font-size:1.4rem;
+        margin: 1rem;
+      }
+      span{
+        font-size: 1.25rem;
+        opacity: .8;
+        a{
+          color: #2f679c;
+          font-size: 1.25rem;
+          font-weight: bold;
+          opacity: 1;
+        }
       }
     }
   }
