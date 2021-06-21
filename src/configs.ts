@@ -2,7 +2,8 @@
 // const {parsed} = config();
 // console.log('process.env.NODE_ENV', process.env.NODE_ENV)
 
-let API_URL = 'https://educampv.herokuapp.com'; 
+// let API_URL = 'https://educampv.herokuapp.com'; 
+let API_URL ='http://localhost:5000';
 // if(process.env.NODE_ENV === 'development'){
 //     API_URL ='http://localhost:5000';
 // }

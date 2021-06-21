@@ -40,18 +40,19 @@ const Courses = (props) => {
     const handleAddToCart =async (courseid) => {
         await addToCart({courseid})
     }
+    console.log('isFavourite', isFavourite)
     const handleAddToWishlist = async (courseid:string) =>{
         if(isFavourite){
             await removeFromWishlist(courseid)
             setIsFavourite(false)
         }else{
+            console.log('isAuthenticated', isAuthenticated)
             if(isAuthenticated){
-                console.log('isAuthenticated', isAuthenticated)
                 await addToWishlist({courseid})
                 setIsFavourite(true)
                 if(isCartitem){removeFromCart(courseid)}
             }
-            return history.push(`/login`)   
+            // return history.push(`/login`)   
         }
     }
     useEffect(() => {
@@ -123,7 +124,7 @@ const Courses = (props) => {
                             <button onClick={()=>handleAddToCart(course.id)} className="btn">Add to Cart</button>
                         </div>
                         {/* <Heart/> */}
-                            <IconBtn className={isFavourite? 'icon-btn--favourite' : ''} type="heart"/>                        
+                            <IconBtn onClick={()=>handleAddToWishlist(course.id)} className={isFavourite? 'icon-btn--favourite' : ''} type="heart"/>                        
                     </div>
 
                 </div>

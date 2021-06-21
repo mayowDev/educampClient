@@ -85,9 +85,9 @@ export const Title:React.FC<ITitleProps> = ({value, className}) => {
 
 export const Title2:React.FC<ITitleProps> = ({value, className}) => {
     return (
-        <h1 className={`title sub-title` + (className ? (' ' + className) : '')}>
+        <h3 className={`title sub-title` + (className ? (' ' + className) : '')}>
             {value}
-        </h1>
+        </h3>
     )
 };
 
