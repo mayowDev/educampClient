@@ -18,7 +18,7 @@ const Checkout = (props) => {
 
     useEffect(() => {
         if(cartItems &&cartItems.length > 0){
-            console.log('cartItems', cartItems)
+            // console.log('cartItems', cartItems)
             let total = cartItems.reduce((a, b) => {
                return  a + b.price
             }, 0);
@@ -124,7 +124,7 @@ const Checkout = (props) => {
                         token={paymentToken}
                         amount={totalPrice * 100}
                     >
-                        <button onClick={e=>console.log('/cart/checkout')} className="btn">Complete payment</button>
+                        <button className="btn">Complete payment</button>
                     </StripeCheckout>
                 </div>
             </div>

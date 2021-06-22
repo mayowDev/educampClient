@@ -5,9 +5,8 @@ import qs from 'querystring';
 import {H1, H2, H3, P1, SubTitle} from '../../components/Typography';
 import Button from '../../components/Button';
 import {LOCAL_STORAGE_KEYS} from "../../components/Constants"
-import {IHomeProps} from './types';
 
-const HomePage = ({isLoggedIn, isLoading}) => {
+const HomePage = ({isLoggedIn}) => {
     //const {isLoggedIn,  courses,  fetchCourses} = props;
     const history = useHistory()
     const query = qs.parse(history.location.search)  

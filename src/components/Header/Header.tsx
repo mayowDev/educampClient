@@ -44,7 +44,7 @@ const Header = (props) => {
             setTotalPrice(total)
         }
     }, [cartItems&&cartItems.length]); 
-    if(isLoading) return <Spinner type="cover"/>
+    // if(isLoading) return <Spinner type="cover"/>
     return (
         <>
             <header className={`header ${!isHome ? 'header--bright' : 'header--default'}  ${isAuthenticated ? 'header--logged-in' : ''}`}>     

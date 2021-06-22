@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
-import HomePage from "../Home"
+import {BrowserRouter, Switch, Route, Redirect, useHistory} from 'react-router-dom';
+import qs from 'querystring';
 import NotFound from "../../views/404/NoFound";
+import {LOCAL_STORAGE_KEYS} from "../../components/Constants"
 import ProtectedRoute from '../../components/Common/protectedRoute'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -47,7 +48,15 @@ const RenderRoutes = ({isLoggedIn}) => {
 };
 
 const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems,  getCartItems, userProfile, resetPage}) => { 
-    const [isAuthenticated, setIsAuthenticated] = React.useState(false)
+    const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+    const history = useHistory()
+    const query = qs.parse(history.location.search)  
+    const token = query["?googleId"]
+    if(token) {
+        const isUser =Boolean(token)
+        localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, isUser.toString())
+        window.location.href = "/"
+    }
 
     useEffect(() => {
         if( isLoggedIn&& !!userProfile.id === false){
