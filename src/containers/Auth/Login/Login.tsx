@@ -7,6 +7,7 @@ const Login = (props) => {
     const {location:{state}, isLoggedIn, loginWithGoogle, loginWithFacebook, login} = props
     const [user, setUser] = useState({ email:'', password:''})
     const [remember, setRemember] = useState(false)
+    const [visible, setVisible] = useState(false)
     const history = useHistory()
     const handleInputChange = (e)=>{
         setUser({
@@ -48,11 +49,17 @@ const Login = (props) => {
                     <form onSubmit={onLoginSubmit} method="post">
                         <div className="form-group ">
                             <label htmlFor="email">email</label>
-                            <input name="email" onChange={handleInputChange} value={user.email} type="email" className="form-control" placeholder="youremail@gmail.com" id="email"/>
+                            <input autoComplete="off"  name="email" onChange={handleInputChange} value={user.email} type="email" className="form-control" placeholder="youremail@gmail.com" id="email"/>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="password">Password</label>
-                            <input autoComplete="off" name="password" onChange={handleInputChange} value={user.password} type="password" className="form-control" placeholder="Your Password" id="password"/>
+                        <div className="hide-show ">
+                            <div className="checkbox-group">
+                                <label htmlFor="password">Password</label>
+                                <span onClick={()=>setVisible(!visible)} className="caption">{visible?'Hide':'Show'}</span>
+                                {/* <input value={visible?'Hide':'Show'} name="hide-show" type="checkbox" onChange={()=>setVisible(!visible)} checked={visible}/> */}
+                            </div>
+                            <div className="password-group">
+                                <input autoComplete="off" name="password" onChange={handleInputChange} value={user.password} type={visible?"text":"password"} className="form-control" placeholder="Your Password" id="password"/>
+                            </div>
                         </div>
                         
                         <div className="forgot-remember">
