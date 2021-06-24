@@ -6,7 +6,7 @@
 	background: #f6f7fc;
 	position: relative;
 	&__form-container {
-		width: 75%;
+		width: 100%;
 		background: #f6f7fc; 
 		align-self: center;		
 	}
@@ -40,12 +40,19 @@
 	
 }
 .btn-block, input[type=button].btn-block,  input[type=submit].btn-block {
-    width: 100%;
-	font-size:18px;
-	color: white;
-	line-height: 2.5;
-	cursor: pointer;
-	border: none;
+    // width: 100%;
+	// font-size:18px;
+	// color: white;
+	// line-height: 2.5;
+	// cursor: pointer;
+	// border: none;
+	width: 50%;
+    font-size: 1.2rem;
+    color: white;
+    line-height: 2.5;
+    cursor: pointer;
+    border: none;
+    margin: auto;
 }
 .seprater{
 	text-align: center;
@@ -91,6 +98,10 @@
 			text-transform: capitalize;
 			margin: 10px;
 		}
+		.random-password{
+			// display: none;
+			button{cursor: pointer;}
+		}
 		input{
 			background: aliceblue;
 			padding: 20px;
@@ -101,8 +112,13 @@
 			&:active{
 				-webkit-box-shadow: none;
 				box-shadow: none; 
+				.random-password{
+					display: block;
+					background-color:red;
+				}
 			}
 		}
+		
 	}
 }
   
@@ -115,7 +131,11 @@
 		color: #888;
 		text-decoration: underline!important; 
 	}
-  }
+}
+.btn-primary{
+	width: 100%!important;
+	margin-top: .5rem;
+}
   
 .control {
 	color: #888; 
@@ -142,34 +162,36 @@
 	background-color: black;
 	border-color:black;
 	height:55px;
+	width: 100%;
 }
 
-
-.auth-btn{
-	height:55px;
-	line-height: 2.5;
-	text-align: center;
-	color: white;
-	// border-radius:  15px;
-}
-
-.fb {
-	  background: #3b5998;
-	  color: #fff; 
-}
-
-.gl {
-	//   background: #fff;
-	  background:  #ea4335;
-	  color: white;
-	  margin: 20px 0;
-	  box-shadow: 0px 10px 55px 10px rgba(0, 0, 0, 0.1);
-	  img{
-		display: none!important;
-		width: 30px;
-		margin-right: 15px;
-		padding-bottom: 3px;
-		vertical-align: middle;
-		border-style: none
-	  }
+.icons{
+	display: flex;
+	gap: 1rem;
+	.auth-btn{
+		height:55px;
+		line-height: 2.5;
+		text-align: center;
+		color: white;
+		// border-radius:  15px;
+	}
+	.fb {
+		background: #3b5998;
+		color: #fff; 
+  }
+	.gl {
+		//   background: #fff;
+			background:  #ea4335;
+			color: white;
+			margin: 20px 0;
+			box-shadow: 0px 10px 55px 10px rgba(0, 0, 0, 0.1);
+			img{
+			display: none!important;
+			width: 30px;
+			margin-right: 15px;
+			padding-bottom: 3px;
+			vertical-align: middle;
+			border-style: none
+			}
+	}
 }

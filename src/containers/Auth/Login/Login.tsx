@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
-import {Redirect, Link, useHistory} from 'react-router-dom'
+import {Redirect, Link, useHistory} from 'react-router-dom';
+import generator from "generate-password";
 import Sidebar from '../../../components/Sidebar'
-// import {LOCAL_STORAGE_KEYS} from "../../../components/Constants"
 
 const Login = (props) => {
     const {location:{state}, isLoggedIn, loginWithGoogle, loginWithFacebook, login} = props
     const [user, setUser] = useState({ email:'', password:''})
     const [remember, setRemember] = useState(false)
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(false);
+    const [randomPassword, setRandomPassword] = useState('')
+    const [isRandomPasswordRequested,setIsRandomPasswordRequested] = useState(false)
     const history = useHistory()
     const handleInputChange = (e)=>{
         setUser({
@@ -15,6 +17,20 @@ const Login = (props) => {
           [e.target.name]: e.target.value
         });
     }
+    const handleSuggestRandomPassword = (e)=>{
+        e.preventDefault();
+        let password = generator.generate({
+            length: 10,
+            numbers: true,
+            lowercase:true,
+            uppercase:true,
+            symbols:true,
+        })
+        // setRandomPassword(password)
+        setUser({...user,password})
+        setVisible(true)
+    }
+
     const  handleRemember = (e) => {
         if(e.target.name === 'remember') setRemember(!remember)
     }
@@ -39,7 +55,7 @@ const Login = (props) => {
     if(isLoggedIn) return <Redirect to={"/"} />//state?state.from.pathname:
     return (
         <div className="login">
-            <Sidebar/>
+            {/* <Sidebar/> */}
             <div className="login__form-container">
                 <div className="login__form-block">
                     <div className="heading">
@@ -49,16 +65,21 @@ const Login = (props) => {
                     <form onSubmit={onLoginSubmit} method="post">
                         <div className="form-group ">
                             <label htmlFor="email">email</label>
-                            <input autoComplete="off"  name="email" onChange={handleInputChange} value={user.email} type="email" className="form-control" placeholder="youremail@gmail.com" id="email"/>
+                            <input  name="email" onChange={handleInputChange} value={user.email} type="email" className="form-control" placeholder="youremail@gmail.com" id="email"/>
                         </div>
                         <div className="hide-show ">
                             <div className="checkbox-group">
                                 <label htmlFor="password">Password</label>
                                 <span onClick={()=>setVisible(!visible)} className="caption">{visible?'Hide':'Show'}</span>
-                                {/* <input value={visible?'Hide':'Show'} name="hide-show" type="checkbox" onChange={()=>setVisible(!visible)} checked={visible}/> */}
                             </div>
-                            <div className="password-group">
-                                <input autoComplete="off" name="password" onChange={handleInputChange} value={user.password} type={visible?"text":"password"} className="form-control" placeholder="Your Password" id="password"/>
+                            <div onMouseLeave={()=>setIsRandomPasswordRequested(false)} className="password-group">
+                                <input autoComplete="none" name="password" onClick={()=>setIsRandomPasswordRequested(true)}   onFocus={()=>setIsRandomPasswordRequested(!isRandomPasswordRequested)} onChange={handleInputChange} value={user.password} type={visible?"text":"password"} className="form-control" placeholder="Your Password" id="password"/>
+                                {isRandomPasswordRequested&&
+                                    <div className="random-password">
+                                        <button type="button" onClick={handleSuggestRandomPassword}>suggest random password</button>
+                                    </div>
+                                }
+                                
                             </div>
                         </div>
                         
@@ -74,7 +95,7 @@ const Login = (props) => {
 
                         <span className="seprater">OR</span>    
                         <div className="icons">
-                            {/* <input type="button" value="Login with facebook" onClick={handleLoginWithFacebook} className="btn btn-block auth-btn fb"/>needs to bee https client and server */}
+                            <input type="button" value="Login with facebook" onClick={()=>console.log("handleLoginWithFacebook")} className="btn btn-block auth-btn fb"/>
                             <input type="button" value="Login with Google" onClick={handleLoginWithGoogle} className="btn btn-block auth-btn gl"/>
                         </div>
                     </form>

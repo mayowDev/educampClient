@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import Signup from './Signup'
 import Resend from './Resend'
-import {signup, resendVerificationEmail} from '../redux/actions'
+import {signup, resendVerificationEmail, loginWithGoogle, loginWithFacebook} from '../redux/actions'
+
 import { RESET_PAGE} from '../redux/constants';
 import './style.scss';
 
@@ -18,6 +19,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
     signup: (data) => dispatch(signup(data)),
+    registerWithGoogle: () => dispatch(loginWithGoogle()),
+    registerWithFacebook: () => dispatch(loginWithFacebook()),
     resetPage: () => dispatch({type: RESET_PAGE}),
     resendVerificationEmail: (email) => dispatch(resendVerificationEmail(email))
 

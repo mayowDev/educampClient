@@ -12,6 +12,8 @@ export interface ISignUpProps{
     isLoggedIn:boolean,
     isApiError:boolean,
     resetPage:()=>void,
+    registerWithGoogle:()=> void,
+    registerWithFacebook:()=> void,
     signup:(user:object)=>{
         type: string,
         payload:{

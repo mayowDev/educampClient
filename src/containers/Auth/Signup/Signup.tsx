@@ -3,13 +3,13 @@ import {Redirect, Link, useHistory} from 'react-router-dom'
 // import Logo from '../../../assets/images/Logo-small.png';
 import Google from '../../../assets/images/icon-google.png';
 import Button from '../../../components/Button'
-import { Heading, Paragraph } from '../../../components/Typography';
+import { Paragraph, H2 } from '../../../components/Typography';
 import Spinner from '../../../components/Spinner';
 import Sidebar from '../../../components/Sidebar';
 
 import {ISignUpProps, ITypeSignUp} from '../types'
 
-const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn}:ISignUpProps) => {
+const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn, registerWithGoogle, registerWithFacebook}:ISignUpProps) => {
     if(isLoggedIn) return <Redirect to="/" />;
     const [user, setUser] = useState<ITypeSignUp>({name: '', email:'', password:'', confirmPassword:'', role:'student'})
     const history = useHistory()
@@ -40,23 +40,39 @@ const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn}:ISignUp
             setUser({name: '', email:'', password:'', confirmPassword:'', role:'student'});
         }
     }
-    console.log('isLoading ', isLoading)
+    const handleSignupWithGoogle =(e)=>{
+        try {
+            e.preventDefault();
+            registerWithGoogle();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const handleSignupWithFacebook =(e)=>{
+        try {
+            e.preventDefault();
+            registerWithFacebook();
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
-        <div className="signup shared-form">
-            <Sidebar/>
-            <div className="shared-form__container">
+        <div className="signup">
+            {/* <Sidebar/> */}
+            <div className="signup__container">
             {isLoading  ?<Spinner />:
              <div className={`${isRegistered ? 'form-success': 'signup__form-block form-block'} `} >
                 <div className="heading">
-                    <Heading className="title-head" value={isRegistered? "Email Sent !" : "Signup Now" }/>
+                    {/* <H2 className="title-head" value={isRegistered? "Email Sent !" : "Signup Now" }/> */}
+                    <h2 className="title-head">{isRegistered? "Email Sent !" : "Signup Now" }</h2>
+
                     {!isRegistered&&
                     <>
                             <p>Have an Account? <Link to="/login">Login here</Link></p> 
-                            <p>Lost your activation link? <Link to="/resend-email">Request new one</Link></p>                           
+                            {/* <p>Lost your activation link? <Link to="/resend-email">Request new one</Link></p>                            */}
                     </>
                     }
                     {isRegistered&&
-                            // <p>Have an Account? <Link to="/login">Login here</Link></p>
                             <p>Lost your activation link? <Link to="/resend-email">Request new one</Link></p>                           
                     }
                 </div>	
@@ -89,8 +105,8 @@ const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn}:ISignUp
 
                             <span className="seprater">OR</span>    
                             <div className="icons">
-                                <a href="#" className="btn btn-block auth-btn fb">Sign up with facebook</a>
-                                <a onClick={()=>console.log('login with google')} className="btn btn-block auth-btn gl"><img src={Google} alt="Google-logo"/> Sign up with Google</a>
+                                <input type="button" value="Signup with facebook" onClick={handleSignupWithFacebook} className="btn btn-block auth-btn fb"/>
+                                <input type="button" value="Signup with Google" onClick={handleSignupWithGoogle} className="btn btn-block auth-btn gl"/>
                             </div>
                         </>
                     }
