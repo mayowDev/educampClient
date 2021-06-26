@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {Elements,CardElement,useStripe,useElements} from "@stripe/react-stripe-js";
+import {toast} from 'react-toastify'
 import axios from "../../../services/axios";
 import PaypalImage from '../../../assets/images/paypal-icon.jpg'
 import  courseThumbnail  from '../../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
@@ -11,17 +12,22 @@ import './style.scss'
 const stripePromise = loadStripe(STRIPE_PUBLISH_KEY);
 
 const CheckoutForm = (props) => {
-  const { success, getCartItems, cartItems }  = props
-  const [product, setProduct] = useState<any>()
+  const { success, getCartItems, cartItems,userProfile }  = props
+  const [products, setProduct] = useState<any>()
   const [originalPrice, setOriginalPrice] = useState<number>(0)
   const [discountedAmount, setDiscountedAmount] = useState<number>(0)
-  const [totalPrice, setTotalPrice] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [name, setName] = useState('');
   useEffect(() => {
-    getCartItems && getCartItems()
+    getCartItems && getCartItems();
   },[])
   useEffect(() => {
+    if(userProfile&& userProfile.id){
+        setName(userProfile.name)
+    }
+  }, [userProfile&&userProfile.id]);
+  useEffect(() => {
       if(cartItems &&cartItems.length > 0){
-          // console.log('cartItems', cartItems)
           let total = cartItems.reduce((a, b) => {
             return  a + b.price
           }, 0);
@@ -35,40 +41,19 @@ const CheckoutForm = (props) => {
   const stripe = useStripe();
   const elements = useElements();
 
-  // const handlePaymentSubmit = async event => {
-  //   event.preventDefault();
-  //   let cardElement;
-  //   if (!stripe || !elements) {return;}
-  //   if(CardElement){cardElement = elements!.getElement(CardElement)}
-  //   const { error, paymentMethod } = await  stripe!.createPaymentMethod({
-  //     type: "card",
-  //     card: cardElement
-  //   });
-  //   console.log('paymentMethod', paymentMethod)
-  //   if (!error) {
-  //   let id = paymentMethod?.id;
-  //     try {
-  //       const { data } = await axios.post("/cart/checkout", { id, product, amount: totalPrice });
-  //       console.log('data', data);
-  //       success();
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  // };
   const handlePaymentSubmit = async (e) =>{
     e.preventDefault();
     let cardElement;
     if (!stripe || !elements) {return;}
     if(CardElement){cardElement = elements!.getElement(CardElement)}
 
-    const res= await axios.post('/cart/checkout', {email:'mayow@mailinator.com'})
-    console.log('res.data', res.data)
+    const res= await axios.post('/cart/checkout', {userProfile,products,totalPrice})
+    console.log('res', res)
     const clientSecret =  res.data['client_secret']
     const result = await stripe.confirmCardPayment(clientSecret,{
       payment_method:{
         card: cardElement,
-        billing_details:{email:'mayow@mailinator.com'}
+        billing_details:{email:userProfile.email}
       }
     })
     console.log('result', result)
@@ -79,6 +64,7 @@ const CheckoutForm = (props) => {
     } else {
       // The payment has been processed!
       if (result.paymentIntent.status === 'succeeded') {
+        toast.dark('Congratulations! your paymen is recieved  ')
         console.log('Money is in the bank!');
         // Show a success message to your customer
         // There's a risk of the customer closing the window before callback
@@ -107,14 +93,14 @@ const CheckoutForm = (props) => {
                 <form className="card-form">
                     <div className="name-number">
                         <div className="input-group">
-                            <input placeholder="Name on the Card" id="name" type="text" />
+                            <input onChange={(e)=>setName(e.target.value)} value={name} placeholder="Name on the Card" id="name" type="text" />
                         </div>
                         <CardElement className="stripe-card" />                          
                     </div>
                 </form>
                 <div className="order-details">
                     <h3>Order Details</h3>
-                    {product&&product.map(item =>
+                    {products&&products.map(item =>
                     <div key={item.id} className="item-card">
                          <img src={courseThumbnail} alt="course-item-img"/>
                          <h4>{item.title}</h4>
@@ -149,26 +135,22 @@ const CheckoutForm = (props) => {
   )
 };
 
-// you should use env variables here to not commit this
-// but it is a public key anyway, so not as sensitive
 
 const Index = (props:ITypeCheckout) => {
-  const { getCartItems, cartItems, isLoading }  = props
+  const { getCartItems, cartItems, isLoading,userProfile }  = props
   const [status, setStatus] = React.useState("ready");
-
-  if (status === "success") {
-    return <div>Congrats on your empanadas!</div>;
-  }
-
   return (
     <Elements stripe={stripePromise}>
       <CheckoutForm
         isLoading={isLoading}
         cartItems={cartItems}
         getCartItems={getCartItems}
+        userProfile={userProfile}
         success={() => {
           setStatus("success");
         }}
+        status={status}
+        
       />
     </Elements>
   );

@@ -7,7 +7,7 @@ import IconBtn from '../../components/IconBtn';
 
 const Cart = (props) => {
     const {getCartItems, addToCart, removeFromCart, getWishlistItems, addToWishlist, userProfile,
-        removeFromWishlist, cartItems, favouriteItems} = props;
+        removeFromWishlist, cartItems, favouriteItems, createOrder} = props;
 
     const history = useHistory()
     const [totalPrice, setTotalPrice] = useState(0)
@@ -19,7 +19,6 @@ const Cart = (props) => {
         }
     }, [userProfile&&userProfile.id]);
     useEffect(() => {
-        // console.log('isAuthenticated', isAuthenticated)
         if(isAuthenticated){
             getCartItems()
             getWishlistItems()
@@ -51,6 +50,11 @@ const Cart = (props) => {
     const  handleRemoveFromWishlist = async (courseid:string) =>{
         await removeFromWishlist(courseid)
     }
+    const handleCreateOrder = async () =>{
+        const res = await createOrder();
+        console.log('createOrder response',res.payload.success)
+        if(res&&res.payload&&res.payload.success){ history.push('/cart/checkout')}
+    }
     return (
         <div className="cart">
             <div className="cart__header"> <h1>Shopping cart</h1> </div>
@@ -68,7 +72,7 @@ const Cart = (props) => {
                                 </div>
                             </div>
                         :
-                         cartItems.map(item =>{
+                        cartItems&&cartItems.map(item =>{
                             return (
                                 <div key={item.id} className="item-card">
                                     <img src={courseThumbnail} alt="course-item-img"/>
@@ -121,7 +125,7 @@ const Cart = (props) => {
                         <h3>${totalPrice}</h3>
                     </div>
                     <div className="checkout-btn">
-                        <button onClick={e=>history.push('/cart/checkout')} className="btn">Checkout</button>
+                        <button onClick={handleCreateOrder} className="btn">Checkout</button>
                     </div>
                     <input type="text" placeholder="Enter discount Code"/>
                     <input className="aplly-btn" value="apply" type="submit" placeholder="Enter discount Code"/>

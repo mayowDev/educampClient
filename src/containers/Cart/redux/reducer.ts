@@ -22,7 +22,7 @@ export default(state = initialState, action)=>{
         case GET_CART_ITEMS: 
             return {
                 ...state,
-                cartItems: [...action.payload],
+                cartItems: action.payload,
                 lastFetch: Date.now(),
                 loading: false,
                 apiError:false

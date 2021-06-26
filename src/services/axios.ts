@@ -25,14 +25,16 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(response =>{return response}, error => {
-        console.log('axios error', error.message);
         const expectdError = error.response && error.response.status >= 400 && error.response.status < 500
         if(!expectdError){
             toast.error(error.message)
         }else{
-            console.log('error.response', error.response)
-            const errorArray = error.response.data.message.split(",")
-            errorArray.map(err=> err.length > 1 && toast.error(err));
+            const errorArray = error.response.data.message
+            if(Array.isArray(errorArray)){
+                errorArray.map(err=> err.length > 1 && toast.error(err));
+            }else{
+                errorArray.split(',').map(err=> err.length > 1 && toast.error(err));
+            }
         }
         return Promise.reject(error)
     }

@@ -4,8 +4,8 @@ import * as API from "../../../services"
 export const getCartItems = () => async dispatch => {
   try {
     dispatch({type:LOADING})
-    const response = await API.getCartItems();
-    if(response&&response.success) return dispatch({type: GET_CART_ITEMS, payload: response.cart.items})
+    const {success, cart} = await API.getCartItems();
+    if(success) return dispatch({type: GET_CART_ITEMS, payload: cart&&cart.items.length> 0? cart.items: []})
   } catch (error) {
     console.log('getCartItemsError', error);
     return dispatch({type: API_ERROR})
@@ -38,14 +38,15 @@ export const createOrder = () => async dispatch => {
     try {
       dispatch({type:LOADING})
       const response = await API.createOrder()
-      if(response&&response.success) return dispatch({type: CREATE_ORDER, payload: response.data})
+      console.log('response', response)
+      if(response&&response.success) return dispatch({type: CREATE_ORDER, payload: response})
     } catch (error) {
       console.log('createOrderError', error);
       return dispatch({type: API_ERROR})
     }
 }
 
-export const getOrder = () => async dispatch => {
+export const getOrderItems = () => async dispatch => {
     try {
       dispatch({type:LOADING})
       const response = await API.getOrder()

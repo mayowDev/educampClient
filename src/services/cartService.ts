@@ -128,6 +128,7 @@ export const createOrder = async () =>{
                 return Promise.reject(new Error(JSON.stringify(err.response.data)));
             });
         if (result) {
+            console.log('result',result)
             return result.data;
         }
     } catch (e) {

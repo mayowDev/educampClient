@@ -136,7 +136,19 @@
 	width: 100%!important;
 	margin-top: .5rem;
 }
-  
+.error-message{
+	font-size: .9rem;
+	text-transform: lowercase;
+	color: red;
+	padding: .2rem .5rem;
+}  
+.input-error{
+	border-bottom: 2px solid red !important;
+}
+.disabled{
+	opacity: .5;
+	cursor: not-allowed !important;
+}
 .control {
 	color: #888; 
 	display: flex;

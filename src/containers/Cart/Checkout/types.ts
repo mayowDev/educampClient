@@ -3,6 +3,7 @@ export interface ITypeCheckout {
     success: () => void,
     getCartItems: () => void,
     cartItems: any,
+    userProfile:any,
     // setConversation?: (val: boolean) => void,
 }
 
