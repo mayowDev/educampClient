@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import Logo from '../../assets/images/udemy-logo-coral.svg';
+import Logo from '../../assets/images/EducampLogo.png'
+
 import { P1 } from '../Typography';
 
 const Footer = () => {
@@ -30,7 +31,7 @@ const Footer = () => {
                 <button>English</button>
             </div>
             <div >
-                <Link to='/' className="footer__logo"><img width={100} height={39} src={Logo} alt={Logo} /></Link>
+                <Link to='/' className="footer__logo"><img width={150} height={70} src={Logo} alt={Logo} /></Link>
                 <P1 value={`© ${displayDate()} Educamp. Inc`} />
             </div>
         </footer>

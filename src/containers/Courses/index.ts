@@ -4,7 +4,7 @@ import AddCourse from './AddCourse';
 import EditCourse from './EditCourse';
 import CourseDetails from './CourseDetails';
 import CourseGift from './CourseGift';
-import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse, getCourseByName} from './redux/actions'
+import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse, getCourseByName, giftCourse} from './redux/actions'
 import {getTeacher} from  '../Teachers/redux/actions'
 import { getUserData } from '../Auth/redux/actions';
 import { addToWishlist, removeFromWishlist } from '../Favourites/redux/actions';
@@ -42,7 +42,8 @@ const mapDispatchToProps = (dispatch) => ({
     getTeacher:(id:string) => dispatch(getTeacher(id)),
     getUserData:() => dispatch(getUserData()),
     addToWishlist:(id:object) => dispatch(addToWishlist(id)),
-    removeFromWishlist: (id:object) => dispatch(removeFromWishlist(id))
+    removeFromWishlist: (id:object) => dispatch(removeFromWishlist(id)),
+    giftCourse:(data:object) => dispatch(giftCourse(data))
 })
 
 export default {

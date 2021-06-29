@@ -1,21 +1,35 @@
-import React, {useEffect} from 'react';
-import {toast} from 'react-toastify';
+import React, {useEffect, useState} from 'react';
+// import {toast} from 'react-toastify';
 import {useHistory} from "react-router-dom";
 import sampleImage from '../../assets/images/coursesThumbnails/react-thumbnail.jpg';
 import './style.scss';
 
 const CourseGift = (props) => {
-    const {getCourseByName, courseDetails} = props;
+    const {getCourseByName, courseDetails, giftCourse} = props;
+    const [courseid, setCourse] = useState('');
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
     const history = useHistory()
+    const giftData = {email, name, courseid, courseDetails} 
 
-    const handleGiftCourse = (e)=>{
+    const handleGiftCourse = async (e)=>{
         e.preventDefault();
-        toast.dark("Course gift sent!");
+        const res = await giftCourse(giftData)
+        if(res.payload.success){
+            props.history.push({
+                pathname: "/cart/checkout", state: { slug, OrderId:res.payload.OrderId }
+            })
+        }
     }
     const slug = props.location.pathname.split('/')[2];
     useEffect(() =>{
         getCourseByName(slug)
     },[])
+    useEffect(() =>{
+        if(courseDetails&&courseDetails.id){
+            setCourse(courseDetails.id)
+        }
+    },[courseDetails&&courseDetails.id])
     // console.log('courseDetails', courseDetails)
     return (
         <div className="courseGift">
@@ -23,12 +37,12 @@ const CourseGift = (props) => {
             <div className="courseGift__content">
                 <div className="courseGift__content--receiver">
                     <form onSubmit={handleGiftCourse}>
-                        <input name="name" placeholder="Type receiptent's name here"  type="text" />
-                        <input name="email" placeholder="Type receiptent's email here" type="email" />
-                        <input type="date" />
-                        <textarea placeholder="your message here" />
+                        <input value={name} onChange={e=>setName(e.currentTarget.value)} name="name" placeholder="Type receiptent's name here"  type="text" />
+                        <input value={email} onChange={e=>setEmail(e.currentTarget.value)} name="email" placeholder="Type receiptent's email here" type="email" />
+                        {/* <input type="date" /> */}
+                        {/* <textarea placeholder="your message here" /> */}
                         <div className="cart-btn">
-                            <button className="btn" type="submit">Proceed to checkout</button>
+                            <button onClick={handleGiftCourse} className="btn" type="submit">Proceed to checkout</button>
                         </div>
                     </form>
                 </div>

@@ -190,3 +190,24 @@ export const deleteCourse = async (id) => {
         return Promise.reject(new Error(e.message));
     }
 };
+
+export const giftCourse  = async (data)=>{
+    try {
+        const result = await axios.post('/courses/gift',{data})
+        .catch((err: any) => {
+            console.log('err = ', err);
+            if (err && err.response && err.response.status === 400) {
+                return Promise.reject(
+                    new Error("Request failed with status code 400")
+                );
+            }
+            return Promise.reject(new Error(JSON.stringify(err.response.data)));
+        });
+        if (result) {
+            return result.data;
+        }
+    } catch (e) {
+        return Promise.reject(new Error(e.message));
+    }
+
+}

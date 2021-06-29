@@ -61,7 +61,6 @@ export const postCheckout = (data: any) => async dispatch =>{
   try {
     dispatch({type:LOADING})
     const response = await API.postCheckout(data)
-    console.log('postCheckout action ===> ', response)
     if(response&&response.success) return dispatch({type: CHECKOUT, payload: response.data})
   } catch (error) {
     console.log('postCheckoutError', error);

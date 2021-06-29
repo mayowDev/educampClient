@@ -1,13 +1,12 @@
 import React, {useEffect, useState, Fragment} from 'react';
 import {Link, useHistory} from 'react-router-dom'
-import Logo from '../../assets/images/udemy-logo-coral.svg';
+import Logo from '../../assets/images/EducampLogo.png'
 // import {IHeaderProps} from './types';
 import MenuItem from '../MenuItem';
 import Button from '../Button';
 import IconBtn from '../IconBtn';
 import Dropdown from '../Dropdown';
 import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
-import Spinner from '../../components/Spinner'
 
 const Header = (props) => {
     const {isLoading, routeName,searchQuery,isHome, userProfile, logout, cartItems, favouriteItems, addToCart, removeFromWishlist} = props;    
@@ -50,7 +49,7 @@ const Header = (props) => {
             <header className={`header ${!isHome ? 'header--bright' : 'header--default'}  ${isAuthenticated ? 'header--logged-in' : ''}`}>     
                 <div className="header--flex -one">
                     <Link to='/' className='header__logo'>
-                        <img src={Logo} alt="Logo" height={18}/>
+                        <img width={120} src={Logo} alt="Logo" height={18}/>
                     </Link>
                     <MenuItem value=" Categories" to="/categories"/>
                     <label

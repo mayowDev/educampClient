@@ -3,9 +3,10 @@ import Cart from './Cart';
 import CheckoutForm from './Checkout/CheckoutForm';
 import {getWishlistItems, addToWishlist, removeFromWishlist} from '../Favourites/redux/actions'
 import {getCartItems, addToCart, removeFromCart,  createOrder, getOrderItems, postCheckout} from './redux/actions'
+import {getCourseByName} from '../Courses/redux/actions'
 import './style.scss'
 
-const mapStateToProps = ({cart, favourites, auth}) => { 
+const mapStateToProps = ({cart, favourites, auth, courses}) => { 
   return {
     isLoading: cart.loading,
     isApiError: cart.isApiError,
@@ -16,6 +17,7 @@ const mapStateToProps = ({cart, favourites, auth}) => {
     isRemovedFromFavorite: favourites.isRemovedFromFavorite,
     orderDetails: cart.orderDetails,
     userProfile: auth.userProfile,
+    courseDetails: courses.courseDetails
   }
 }
 
@@ -28,7 +30,8 @@ const mapDispatchToProps = (dispatch) => ({
     checkoutOrder:(data) => dispatch(postCheckout(data)),
     getWishlistItems:() => dispatch(getWishlistItems()),
     addToWishlist:(id:object) => dispatch(addToWishlist(id)),
-    removeFromWishlist:(id:string) => dispatch(removeFromWishlist(id))
+    removeFromWishlist:(id:string) => dispatch(removeFromWishlist(id)),
+    getCourseByName:(name:string) => dispatch(getCourseByName(name))
 
 })
 

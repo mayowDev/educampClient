@@ -53,7 +53,7 @@ const Cart = (props) => {
     const handleCreateOrder = async () =>{
         const res = await createOrder();
         console.log('createOrder response',res.payload.success)
-        if(res&&res.payload&&res.payload.success){ history.push('/cart/checkout')}
+        if(res&&res.payload&&res.payload.success){ history.push({pathname: "/cart/checkout", state: { OrderId:res.payload.OrderId }})}
     }
     return (
         <div className="cart">
