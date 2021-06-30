@@ -47,6 +47,7 @@
                 font-size:1.13rem;
                 margin: .75rem 0;
                 input[type=radio]{
+                    cursor: pointer;
                     margin-right: .5rem;
                     &:before {
                         border: 2px solid lightgray;
@@ -60,7 +61,7 @@
                     margin-left:1rem;
                 }
             }
-            .card-form{
+            .card-form, .paypal-form{
                 background: #F8F8F9;
                 padding: 25px 15px;
                 width: 550px;
@@ -103,6 +104,13 @@
                         }
                     }
                     
+                }
+            }
+            .paypal-form{
+                p{
+                    color: black!important;
+                    font-size: 1rem;
+                    padding:1rem;
                 }
             }
             .order-details{

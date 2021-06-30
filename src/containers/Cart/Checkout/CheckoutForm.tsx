@@ -23,6 +23,10 @@ const CheckoutForm = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [name, setName] = useState('');
+  const [creditCard, setCreditCard] = useState<any>();
+  
+  const [paymentType, setPaymentType] = useState<string>('stripe')
+
   const history = passedProps.history
 
   useEffect(() => {
@@ -67,8 +71,11 @@ const CheckoutForm = (props) => {
   }, [passedProps.courseDetails&&passedProps.courseDetails.id]);
   const stripe = useStripe();
   const elements = useElements();
-
-  const handlePaymentSubmit = async (e) =>{
+  const handlePaypalOneTimePayment = async (e)=>{
+    e.preventDefault()
+    console.log('paypal payment')
+  }
+  const handleStripeOneTimePayment = async (e) =>{
     e.preventDefault();
     let cardElement;
     if (!stripe || !elements) {setIsDisabled(true);return;}else{setIsDisabled(false)}
@@ -99,7 +106,21 @@ const CheckoutForm = (props) => {
         // history.push('/learning')
       }
     }
+  }  
+  const isCardValid = (card) => {
+    var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+    // var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
+    // var amexpRegEx = /^(?:3[47][0-9]{13})$/;
+    // var discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
+    // var isValid = false;
+  
+      return visaRegEx.test(card) === true;
+  };
+
+  const allInputsAreValid = () => {
+      return creditCard&& creditCard.empty === false && creditCard&& creditCard.complete === true && name.length > 2
   }
+console.log('creditCard', creditCard)
   return (
     <div className="checkout">
         <div className="checkout__header"><h1>Checkout</h1></div>
@@ -108,22 +129,32 @@ const CheckoutForm = (props) => {
                 <h3>Card information</h3>
                 <p>Billing address</p>
                 <div className="input-group" >   
-                    <input onChange={()=>console.log('handle input change')} type="radio" checked />
+                    <input onChange={e=>setPaymentType('stripe')} type="radio" checked={paymentType === 'stripe'} />
                     <label>Credit card</label>
                 </div>
                 <div className="input-group" >   
-                    <input type="radio" />
+                    <input onChange={e=>setPaymentType('paypal')} type="radio" checked={paymentType === 'paypal'}/>
                     <label>Paypal</label>
                     <img src={PaypalImage} alt="paypal-icon" />
                 </div>
-                <form className="card-form">
+                {paymentType === 'stripe'&&
+                  <form className="card-form">
                     <div className="name-number">
                         <div className="input-group">
                             <input onChange={(e)=>setName(e.target.value)} value={name} placeholder="Name on the Card" id="name" type="text" />
                         </div>
-                        <CardElement className="stripe-card" />                          
+                        <CardElement onChange={e=>setCreditCard(e)} className={`stripe-card ${creditCard&&!creditCard.complete?'input-error':''}`} />                          
+                        {creditCard&&!creditCard.complete&&
+                            <span className="error-message">{'please provide complete Credit Card information'}</span>
+                          }
                     </div>
-                </form>
+                  </form>
+                }
+                {paymentType === 'paypal'&&
+                  <div className="paypal-form">
+                  <p>In order to complete your transaction, we will transfer you over to PayPal's secure servers.</p>
+                  </div>
+                }
                 <div className="order-details">
                     <h3>Gift Order Details</h3>
                     {gift&&gift.id&& (
@@ -160,9 +191,17 @@ const CheckoutForm = (props) => {
                     <p> Educamp is required by law to collect applicable transaction taxes for purchases made in certain tax jurisdictions.</p>
                     <p>By completing your purchase you agree to these <a href="#">Terms of Service.</a></p>
                 </div>
-                <button onClick={handlePaymentSubmit} type="submit" disabled={isDisabled} className="btn">
-                  {isLoading? <img style={{width: '40px', borderRadius: '50%'}} src={LoadingButton}/>:'Complete payment'}
-                </button>
+                {paymentType === 'stripe'&&
+                  <button  onClick={handleStripeOneTimePayment} type="submit" disabled={isDisabled} className={`btn ${!allInputsAreValid()&&'disabled'}`}>
+                    {isLoading? <img style={{width: '40px', borderRadius: '50%'}} src={LoadingButton}/>:'Complete payment'}
+                  </button>
+                }
+                {paymentType === 'paypal'&&
+                  <button onClick={handlePaypalOneTimePayment} type="submit" disabled={isDisabled} className="btn">
+                    {isLoading? <img style={{width: '40px', borderRadius: '50%'}} src={LoadingButton}/>:'Proceed'}
+                  </button>
+                }
+                
             </div>
         </div>
         
