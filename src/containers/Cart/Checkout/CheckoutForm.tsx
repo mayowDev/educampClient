@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {Elements,CardElement,useStripe,useElements} from "@stripe/react-stripe-js";
+import { PayPalButton } from 'react-paypal-button-v2'
+
 import {toast} from 'react-toastify'
 import axios from "../../../services/axios";
 import PaypalImage from '../../../assets/images/paypal-icon.jpg'
@@ -22,9 +24,9 @@ const CheckoutForm = (props) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [sdkReady, setSdkReady] = useState(false)
   const [name, setName] = useState('');
   const [creditCard, setCreditCard] = useState<any>();
-  
   const [paymentType, setPaymentType] = useState<string>('stripe')
 
   const history = passedProps.history
@@ -69,12 +71,47 @@ const CheckoutForm = (props) => {
 
     }
   }, [passedProps.courseDetails&&passedProps.courseDetails.id]);
-  const stripe = useStripe();
-  const elements = useElements();
+
+  useEffect(() => {
+    if (!userProfile&&!userProfile.id) {
+      history.push('/login')
+    }
+    if(paymentType&&paymentType =='paypal'){
+      const addPayPalScript = async () => {
+        const {data} = await axios.post('/cart/checkout', {userProfile,products,totalPrice, OrderId, paymentType})
+        const clientId = data.clientId
+        console.log('clientId:', data.clientId)
+
+        const script = document.createElement('script')
+        script.type = 'text/javascript'
+        script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
+        script.async = true
+        script.onload = () => {
+          setSdkReady(true)
+        }
+        document.body.appendChild(script)
+      }
+        if (!window.paypal) {
+          addPayPalScript()
+        } 
+    }
+    
+      // else {
+      //   setSdkReady(true)
+      // }
+  }, [paymentType&&paymentType])
+  const successPaymentHandler = (paymentResult) => {
+    console.log('paymentResult', paymentResult)
+    // dispatch(payOrder(orderId, paymentResult))
+  }
   const handlePaypalOneTimePayment = async (e)=>{
     e.preventDefault()
     console.log('paypal payment')
   }
+
+
+  const stripe = useStripe();
+  const elements = useElements();
   const handleStripeOneTimePayment = async (e) =>{
     e.preventDefault();
     let cardElement;
@@ -120,14 +157,13 @@ const CheckoutForm = (props) => {
   const allInputsAreValid = () => {
       return creditCard&& creditCard.empty === false && creditCard&& creditCard.complete === true && name.length > 2
   }
-console.log('creditCard', creditCard)
   return (
     <div className="checkout">
         <div className="checkout__header"><h1>Checkout</h1></div>
         <div className="checkout__content">
             <div className="checkout__content--user-info">
                 <h3>Card information</h3>
-                <p>Billing address</p>
+                {/* <p>Billing address</p> */}
                 <div className="input-group" >   
                     <input onChange={e=>setPaymentType('stripe')} type="radio" checked={paymentType === 'stripe'} />
                     <label>Credit card</label>
@@ -196,10 +232,22 @@ console.log('creditCard', creditCard)
                     {isLoading? <img style={{width: '40px', borderRadius: '50%'}} src={LoadingButton}/>:'Complete payment'}
                   </button>
                 }
-                {paymentType === 'paypal'&&
-                  <button onClick={handlePaypalOneTimePayment} type="submit" disabled={isDisabled} className="btn">
-                    {isLoading? <img style={{width: '40px', borderRadius: '50%'}} src={LoadingButton}/>:'Proceed'}
-                  </button>
+                {/* {!sdkReady ? (
+                    <h2>Loading...</h2>
+                  ) : (
+                    <PayPalButton
+                      amount={totalPrice}
+                      onSuccess={successPaymentHandler}
+                    />
+                  )} */}
+                {paymentType == 'paypal'&&
+                  <PayPalButton
+                    amount={totalPrice}
+                    onSuccess={successPaymentHandler}
+                  />
+                  // <button onClick={handlePaypalOneTimePayment} type="submit" disabled={isDisabled} className="btn">
+                  //   {isLoading? <img style={{width: '40px', borderRadius: '50%'}} src={LoadingButton}/>:'Proceed'}
+                  // </button>
                 }
                 
             </div>
