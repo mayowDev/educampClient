@@ -52,7 +52,7 @@ const Login = (props) => {
         }
     }
     const isPasswordValid = (pass:string) => {
-        return pass.length > 7 && /^(?=.*\d)(?=.*[!@$*()]).{8,}$/i.test(pass)
+        return pass.length > 7 && /^(?=.*\d)(?=.*[()@!#$%&]).{8,}$/i.test(pass)
     };
     const isEmailValid = (mail) => {
         return /^\S+@\S+\.\S+$/.test(mail) === true;

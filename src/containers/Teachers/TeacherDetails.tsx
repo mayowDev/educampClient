@@ -28,8 +28,8 @@ const TeacherDetails = (props) => {
             setTeacherCourses([])
         }
     },[teacherDetails && teacherDetails.id])
-    const handleCourseClick = (courseId) => {
-        history.push(`/courses/${courseId}`)
+    const handleCourseClick = (slug:string) => {
+        history.push(`/courses/${slug}`)
     }
     if(isNull && !loading) {
         // history.replace('/teachers')//dont use history here it throws warning Cannot update during an existing state transition 
@@ -68,7 +68,7 @@ const TeacherDetails = (props) => {
                     { teacherCourses && teacherCourses.length>0 ? teacherCourses.map((course: any) => {
                             const {id,  title, description, slug, duration, price, minimumskill,scholarshipavailable, published, thumbnail, courseContent} = course;                                    
                             return (
-                                    <div key={id} onClick={()=>handleCourseClick(id)}  className="item" data-aos="fade-up" data-aos-duration="500">
+                                    <div key={id} onClick={()=>handleCourseClick(slug)}  className="item" data-aos="fade-up" data-aos-duration="500">
                                         <h3>{title}</h3>
                                         <img src={thumbnail === 'no-photo.jpg'?courseThumbnail: thumbnail} alt="courseThumbnail" />
                                         <p>{description}</p>

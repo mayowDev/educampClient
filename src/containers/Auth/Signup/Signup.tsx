@@ -59,7 +59,7 @@ const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn, registe
         }
     }
     const isPasswordValid = (pass) => {
-        return pass.length > 7 && /^(?=.*\d)(?=.*[!@$*()]).{8,}$/i.test(pass)
+        return pass.length > 7 && /^(?=.*\d)(?=.*[()@!#$%&]).{8,}$/i.test(pass)
     };
     const isEmailValid = (mail) => {
         return /^\S+@\S+\.\S+$/.test(mail) === true;
@@ -118,17 +118,24 @@ const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn, registe
                                     className={`form-control ${!validEmail()&&user.email.length > 0?'input-error':''}`}
                                 />
                             {!validEmail()&& user.email.length > 0&&<span className="error-message">{'Please provide a valid email address '}</span>}
-
                             </div>
-                            <div className="form-group">
+                            <div className="hide-show form-group">
+                            <div className="checkbox-group">
                                 <label htmlFor="password">Password</label>
-                                <input name="password"  onChange={handleInputChange}  placeholder="Enter Password" id="password"
+                                <span onClick={()=>setVisible(!visible)} className="caption">{visible?'Hide':'Show'}</span>
+                            </div>
+                            <div className="password-group">
+                                <input autoComplete="none" 
+                                    name="password"   
+                                    onChange={handleInputChange} 
                                     value={user.password} type={visible?"text":"password"} 
-                                    className={`form-control ${!validPassword()&& user.password.length > 0?'input-error':''}`} 
+                                    className={`form-control ${!validPassword()?'input-error':''}`} 
+                                    placeholder="Your Password" id="password"
                                 />
                                 {!validPassword()&& user.password.length > 0&&
                                     <span className="error-message">{'password must be 8 characters, 1 of (@!#$%&), 1 uppercase and lowercase'}</span>
                                 }
+                            </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Confirm Password</label>

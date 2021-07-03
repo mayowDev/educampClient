@@ -56,7 +56,7 @@ const CheckoutForm = (props) => {
   useEffect(() => {
     const slug = history.location.state&&history.location.state.slug
     const orderid = history.location.state&&history.location.state.OrderId
-    if(slug){
+    if(slug && orderid){
       passedProps.getCourseByName(slug)
     }
     if(orderid){ setOrderId(history.location.state.OrderId)}
@@ -192,16 +192,16 @@ const CheckoutForm = (props) => {
                   </div>
                 }
                 <div className="order-details">
-                    <h3>Gift Order Details</h3>
+                    <h3>Order Details</h3>
                     {gift&&gift.id&& (
-                       <div key={gift.id} className="item-card">
+                       <div onClick={e=>history.push(`/courses/${gift.slug}`)} key={gift.id} className="item-card">
                          <img src={courseThumbnail} alt="course-item-img"/>
                          <h4>{gift.title}</h4>
                          <div className="item-price">${gift.price}</div>
                       </div>
                     )}
                     {!gift&&products&&products.map(item =>
-                    <div key={item.id} className="item-card">
+                    <div onClick={e=>history.push(`/courses/${item.slug}`)} key={item.id} className="item-card">
                          <img src={courseThumbnail} alt="course-item-img"/>
                          <h4>{item.title}</h4>
                          <div className="item-price">${item.price}</div>
