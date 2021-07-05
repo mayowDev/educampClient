@@ -38,6 +38,7 @@ const Courses = (props) => {
         history.push(`/courses/${courseId}`)
     };
     const handleAddToCart =async (courseid) => {
+        if(!isAuthenticated) return history.push(`/login`)   
         await addToCart({courseid})
     }
     const handleAddToWishlist = async (courseid:string) =>{

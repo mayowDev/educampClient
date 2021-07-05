@@ -10,7 +10,7 @@ const HomePage = ({isLoggedIn}) => {
     //const {isLoggedIn,  courses,  fetchCourses} = props;
     const history = useHistory()
     const query = qs.parse(history.location.search)  
-    const token = query["?googleId"]
+    const token = query["?socialId"]
     if(token) {
         const isUser =Boolean(token)
         localStorage.setItem(LOCAL_STORAGE_KEYS.LOGIN_STATE, isUser.toString())

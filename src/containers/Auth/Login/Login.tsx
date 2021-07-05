@@ -41,6 +41,14 @@ const Login = (props) => {
             console.log(error);
         }    
     }
+    const handleLoginWithFacebook =(e)=>{
+        try {
+            e.preventDefault();
+            loginWithFacebook();
+        } catch (error) {
+            console.log(error);
+        }
+    }
     const handleLoginWithGoogle =(e)=>{
         try {
             e.preventDefault();
@@ -120,7 +128,7 @@ const Login = (props) => {
 
                         <span className="seprater">OR</span>    
                         <div className="icons">
-                            <input type="button" value="Login with facebook" onClick={()=>console.log("handleLoginWithFacebook")} className="btn btn-block auth-btn fb"/>
+                            <input type="button" value="Login with facebook" onClick={handleLoginWithFacebook} className="btn btn-block auth-btn fb"/>
                             <input type="button" value="Login with Google" onClick={handleLoginWithGoogle} className="btn btn-block auth-btn gl"/>
                         </div>
                     </form>

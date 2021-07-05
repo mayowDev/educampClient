@@ -17,7 +17,7 @@ const CourseGift = (props) => {
         const res = await giftCourse(giftData)
         if(res.payload.success){
             props.history.push({
-                pathname: "/cart/checkout", state: { slug, OrderId:res.payload.OrderId }
+                pathname: "/cart/checkout", state: { slug, OrderId:res.payload.OrderId, isGift:true }
             })
         }
     }

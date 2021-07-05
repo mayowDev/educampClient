@@ -21,9 +21,12 @@ const CourseDetails = (props) => {
     const history = useHistory()
 
     const handleAddToCart =async (courseid) => {
-        if(isCartitem){return history.push(`/cart`)}
-        await addToCart({courseid})
-        if(favouriteItems && favouriteItems.some(item => item.id === courseDetails.id)){await removeFromWishlist(courseid)}
+        if(isAuthenticated){
+            if(isCartitem){return history.push(`/cart`)}
+            await addToCart({courseid})
+            if(favouriteItems && favouriteItems.some(item => item.id === courseDetails.id)){await removeFromWishlist(courseid)}
+        }
+        return history.push(`/login`)   
     }
     const handleAddToWishlist = async (courseid:string) =>{
         if(favouriteItems && favouriteItems.some(item => item.id === courseDetails.id)){
@@ -44,9 +47,13 @@ const CourseDetails = (props) => {
             setIsAuthenticated(true)
         }
     }, [userProfile&&userProfile.id]); 
-    const handleExpressCheckout = async (courseid) => {
-        console.log('express checkout ! buy now', courseid)
-        //redirect to 'localhots:3000/cart/checkout/express/course/903744/?discountCode=KEEPLEARNING'
+    const handleExpressCheckout = async (slug:string) => {
+        if(isAuthenticated){
+            props.history.push({
+                pathname: "/cart/checkout", state: { slug, isExpressCheckout: true}
+            })
+        }else{return history.push(`/login`)   }
+        
     }
     
     useEffect(() =>{

@@ -17,19 +17,21 @@ const stripePromise = loadStripe(STRIPE_PUBLISH_KEY);
 const CheckoutForm = (props) => {
   const { getCartItems, cartItems,userProfile,  passedProps }  = props
   const [products, setProduct] = useState<any>()
-  const [gift, setGift] = useState<any>()
-  const [OrderId, setOrderId] = useState()
-  const [originalPrice, setOriginalPrice] = useState<number>(0)
-  const [discountedAmount, setDiscountedAmount] = useState<number>(0)
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
-  const [sdkReady, setSdkReady] = useState(false)
+  const [OrderId, setOrderId] = useState<string>()
+  const [originalPrice, setOriginalPrice] = useState<number>(0);
+  const [discountedAmount, setDiscountedAmount] = useState<number>(0);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [sdkReady, setSdkReady] = useState<boolean>(false);
+  const [isGift, setIsGift] = useState<boolean>(false);
+  const [isExpressCheckout, setIsExpressCheckout] = useState<boolean>(false);
   const [name, setName] = useState('');
   const [creditCard, setCreditCard] = useState<any>();
   const [paymentType, setPaymentType] = useState<string>('stripe')
-
   const history = passedProps.history
+  const {state} = history.location
+
 
   useEffect(() => {
     getCartItems && getCartItems();
@@ -54,21 +56,24 @@ const CheckoutForm = (props) => {
   }, [cartItems.length]); 
 
   useEffect(() => {
-    const slug = history.location.state&&history.location.state.slug
-    const orderid = history.location.state&&history.location.state.OrderId
-    if(slug && orderid){
+    const slug = state&&state.slug
+    const orderid = state&&state.OrderId
+    const isExpressCheckout = state&&state.isExpressCheckout
+    const isGift = state&&state.isGift
+    if(slug && orderid&&isGift){
       passedProps.getCourseByName(slug)
+      setOrderId(orderid)
+      setIsGift(isGift)
     }
-    if(orderid){ setOrderId(history.location.state.OrderId)}
+    if(isExpressCheckout){setIsExpressCheckout(true) }
 
-  }, [history.location.state&&history.location.state.slug, history.location.state.OrderId]);
+  }, [state&&state.slug, state.OrderId]);
 
   useEffect(() => {
     if(passedProps.courseDetails&&passedProps.courseDetails.id){
-      setGift(passedProps.courseDetails)
+      // setGift(passedProps.courseDetails)
       setTotalPrice(passedProps.courseDetails.price)
       setProduct([passedProps.courseDetails])
-
     }
   }, [passedProps.courseDetails&&passedProps.courseDetails.id]);
 
@@ -109,7 +114,6 @@ const CheckoutForm = (props) => {
     console.log('paypal payment')
   }
 
-
   const stripe = useStripe();
   const elements = useElements();
   const handleStripeOneTimePayment = async (e) =>{
@@ -144,15 +148,15 @@ const CheckoutForm = (props) => {
       }
     }
   }  
-  const isCardValid = (card) => {
-    var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+  // const isCardValid = (card) => {
+    // var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
     // var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
     // var amexpRegEx = /^(?:3[47][0-9]{13})$/;
     // var discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
     // var isValid = false;
   
-      return visaRegEx.test(card) === true;
-  };
+      // return visaRegEx.test(card) === true;
+  // };
 
   const allInputsAreValid = () => {
       return creditCard&& creditCard.empty === false && creditCard&& creditCard.complete === true && name.length > 2
@@ -163,7 +167,6 @@ const CheckoutForm = (props) => {
         <div className="checkout__content">
             <div className="checkout__content--user-info">
                 <h3>Card information</h3>
-                {/* <p>Billing address</p> */}
                 <div className="input-group" >   
                     <input onChange={e=>setPaymentType('stripe')} type="radio" checked={paymentType === 'stripe'} />
                     <label>Credit card</label>
@@ -193,14 +196,14 @@ const CheckoutForm = (props) => {
                 }
                 <div className="order-details">
                     <h3>Order Details</h3>
-                    {gift&&gift.id&& (
+                    {/* {gift&&gift.id&& (
                        <div onClick={e=>history.push(`/courses/${gift.slug}`)} key={gift.id} className="item-card">
                          <img src={courseThumbnail} alt="course-item-img"/>
                          <h4>{gift.title}</h4>
                          <div className="item-price">${gift.price}</div>
                       </div>
-                    )}
-                    {!gift&&products&&products.map(item =>
+                    )} */}
+                    {products&&products.map(item =>
                     <div onClick={e=>history.push(`/courses/${item.slug}`)} key={item.id} className="item-card">
                          <img src={courseThumbnail} alt="course-item-img"/>
                          <h4>{item.title}</h4>
@@ -213,11 +216,11 @@ const CheckoutForm = (props) => {
                 <h3>Summary</h3>
                 <div className="original">
                     <p>Original amount:</p>
-                    <span>${gift&&gift.price?gift.price*8: originalPrice}.99</span>
+                    <span>${originalPrice}.99</span>
                 </div>
                 <div className="discounted">
                     <p>Discounted price:</p>
-                    <span>${gift&&gift.price?gift.price*7:discountedAmount}.99</span>
+                    <span>${discountedAmount}.99</span>
                 </div>
                 <div className="total">
                     <p>Total:</p>
