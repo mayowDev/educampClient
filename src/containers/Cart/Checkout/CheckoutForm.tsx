@@ -107,7 +107,6 @@ const CheckoutForm = (props) => {
   }, [paymentType&&paymentType])
   const successPaymentHandler = (paymentResult) => {
     console.log('paymentResult', paymentResult)
-    // dispatch(payOrder(orderId, paymentResult))
   }
   const handlePaypalOneTimePayment = async (e)=>{
     e.preventDefault()
