@@ -26,8 +26,8 @@
 		} 
 		.heading{
 			text-align: center;
-			h2{
-				font-size: 30px!important;
+			h1{
+				font-size: 1.5rem!important;
 			}
 			p a{
 				font-size: 18px;
@@ -62,7 +62,7 @@
 		.success-message{
 			font-size: 20px;
 		}
-		.success-btn{
+		.btn{
 			display: block;
 			margin: auto !important;
 			padding: 0 45px !important;
@@ -70,7 +70,7 @@
 			height: 55px !important;
 			color: white;
 			text-align: center;
-			width: 100px;
+			width: 80%!important;
 		}
 		.link-primary {
 			display: flex;

@@ -120,22 +120,22 @@ const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn, registe
                             {!validEmail()&& user.email.length > 0&&<span className="error-message">{'Please provide a valid email address '}</span>}
                             </div>
                             <div className="hide-show form-group">
-                            <div className="checkbox-group">
-                                <label htmlFor="password">Password</label>
-                                <span onClick={()=>setVisible(!visible)} className="caption">{visible?'Hide':'Show'}</span>
-                            </div>
-                            <div className="password-group">
-                                <input autoComplete="none" 
-                                    name="password"   
-                                    onChange={handleInputChange} 
-                                    value={user.password} type={visible?"text":"password"} 
-                                    className={`form-control ${!validPassword()?'input-error':''}`} 
-                                    placeholder="Your Password" id="password"
-                                />
-                                {!validPassword()&& user.password.length > 0&&
-                                    <span className="error-message">{'password must be 8 characters, 1 of (@!#$%&), 1 uppercase and lowercase'}</span>
-                                }
-                            </div>
+                                <div className="checkbox-group">
+                                    <label htmlFor="password">Password</label>
+                                    <span onClick={()=>setVisible(!visible)} className="caption">{visible?'Hide':'Show'}</span>
+                                </div>
+                                <div className="password-group">
+                                    <input autoComplete="none" 
+                                        name="password"   
+                                        onChange={handleInputChange} 
+                                        value={user.password} type={visible?"text":"password"} 
+                                        className={`form-control ${!validPassword()?'input-error':''}`} 
+                                        placeholder="Your Password" id="password"
+                                    />
+                                    {!validPassword()&& user.password.length > 0&&
+                                        <span className="error-message">{'password must be 8 characters, 1 of (@!#$%&), 1 uppercase and lowercase'}</span>
+                                    }
+                                </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Confirm Password</label>
@@ -148,7 +148,7 @@ const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn, registe
                                     <span className="error-message">{'confirm password should match password'}</span>
                                 }
                             </div>
-                                <input onClick={onSignUpSubmit} type="submit" value="Sign Up" className={`btn-block btn-primary ${!allInputsAreValid()&&'disabled'}`}/>
+                            <input onClick={onSignUpSubmit} type="submit" value="Sign Up" className={`btn-block btn-primary ${!allInputsAreValid()&&'disabled'}`}/>
                             <span className="seprater">OR</span>    
                             <div className="icons">
                                 <input type="button" value="Signup with facebook" onClick={handleSignupWithFacebook} className="btn btn-block auth-btn fb"/>

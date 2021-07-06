@@ -11,19 +11,24 @@ const Reset = (props) => {
     const {resetPassword, isLoading, isResetPasswordSuccess, isLoggedIn} = props
     const history = useHistory();
     const [userPassword, setUserPassword] = useState({ password:'', confirmPassword:"" })
-    
+    const [visible, setVisible] = useState(false);
     const query = qs.parse(history.location.search)  
     const token = query["?token"]
     if(isLoggedIn || !token) return <Redirect to="/" />;
     
-    const isPasswordMatch = ({password, confirmPassword}) => {
-        return password === confirmPassword;
+    const isPasswordValid = (pass) => {
+        return pass.length > 7 && /^(?=.*\d)(?=.*[()@!#$%&]).{8,}$/i.test(pass)
     };
-
     const validPassword = () => {
-        return isPasswordMatch(userPassword);
+        return isPasswordValid(userPassword.password);
     };
-
+    const confirmPasswordValid = () => {
+        return isPasswordValid(userPassword.confirmPassword) && userPassword.password === userPassword.confirmPassword;
+    };
+   
+    const allInputsAreValid = () => {
+        return  validPassword() && confirmPasswordValid()
+    }
     const handleInputChange = (e)=>{
         e.preventDefault();
         setUserPassword({
@@ -62,16 +67,37 @@ const Reset = (props) => {
                 </>
                 :
                 <>
-                     <div className="form-group">
-                        <label>Password</label>
-                        <input name="password" onChange={handleInputChange} value={userPassword.password} type="password" className="form-control" placeholder="Enter New Password" id="password"/>
+                    <div className="hide-show form-group">
+                        <div className="checkbox-group">
+                            <label htmlFor="password">Password</label>
+                            <span onClick={()=>setVisible(!visible)} className="caption">{visible?'Hide':'Show'}</span>
+                        </div>
+                        <div className="password-group">
+                            <input autoComplete="none" 
+                                name="password"   
+                                onChange={handleInputChange} 
+                                value={userPassword.password} type={visible?"text":"password"} 
+                                className={`form-control ${!validPassword()?'input-error':''}`} 
+                                placeholder="Your Password" id="password"
+                            />
+                            {!validPassword()&& userPassword.password.length > 0&&
+                                <span className="error-message">{'password must be 8 characters, 1 of (@!#$%&), 1 uppercase and lowercase'}</span>
+                            }
+                        </div>
                     </div>
                     <div className="form-group">
-                        <label>Confirm Password</label>
-                        <input name="confirmPassword" onChange={handleInputChange} value={userPassword.confirmPassword} type="password" className="form-control" placeholder="Confrim Password" id="confirmPassword"/>
+                        <label htmlFor="password">Confirm Password</label>
+                        <input name="confirmPassword" placeholder="Confirm Password" id="confirmPassword" type={visible?"text":"password"} 
+                            className={`form-control ${!confirmPasswordValid()&& userPassword.confirmPassword.length > 0?'input-error':''}`} 
+                            onChange={handleInputChange}
+                            value={userPassword.confirmPassword}
+                        />
+                        {!confirmPasswordValid() && userPassword.confirmPassword.length > 0&&
+                            <span className="error-message">{'confirm password should match password'}</span>
+                        }
                     </div>
                     {
-                        validPassword() && userPassword.password.length > 8 && (
+                        allInputsAreValid() && userPassword.confirmPassword.length > 8 && (
                             <>
                             {/* <br /><br /> */}
                             <Button value='Reset Password' className="btn link-primary  btn-primary" type='primary'/> 

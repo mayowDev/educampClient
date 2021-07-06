@@ -32,7 +32,7 @@
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
-    "build-betaaa": "npm run clean-dist && ./node_modules/.bin/cross-env NODE_OPTIONS='--max-old-space-size=4096' webpack --config configs/webpack/prod.js --env API_URL=https://api.vortic.io/",
+    "build-betaaa": "npm run clean-dist && ./node_modules/.bin/cross-env NODE_OPTIONS='--max-old-space-size=4096' webpack --config configs/webpack/prod.js",
     "clean-dist": "rimraf build/*",
     "start-prod": "webpack  serve --node-env production --config webpack.config.js  --profile --content-base dist/ ",
     "start-dev": "webpack serve --node-env development  --config webpack.config.js  --profile --content-base src/ ",
