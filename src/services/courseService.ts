@@ -46,7 +46,26 @@ export const getPublishedCourses = async () => {
         return Promise.reject(new Error(e.message));
     }
 };
+export const searchCourse = async (q) =>{
+    try {
+        const result = await axios.get(`/courses/searchSuggestions/?q=${q}`)
+        .catch((err: any) => {
+            console.log('err = ', err);
+            if (err && err.response && err.response.status === 400) {
+                return Promise.reject(
+                    new Error("Request failed with status code 400")
+                );
+            }
+            return Promise.reject(new Error(JSON.stringify(err.response.data)));
+        });
+        if (result) {
+            return result.data;
+        }
+    } catch (e) {
+        return Promise.reject(new Error(e.message));
+    }
 
+}
 export const getCourse = async (id) => {
     try {
         const result = await axios.get(`/courses/${id}`)

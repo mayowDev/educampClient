@@ -1,4 +1,4 @@
-import { FETCH_COURSES, FETCH_COURSE, CREATE_COURSE, UPDATE_COURSE, DELETE_COURSE, Gift_COURSE, LOADING, API_ERROR } from './constants'
+import { FETCH_COURSES, FETCH_COURSE, SEARCH_COURSE, CREATE_COURSE, UPDATE_COURSE, DELETE_COURSE, Gift_COURSE, LOADING, API_ERROR } from './constants'
 import * as API from "../../../services"
 
 export const fetchCourses = () => async dispatch => {
@@ -35,6 +35,16 @@ export const getCourseByName = (slug) => async dispatch => {
   }
 }
 
+export const searchCourse = query => async dispatch=>{
+  try {
+    dispatch({type:LOADING})
+    const response = await API.searchCourse(query)
+    if(response&&response.success) return dispatch({type: SEARCH_COURSE, payload: response.data})
+  } catch (error) {
+    console.log('fetchCourseError', error);
+    dispatch({type: API_ERROR})
+  }
+}
 
 export const createCourse = (data)=> async dispatch =>{
   try {
@@ -74,5 +84,4 @@ export const giftCourse = (data) => async dispatch=>{
     console.log('giftCourseError', error);
     return dispatch({type: API_ERROR})
   }
-
 }

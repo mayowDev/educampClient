@@ -4,7 +4,7 @@ import AddCourse from './AddCourse';
 import EditCourse from './EditCourse';
 import CourseDetails from './CourseDetails';
 import CourseGift from './CourseGift';
-import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse, getCourseByName, giftCourse} from './redux/actions'
+import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse, getCourseByName, searchCourse, giftCourse} from './redux/actions'
 import {getTeacher} from  '../Teachers/redux/actions'
 import { getUserData } from '../Auth/redux/actions';
 import { addToWishlist, removeFromWishlist } from '../Favourites/redux/actions';
@@ -32,6 +32,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     fetchCourses: () => dispatch(fetchCourses()),
+    searchCourse:(q)=> dispatch(searchCourse(q)),
     fetchCourse :(id:string) => dispatch(fetchCourse(id)),
     getCourseByName: (slug:string) => dispatch(getCourseByName(slug)),
     createCourse: (data) => dispatch(createCourse(data)),

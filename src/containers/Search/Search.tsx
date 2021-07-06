@@ -86,12 +86,6 @@ const Search = ({resetInput, searchQuery, resetSearchRecords, fetchSearchInit, r
                     <img src={SearchIcon} alt="Search" />
                 </div>
             </label>
-
-            {/*{*/}
-            {/*    recordsLoading && !!searchQuery && searchQuery.length > 2 &&*/}
-            {/*    <Spinner/>*/}
-            {/*}*/}
-
             {
                 !searchQuery || searchQuery.length < 3 ?
                     <div>

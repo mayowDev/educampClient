@@ -7,7 +7,6 @@ import IconBtn from '../../components/IconBtn';
 import ShareBtn from '../../components/ShareBtn'
 import Rating from '../../components/Rating'
 import { getShareURL} from '../../utils'
-
 import './CourseDetails.scss'
 
 const CourseDetails = (props) => {
@@ -17,6 +16,7 @@ const CourseDetails = (props) => {
     const [isCartitem, setIsCartitem]= useState<boolean>(false)
     const [details, setDetails] = useState<any>({})
     const [active , setActive] = useState<any>(false)
+    const [isFree, setIsFree] = useState<boolean>(false)
     const {slug}:any = useParams()
     const history = useHistory()
 
@@ -38,8 +38,8 @@ const CourseDetails = (props) => {
                 await addToWishlist({courseid})
                 setIsFavourite(true)
                 if(isCartitem){removeFromCart(courseid)}
-            }
-            return history.push(`/login`)   
+            }else if(isAuthenticated === false){return history.push(`/login`)}
+               
         }
     }
     useEffect(() => {
@@ -63,6 +63,7 @@ const CourseDetails = (props) => {
     useEffect(() =>{
         if(courseDetails && courseDetails.id){
             setDetails(courseDetails)
+            if(courseDetails&&courseDetails.price == 0){setIsFree(true)}
             if(cartItems && cartItems.some(item => item.id === courseDetails.id)){
                 setIsCartitem(true)
             }else{
@@ -78,7 +79,7 @@ const CourseDetails = (props) => {
 
     const handleAccordian = ()=>{
         console.log('active')
-    }
+    }    
     return (
         <Fragment>
             <div className="courseDetails">
@@ -212,7 +213,7 @@ const CourseDetails = (props) => {
                         <h4>Preview this course</h4>
                     </div>
                     <div className="course-price">
-                        <span>${details.price}.99</span>
+                        <span>{isFree? 'Free' : `$${details.price} .99`}</span>
                         <div className="warning">
                             <span className="fa fa-clock-o"/>
                             <p>12 hours left at this price!</p>

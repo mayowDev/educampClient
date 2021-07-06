@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import {toast} from 'react-toastify'
+import Slider from "react-slick";
 import courseThumbnail from '../../assets/images/coursesThumbnails/react-thumbnail.jpg'
 import Spinner from '../../components/Spinner';
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
@@ -20,19 +21,43 @@ import company2 from '../../assets/icons/company2.svg'
 import company3 from '../../assets/icons/company3.svg'
 import company4 from '../../assets/icons/company4.svg'
 import company5 from '../../assets/icons/company5.svg'
- 
-// import {paginate} from '../../utils/paginate'
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { title } from 'process';
 
 const Courses = (props) => {
     const [isFavourite, setIsFavourite]= useState<boolean>(false)
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
     const [isCartitem, setIsCartitem]= useState<boolean>(false)
-
+    const [isRequestCanceled, setIsRequestCanceled]= useState<boolean>(false)
+    const [searchTerm, setSearchTerm] = useState('')
+    const [searchResponse, setSearchResponse] = useState<any>('')
+    const [courseTitles, setCourseTitles] =  useState<any>()
     const history = useHistory()
-    const {courses, addToCart, addToWishlist, userProfile, isAddedToCart, removeFromCart, removeFromWishlist, isLoading, favouriteItems,  cartItems, courseDetails} = props
+    const {courses, searchCourse, addToCart, addToWishlist, userProfile, isAddedToCart, removeFromCart, removeFromWishlist, isLoading, favouriteItems,  cartItems, courseDetails} = props
+
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value)
+    }
+  
+    useEffect(() => {
+        const fetchCourses = async ()=> {
+            let response = await searchCourse(searchTerm.trim())
+            setSearchResponse(response&&response.payload)
+        }
+        if(searchTerm&&searchTerm.trim().length > 2  && isRequestCanceled == false){
+            const delayDebounceFn = setTimeout(() => {
+                fetchCourses()
+              }, 1000)
+              return () => clearTimeout(delayDebounceFn)
+        }
+    },[searchTerm&&searchTerm.trim().length])
+    useEffect(() => {
+        if(searchResponse&&searchResponse.length > 0 ){
+            const titiles = searchResponse.map(c=> c.title)
+            setCourseTitles(titiles)
+        }
+    },[searchResponse&&searchResponse.length])
 
     const handleCourseClick = (courseId) => {
         history.push(`/courses/${courseId}`)
@@ -189,8 +214,22 @@ const Courses = (props) => {
                     <div className="courses__hero--search-box">
                         <h2>Learn from the best</h2>
                         <p>Real-world experts teaching real-world skills from $12.99 — sale ends today</p>
-                        <input placeholder="What do you want to learn?" type="text" />
+                        <input 
+                            autoFocus
+                            type='text'
+                            autoComplete='off'                  
+                            onKeyDown={({ nativeEvent }) => {nativeEvent.key === 'Backspace' ? setIsRequestCanceled(true) : setIsRequestCanceled(false) }}
+                            onChange={handleSearchChange} value={searchTerm} placeholder="What do you want to learn?" 
+                        />
                     </div>
+                        {courseTitles&&courseTitles.length>0?courseTitles.map(((title, idx)=>{
+                            return(
+                                <div key={idx}>{title}</div>
+                            )
+                        })):
+                        <div>... empty search result</div>
+                        
+                        }
                 </div>
                 <div className="courses__title">
                     <h1>Top courses in Web Development</h1>

@@ -17,7 +17,6 @@ const HomePage = ({isLoggedIn}) => {
         window.location.href = "/"
     }
 
-    
     return (
         <>
         <section className='home'>
@@ -30,7 +29,7 @@ const HomePage = ({isLoggedIn}) => {
                     onClick={() => isLoggedIn ? history.push('/courses') : history.push('/signup')}
                 />
             </div>
-            <div className='home__container exbition-wrap'>
+            <div className='home__container'>
                 <div className="blocks">
                     
                     <div className="block">
