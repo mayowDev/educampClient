@@ -5,5 +5,6 @@ export interface ISearchResult {
     description?: string;
     isDisabled?: boolean;
     id: number;
-    type: string;
+    type?: string;
+    url: string
 }

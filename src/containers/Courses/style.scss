@@ -112,6 +112,34 @@ p, h1, h2, h3, h4, ul, ol {
                 height: 2.5rem;
             }
         }
+        &--search-result {
+            position: absolute;
+            left: 18%;
+            top: 9.5%;
+            background: white;
+            width: 23%;
+            margin-left: .2rem;
+            overflow: visible;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            z-index: 1;
+            padding: .5rem;
+            .search-link{
+                padding:1rem;
+                .searchTitle {
+                    text-transform: capitalize;
+                    display: -webkit-box!important;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: normal;
+                    max-height: 3.4rem;
+                    margin-bottom: .4rem;
+                    opacity: .8;
+                }
+            }
+        }
     }
     &__title{
         margin:1rem !important;

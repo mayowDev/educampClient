@@ -5,6 +5,7 @@ import {toast} from 'react-toastify'
 import Slider from "react-slick";
 import courseThumbnail from '../../assets/images/coursesThumbnails/react-thumbnail.jpg'
 import Spinner from '../../components/Spinner';
+import SearchResult from '../../components/SearchResult'
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 import IconBtn from '../../components/IconBtn';
 import BusinessImg from '../../assets/images/categories/category-business.jpg';
@@ -23,7 +24,6 @@ import company4 from '../../assets/icons/company4.svg'
 import company5 from '../../assets/icons/company5.svg'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { title } from 'process';
 
 const Courses = (props) => {
     const [isFavourite, setIsFavourite]= useState<boolean>(false)
@@ -71,20 +71,18 @@ const Courses = (props) => {
             await removeFromWishlist(courseid)
             setIsFavourite(false)
         }else{
-            // console.log('isAuthenticated', isAuthenticated)
             if(isAuthenticated){
                 await addToWishlist({courseid})
                 setIsFavourite(true)
                 if(isCartitem){removeFromCart(courseid)}
             }
-            // return history.push(`/login`)   
         }
     }
-    useEffect(() => {
-        if(isAddedToCart) {
-            toast.dark("Course Added to Cart")
-        }
-    },[isAddedToCart, cartItems.length])
+    // useEffect(() => {
+    //     if(isAddedToCart) {
+    //         console.log("Course Added to Cart")
+    //     }
+    // },[isAddedToCart, cartItems.length])
     useEffect(() => {
         if(userProfile&& userProfile.id){
             setIsAuthenticated(true)
@@ -222,14 +220,17 @@ const Courses = (props) => {
                             onChange={handleSearchChange} value={searchTerm} placeholder="What do you want to learn?" 
                         />
                     </div>
-                        {courseTitles&&courseTitles.length>0?courseTitles.map(((title, idx)=>{
+                    {searchResponse&&searchResponse.length>0&&
+                    <div className="courses__hero--search-result">
+                        {searchResponse&&searchResponse.length>0&&searchResponse.map((({title, slug}, idx)=>{
+                            //https://www.udemy.com/courses/search/?q=react&src=sac&kw=react
                             return(
-                                <div key={idx}>{title}</div>
+                                <SearchResult url={`courses/${slug}`} title={title} id={idx}/>
                             )
-                        })):
-                        <div>... empty search result</div>
-                        
+                        }))
                         }
+                    </div>
+                    }
                 </div>
                 <div className="courses__title">
                     <h1>Top courses in Web Development</h1>
