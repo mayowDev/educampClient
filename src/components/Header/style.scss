@@ -16,7 +16,13 @@ $dark: black;
   -webkit-transition: opacity 0.4s ease-in-out !important;
   -moz-transition: opacity 0.4s ease-in-out !important;
   opacity: 1;
-
+  &__search-result{
+    margin-top: 3rem;
+    width: 33%;
+    left :15%;
+    margin-left: 0 !important;
+    
+  }
   &--flex {
     display: flex;
     align-items: center;

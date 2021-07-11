@@ -1,13 +1,12 @@
 import React from 'react';
 import {Paragraph} from '../Typography';
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './style.scss';
 import {ISearchResult} from './types';
 
-const SearchResult: React.FC<ISearchResult> = ({ title, id, url}) => {
-    // const history = useHistory()
+const SearchResult: React.FC<ISearchResult> = ({onClick, title, id}) => {
     return (
-            <Link key={id} to={url} className="search-link">
+            <Link onClick={onClick} key={id} to='#' className="search-link">
                 <Paragraph className="searchTitle" value={title || ''} />
             </Link>
     )

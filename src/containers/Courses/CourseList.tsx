@@ -39,26 +39,12 @@ const Courses = (props) => {
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value)
     }
-  
-    useEffect(() => {
-        const fetchCourses = async ()=> {
-            let response = await searchCourse(searchTerm.trim())
-            setSearchResponse(response&&response.payload)
-        }
-        if(searchTerm&&searchTerm.trim().length > 2  && isRequestCanceled == false){
-            const delayDebounceFn = setTimeout(() => {
-                fetchCourses()
-              }, 1000)
-              return () => clearTimeout(delayDebounceFn)
-        }
-    },[searchTerm&&searchTerm.trim().length])
-    useEffect(() => {
-        if(searchResponse&&searchResponse.length > 0 ){
-            const titiles = searchResponse.map(c=> c.title)
-            setCourseTitles(titiles)
-        }
-    },[searchResponse&&searchResponse.length])
+    const handleOnSearchItemClick = (route) => {
+        history.push(route)
+        setSearchResponse(''); 
+        setSearchTerm('')
 
+    }
     const handleCourseClick = (courseId) => {
         history.push(`/courses/${courseId}`)
     };
@@ -78,11 +64,25 @@ const Courses = (props) => {
             }
         }
     }
-    // useEffect(() => {
-    //     if(isAddedToCart) {
-    //         console.log("Course Added to Cart")
-    //     }
-    // },[isAddedToCart, cartItems.length])
+    useEffect(() => {
+        const fetchCourses = async ()=> {
+            let response = await searchCourse(searchTerm.trim())
+            setSearchResponse(response&&response.payload)
+        }
+        if(searchTerm&&searchTerm.trim().length > 2  && isRequestCanceled == false){
+            const delayDebounceFn = setTimeout(() => {
+                fetchCourses()
+              }, 1000)
+              return () => clearTimeout(delayDebounceFn)
+        }
+    },[searchTerm&&searchTerm.trim().length])
+    useEffect(() => {
+        if(searchResponse&&searchResponse.length > 0 ){
+            const titiles = searchResponse.map(c=> c.title)
+            setCourseTitles(titiles)
+        }
+    },[searchResponse&&searchResponse.length])
+
     useEffect(() => {
         if(userProfile&& userProfile.id){
             setIsAuthenticated(true)
@@ -90,7 +90,6 @@ const Courses = (props) => {
     }, [userProfile&&userProfile.id]); 
     useEffect(() =>{
         if(courses && courses.length>0){
-            // setDetails(courseDetails)
             if(cartItems && cartItems.some(item => item.id === courseDetails.id)){
                 setIsCartitem(true)
             }else{
@@ -122,10 +121,7 @@ const Courses = (props) => {
         slidesToScroll: 4,
         nextArrow: <Arrow type="next" />,
         prevArrow: <Arrow type="prev" />,
-        // dots: true,
         infinite: false,
-        // customPaging: customPaging
-        // appendDots: appendDots
     };
     const renderCourses = () =>
         courses&&courses.map((course) => (
@@ -215,7 +211,8 @@ const Courses = (props) => {
                         <input 
                             autoFocus
                             type='text'
-                            autoComplete='off'                  
+                            autoComplete='off'   
+                            // onBlur={()=>{setSearchResponse(''); setSearchTerm('')}}                                
                             onKeyDown={({ nativeEvent }) => {nativeEvent.key === 'Backspace' ? setIsRequestCanceled(true) : setIsRequestCanceled(false) }}
                             onChange={handleSearchChange} value={searchTerm} placeholder="What do you want to learn?" 
                         />
@@ -223,9 +220,8 @@ const Courses = (props) => {
                     {searchResponse&&searchResponse.length>0&&
                     <div className="courses__hero--search-result">
                         {searchResponse&&searchResponse.length>0&&searchResponse.map((({title, slug}, idx)=>{
-                            //https://www.udemy.com/courses/search/?q=react&src=sac&kw=react
                             return(
-                                <SearchResult url={`courses/${slug}`} title={title} id={idx}/>
+                                <SearchResult onClick={()=>handleOnSearchItemClick(`courses/${slug}`)} url={`courses/${slug}`} title={title} id={idx}/>
                             )
                         }))
                         }

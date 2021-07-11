@@ -6,5 +6,6 @@ export interface ISearchResult {
     isDisabled?: boolean;
     id: number;
     type?: string;
-    url: string
+    url: string;
+    onClick?: ()=>void;
 }

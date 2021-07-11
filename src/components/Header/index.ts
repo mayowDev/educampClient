@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
 import Header from './Header'
-import {changeSearch} from '../../containers/Global/redux/actions'
+import {searchCourse} from '../../containers/Courses/redux/actions'
 import {logout} from '../../containers/Auth/redux/actions'
 import {addToCart, getCartItems} from '../../containers/Cart/redux/actions'
-import './style.scss'
 import { removeFromWishlist } from '../../containers/Favourites/redux/actions'
+import './style.scss'
 
 const mapStatesToProps = ({auth, cart, favourites}) => {    
     return {
@@ -17,7 +17,7 @@ const mapStatesToProps = ({auth, cart, favourites}) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    changeSearch: (value) => dispatch(changeSearch(value)),
+    searchCourse:(q)=> dispatch(searchCourse(q)),
     logout: () => dispatch(logout()),
     getCartItems: ()=> dispatch(getCartItems()),
     addToCart: (id)=> dispatch(addToCart(id)),

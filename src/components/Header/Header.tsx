@@ -1,7 +1,7 @@
 import React, {useEffect, useState, Fragment} from 'react';
 import {Link, useHistory} from 'react-router-dom'
 import Logo from '../../assets/images/EducampLogo.png'
-// import {IHeaderProps} from './types';
+import SearchResult from '../SearchResult'
 import MenuItem from '../MenuItem';
 import Button from '../Button';
 import IconBtn from '../IconBtn';
@@ -9,17 +9,17 @@ import Dropdown from '../Dropdown';
 import  courseThumbnail  from '../../assets/images/coursesThumbnails/modern-react-thumb.jpg'
 
 const Header = (props) => {
-    const {isLoading, routeName,searchQuery,isHome, userProfile, logout, cartItems, favouriteItems, addToCart, removeFromWishlist} = props;    
+    const {isLoading, routeName,searchQuery,isHome, userProfile, logout, cartItems, favouriteItems, addToCart, removeFromWishlist, searchCourse} = props;    
     const history = useHistory();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isRequestCanceled, setIsRequestCanceled]= useState<boolean>(false)
+    const [searchTerm, setSearchTerm] = useState('')
+    const [searchResponse, setSearchResponse] = useState<any>('')
     const [totalPrice, setTotalPrice] = useState(0);
-    const handleSearchChange = (value) => {
-        // if (value?.length > 2 && history.location.pathname !== "/search") {
-        //     history.push('/search')
-        // }
-        // if(changeSearch) changeSearch(value);
-    };
-
+   
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value)
+    }
     const handleLogout = ()=>{
         logout(); setTimeout(()=>{window.location.href="/"},100)
     }
@@ -30,6 +30,24 @@ const Header = (props) => {
     const isLinkActive = (route) => {
         return routeName === route ? "active" : '';
     };
+    const handleOnSearchItemClick = (route) => {
+        history.push(route)
+        setSearchResponse(''); 
+        setSearchTerm('')
+
+    }
+    useEffect(() => {
+        const fetchCourses = async ()=> {
+            let response = await searchCourse(searchTerm.trim())
+            setSearchResponse(response&&response.payload)
+        }
+        if(searchTerm&&searchTerm.trim().length > 2  && isRequestCanceled == false){
+            const delayDebounceFn = setTimeout(() => {
+                fetchCourses()
+              }, 1000)
+              return () => clearTimeout(delayDebounceFn)
+        }
+    },[searchTerm&&searchTerm.trim().length])
     useEffect(() => {
         if(userProfile&& userProfile.id){
             setIsAuthenticated(true)
@@ -54,12 +72,25 @@ const Header = (props) => {
                     <MenuItem value=" Categories" to="/categories"/>
                     <label
                         className={`search_bar `}>
-                        <input value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)}
-                                autoFocus={true}
-                                type="text"
-                                placeholder="Search anything"
+                         <input 
+                            autoFocus
+                            type='text'
+                            autoComplete='off'
+                            // onBlur={()=>{setSearchResponse(''); setSearchTerm('')}}                                
+                            onKeyDown={({ nativeEvent }) => {nativeEvent.key === 'Backspace' ? setIsRequestCanceled(true) : setIsRequestCanceled(false) }}
+                            onChange={handleSearchChange} value={searchTerm} placeholder="What do you want to learn?" 
                         />
                     </label>
+                    {searchResponse&&searchResponse.length>0&&
+                    <div className="courses__hero--search-result header__search-result">
+                        {searchResponse&&searchResponse.length>0&&searchResponse.map((({title, slug}, idx)=>{
+                            return(
+                                <SearchResult onClick={()=>handleOnSearchItemClick(`courses/${slug}`)} url={`courses/${slug}`} title={title} id={idx}/>
+                            )
+                        }))
+                        }
+                    </div>
+                    }
                 </div>
                 <div className="header--flex">
                     <nav className='header__nav'>
