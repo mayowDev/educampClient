@@ -16,7 +16,7 @@ import Courses from "../Courses";
 import Teachers from '../Teachers'
 import Cart from '../Cart'
 import Favourites from '../Favourites';
-
+import Category from '../Courses/Category'
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
             <Switch>
@@ -39,10 +39,13 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/teachers" component={Teachers.Teachers}/>
                 <Route exact path="/teachers/:id" component={Teachers.TeacherDetails}/>
                 <Route exact path="/cart" component={Cart.Cart}/>
-                {/* <ProtectedRoute exact path="/cart" isLoggedIn={isLoggedIn}  component={Cart.Cart}/> */}
                 <Route exact path="/favourites" component={Favourites}/>
+                <Route exact path="/categories" component={Courses.Categories}/>
+                <Route exact path="/categories/:slug" component={Courses.Category}/>
+
+
                 <Route exact path="/cart/checkout" component={Cart.CheckoutForm}/>
-               <Route component={NotFound}/>
+               {/* <Route component={NotFound}/> */}
             </Switch>
      )
 };

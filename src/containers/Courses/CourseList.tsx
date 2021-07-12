@@ -1,21 +1,14 @@
 
 import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
-import {toast} from 'react-toastify'
 import Slider from "react-slick";
 import courseThumbnail from '../../assets/images/coursesThumbnails/react-thumbnail.jpg'
 import Spinner from '../../components/Spinner';
 import SearchResult from '../../components/SearchResult'
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 import IconBtn from '../../components/IconBtn';
-import BusinessImg from '../../assets/images/categories/category-business.jpg';
-import DesignImg from '../../assets/images/categories/category-design.jpg';
-import SoftwareImg from '../../assets/images/categories/category-it-and-software.jpg';
-import MarketingImg from '../../assets/images/categories/category-marketing.jpg';
-import MusicImg from '../../assets/images/categories/category-music.jpg';
-import PhotographyImg from '../../assets/images/categories/category-photography.jpg';
-import Development from '../../assets/images/categories/category-development.jpg';
-import PersonalDevelopment from '../../assets/images/categories/category-personal-development.jpg';
+import Categories from './Categories';
+
 import Teacher from '../../assets/images/teachers/promo-teacher.jpg'
 import company1 from '../../assets/icons/company1.svg'
 import company2 from '../../assets/icons/company2.svg'
@@ -30,23 +23,22 @@ const Courses = (props) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
     const [isCartitem, setIsCartitem]= useState<boolean>(false)
     const [isRequestCanceled, setIsRequestCanceled]= useState<boolean>(false)
+    const [isUserLeft, setIsUserLeft]= useState<boolean>(false)
     const [searchTerm, setSearchTerm] = useState('')
     const [searchResponse, setSearchResponse] = useState<any>('')
-    const [courseTitles, setCourseTitles] =  useState<any>()
+    // const [courseTitles, setCourseTitles] =  useState<any>()
     const history = useHistory()
-    const {courses, searchCourse, addToCart, addToWishlist, userProfile, isAddedToCart, removeFromCart, removeFromWishlist, isLoading, favouriteItems,  cartItems, courseDetails} = props
+    const {courses, searchCourse, addToCart, addToWishlist, userProfile, removeFromCart, removeFromWishlist, isLoading, favouriteItems,  cartItems, courseDetails} = props
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value)
+        setIsUserLeft(false)
     }
     const handleOnSearchItemClick = (route) => {
         history.push(route)
-        setSearchResponse(''); 
-        setSearchTerm('')
-
     }
-    const handleCourseClick = (courseId) => {
-        history.push(`/courses/${courseId}`)
+    const handleCourseClick = (slug:string) => {
+        history.push(`/courses/${slug}`)
     };
     const handleAddToCart =async (courseid) => {
         if(!isAuthenticated) return history.push(`/login`)   
@@ -64,6 +56,15 @@ const Courses = (props) => {
             }
         }
     }
+    useEffect(() => {        
+        if(isUserLeft === true){
+            const delayDebounceFn = setTimeout(() => {
+                setSearchResponse(''); setSearchTerm('')
+              }, 100)
+              return () => clearTimeout(delayDebounceFn)
+        }
+
+    },[isUserLeft])
     useEffect(() => {
         const fetchCourses = async ()=> {
             let response = await searchCourse(searchTerm.trim())
@@ -76,12 +77,6 @@ const Courses = (props) => {
               return () => clearTimeout(delayDebounceFn)
         }
     },[searchTerm&&searchTerm.trim().length])
-    useEffect(() => {
-        if(searchResponse&&searchResponse.length > 0 ){
-            const titiles = searchResponse.map(c=> c.title)
-            setCourseTitles(titiles)
-        }
-    },[searchResponse&&searchResponse.length])
 
     useEffect(() => {
         if(userProfile&& userProfile.id){
@@ -150,16 +145,6 @@ const Courses = (props) => {
             </div>
         ));
         
-    const categoriesArray = [
-        {img: DesignImg, title:'Design'},
-        {img: Development, title:'Development'},
-        {img: SoftwareImg, title:'Software and IT'},
-        {img: MarketingImg, title:'Marketing'},
-        {img: BusinessImg, title:'Business'},
-        {img: PersonalDevelopment, title:'Personal Development'},
-        {img: MusicImg, title:'Music'},
-        {img: PhotographyImg, title:'Photography'}
-    ]
     const featuredArray = [
         {
             topic:'Development', 
@@ -176,12 +161,7 @@ const Courses = (props) => {
             topic:'Business',
             item: {header:'SQL', student:'7,440,981 students',header1:'Financial Analysis', student1: '1,730,666 students', header2:'PMP', student2:'2,155,969 students'}},
     ]
-    const renderCategories = ()=> categoriesArray&&categoriesArray.map((item) => (
-        <div key={item.title} onClick={()=>handleCourseClick(item.title)} className="categories__items--item">
-            <img className="thumbnail" src={item.img} alt="category-img" />
-            <h3>{item.title}</h3>
-        </div>
-    ));
+   
     const renderFeaturedTopics = ()=> featuredArray&&featuredArray.map(({topic, item:{header, header1, header2, student, student1, student2}}) => (
         <div key={topic} onClick={()=>console.log(header)} className="featured__items--item">
             <h3>{topic}</h3>
@@ -212,14 +192,14 @@ const Courses = (props) => {
                             autoFocus
                             type='text'
                             autoComplete='off'   
-                            // onBlur={()=>{setSearchResponse(''); setSearchTerm('')}}                                
+                            onBlur={()=>{setIsUserLeft(true)}}                                
                             onKeyDown={({ nativeEvent }) => {nativeEvent.key === 'Backspace' ? setIsRequestCanceled(true) : setIsRequestCanceled(false) }}
                             onChange={handleSearchChange} value={searchTerm} placeholder="What do you want to learn?" 
                         />
                     </div>
                     {searchResponse&&searchResponse.length>0&&
                     <div className="courses__hero--search-result">
-                        {searchResponse&&searchResponse.length>0&&searchResponse.map((({title, slug}, idx)=>{
+                        {searchResponse.length>0&&searchResponse.map((({title, slug}, idx)=>{
                             return(
                                 <SearchResult onClick={()=>handleOnSearchItemClick(`courses/${slug}`)} url={`courses/${slug}`} title={title} id={idx}/>
                             )
@@ -236,13 +216,7 @@ const Courses = (props) => {
                     :
                     <Slider {...settings}>{renderCourses()}</Slider>
                 }
-                <div className="categories" >
-                    <h2 className='categories__title'>Top categories </h2>
-                    <div className="categories__items" data-aos="fade-up" data-aos-duration="500">
-                        {renderCategories()}
-                    </div>
-                    
-                </div>
+                <Categories/>
                 <div className="featured" >
                     <h2 className='featured__title'>Featured topics by category </h2>
                     <div className="featured__items" data-aos="fade-up" data-aos-duration="500">

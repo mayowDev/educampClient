@@ -4,7 +4,11 @@ import AddCourse from './AddCourse';
 import EditCourse from './EditCourse';
 import CourseDetails from './CourseDetails';
 import CourseGift from './CourseGift';
-import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse, getCourseByName, searchCourse, giftCourse} from './redux/actions'
+import Categories from './Categories';
+import Category from './Category';
+
+import {fetchCourses, createCourse, updateCourse, deleteCourse, fetchCourse, 
+  getCourseByName, searchCourse, giftCourse} from './redux/actions'
 import {getTeacher} from  '../Teachers/redux/actions'
 import { getUserData } from '../Auth/redux/actions';
 import { addToWishlist, removeFromWishlist } from '../Favourites/redux/actions';
@@ -52,5 +56,7 @@ export default {
   AddCourse: connect(mapStateToProps, mapDispatchToProps)(AddCourse),
   EditCourse: connect(mapStateToProps, mapDispatchToProps)(EditCourse),
   CourseDetails: connect(mapStateToProps, mapDispatchToProps)(CourseDetails),
-  CourseGift: connect(mapStateToProps, mapDispatchToProps)(CourseGift)
+  CourseGift: connect(mapStateToProps, mapDispatchToProps)(CourseGift),
+  Categories: connect(mapStateToProps, mapDispatchToProps)(Categories),
+  Category: connect(mapStateToProps, mapDispatchToProps)(Category),
 }
