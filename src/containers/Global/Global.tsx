@@ -16,14 +16,13 @@ import Courses from "../Courses";
 import Teachers from '../Teachers'
 import Cart from '../Cart'
 import Favourites from '../Favourites';
-import Category from '../Courses/Category'
+// import  from '../Teachers'
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
             <Switch>
                 <Route exact path="/" component={Courses.Courses}/>
                 <Route exact path="/register" component={SignUp.Signup}/>
                 <Route exact path="/login" render={(props) => <Login isLoggedIn={isLoggedIn} {...props} />} />
-                {/* <Route exact path="/login" isLoggedIn={isLoggedIn} component={Login}/> */}
                 <Route exact path="/resend-email" component={SignUp.Resend}/>
                 <Route exact path="/verify" component={Verify}/>
                 <Route exact path="/profile" render={(props) => <ProfilePage isLoggedIn={isLoggedIn} {...props} />} />
@@ -38,14 +37,14 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/gift/:slug" component={Courses.CourseGift}/>
                 <Route exact path="/teachers" component={Teachers.Teachers}/>
                 <Route exact path="/teachers/:id" component={Teachers.TeacherDetails}/>
+                <Route exact path="/teach" component={Teachers.TeacherBoarding}/>
+
                 <Route exact path="/cart" component={Cart.Cart}/>
                 <Route exact path="/favourites" component={Favourites}/>
                 <Route exact path="/categories" component={Courses.Categories}/>
                 <Route exact path="/categories/:slug" component={Courses.Category}/>
-
-
                 <Route exact path="/cart/checkout" component={Cart.CheckoutForm}/>
-               {/* <Route component={NotFound}/> */}
+                <Route component={NotFound}/>
             </Switch>
      )
 };

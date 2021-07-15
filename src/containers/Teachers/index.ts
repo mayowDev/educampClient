@@ -1,6 +1,7 @@
 import {connect} from 'react-redux'
 import TeachersList from './TeachersList'
 import TeacherDetails from './TeacherDetails'
+import TeacherBoarding from './TeacherBording'
 // import Teacher from './Teacher';
 import {getAllTeachers, getTeacher, getTeacherByName} from './redux/actions'
 import './style.scss'
@@ -21,6 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default {
     Teachers: connect(mapStateToProps, mapDispatchToProps)(TeachersList),
+    TeacherBoarding: connect(mapStateToProps, mapDispatchToProps)(TeacherBoarding),
     // AddTeacher: connect(mapStateToProps, mapDispatchToProps)(CreateTeacher),
     // EditTeacher: connect(mapStateToProps, mapDispatchToProps)(EditTeacher),
     TeacherDetails: connect(mapStateToProps, mapDispatchToProps)(TeacherDetails)

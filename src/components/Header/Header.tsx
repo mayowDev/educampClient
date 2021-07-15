@@ -97,7 +97,7 @@ const Header = (props) => {
                     <div className="courses__hero--search-result header__search-result">
                         {searchResponse&&searchResponse.length>0&&searchResponse.map((({title, slug}, idx)=>{
                             return(
-                                <SearchResult onClick={()=>handleOnSearchItemClick(`courses/${slug}`)} url={`courses/${slug}`} title={title} id={idx}/>
+                                <SearchResult onClick={()=>handleOnSearchItemClick(`/courses/${slug}`)} url={`courses/${slug}`} title={title} id={idx}/>
                             )
                         }))
                         }

@@ -2,6 +2,91 @@
 /** mixins */
 @import  '../../styles/mixins.scss';
 
+.teacherBoarding {
+    display: flex;
+    min-height: 25rem;
+    flex-direction: column;
+    justify-content: center;
+    &__hero{
+        display: flex;
+        flex-direction: column;
+        min-height: 37rem;
+        justify-content: center;
+        background-image: url('../../assets/images/teachers/teacherBoardingBackground.jpg');
+      &--cta-box{
+        margin-left:10rem;
+        h2{
+            font-size:3rem;
+            font-weight: 600;
+            color: whitesmoke;
+            margin: 0;
+        }
+        p{ 
+            font-size:1.25rem;
+            font-weight: 500;
+            color: lightgray;
+            max-width: 350px;
+            letter-spacing: 1.2px;
+            // margin: 0;
+
+        }
+        .cta-btn{
+            margin-left:.5rem;
+            @include checkoutBtn;
+            .btn{
+                min-width: 100px!important;
+                // padding: 8px 50px!important;
+            }
+
+        }
+      }
+    }  
+    &__reasons{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 20rem;
+        h3{ 
+            font-size:2rem;
+            text-transform: capitalize;
+        }
+        &--items{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            &-item{
+                display: flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items: center;
+                width: 25rem;
+                padding: 1rem;
+                img{
+                    width: 100px;
+                    height: 100px;
+                }
+                h4{
+                    font-size:1.2rem;
+                    font-weight: 600;
+                    text-transform: capitalize;
+                }
+                p{
+                    text-align: center;
+                    padding: 0 1rem;
+                    font-size:1rem;
+                    font-weight: 600;
+                    opacity: .8;
+                    color: #3d3c3c;
+                    max-width: 350px;
+                    letter-spacing: 1.1px;
+                    line-height: 1.5;
+                    margin-top: 0;
+
+                }
+            }
+        }
+    }
+}
 .teachers{
     background-color: #222222;
     height: 920px;

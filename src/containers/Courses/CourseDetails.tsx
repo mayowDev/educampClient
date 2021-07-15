@@ -7,7 +7,7 @@ import IconBtn from '../../components/IconBtn';
 import ShareBtn from '../../components/ShareBtn'
 import Rating from '../../components/Rating'
 import { getShareURL} from '../../utils'
-import './CourseDetails.scss'
+import './courseDetails.scss'
 
 const CourseDetails = (props) => {
     const { addToCart, addToWishlist, getCourseByName, removeFromCart, removeFromWishlist, userProfile, favouriteItems,  cartItems, courseDetails} = props

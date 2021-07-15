@@ -4,7 +4,9 @@
   background: $smoke;
   border-top: 1px solid #D8D8D8;
   padding: 0 2rem;
-  // margin-top:2rem;
+  position: absolute;
+  left: 0;
+  right: 0;
   &__nav, & > div{
     display: flex;
     justify-content: space-between;
