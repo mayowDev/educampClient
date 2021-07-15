@@ -12,9 +12,9 @@ import PersonalDevelopment from '../../assets/images/categories/category-persona
 
 const Categories = () => {
     const history = useHistory()
-    const handleCategoryClick = (title) => {
-        history.push(`/categories/${title}`)
-    };
+    const handleCategoryClick = (title) => {history.push(`/categories/${title}`)};
+    const isCategoryPage = history.location.pathname == '/categories';
+    
     const categoriesArray = [
         {img: DesignImg, title:'Design'},
         {img: Development, title:'Development'},
@@ -32,7 +32,7 @@ const Categories = () => {
         </div>
     ));
     return (
-        <div className="categories" >
+        <div className={`categories ${isCategoryPage&&'categories__isCategoryPage'}`}>
             <h2 className='categories__title'>Top categories </h2>
             <div className="categories__items" data-aos="fade-up" data-aos-duration="500">
                 {renderCategories()}

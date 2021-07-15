@@ -13,12 +13,14 @@ const Header = (props) => {
     const history = useHistory();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isRequestCanceled, setIsRequestCanceled]= useState<boolean>(false)
+    const [isUserLeft, setIsUserLeft] = useState<boolean>(false)
     const [searchTerm, setSearchTerm] = useState('')
     const [searchResponse, setSearchResponse] = useState<any>('')
     const [totalPrice, setTotalPrice] = useState(0);
    
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value)
+        setIsUserLeft(false)
     }
     const handleLogout = ()=>{
         logout(); setTimeout(()=>{window.location.href="/"},100)
@@ -61,6 +63,15 @@ const Header = (props) => {
             setTotalPrice(total)
         }
     }, [cartItems&&cartItems.length]); 
+    useEffect(() => {        
+        if(isUserLeft === true){
+            const delayDebounceFn = setTimeout(() => {
+                setSearchResponse(''); setSearchTerm('')
+              }, 50)
+              return () => clearTimeout(delayDebounceFn)
+        }
+
+    },[isUserLeft])
     // if(isLoading) return <Spinner type="cover"/>
     return (
         <>
@@ -76,6 +87,7 @@ const Header = (props) => {
                             autoFocus
                             type='text'
                             autoComplete='off'
+                            onBlur={()=>{setIsUserLeft(true)}}                                
                             // onBlur={()=>{setSearchResponse(''); setSearchTerm('')}}                                
                             onKeyDown={({ nativeEvent }) => {nativeEvent.key === 'Backspace' ? setIsRequestCanceled(true) : setIsRequestCanceled(false) }}
                             onChange={handleSearchChange} value={searchTerm} placeholder="What do you want to learn?" 

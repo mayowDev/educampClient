@@ -60,7 +60,7 @@ const Courses = (props) => {
         if(isUserLeft === true){
             const delayDebounceFn = setTimeout(() => {
                 setSearchResponse(''); setSearchTerm('')
-              }, 100)
+              }, 50)
               return () => clearTimeout(delayDebounceFn)
         }
 
