@@ -197,13 +197,13 @@ p, h1, h2, h3, h4, ul, ol {
                 }
             }
             .content{
-                background-color:burlywood;
                 padding:1rem;
                 position: relative;
-                // padding: 4rem;
                 margin:0 11px;
                 cursor: pointer;
-                min-height: 18rem;
+                min-height: 15rem;
+                border: 1px solid lightgray;
+                border-radius: 1rem;
                 img{
                     display: block;
                     margin: auto;
@@ -211,12 +211,22 @@ p, h1, h2, h3, h4, ul, ol {
                     width: -webkit-fill-available;
                 }
                 h3{
+                    max-height: none;
+                    display: -webkit-box!important;
                     -webkit-line-clamp: 2;
+                    -moz-line-clamp: 2;
+                    -ms-line-clamp: 2;
+                    -o-line-clamp: 2;
+                    line-clamp: 2;
                     -webkit-box-orient: vertical;
+                    -moz-box-orient: vertical;
+                    -ms-box-orient: vertical;
+                    -o-box-orient: vertical;
+                    box-orient: vertical;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: normal;
-                    line-height: 1.5;
+                    height: 42px;
                     margin: 10px 0;
                     line-height: 1.25;
                     font-size: 1rem;

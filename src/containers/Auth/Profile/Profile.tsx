@@ -311,7 +311,6 @@ const Profile = (props) => {
             }
             { activeTab === "payments" && 
                 <h1> payment settings for {name}</h1>
-            
             }
         </div>
         }
