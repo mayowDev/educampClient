@@ -13,6 +13,9 @@
         min-height: 37rem;
         justify-content: center;
         background-image: url('../../assets/images/teachers/teacherBoardingBackground.jpg');
+        img{
+            display: none;
+        }
       &--cta-box{
         margin-left:10rem;
         h2{
@@ -158,6 +161,7 @@
             }
         }
     }
+    &__steps-accordion{display: none;}
     &__feedback{
         background: #FBFBF8;
         width: 100%;
@@ -264,6 +268,179 @@
         }
 
     }
+    @media screen and (max-width: 1190px){
+    }
+     
+    @media screen and (max-width: 1076px){
+    }
+    @media screen and (max-width: 940px){
+    }
+       @media screen and (max-width: 800px){
+       }
+       @media screen and (max-width: 680px){
+            &__hero{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                background-color: white;
+                background-image:none;
+                img{
+                    display: block;
+                    width: 100%;
+                }
+                &--cta-box{
+                    margin-left:2rem;
+                    h2{
+                        font-size:1rem;
+                        font-weight: 600;
+                        color: black;
+                        // margin: 0;
+                    }
+                    p{ 
+                        font-size:1rem;
+                        font-weight: 500;
+                        color: black;
+                        max-width: 350px;
+                        letter-spacing: 1.2px;
+            
+                    }
+                    .cta-btn{
+                        margin-left:-1rem;
+                        @include checkoutBtn;
+                        .btn{
+                            padding: 8px 135px;
+                            background-color:black !important;
+                        }
+            
+                    }
+                }
+            }
+       }
+       @media screen and (max-width: 380px){
+            &__hero{
+                min-height: 0;
+                justify-content: flex-start;
+                background-color: white;
+                background-image:none;
+                &--cta-box{
+                    display: flex;
+                    flex-direction: column;
+                    margin-left:2rem;
+                    align-items: center;
+                    text-align: center;
+
+                    h2{
+                        font-size:1.75rem;
+                        font-weight: 600;
+                        color: black;
+                        margin: 1rem 0; 
+                    }
+                    p{ 
+                        font-size:1rem;
+                        font-weight: 500;
+                        color: black;
+                        max-width: 350px;
+                        letter-spacing: 1.2px;
+            
+                    }
+                    .cta-btn{
+                        @include checkoutBtn;
+                        margin-left:-1rem;
+                        .btn{
+                            margin:auto;
+                            padding: 8px 90px;
+                            background-color:black !important;
+                        }
+            
+                    }
+                }
+            }
+            &__reasons{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem;
+                h3{ 
+                    font-size:1.5rem;
+                    color: #000;
+                }
+                &--items{
+                    flex-direction: column;
+                    &-item{
+                        flex-direction:column;
+                        width: 22rem;
+                        padding: 1rem;
+                        h4{
+                            font-size:1.2rem;
+                            color: #000;
+                        }
+                    }
+                }
+            }
+            &__stats{
+                min-height:5rem;
+                flex-direction: column;
+                & > div{
+                    padding:3rem;
+                    border-bottom:1px solid #DADADA;
+                    span{font-size:1rem;}
+                    .number{font-size:2rem;}
+                }
+            }
+            &__steps{
+                display: none;
+            }
+            &__steps-accordion{
+                h3{font-size:1.5rem;}
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100vw;
+            }
+
+            &__feedback{
+                display: flex;
+                flex-direction: column;
+                background: #FBFBF8;
+                width: 100%;
+                margin: 0;
+                .container{
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0;
+                    margin-top: 2rem;
+                    img{
+                        position: initial;
+                        width: 100%;
+                        order: 0;
+                        height: auto;
+                    }
+                    .content{
+                        display: flex;
+                        flex-direction: column;
+                        z-index: 5;
+                        right: 0%;
+                        // position: relative;
+                        h4{
+                            font-family: SuisseWorks,Georgia,Times,times new roman,serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+                            font-weight: 700;
+                            line-height: 1.25;
+                            letter-spacing: -.05rem;
+                            margin-bottom:0
+                        }
+                        p{
+                            width:20rem;
+                            font-size:1.2rem
+                        }
+                        span{
+                            margin:0;
+                            opacity: .75;
+                        }
+                    }
+                }
+            }
+
+        }
 }
 .teachers{
     background-color: #222222;

@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
+import Accordion from '../../components/Accordion'
+
 import teachWay from '../../assets/icons/teachWay.jpg'
 import inspire from '../../assets/icons/inspire.jpg'
 import getRewarded from '../../assets/icons/getRewarded.jpg'
@@ -9,6 +11,7 @@ import RecordImage from '../../assets/images/teachers/record-your-video.jpg'
 import Teacher from '../../assets/images/teachers/teacher.jpg'
 import support1 from '../../assets/images/support1.jpg'
 import support2 from '../../assets/images/support2.jpg'
+import HeroImg from '../../assets/images/teachers/teachHeromobile.jpg'
 
 type IActiveTab = 'plan' | 'record' | 'launch'
 const TeacherBoarding = () => {
@@ -18,6 +21,7 @@ const TeacherBoarding = () => {
         <ScrollAnimation>
             <div className="teacherBoarding">
                 <div  className="teacherBoarding__hero">
+                    <img src={HeroImg} alt="HeroImg" />
                     <div className="teacherBoarding__hero--cta-box">
                         <h2>Come Teach with us</h2>
                         <p>Become an instructor and change lives — including your own</p>
@@ -108,8 +112,8 @@ const TeacherBoarding = () => {
                     <div className="tabs">
                         <div className="tabs__content">
                             <p> 
-                                You start with your passion and knowledge. Then choose a promising topic with the help of our Marketplace Insights tool.
-                                The way that you teach — what you bring to it — is up to you.
+                             Gather your first ratings and reviews by promoting your course through social media and your professional networks.
+                             Your course will be discoverable in our marketplace where you earn revenue from each paid enrollment.
                             </p>
                             <h4>How we help you</h4>
                             <p>Our custom coupon tool lets you offer enrollment incentives while our global promotions drive traffic to courses. There’s even more opportunity with courses chosen for Udemy Business.</p>
@@ -117,6 +121,51 @@ const TeacherBoarding = () => {
                         <img src={LaunchImage} alt="plan-your-cuririculum" />
                     </div>
                     }
+                </div>
+                <div className="wrapper teacherBoarding__steps-accordion">
+                    <h3>How to begin</h3>
+                    <Accordion title="Plan your curriculum">
+                        <div className="tabs">
+                            <div className="tabs__content">
+                                <p>
+                                    You start with your passion and knowledge. Then choose a promising topic with the help of our Marketplace Insights tool.
+                                    The way that you teach — what you bring to it — is up to you.
+                                </p>
+                                <h4>How we help you</h4>
+                                <p>
+                                    We offer plenty of resources on how to create your first course. 
+                                    And, our instructor dashboard and curriculum pages help keep you organized.
+                                </p>
+                            </div>
+                            <img src={PlanImage} alt="plan-your-cuririculum" />
+                        </div>
+                    </Accordion>
+                    <Accordion title="Record your video">
+                        <div className="tabs">
+                            <div className="tabs__content">
+                                <p>
+                                Use basic tools like a smartphone or a DSLR camera. Add a good microphone and you’re ready to start.
+                                <p> If you don’t like being on camera, just capture your screen. Either way, we recommend two hours or more of video for a paid course.</p>
+                                </p>
+                                <h4>How we help you</h4>
+                                <p>Our support team is available to help you throughout the process and provide feedback on test videos.</p>
+                            </div>
+                            <img src={RecordImage} alt="plan-your-cuririculum" />
+                        </div>
+                    </Accordion>
+                    <Accordion title="Launch your course">
+                        <div className="tabs">
+                            <div className="tabs__content">
+                                <p> 
+                                Gather your first ratings and reviews by promoting your course through social media and your professional networks.
+                                Your course will be discoverable in our marketplace where you earn revenue from each paid enrollment.
+                                </p>
+                                <h4>How we help you</h4>
+                                <p>Our custom coupon tool lets you offer enrollment incentives while our global promotions drive traffic to courses. There’s even more opportunity with courses chosen for Udemy Business.</p>
+                            </div>
+                            <img src={LaunchImage} alt="plan-your-cuririculum" />
+                        </div>
+                    </Accordion>
                 </div>
                 <div className="teacherBoarding__feedback">
                     <div className="container" >
