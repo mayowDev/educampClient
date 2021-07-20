@@ -180,14 +180,14 @@ const TeacherBoarding = () => {
                     </div>
                 </div>
                 <div className="teacherBoarding__support" >
-                    <img src={support1} alt="support-1" />
+                    <img className="support-1" src={support1} alt="support-1" />
                     <div>
                         <h3>You won’t have to do it alone</h3>
                         <p>Our <strong> Instructor Support Team </strong>is here to answer your questions and review your test video, while our <strong> Teaching Center </strong>
                         gives you plenty of resources to help you through the process. 
                         Plus, get the support of experienced instructors in our <strong> online community. </strong></p>
                     </div>
-                    <img src={support2} alt="support-2" />
+                    <img className="support-2" src={support2} alt="support-2" />
                 </div>
                 <div className="teacherBoarding__cta" >
                         <h3>Become an instructor today</h3>

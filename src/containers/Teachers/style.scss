@@ -325,7 +325,7 @@
                 &--cta-box{
                     display: flex;
                     flex-direction: column;
-                    margin-left:2rem;
+                    margin-left:0rem;
                     align-items: center;
                     text-align: center;
 
@@ -387,17 +387,28 @@
                     .number{font-size:2rem;}
                 }
             }
-            &__steps{
-                display: none;
-            }
+            &__steps{display: none;}
             &__steps-accordion{
                 h3{font-size:1.5rem;}
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 width: 100vw;
+                margin-bottom: 2rem;
+                .tabs{
+                    display: flex;
+                    flex-direction: column;
+                    &__content{
+                        order: 1;
+                        margin-top: 0;
+                        p{
+                            max-width: 20rem;
+                            font-size: 1.2rem;
+                        }
+                    }
+                    img{order: 0;}
+                }
             }
-
             &__feedback{
                 display: flex;
                 flex-direction: column;
@@ -420,10 +431,7 @@
                         flex-direction: column;
                         z-index: 5;
                         right: 0%;
-                        // position: relative;
                         h4{
-                            font-family: SuisseWorks,Georgia,Times,times new roman,serif,apple color emoji,segoe ui emoji,segoe ui symbol;
-                            font-weight: 700;
                             line-height: 1.25;
                             letter-spacing: -.05rem;
                             margin-bottom:0
@@ -438,6 +446,54 @@
                         }
                     }
                 }
+            }
+            &__support{
+                flex-direction: column;
+                margin-bottom: 2rem;
+                h3{
+                    font-weight: 600;
+                    font-size: 1.5rem;
+                    line-height: 1.15;
+                    letter-spacing: -.02rem;
+                    margin: 2.4rem auto 1.6rem;
+                    max-width: 15rem;
+
+                }
+                p{
+                    margin-left: auto;
+                    margin-right: auto;
+                    line-height: 1.4;
+                    font-size: 1.2rem;
+                    max-width: 17rem;                
+                }
+                img{
+                    width: 350px
+                }
+                .support-2{display: none;}
+            }
+            &__cta{
+                align-items: center;
+                padding: 4rem 2.75rem;
+                h3{  
+                    font-size: 1.75rem;
+                    text-align: center;
+                    letter-spacing: .02rem;
+                    line-height: 1.1;
+                }
+                p{  
+                    line-height: 1.4;
+                    font-size: 1rem;
+                    color: #000;
+                    text-align: center;
+                }
+                button{
+                    display: flex;
+                    align-items: center;
+                    padding: 1rem 5rem;
+                    font-size: 1rem;
+                    min-width: 8rem;
+                }
+        
             }
 
         }

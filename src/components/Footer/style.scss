@@ -127,4 +127,17 @@
 // @media screen and (max-width: 426px){
 //   margin-top: 0 !important;
 // }
+  @media screen and (max-width: 380px){
+    &__nav, & > div{
+      display: flex;
+      justify-content: space-between;
+      flex-direction:row;
+      padding: 1rem 2rem;
+      nav{
+        flex-direction:column;
+      }
+    }
+    
+  }
+
 }
