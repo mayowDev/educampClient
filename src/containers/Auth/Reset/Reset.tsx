@@ -39,6 +39,7 @@ const Reset = (props) => {
     const handleReset = async (e) => {
         e.preventDefault();
         try {
+            if(!allInputsAreValid()){return setUserPassword({password:" ", confirmPassword: " "})}
             await resetPassword(token,userPassword);
             setUserPassword({password:"", confirmPassword: ""})
         }
@@ -97,12 +98,12 @@ const Reset = (props) => {
                         }
                     </div>
                     {
-                        allInputsAreValid() && userPassword.confirmPassword.length > 8 && (
+                        // allInputsAreValid() && userPassword.confirmPassword.length > 8 && (
                             <>
                             {/* <br /><br /> */}
-                            <Button value='Reset Password' className="btn link-primary  btn-primary" type='primary'/> 
+                            <Button value='Reset Password' className={`btn btn-primary  link-primary ${!allInputsAreValid()&&'disabled'}`} type='primary'/> 
                             </>
-                        )
+                        // )
                     }
                 
                 </>
