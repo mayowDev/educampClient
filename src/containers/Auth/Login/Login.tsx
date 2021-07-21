@@ -107,12 +107,6 @@ const Login = (props) => {
                                 {!validPassword()&& user.password.length > 0&&
                                     <span className="error-message">{'password must be 8 characters, 1 of (@!#$%&), 1 uppercase and lowercase'}</span>
                                 }
-                                {/* {isRandomPasswordRequested&&
-                                    <div className="random-password">
-                                        <button type="button" onClick={handleSuggestRandomPassword}>suggest random password</button>
-                                    </div>
-                                } */}
-                                
                             </div>
                         </div>
                         

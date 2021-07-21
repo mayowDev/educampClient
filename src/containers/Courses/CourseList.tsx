@@ -111,6 +111,9 @@ const Courses = (props) => {
         );
     }
     const settings = {
+        dots: false,
+        autoplay: false,
+        autoplaySpeed: 3000,
         accessibility: true,
         arrows: true,
         speed: 500,
@@ -119,6 +122,16 @@ const Courses = (props) => {
         nextArrow: <Arrow type="next" />,
         prevArrow: <Arrow type="prev" />,
         infinite: false,
+        responsive: [{
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              initialSlide: 1,
+              autoplay: false,
+            }
+          }]
     };
     const renderCourses = () =>
         courses&&courses.map((course) => (
@@ -183,6 +196,7 @@ const Courses = (props) => {
             
         </div>
     ));
+    //Todo: add fetured topics accouridan where  eahc topic returns course card and hide the desktop featuredTopics
     return (
         <ScrollAnimation>
             <div className="courses">
