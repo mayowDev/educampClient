@@ -10,7 +10,7 @@ const initialState = {
     // isCourseUpdated: false,
     // isCourseDeleted: false,
     apiError: false,
-    loading:false,
+    loading:true,
     // currentPage: 0,
     // pages: {},
     // sortBy: 'alphabetical',

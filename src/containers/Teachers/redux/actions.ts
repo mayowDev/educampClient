@@ -1,4 +1,4 @@
-import { FETCH_TEACHERS, FETCH_TEACHER, NULL_RESPONSE, UPDATE_USER, DELETE_USER, LOADING, API_ERROR } from './constants'
+import { FETCH_TEACHERS, FETCH_TEACHER, NULL_RESPONSE, LOADING, API_ERROR } from './constants'
 import * as API from "../../../services"
 
 export const getAllTeachers = () => async dispatch => {

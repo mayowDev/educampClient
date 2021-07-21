@@ -15,6 +15,8 @@ import company2 from '../../assets/icons/company2.svg'
 import company3 from '../../assets/icons/company3.svg'
 import company4 from '../../assets/icons/company4.svg'
 import company5 from '../../assets/icons/company5.svg'
+import HeroImg from '../../assets/images/home-hero-mobile.jpg'
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -185,6 +187,7 @@ const Courses = (props) => {
         <ScrollAnimation>
             <div className="courses">
                 <div  className="courses__hero">
+                    <img src={HeroImg} alt="HeroImg" />
                     <div className="courses__hero--search-box">
                         <h2>Learn from the best</h2>
                         <p>Real-world experts teaching real-world skills from $12.99 — sale ends today</p>
@@ -209,7 +212,7 @@ const Courses = (props) => {
                     }
                 </div>
                 <div className="courses__title">
-                    <h1>Top courses in Web Development</h1>
+                    <h1>Top courses</h1>
                 </div>
                 {isLoading &&!courses ?
                     <Spinner type="cover" />

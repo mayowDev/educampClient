@@ -36,7 +36,7 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/courses/:slug" component={Courses.CourseDetails}/>
                 <Route exact path="/gift/:slug" component={Courses.CourseGift}/>
                 <Route exact path="/teachers" component={Teachers.Teachers}/>
-                <Route exact path="/teachers/:id" component={Teachers.TeacherDetails}/>
+                <Route exact path="/teachers/:slug" component={Teachers.TeacherDetails}/>
                 <Route exact path="/teach" component={Teachers.TeacherBoarding}/>
 
                 <Route exact path="/cart" component={Cart.Cart}/>

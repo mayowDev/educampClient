@@ -8,30 +8,30 @@ import Spinner from '../../components/Spinner';
 
 const TeacherDetails = (props) => {
     const [teacherCourses, setTeacherCourses] = useState([])
-    const {teacherDetails, getTeacher, getTeacherByName, loading, isNull} = props;
+    const [isNull, setIsNull] = useState(false)
+
+    const {teacherDetails, getTeacherByName, loading} = props;
     const history = useHistory()
-    const teacherSlug = props.match.params.id;
-    // const isValiduuid =  (uuid)=>{
-    //     return /[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}/.test(uuid) === true;
-    // }
+    const teacherSlug = props.match.params.slug;
     useEffect(() => {
         if(teacherDetails &&  teacherDetails.slug !==teacherSlug){
             getTeacherByName(teacherSlug)
         }
+        const delayDebounce = setTimeout(() => {
+            setIsNull(teacherDetails&& teacherDetails.id === undefined)
+        }, 500)
+        return () => clearTimeout(delayDebounce)
     },[teacherDetails && teacherDetails.id])
     useEffect(() => {
-        if(!isNull&&teacherDetails&&teacherDetails.courses && teacherDetails.courses.length>0){
+        if(teacherDetails&&teacherDetails.courses && teacherDetails.courses.length>0){
             const myCourses = teacherDetails.courses.map(course=> course)
-            setTeacherCourses(myCourses)
-        }else{
-            console.log('empty courses ')
-            setTeacherCourses([])
+           return setTeacherCourses(myCourses)
         }
     },[teacherDetails && teacherDetails.id])
     const handleCourseClick = (slug:string) => {
         history.push(`/courses/${slug}`)
     }
-    if(isNull && !loading) {
+    if(isNull&& loading === false) {
         // history.replace('/teachers')//dont use history here it throws warning Cannot update during an existing state transition 
         window.location.href = "/404"
     }
