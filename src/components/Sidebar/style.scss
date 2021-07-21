@@ -13,6 +13,9 @@
     align-items: center;
     display: flex;
     vertical-align: middle;
+    @media (max-width: 1025px) {	
+        display: none; 
+    }
     a{
         display:block;
         width:100%;
@@ -38,5 +41,5 @@
         background: -webkit-linear-gradient(45deg, #4c1864 0%,#4c1864 100%); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(45deg, #4c1864 0%,#4c1864 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c1864', endColorstr='#4c1864',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-    }
+    } 
 }

@@ -21,6 +21,7 @@ const Forgot = (props:IForgotProps) => {
     }
     const handleReset = (e) => {
         e.preventDefault();
+        if(!validEmail()){return setEmail('  ')}
         try {
             forgotPassword({email});
         }
@@ -42,7 +43,7 @@ const Forgot = (props:IForgotProps) => {
                         }
 
                     </div>	
-                    <form method="post" onSubmit={(e)=>handleReset(e)}>
+                    <form method="post" onSubmit={(e)=>handleReset(e)} noValidate>  
                     {
                         isForgotPasswordSuccess ?
                         <>
@@ -53,17 +54,11 @@ const Forgot = (props:IForgotProps) => {
                         <>
                              <div className="form-group">
                                 <label>Email</label>
-                                <input name="email" onChange={handleInputChange} value={email} type="email" className="form-control" placeholder="Enter Your Email address" id="email"/>
+                                <input  name="email" onChange={handleInputChange} value={email} type="email" className={`form-control ${!validEmail()?'input-error':''}`} placeholder="Enter Your Email" id="email"/>
+                                {!validEmail()&& email.length > 0&&<span className="error-message">{'Please provide a valid email '}</span>}
                             </div>
-                            {
-                                validEmail() && (
-                                    <>
-                                    <br /><br />
-                                    <Button value='Send Email' className="btn link-primary btn-primary" type='primary'/> 
-                                    </>
-                                )
-                            }
-                        
+                            <br /><br />
+                            <Button  value='Send Email' className={`btn link-primary btn-primary ${!validEmail()&&'disabled'}`} type='primary'/> 
                         </>
                     }     
                     </form>
