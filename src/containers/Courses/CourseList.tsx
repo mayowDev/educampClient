@@ -272,7 +272,7 @@ const Courses = (props) => {
                 </div>
             </div>
             <div className="social-proof">
-                <h2>Trusted by companies of all sizes</h2>
+                <h3>Trusted by companies of all sizes</h3>
                 <div className="companies">
                     <img src={company1} alt="company1" />
                     <img src={company2} alt="company2" />
