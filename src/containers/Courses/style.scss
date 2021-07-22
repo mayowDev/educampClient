@@ -286,6 +286,13 @@ p, h1, h2, h3, h4, ul, ol {
                 h2{font-size: 2rem;}
                 input{ margin: .5rem 0; margin-left: -.2rem;}
             }
+            &--search-result {
+                left: 10% !important;
+                top: 13.5%;
+                width: 74% !important;
+                margin-left: 0;
+                padding: .5rem;
+            }
         }
         &__card{
             &--item{
@@ -295,8 +302,18 @@ p, h1, h2, h3, h4, ul, ol {
                 &:hover{display:none;}
             }
         }
+        .featured{
+            background:#F8F9FB;
+            h2{padding: 1.25rem 0;}
+            &__items{          
+                &--item{
+                    width: 44%;
+                    margin-left: .5rem;
+                }
+            }
+        }
     }
-    @media screen and (max-width: 380px){
+    @media screen and (min-width: 355px) and (max-width: 380px){
         padding: 0 10px;
         &__hero{
             min-height: 20rem;
@@ -312,6 +329,9 @@ p, h1, h2, h3, h4, ul, ol {
                 h2{font-size: 2rem;margin-left: .5rem;}
                 input{ margin: .5rem; width:80%;}
             }
+            &--search-result {
+                left: 8% !important;
+            }
         }
         &__card{
             &--item{
@@ -321,8 +341,19 @@ p, h1, h2, h3, h4, ul, ol {
             }
         }
     }
-    @media screen and (max-width:350px){
+    @media screen and (min-width:200px) and (max-width:350px){
         padding: 0 10px;
+        &__hero{
+            &--search-box {
+                p{margin-left: .5rem;}
+                h2{font-size: 2rem;margin-left: .5rem;}
+                input{ margin: .5rem; width:80%;}
+            }
+            &--search-result {
+                left: 3% !important;
+                width: 85% !important;
+            }
+        }
         &__card{
             &--item{
                 max-width: 17rem;
@@ -423,6 +454,36 @@ p, h1, h2, h3, h4, ul, ol {
                 border-radius: 2px;
                 cursor: pointer;
             }
+        }
+    }
+    @media screen and (min-width: 318px) and (max-width: 362px){
+        .container .content h2 {
+            font-size: 2rem !important;
+        }
+        .container .content p {
+            width: 19rem !important;
+            font-size: 1.25rem !important;
+        }
+    }
+    @media screen and (max-width: 680px){
+        background: white;
+        margin: 3rem 0;
+        .container{
+            flex-direction: column;
+            img{
+                position: initial;
+                width: 100%;
+                height: 100%;
+            }
+            .content{                
+                text-align: center;
+                color: black;
+                position: initial; 
+                h2{font-size: 2.25rem;}
+                p{width: 22rem;font-size: 1.4rem; color:black;}
+                button{width: 100%;}
+            }
+            
         }
     }
 }

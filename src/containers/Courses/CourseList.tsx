@@ -2,9 +2,10 @@
 import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import Slider from "react-slick";
-import courseThumbnail from '../../assets/images/coursesThumbnails/react-thumbnail.jpg'
+import courseThumbnail from '../../assets/images/coursesThumbnails/react-thumbnail.jpg';
 import Spinner from '../../components/Spinner';
-import SearchResult from '../../components/SearchResult'
+import SearchResult from '../../components/SearchResult';
+import Accordion from '../../components/Accordion';
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 import IconBtn from '../../components/IconBtn';
 import Categories from './Categories';
@@ -170,7 +171,7 @@ const Courses = (props) => {
             item: {header:'Photoshop', student: '9,440,981 students', header1:'Graphic Design', student1: '2,730,666 students', header2:'Drawing', student2:'2,155,969 students'} 
         },
         {
-            topic:'Software and IT',
+            topic:'Software & IT',
             item: {header:'AWS Certificate', student:'4,440,981 students', header1:'Ethical Hacking', student1: '8,730,666 students', header2:'Cyber Security', student2:'5,155,969 students'}},
         {
             topic:'Business',
@@ -233,6 +234,22 @@ const Courses = (props) => {
                     :
                     <Slider {...settings}>{renderCourses()}</Slider>
                 }
+                {/* <Accordion title="Plan your curriculum">
+                        <div className="tabs">
+                            <div className="tabs__content">
+                                <p>
+                                    You start with your passion and knowledge. Then choose a promising topic with the help of our Marketplace Insights tool.
+                                    The way that you teach — what you bring to it — is up to you.
+                                </p>
+                                <h4>How we help you</h4>
+                                <p>
+                                    We offer plenty of resources on how to create your first course. 
+                                    And, our instructor dashboard and curriculum pages help keep you organized.
+                                </p>
+                            </div>
+                            <img src={PlanImage} alt="plan-your-cuririculum" />
+                        </div>
+                    </Accordion> */}
                 <Categories/>
                 <div className="featured" >
                     <h2 className='featured__title'>Featured topics by category </h2>
