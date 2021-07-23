@@ -39,7 +39,7 @@ const TeacherDetails = (props) => {
         <>
             {loading === true?<Spinner type="cover" />:
             <>
-            <div className="teacherDetails--hero">
+            <div className="teacherDetails teacherDetails--container">
                 <div className="teacherDetails__info">
                     <div className="who">
                         <img src={TeacherImage} alt="teacher-img" />
@@ -58,36 +58,34 @@ const TeacherDetails = (props) => {
                     </p>                
                 </div>
             </div>
-            <div className="teacherDetails">
-                <div className="teacherDetails__courses">
-                    <div className="title">
-                        <IconBtn type="book"/>
-                        <h2>{teacherDetails.name}'s Courses</h2>
-                    </div>
-                    <div className="items-wrapper">
-                    { teacherCourses && teacherCourses.length>0 ? teacherCourses.map((course: any) => {
-                            const {id,  title, description, slug, duration, price, minimumskill,scholarshipavailable, published, thumbnail, courseContent} = course;                                    
-                            return (
-                                    <div key={id} onClick={()=>handleCourseClick(slug)}  className="item" data-aos="fade-up" data-aos-duration="500">
-                                        <h3>{title}</h3>
-                                        <img src={thumbnail === 'no-photo.jpg'?courseThumbnail: thumbnail} alt="courseThumbnail" />
-                                        <p>{description}</p>
-                                        <div className="cta-btn">
-                                            <Button type="primary" value="Watch Free preview" onClick={e=> console.log('watch free ')}/>
-                                            <Button type="primary" value="Get full Access" onClick={e=> console.log('get full access')}/>
-                                        </div>
-                                    </div>
-                            )
-                        })
-                        :
-                        <div className="empty-courses">
-                            <p>{teacherDetails.name} has no Courses yet </p>
-                            <div className="primary-btn">
-                                <button onClick={e=>history.push('/teachers')} className="btn">Check other instructor's courses</button>
-                            </div>
-                        </div>
-                    }
+            <div className="teacherDetails__courses">
+                <div className="title">
+                    <IconBtn type="book"/>
+                    <h2>{teacherDetails.name}'s Courses</h2>
                 </div>
+                <div className="items-wrapper">
+                { teacherCourses && teacherCourses.length>0 ? teacherCourses.map((course: any) => {
+                        const {id,  title, description, slug, duration, price, minimumskill,scholarshipavailable, published, thumbnail, courseContent} = course;                                    
+                        return (
+                                <div key={id} onClick={()=>handleCourseClick(slug)}  className="item" data-aos="fade-up" data-aos-duration="500">
+                                    <h3>{title}</h3>
+                                    <img src={thumbnail === 'no-photo.jpg'?courseThumbnail: thumbnail} alt="courseThumbnail" />
+                                    <p>{description}</p>
+                                    <div className="cta-btn">
+                                        <Button type="primary" value="Watch Preview" onClick={e=> console.log('watch free ')}/>
+                                        <Button type="primary" value="Get full Access" onClick={e=> console.log('get full access')}/>
+                                    </div>
+                                </div>
+                        )
+                    })
+                    :
+                    <div className="empty-courses">
+                        <p>{teacherDetails.name} has no Courses yet </p>
+                        <div className="primary-btn">
+                            <button onClick={e=>history.push('/teachers')} className="btn">Check other instructors</button>
+                        </div>
+                    </div>
+                }
                 </div>
             </div>
             </>

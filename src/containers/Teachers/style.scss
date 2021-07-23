@@ -861,7 +861,7 @@
         }
         .teacherList{
             display: grid;
-            grid-template-columns: repeat(2,25rem);
+            grid-template-columns: repeat(2,23rem);
             gap: 1rem;
             margin-top: 2rem;;
             .teacher-container .teacher img {
@@ -872,7 +872,7 @@
     }
     @media screen and (max-width: 700px){
         h1{
-            width: 100%;
+            width: 85%;
             margin: 0;
             margin-left: auto;
         }
@@ -883,7 +883,7 @@
         }
     }
     @media screen and (max-width:350px){
-        h1{ margin-left: -1.7rem;}
+        h1{ margin-left: -1.1rem;font-size: 1.75rem;}
     }
     @media screen and (max-width: 300px){
         h1 {
@@ -897,12 +897,12 @@
 
 .teacherDetails{
     background-color: #222222;
-    padding: 50px;
-    &--hero{
+    padding: 3rem 0;
+    max-height: fit-content;
+    &--container{
         background-color: #222222;
         display: flex;
         align-items: center;
-        height: 650px;
         color: white;
         background-image: url('../../assets//images/banner/banner1.jpg');
         background-repeat: no-repeat;
@@ -916,7 +916,7 @@
             top:0;
             z-index:1;
             width:100%;
-            height:715px;
+            height: 60%;
             background: #424242; /* Old browsers */
             background: -moz-linear-gradient(45deg, #424242 0%, #424242 100%); /* FF3.6-15 */
             background: -webkit-linear-gradient(45deg, #424242 0%,#424242 100%); /* Chrome10-25,Safari5.1-6 */
@@ -1044,6 +1044,89 @@
             }
         }  
         
+
+    }
+    @media screen and (max-width: 1030px){
+       
+    }
+    @media screen and (max-width: 700px){
+      
+    }
+    @media screen and (max-width:666px){
+        &--container {
+            background-image:none;
+            &:after{display: none;}
+        }
+        &__info{
+            width: 86% !important;
+            margin: 1rem;
+            height: 100% !important;
+            margin-top: 10vh!important;
+            .who__headers h2 {
+                font-size: 2rem;
+            }
+        }
+        &__courses{
+            background:whitesmoke;
+
+            .title{
+                background:#222222;
+                gap: 6rem;
+                width: 100%;
+                h2{font-size: 2rem; margin:0;}
+                .icon-btn {
+                    justify-content: center;
+                }
+            }
+            .items-wrapper{
+                background:#222222;
+                margin:0 !important;
+                .empty-courses{
+                    margin: 1rem;
+                    p{font-size: 1.5rem;}
+                    .primary-btn .btn{
+                        font-size: 1.25rem;
+                        min-width: 10rem;
+                        padding: 2rem;
+    
+                    }
+                }
+                .item{
+                    background:whitesmoke;
+                    border: 1px solid lightgray;
+                    .cta-btn Button {
+                        font-size: 1rem;
+                        height: 3rem;
+                        padding: 1rem 20px;
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
+        
+    }
+    @media screen and (min-width: 200px) and (max-width: 330px){
+        &__info{
+            .who__headers{
+                margin-left: .5rem !important;
+                h2{font-size: 1.5rem !important;}
+                
+            }
+        }
+        &__courses{
+            .title h2 {
+                font-size: 1.75rem;
+                margin-left: -2rem;
+            }
+            .items-wrapper{
+                .empty-courses .primary-btn .btn{
+                    font-size: 1.1rem;
+                }
+                .item .cta-btn Button {
+                    padding: 1rem;
+                }
+            }
+        }
 
     }
 }
