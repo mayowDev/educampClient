@@ -419,5 +419,79 @@
             p{font-size:.8rem; opacity:.7; margin:0}
         }
     }
+    @media screen and (max-width:666px){}
 
+    @media screen and (min-width: 200px) and (max-width: 380px){
+        &__contetnt{
+            display:flex;
+            flex-direction: column;
+            &--hero-section, &--briefIntro-section, &--cuririculum-section, &--requirement-section,&--reviews-section{
+                padding: 2rem;
+                .course-category {
+                    padding: 0;
+                    margin: 0;
+                    li{
+                        margin-right: 1rem;
+                        padding-right: .5rem;
+                        font-size: .79rem;
+                    }
+                }
+                h1{
+                    max-width: 90%;
+                    font-size: 1.2rem;
+                }
+                p{
+                    font-size: .9rem;
+                    max-width: 90%;
+                }
+            }
+            &--briefIntro-section{
+                padding:0;
+                &-container{
+                    width: 100%;
+                    padding: 0;
+                }
+                .course-objectives{
+                    li{
+                        padding: .8rem;
+                        font-size: 1rem;
+                        margin-left: -8px;
+
+                        &:before{
+                            padding-right: 0.8rem;
+                            margin: 0;
+                            margin-left: -2rem;
+                        }
+                    }
+                }
+                
+
+            }
+            &--cuririculum-section{
+                padding: 0;
+                &-header{width:100%}
+                .course-length {
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: baseline;
+                    ul{
+                        margin-left: -1.5rem;
+                        align-items: baseline;
+                        li{
+                            padding: 0 .5rem;
+                            list-style: none;
+                            margin-right: .15rem;
+                        }
+                    }
+                    button{ margin-left: 1rem;}
+                }
+                &-container{
+                    width: 95%;
+                    padding: .5rem;
+                
+                }
+            }
+        }
+        &__sidebar{display: none;}
+    }
 }
