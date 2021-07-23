@@ -123,16 +123,28 @@ const Courses = (props) => {
         nextArrow: <Arrow type="next" />,
         prevArrow: <Arrow type="prev" />,
         infinite: false,
-        responsive: [{
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              infinite: true,
-              initialSlide: 1,
-              autoplay: false,
+        responsive: [
+            {
+                breakpoint: 600,
+                settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                initialSlide: 1,
+                autoplay: false,
+                }
+            },
+            {
+                breakpoint: 1025,
+                settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                initialSlide: 3,
+                autoplay: false,
+                }
             }
-          }]
+        ]
     };
     const renderCourses = () =>
         courses&&courses.map((course) => (

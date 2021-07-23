@@ -268,8 +268,32 @@ p, h1, h2, h3, h4, ul, ol {
             }
         }
     }
-    @media screen and (max-width: 1025px){
-       
+    // ipad
+    @media screen and (min-width: 700px) and (max-width: 1025px){
+        padding: 0 2rem;
+        &__hero{
+            background-position: center;
+            &--search-box {margin-left: 1rem;}
+            &--search-result {
+                left: 12%;
+                top: 12%;
+                width: 55%;
+                margin-left: 0;
+                padding: .5rem;
+            }
+        }
+    }
+    // ipad-pro
+    @media screen and (min-width: 1020px) and (max-width: 1025px){
+        &__hero{
+            &--search-result {
+                left: 9% !important;
+                top: 7.5%;
+                width: 41% !important;
+                margin-left: 0;
+                padding: .5rem;
+            }
+        }
     }
     @media screen and (max-width: 680px){
         padding: 0 10px;
@@ -309,6 +333,7 @@ p, h1, h2, h3, h4, ul, ol {
                 &--item{
                     width: 44%;
                     margin-left: .5rem;
+                    .content h3{font-size: 1rem;}
                 }
             }
         }
@@ -340,6 +365,11 @@ p, h1, h2, h3, h4, ul, ol {
                 margin-left: .5rem;
             }
         }
+        .featured{
+            &__items{          
+                &--item .content h3{font-size: 1rem !important;}
+            }
+        }
     }
     @media screen and (min-width:200px) and (max-width:350px){
         padding: 0 10px;
@@ -361,6 +391,11 @@ p, h1, h2, h3, h4, ul, ol {
                 margin-left: 1rem;
             }
         }
+        .featured{
+            &__items{          
+                &--item .content h3{font-size: .95rem !important;}
+            }
+        }
     }
 }
 .categories{
@@ -378,7 +413,6 @@ p, h1, h2, h3, h4, ul, ol {
         &--item{
             display: flex;
             flex-direction: column;
-            // align-items: center;
             width: 300px;
             border: 1px solid lightgray;
             border-radius: .5rem;
@@ -386,16 +420,27 @@ p, h1, h2, h3, h4, ul, ol {
             h3{
                 padding: .5rem;
             }
-            // margin-bottom: 1rem;
         }
     }
-    @media screen and (max-width:785px){
+    @media screen and (min-width: 700px) and (max-width:1025px){
         &__items {
+            padding: 0;
             &--item{
                 align-items: center;
                 img{display: none;}
+                width: 13rem !important;
+                flex-wrap: wrap;
+                height: 4rem  !important;
+                h3{padding:0 !important;}
             }
         }
+    }
+    @media (max-width:680px){
+        margin-bottom:1rem;;
+        &__items--item{
+            img{display: none;}
+        }
+        
 
     }
     @media screen and (min-width:355px) and (max-width:365px){
@@ -467,7 +512,7 @@ p, h1, h2, h3, h4, ul, ol {
     }
     @media screen and (max-width: 680px){
         background: white;
-        margin: 3rem 0;
+        margin: 0;
         .container{
             flex-direction: column;
             img{
@@ -484,6 +529,19 @@ p, h1, h2, h3, h4, ul, ol {
                 button{width: 100%;}
             }
             
+        }
+    }
+    @media screen and (min-width: 700px) and (max-width: 1025px){
+        margin: 0;
+        .container{
+            flex-direction: column;
+            align-items: center;        
+            img{    
+                position: inherit;
+                width: 50%;
+                height: 80%;
+            }
+            .content{right: 0%; h2,p{text-align:center}  button{margin: auto;}}
         }
     }
 }
@@ -515,9 +573,14 @@ p, h1, h2, h3, h4, ul, ol {
             flex-wrap: wrap;
             img{
                 width: 25%;
-                // margin: 1rem;
                 padding: 1rem;
             }
+        }
+    }
+    @media screen and (min-width:700px)and (max-width:775px){
+        .companies img{
+                width: 40%;
+                margin: .5rem;
         }
     }
 }
@@ -552,5 +615,10 @@ p, h1, h2, h3, h4, ul, ol {
         color: white;
     }
 }
-
-
+.slick-active, .slick-slide{
+    margin-right: 3rem !important;
+}
+.slick-slider, .slick-track{
+    max-height: 20rem !important;
+    overflow: inherit !important;
+}
