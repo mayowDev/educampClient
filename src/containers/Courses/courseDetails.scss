@@ -419,14 +419,17 @@
             p{font-size:.8rem; opacity:.7; margin:0}
         }
     }
-    @media screen and (max-width:666px){}
+    // @media screen and (max-width:666px){}
 
-    @media screen and (min-width: 200px) and (max-width: 380px){
+    @media screen and (min-width: 200px) and (max-width: 666px){
         &__contetnt{
             display:flex;
             flex-direction: column;
             &--hero-section, &--briefIntro-section, &--cuririculum-section, &--requirement-section,&--reviews-section{
                 padding: 2rem;
+                height: fit-content;
+            }
+            &--hero-section{
                 .course-category {
                     padding: 0;
                     margin: 0;
@@ -436,13 +439,29 @@
                         font-size: .79rem;
                     }
                 }
+                .mobile-hero{
+                    .courseDetails__sidebar--course-intro {
+                        min-height: 10rem;
+                        background-image:url('../../assets/images/coursesThumbnails/react-thumbnail.jpg');
+                        margin-top: 1rem;
+                        border-radius: 10px;
+
+                    }
+                }
                 h1{
-                    max-width: 90%;
+                    min-width: 90%;
                     font-size: 1.2rem;
                 }
                 p{
                     font-size: .9rem;
-                    max-width: 90%;
+                    min-width: 90%;
+                }
+                .btn-actions{
+                    flex-direction: column;
+                    .actions-icons{
+                        justify-content: center;
+                        width: 100%;
+                    }
                 }
             }
             &--briefIntro-section{
@@ -490,6 +509,10 @@
                     padding: .5rem;
                 
                 }
+            }
+            &--reviews-section{
+                width: 95%;
+                padding: 1rem
             }
         }
         &__sidebar{display: none;}

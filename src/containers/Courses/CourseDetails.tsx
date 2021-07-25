@@ -91,6 +91,12 @@ const CourseDetails = (props) => {
                                 <li><Link to="#">Web Development</Link></li>
                                 <li><Link to="#">React</Link></li>
                             </ul>
+                            <div className="mobile-hero">
+                                <div className="courseDetails__sidebar--course-intro">
+                                    <IconBtn onClick={()=>console.log("play preview course")} className="play-btn" type="play"/>
+                                    <h4>Preview this course</h4>
+                                </div>
+                            </div>
                             <h1>{details&&details.title}</h1>
                             <p>{details.description}</p>
                             <Rating/>
@@ -213,7 +219,7 @@ const CourseDetails = (props) => {
                         <h4>Preview this course</h4>
                     </div>
                     <div className="course-price">
-                        <span>{isFree? 'Free' : `$${details.price} .99`}</span>
+                        <span>{isFree? 'Free' : `$${details.price}.99`}</span>
                         <div className="warning">
                             <span className="fa fa-clock-o"/>
                             <p>12 hours left at this price!</p>
