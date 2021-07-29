@@ -32,6 +32,7 @@
                     }
                 }
             }
+            .mobile-hero{display: none;}
             h1{
                 color: whitesmoke;
                 margin-bottom: .8rem;
@@ -440,6 +441,7 @@
                     }
                 }
                 .mobile-hero{
+                    display: block;
                     .courseDetails__sidebar--course-intro {
                         min-height: 10rem;
                         background-image:url('../../assets/images/coursesThumbnails/react-thumbnail.jpg');

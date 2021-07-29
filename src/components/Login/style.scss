@@ -1,0 +1,252 @@
+/* Login component */
+.login{
+	display:flex;
+	width: 100%;
+	height: 100vh;
+	background: #f6f7fc;
+	position: relative;
+	&__form-container {
+		width: 100%;
+		background: #f6f7fc; 
+		align-self: center;		
+	}
+	&__form-block {
+		flex-direction: row;
+		align-items:center;
+		justify-content:center;
+		max-width: 500px;
+    	min-height: 500px;
+  	    background: white;
+    	margin: auto;
+    	padding: 50px;	
+		-webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);
+		box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2); 
+		.heading{
+			text-align: center;
+			h2{
+				font-size: 30px!important;
+			}
+			p a{
+				font-size: 18px;
+				color: black;
+				text-decoration: underline;
+				padding-bottom: 0px;
+			}
+		} 
+		form{
+			.icons{
+				display: flex;
+				gap: 1rem;
+				.auth-btn{
+					height:55px;
+					line-height: 2.5;
+					text-align: center;
+					color: white;
+				}
+				.fb {
+					background: #3b5998;
+					color: #fff; 
+			  	}
+				.gl {
+					background:  #ea4335;
+					color: white;
+					margin: 20px 0;
+					box-shadow: 0px 10px 55px 10px rgba(0, 0, 0, 0.1);
+					img{
+					display: none!important;
+					width: 30px;
+					margin-right: 15px;
+					padding-bottom: 3px;
+					vertical-align: middle;
+					border-style: none
+					}
+				}
+			}
+		}
+	}
+	@media screen and (max-width:450px){
+		&__form-block {
+			padding: 25px;
+    		padding-bottom: 16px !important;
+    		min-height: 100vh !important;
+			margin-bottom:0;
+		}
+    }
+    @media screen and (max-width: 350px){
+		padding-bottom: 100px;
+        &__form-block {
+			padding: 25px;
+			padding-bottom: 0 !important;
+			min-height: 100vh !important;
+			margin-bottom: -87px;
+			form{
+				.icons{
+					display: flex;
+					flex-direction: column;
+					.auth-btn{
+						height:55px;
+						width: 100%;
+					}
+				}
+			}
+		}
+
+    }
+	@media (max-width: 767.98px) {	
+		&__form-block {
+			padding: 25px;
+    		padding-bottom: 16px !important;
+    		min-height: 100vh !important;
+			form{
+				.icons{
+					display: flex;
+					flex-direction: column;
+					.auth-btn{
+						height:55px;
+						width: 100%;
+					}
+				}
+			}
+		}
+		
+	} 
+	
+}
+.btn-block, input[type=button].btn-block,  input[type=submit].btn-block {
+    // width: 100%;
+	// font-size:18px;
+	// color: white;
+	// line-height: 2.5;
+	// cursor: pointer;
+	// border: none;
+	width: 50%;
+    font-size: 1.2rem;
+    color: white;
+    line-height: 2.5;
+    cursor: pointer;
+    border: none;
+    margin: auto;
+}
+.seprater{
+	text-align: center;
+    display: block;
+	margin: 1rem
+}
+ 
+.form-group {
+	display:flex;
+	flex-direction: column;
+	margin-bottom: 25px;
+	font-size:18px;
+	label{
+		text-transform: capitalize;
+		margin: 10px;
+	}
+	input{
+		background: aliceblue;
+		padding: 20px;
+		border: none;
+		border-radius: 4px;
+		width: 90%;
+		&:active{
+			-webkit-box-shadow: none;
+			box-shadow: none; 
+		}
+	}
+}
+
+.hide-show{
+	display: flex;
+    flex-direction: column;
+	.checkbox-group{    
+		display: flex;
+		justify-content: space-between;
+		width: 95%;
+		span{cursor: pointer;}
+	}
+	.password-group{
+		display: flex;
+		flex-direction: column;
+		label{
+			text-transform: capitalize;
+			margin: 10px;
+		}
+		.random-password{
+			// display: none;
+			button{cursor: pointer;}
+		}
+		input{
+			background: aliceblue;
+			padding: 20px;
+			border: none;
+			border-radius: 4px;
+			width: 90%;
+			outline:none;
+			&:active{
+				-webkit-box-shadow: none;
+				box-shadow: none; 
+				.random-password{
+					display: block;
+					background-color:red;
+				}
+			}
+		}
+		
+	}
+}
+  
+.forgot-remember{
+	color: black!important;
+	display: flex;
+	justify-content: space-between;
+	margin: 15px;
+	a {
+		color: #888;
+		text-decoration: underline!important; 
+	}
+}
+.btn-primary{
+	width: 100%!important;
+	margin-top: .5rem;
+}
+.error-message{
+	font-size: .9rem;
+	text-transform: lowercase;
+	color: red;
+	padding: .2rem .5rem;
+}  
+.input-error{
+	border-bottom: 2px solid red !important;
+}
+.disabled{
+	opacity: .5;
+	cursor: not-allowed !important;
+}
+.control {
+	color: #888; 
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+	cursor: pointer;
+	input{
+		cursor: pointer;
+		height: 15px;
+		width: 20px
+	}
+}
+
+  
+.btn {
+	text-decoration: none !important; 
+	display: inline-block;
+    text-align: center;
+    line-height: 2.5;
+}
+
+.btn-primary{
+	background-color: black;
+	border-color:black;
+	height:55px;
+	width: 100%;
+}
+

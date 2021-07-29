@@ -1,8 +1,6 @@
 import React,{useState, useEffect,  Fragment} from 'react';
 import {Link, useHistory, useParams} from 'react-router-dom'
-// import Card from "../../components/Card";
 // import {ICourseDetails} from './types';
-// import sampleImage from '../../assets/images/coursesThumbnails/react-thumbnail.jpg';
 import IconBtn from '../../components/IconBtn';
 import ShareBtn from '../../components/ShareBtn'
 import Rating from '../../components/Rating'

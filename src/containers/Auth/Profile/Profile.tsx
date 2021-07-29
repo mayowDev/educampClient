@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { useHistory} from 'react-router-dom'
 import {toast} from 'react-toastify'
-import { P2,  Title, H3} from '../../../components/Typography'
+import { P2, H3} from '../../../components/Typography'
 // import Input from '../../../components/Input'
 import Button from '../../../components/Button'
 import Spinner from '../../../components/Spinner'
-// import Card from '../../../components/Card'
 // import Pagination from "../../../components/Common/Pagination";
 // import MaterialPagination from "../../../components/Common/materialPagination";
 // import { paginate } from "../../../utils/paginate";

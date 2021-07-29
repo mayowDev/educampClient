@@ -16,7 +16,17 @@ import HeroImg from '../../assets/images/teachers/teachHeromobile.jpg'
 type IActiveTab = 'plan' | 'record' | 'launch'
 const TeacherBoarding = () => {
     const [activeTab, setActiveTab] = useState<IActiveTab>('plan');
-
+    const handleTeacherBoarding = ()=> {
+        console.log('handleTeacherBoarding')
+    }
+    const renderTeacherBoardingFormat = () => {
+        //if user clicks outside this form close the popup
+        return(
+            <section id="" className="teacherBoarding__auth-popup">
+          
+            </section>
+        )
+    }
     return (
         <ScrollAnimation>
             <div className="teacherBoarding">
@@ -137,7 +147,7 @@ const TeacherBoarding = () => {
                                     And, our instructor dashboard and curriculum pages help keep you organized.
                                 </p>
                             </div>
-                            <img src={PlanImage} alt="plan-your-cuririculum" />
+                            <img src={require('../../assets/images/teachers/plan-your-curriculum.jpg')} alt="plan-your-cuririculum" />
                         </div>
                     </Accordion>
                     <Accordion title="Record your video">

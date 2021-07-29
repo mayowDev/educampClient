@@ -3,7 +3,6 @@ import Login from './Login'
 import {login, loginWithGoogle, loginWithFacebook} from '../redux/actions'
 import './style.scss';
 const mapStatesToProps = ({auth}) => {
-    // console.log('auth login ',auth);
     return {
         isLoggedIn: auth.isLoggedIn,
         isApiError: auth.isApiError,
