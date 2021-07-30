@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 import Accordion from '../../components/Accordion'
-
+import Login from '../../components/Login'
 import teachWay from '../../assets/icons/teachWay.jpg'
 import inspire from '../../assets/icons/inspire.jpg'
 import getRewarded from '../../assets/icons/getRewarded.jpg'
@@ -16,14 +16,16 @@ import HeroImg from '../../assets/images/teachers/teachHeromobile.jpg'
 type IActiveTab = 'plan' | 'record' | 'launch'
 const TeacherBoarding = () => {
     const [activeTab, setActiveTab] = useState<IActiveTab>('plan');
-    const handleTeacherBoarding = ()=> {
-        console.log('handleTeacherBoarding')
+    const [isPopUpOpen, setIsPopUpOpen] = useState<boolean>(false);
+    const handleTeacherBoarding = (e)=> {
+        e.preventDefault();
+        setIsPopUpOpen(!isPopUpOpen)
     }
-    const renderTeacherBoardingFormat = () => {
-        //if user clicks outside this form close the popup
+    const renderPopupForm = ()=>{
         return(
-            <section id="" className="teacherBoarding__auth-popup">
-          
+            <section onClick={handleTeacherBoarding} className={`teacherBoarding__auth-popup${isPopUpOpen ?'-active' : ''}` }>
+                {/*Todo: display if isLogedin? <Signup/>: <Signup/> */}
+                <Login/>
             </section>
         )
     }
@@ -36,10 +38,11 @@ const TeacherBoarding = () => {
                         <h2>Come Teach with us</h2>
                         <p>Become an instructor and change lives — including your own</p>
                         <div className="cta-btn">
-                            <button onClick={()=>console.log('handle taecher boarding deisgn ')} className="btn primary-btn">{ 'Get Started' }</button>
+                            <button onClick={handleTeacherBoarding} className="btn primary-btn">{ 'Get Started' }</button>
                         </div>
                     </div>
                 </div>
+                {renderPopupForm()}
                 <div className="teacherBoarding__reasons">
                     <h3>so many reasons to start</h3>
                     <div className="teacherBoarding__reasons--items">
@@ -202,7 +205,7 @@ const TeacherBoarding = () => {
                 <div className="teacherBoarding__cta" >
                         <h3>Become an instructor today</h3>
                         <p> Join the world’s largest online learning marketplace.</p>
-                        <button>Get started </button>
+                        <button onClick={handleTeacherBoarding}>Get started </button>
                 </div>
             </div>
         </ScrollAnimation>

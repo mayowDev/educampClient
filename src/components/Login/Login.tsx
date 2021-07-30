@@ -43,7 +43,7 @@ const Login = (props) => {
     if(isLoggedIn) return <Redirect to={"/"} />
 
     return (
-        <div className="login">
+        <div className="login" onClick={(e)=> e.stopPropagation()}>
             <div className="login__form-container">
                 <div className="login__form-block">
                     <div className="heading">
