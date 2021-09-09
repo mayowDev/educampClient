@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Redirect, Link} from 'react-router-dom';
 
 const Login = (props) => {
-    const {isLoggedIn, onLoginWithGoogle, onLoginWithFacebook, onLogin, title, subtitle, subtitleLinkTo, type} = props
+    const {isLoggedIn, onLoginWithGoogle, onLoginWithFacebook, onLogin, title, subtitle, subtitleLinkTo} = props
     const [user, setUser] = useState({ email:'', password:''})
     const [remember, setRemember] = useState(false)
     const [visible, setVisible] = useState(false);

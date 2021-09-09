@@ -29,7 +29,6 @@ const Login = ({ isLoggedIn, loginWithGoogle, loginWithFacebook, login}) => {
     return (
         <LoginForm
             title="Login in"
-            type="login"
             subtitle="Don't have an Account? "
             subtitleLinkTo="/register"
             onLogin={onLoginSubmit}

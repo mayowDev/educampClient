@@ -111,9 +111,10 @@ const Header = (props) => {
                                 <MenuItem value='Instructors' to="/teachers" className={isLinkActive('/teachers')}/>
                             </li>
                             <li >
-                                <Dropdown type="primary" icon={<MenuItem value='Teach on Educamp' to="/teach" className={isLinkActive('/teach')}/> }>
-                                    <div className="dropdown-items">Turn what you know into an opportunity and reach millions around the world.</div>
-                                </Dropdown>
+                                {/* <Dropdown type="primary" icon={<MenuItem value='Teach on Educamp' to="/teach" className={isLinkActive('/teach')}/> }/> */}
+                                    {/* <div className="dropdown-items">Turn what you know into an opportunity and reach millions around the world.</div> */}
+                                {/* </Dropdown> */}
+                                <MenuItem value='Teach on Educamp' to="/teach" className={isLinkActive('/teach')}/>
                             </li>
                             <li  className={!isAuthenticated ? 'not-logged-in' : ''}>
                                 {

@@ -3,7 +3,6 @@
 @import "../assets/fonts/fonts.css";
 
 html{
-    overflow-y: scroll;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -12,6 +11,7 @@ html{
 body {
     margin: 0;
     padding: 0;
+    overflow-y: scroll;
     &.overflow-hidden {
         overflow: hidden;
     }
@@ -203,6 +203,7 @@ button, input[type="button"]{
     transition: all 0.4s ease-in-out;
     padding: 0;
     margin: 0;
+    width:100vw;
     overflow: hidden;
     box-sizing: border-box;
 }

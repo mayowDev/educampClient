@@ -1,11 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {Redirect, Link, useHistory} from 'react-router-dom'
-// import Logo from '../../../assets/images/Logo-small.png';
-import Google from '../../../assets/images/icon-google.png';
 import Button from '../../../components/Button'
-import { Paragraph, H2 } from '../../../components/Typography';
+import { Paragraph } from '../../../components/Typography';
 import Spinner from '../../../components/Spinner';
-import Sidebar from '../../../components/Sidebar';
 
 import {ISignUpProps, ITypeSignUp} from '../types'
 
@@ -38,9 +35,12 @@ const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn, registe
              setUser({name: '', email:'', password:'', confirmPassword:'', role:'student'});
         }
         catch(e) {
-            console.log('signupError',e.message);
+            console.log('signupError',e);
             setUser({name: '', email:'', password:'', confirmPassword:'', role:'student'});
         }
+    }
+    const onUserRoleChange= (e)=>{
+        setUser({...user, role:e.target.value});
     }
     const handleSignupWithGoogle =(e)=>{
         try {
@@ -129,7 +129,7 @@ const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn, registe
                                         name="password"   
                                         onChange={handleInputChange} 
                                         value={user.password} type={visible?"text":"password"} 
-                                        className={`form-control ${!validPassword()?'input-error':''}`} 
+                                        className={`form-control ${!validPassword()&& user.confirmPassword.length > 0?'input-error':''}`} 
                                         placeholder="Your Password" id="password"
                                     />
                                     {!validPassword()&& user.password.length > 0&&
@@ -145,8 +145,15 @@ const Signup = ({signup, resetPage, isLoading, isRegistered, isLoggedIn, registe
                                     value={user.confirmPassword}
                                 />
                                 {!confirmPasswordValid() && user.confirmPassword.length > 0&&
-                                    <span className="error-message">{'confirm password should match password'}</span>
+                                    <span className="error-message">{'confirmPassword should match password'}</span>
                                 }
+                            </div>
+                            <div className="user-role">
+                                <label className="role-label ">Select role</label>
+                                <select name="role-options" id="roles" onChange={onUserRoleChange} value={user.role} >
+                                    <option value='teacher'>Teacher</option>
+                                    <option selected value='student'>Student</option>
+                                </select>
                             </div>
                             <input onClick={onSignUpSubmit} type="submit" value="Sign Up" className={`btn-block btn-primary ${!allInputsAreValid()&&'disabled'}`}/>
                             <span className="seprater">OR</span>    

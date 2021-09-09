@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 import Accordion from '../../components/Accordion'
-import Login from '../../components/Login'
+import {TeacherAuthModal} from './TeacherAuth'
 import teachWay from '../../assets/icons/teachWay.jpg'
 import inspire from '../../assets/icons/inspire.jpg'
 import getRewarded from '../../assets/icons/getRewarded.jpg'
@@ -12,21 +12,56 @@ import Teacher from '../../assets/images/teachers/teacher.jpg'
 import support1 from '../../assets/images/support1.jpg'
 import support2 from '../../assets/images/support2.jpg'
 import HeroImg from '../../assets/images/teachers/teachHeromobile.jpg'
+import Login from '../../components/Login';
 
 type IActiveTab = 'plan' | 'record' | 'launch'
-const TeacherBoarding = () => {
+const TeacherBoarding = ({isLoggedIn, loginWithGoogle, loginWithFacebook, login}) => {
     const [activeTab, setActiveTab] = useState<IActiveTab>('plan');
     const [isPopUpOpen, setIsPopUpOpen] = useState<boolean>(false);
+    const onLoginSubmit = user => {
+        try {
+            login(user)  
+        } catch (error) {
+            console.error(error);
+        }    
+    }
+    const handleLoginWithFacebook =(e)=>{
+        try {
+            e.preventDefault();
+            loginWithFacebook();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    const handleLoginWithGoogle =(e)=>{
+        try {
+            e.preventDefault();
+            loginWithGoogle();
+        } catch (error) {
+            console.error(error);
+        }
+    }
     const handleTeacherBoarding = (e)=> {
         e.preventDefault();
         setIsPopUpOpen(!isPopUpOpen)
     }
     const renderPopupForm = ()=>{
         return(
-            <section onClick={handleTeacherBoarding} className={`teacherBoarding__auth-popup${isPopUpOpen ?'-active' : ''}` }>
-                {/*Todo: display if isLogedin? <Signup/>: <Signup/> */}
-                <Login/>
-            </section>
+            <TeacherAuthModal 
+            isPopUpOpen={isPopUpOpen}
+            onClick={handleTeacherBoarding} 
+            children={
+            <Login
+              title="Login in"
+              subtitle="Don't have an Account? "
+              subtitleLinkTo="/register"
+              onLogin={onLoginSubmit}
+              onLoginWithFacebook={handleLoginWithFacebook}
+              onLoginWithGoogle={handleLoginWithGoogle}
+              isLoggedIn={isLoggedIn}
+             />
+            }
+            />
         )
     }
     return (
