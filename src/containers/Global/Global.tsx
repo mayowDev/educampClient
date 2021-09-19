@@ -3,7 +3,6 @@ import {BrowserRouter, Switch, Route, Redirect, useHistory} from 'react-router-d
 import qs from 'querystring';
 import NotFound from "../../views/404/NoFound";
 import {LOCAL_STORAGE_KEYS} from "../../components/Constants"
-import ProtectedRoute from '../../components/Common/protectedRoute'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Login from '../Auth/Login';
@@ -16,7 +15,7 @@ import Courses from "../Courses";
 import Teachers from '../Teachers'
 import Cart from '../Cart'
 import Favourites from '../Favourites';
-// import  from '../Teachers'
+
 const RenderRoutes = ({isLoggedIn}) => {  
     return (
             <Switch>
@@ -38,6 +37,8 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/teachers" component={Teachers.Teachers}/>
                 <Route exact path="/teachers/:slug" component={Teachers.TeacherDetails}/>
                 <Route exact path="/teach" component={Teachers.TeacherBoarding}/>
+                <Route exact path="/teacher-profile" component={Teachers.TeacherProfile}/>
+
 
                 <Route exact path="/cart" component={Cart.Cart}/>
                 <Route exact path="/favourites" component={Favourites}/>
@@ -67,7 +68,9 @@ const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems,  getCa
         }
     },[userProfile&&userProfile.id, isLoggedIn]); 
     useEffect(() => {
+        // console.log('userProfile', userProfile);
         if(isLoggedIn){
+            // console.log('isLoggedIn', isLoggedIn);
             getUserData();  
         }
         fetchCourses();

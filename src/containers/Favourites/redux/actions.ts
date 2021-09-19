@@ -5,7 +5,7 @@ export const getWishlistItems = () => async dispatch => {
   try {
     dispatch({type:LOADING})
     const response = await API.getFavouriteItems();
-    if(response&&response.success) return dispatch({type: GET_FAVOURITE_ITEMS, payload: response.favourites.items})
+    if(response&&response.success) return dispatch({type: GET_FAVOURITE_ITEMS, payload: response.favourites?.items})
   } catch (error) {
     console.log('getFavouritesError', error);
     return dispatch({type: API_ERROR})

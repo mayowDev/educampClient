@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import TeachersList from './TeachersList'
 import TeacherDetails from './TeacherDetails'
 import TeacherBoarding from './TeacherBording'
-// import Teacher from './Teacher';
+import TeacherProfile from './TeacherProfile';
 import {getAllTeachers, getTeacher, getTeacherByName} from './redux/actions'
 import {login, loginWithGoogle, loginWithFacebook} from '../Auth/redux/actions'
 
@@ -29,8 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default {
     Teachers: connect(mapStateToProps, mapDispatchToProps)(TeachersList),
+    TeacherProfile: connect(mapStateToProps, mapDispatchToProps)(TeacherProfile),
     TeacherBoarding: connect(mapStateToProps, mapDispatchToProps)(TeacherBoarding),
-    // AddTeacher: connect(mapStateToProps, mapDispatchToProps)(CreateTeacher),
-    // EditTeacher: connect(mapStateToProps, mapDispatchToProps)(EditTeacher),
     TeacherDetails: connect(mapStateToProps, mapDispatchToProps)(TeacherDetails)
 }

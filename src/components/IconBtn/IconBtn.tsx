@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import down from '../../assets/icons/down.svg';
 import info from '../../assets/icons/info.svg';
 import user from '../../assets/icons/user.svg';
@@ -13,16 +15,18 @@ import arrow2 from '../../assets/icons/arrow-down.svg'
 import back from '../../assets/icons/bold-back.svg';
 import cross from '../../assets/icons/bold-cross.svg';
 import question from '../../assets/icons/question.svg';
+import setting from '../../assets/icons/setting.svg';
 import favourite2 from '../../assets/icons/favourite2.svg';
 import favouriteOn2 from '../../assets/icons/favouriteOn2.svg';
 import heart from '../../assets/icons/heart.svg';
 import cart from '../../assets/icons/shopping-cart.svg'
 import map from '../../assets/icons/map.svg';
 import book from '../../assets/icons/books.svg'
+import whiteBook from '../../assets/icons/white-book.svg'
+
 import play from '../../assets/icons/play-button.svg'
 import loadingBtn from '../../assets/icons/Loading-Button.svg'
 import { IIconBtnProps } from './types';
-import { Link } from 'react-router-dom';
 
 
 const Icon = {
@@ -47,7 +51,9 @@ const Icon = {
     cart,
     book,
     play,
-    loadingBtn
+    loadingBtn,
+    setting,
+    whiteBook
 };
 
 const IconBtn:React.FC<IIconBtnProps> = ({type, badge, onClick, to, className, secondary, onMouseEnter, onMouseLeave, noHover, onMouseDown, onMouseUp}) => {
@@ -66,6 +72,7 @@ const IconBtn:React.FC<IIconBtnProps> = ({type, badge, onClick, to, className, s
                      ${type === 'book' ? 'book' : ''} 
                      ${type === 'play' ? 'play' : ''} 
                      ${type === 'arrow2' ? 'arrow2' : ''} 
+                     ${type === 'setting' ? 'setting' : ''} 
                      ${type === 'loadingBtn' ? 'loadingBtn' : ''} 
                      ${(type === 'back' || type === 'next') ? 'arrow' : ''}`}
                  src={!secondary ? Icon[type] : Icon[type + "Secondary"]}

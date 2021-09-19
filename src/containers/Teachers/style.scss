@@ -1145,6 +1145,87 @@
 
     }
 }
+.teacherProfile{
+    display: flex;  
+    p{color:white;}
+    &__sidebar{
+        max-width: 25vw;
+        display: flex;
+        flex-direction: column;
+        background:rgb(92, 4, 92);
+        height: 95vh;
+        color: #fff !important;
+        &>button{
+            margin:  1rem;
+            min-width: 3rem;
+            min-height: 3rem;
+            background-color: transparent;
+            color: gray;
+            border: 1px solid gray;
+        }
+    }
+    &__content{
+        width: 75vw;
+        margin-left: 10rem;
+        &--cta{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3rem;
+            border: 2px solid lightgray;
+            margin-top: 3rem;
+            div{
+                display: flex;
+                button > img{
+                    max-height: 4rem;
+                }
+                p{    
+                    color: black;
+                    font-size: 1.25rem;
+                    opacity: 0.75;
+                    margin-left: 5rem;
+                }
+            }
+            .cta-btn{
+                button{
+                    padding: 1rem 3rem;
+                    background-color: #E44F4F !important;
+                    color: white;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    border: none;
+                }                
+            }
+        }
+        &--support{
+            display:flex;
+            flex-direction: column;
+            h5{width:100%}
+            .figures-container{
+                display:flex;
+                // flex-direction: column;
+            }
+            figure{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                max-width: 200px;
+                padding: 2rem 1rem;
+                background-color: lightgray;
+                
+                figcaption{
+                    text-align: center;
+                    max-width: 14rem;
+                }
+            }
+            
+        }
+        
+        
+    }
+}
 .pop-div{
     background: rgba(black, .9);
     .child{

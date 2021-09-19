@@ -20,7 +20,7 @@ export default(state = initialState, action)=>{
         case GET_FAVOURITE_ITEMS: 
             return {
                 ...state,
-                favouriteItems: [...action.payload],
+                favouriteItems: action?.payload? [...action.payload]:[],
                 lastFetch: Date.now(),
                 loading: false,
                 apiError:false
