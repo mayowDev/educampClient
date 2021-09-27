@@ -5,7 +5,6 @@ import Slider from "react-slick";
 import courseThumbnail from '../../assets/images/coursesThumbnails/react-thumbnail.jpg';
 import Spinner from '../../components/Spinner';
 import SearchResult from '../../components/SearchResult';
-import Accordion from '../../components/Accordion';
 import ScrollAnimation from '../../components/ScrollAnimation/ScrollAnimation';
 import IconBtn from '../../components/IconBtn';
 import Categories from './Categories';
@@ -165,7 +164,6 @@ const Courses = (props) => {
                         <div className="cart-btn">
                             <button onClick={()=>handleAddToCart(course.id)} className="btn">Add to Cart</button>
                         </div>
-                        {/* <Heart/> */}
                             <IconBtn onClick={()=>handleAddToWishlist(course.id)} className={isFavourite? 'icon-btn--favourite' : ''} type="heart"/>                        
                     </div>
 
@@ -279,7 +277,7 @@ const Courses = (props) => {
                         <p> Top instructors from around the world teach millions of students on Educamp.
                             We provide the tools and skills to teach what you love.
                         </p>
-                        <button>Start Teaching today</button>
+                        <button onClick={() => history.push('/teach')}>Start Teaching today</button>
                     </div>
                 </div>
             </div>

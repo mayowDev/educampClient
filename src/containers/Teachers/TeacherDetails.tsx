@@ -7,11 +7,12 @@ import Button from '../../components/Button';
 import Spinner from '../../components/Spinner';
 
 const TeacherDetails = (props) => {
+    const {teacherDetails, getTeacherByName, loading} = props;
+
     const [teacherCourses, setTeacherCourses] = useState([])
     const [isNull, setIsNull] = useState(false)
-
-    const {teacherDetails, getTeacherByName, loading} = props;
     const history = useHistory()
+    
     const teacherSlug = props.match.params.slug;
     useEffect(() => {
         if(teacherDetails &&  teacherDetails.slug !==teacherSlug){
@@ -32,12 +33,11 @@ const TeacherDetails = (props) => {
         history.push(`/courses/${slug}`)
     }
     if(isNull&& loading === false) {
-        // history.replace('/teachers')//dont use history here it throws warning Cannot update during an existing state transition 
         window.location.href = "/404"
     }
     return (
         <>
-            {loading === true?<Spinner type="cover" />:
+            {isNull&& loading ?<Spinner type="cover" />:
             <>
             <div className="teacherDetails teacherDetails--container">
                 <div className="teacherDetails__info">
