@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import { useHistory} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import { P2, H3} from '../../../components/Typography'
-// import Input from '../../../components/Input'
 import Button from '../../../components/Button'
 import Spinner from '../../../components/Spinner'
 // import Pagination from "../../../components/Common/Pagination";
@@ -11,8 +10,7 @@ import Spinner from '../../../components/Spinner'
 
 
 const Profile = (props) => {    
-    const {courses, updateProfileImage, updatePassword, updateProfileData, isProfileUpdated, 
-        isProfileImgUpdated, userProfile, logout, deleteCourse, deleteAccount, isCourseDeleted} = props;
+    const {updateProfileImage, updatePassword, updateProfileData, userProfile, logout, deleteAccount} = props;
     
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -25,28 +23,25 @@ const Profile = (props) => {
     const [photoChanged,setPhotoChanged] = useState(false)
     const [photoFile, setPhotoFile] = useState('')
     const [photo, setPhoto] = useState('');
-    const [currentPage,setCurrentPage] =  useState(0);
+    // const [currentPage,setCurrentPage] =  useState(0);
     const [isLoading, setIsLoading] = useState(true);
     // const [pageSize, setPageSize] = useState(6)
-    const [currentUserCourses, setUserCourses] = useState([])
+    // const [currentUserCourses, setUserCourses] = useState([])
     const [activeTab, setActiveTab] = useState('details');
     const history = useHistory()
 
     useEffect(() => {
-        // if(userProfile && userProfile.id){
-            const {  name, email, avatar, courses } = userProfile;
+            const {  name, email, avatar } = userProfile;
             setIsLoading(false)
             setName(name);
             setEmail(email);
             setPhoto(avatar)   
-            if(courses && courses.length > 0){ 
-                const myCourses = courses.map(course=> course.UserId === userProfile.id && course )
-                setUserCourses(myCourses)
-            }  
-        // }//this works fine for profile
-        console.log('isLoading',isLoading, '!!userProfile', !!userProfile.id)
+            // if(courses && courses.length > 0){ 
+            //     const myCourses = courses.map(course=> course.UserId === userProfile.id && course )
+            //     setUserCourses(myCourses)
+            // }  
         if(isLoading === false && !!userProfile.id === false){window.location.href = "/login"}
-    }, [userProfile && userProfile.id, courses && courses.length]); 
+    }, [userProfile && userProfile.id]); 
    
     const isPasswordValid = (pass:string) => {
         return pass.length > 7 && /^(?=.*\d)(?=.*[!@$*()]).{8,}$/i.test(pass)
@@ -130,22 +125,22 @@ const Profile = (props) => {
         setPhotoChanged(false)
         toast.dark("Profile image updated succesfully")
     }
-    const handleEditCourse = (id)=>{
-        history.push(`/courses/edit/${id}`)
-    }
-    const handleDeleteCourse = async  (id)=>{
-        await deleteCourse(id)
-    }
-    useEffect(() => {
-        if(isCourseDeleted) {
-            toast.dark("Course was deleted succesfully")
-        }
-    }, [courses && courses.length])
+    // const handleEditCourse = (id)=>{
+    //     history.push(`/courses/edit/${id}`)
+    // }
+    // const handleDeleteCourse = async  (id)=>{
+    //     await deleteCourse(id)
+    // }
+    // useEffect(() => {
+    //     if(isCourseDeleted) {
+    //         toast.dark("Course was deleted succesfully")
+    //     }
+    // }, [courses && courses.length])
 
     // const crs = paginate(currentUserCourses, pageSize, currentPage);
-    const handlePageChange = page => {
-        setCurrentPage(page);
-    };
+    // const handlePageChange = page => {
+    //     setCurrentPage(page);
+    // };
     return (
         <>
         <div className="background-hero">
@@ -182,7 +177,6 @@ const Profile = (props) => {
                                                   fill='#7D7D7D'
                                               />
                                           </svg>
-                                          {/* <P2 className='photo-title' value='Add photo'/> */}
                                       </>
                               }
                               {
@@ -194,9 +188,8 @@ const Profile = (props) => {
                 </div>
                 <ul className={`nav-links ${activeTab === "courses" && 'nav-links-courses'}`}>
                     <li onClick={() => setActiveTab("details")}>Account Setting</li>
-                    <li onClick={() => setActiveTab("courses")}>Courses</li>
+                    {/* <li onClick={() => setActiveTab("courses")}>Courses</li> */}
                     <li onClick={() => setActiveTab("payments")}>Payment Methods</li>
-                    {/* <li onClick={() => setActiveTab("password")}>Change Password</li> */}
                 </ul>
             </div>
             { activeTab === "details" &&
@@ -272,14 +265,13 @@ const Profile = (props) => {
                  </div>
                 </div>
             }
-            { activeTab === "courses" &&
+            {/* { activeTab === "courses" &&
             <>
-                <h1>Courses teached by  Mr {name}</h1>
+                <h1>Courses teached you</h1>
                 <div className="courses-container">
                     { currentUserCourses && currentUserCourses.map((course: any) => {
-                            const {id,  title, description, slug, duration, price, minimumskill,scholarshipavailable, published, image, courseContent} = course;                                    
+                            const {id,  title, description, slug, price, image} = course;                                    
                             return (
-                                    //data-aos="fade-up" data-aos-duration="500"
                                     <div key={id} className="courses-container__card">
                                         <H3 value={title}/>
                                         <img src={image&&image} alt="" />
@@ -294,22 +286,10 @@ const Profile = (props) => {
                         })
                     }
                 </div>
-                {/* <MaterialPagination
-                        count={currentUserCourses.length}
-                        // pageSize={3}
-                        page={currentPage}
-                        onChange={handlePageChange}
-                /> */}
-                {/* <Pagination
-                        itemsCount={currentUserCourses.length}
-                        pageSize={3}
-                        currentPage={currentPage}
-                        onPageChange={handlePageChange}
-                /> */}
                 </>
-            }
+            } */}
             { activeTab === "payments" && 
-                <h1> payment settings for {name}</h1>
+                <h1> payment settings </h1>
             }
         </div>
         }

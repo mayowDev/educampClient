@@ -1,6 +1,17 @@
 import React from 'react'
 import IconBtn from '../../components/IconBtn';
-const TeacherProfile = () => {
+import Analytics from '../../assets/icons/analysis-chart.svg'
+import Like from '../../assets/icons/thumb-up.svg'
+import Video from '../../assets/icons/video.svg'
+import Book from '../../assets/icons/books.svg'
+import Emoji from '../../assets/icons/happy-emoji.svg'
+
+//thumb-up.svg
+const TeacherProfile = (props) => {
+    const { userProfile} = props;
+        console.log('role',userProfile?.role, '!!userProfile', !!userProfile.id)
+
+
     return (
         <div className="teacherProfile">
             <div className="teacherProfile__sidebar">
@@ -23,31 +34,31 @@ const TeacherProfile = () => {
                 <div className="teacherProfile__content--support">
                     <h5>Have questions? Here are our most popular resources</h5>  
                     <div className="figures-container">
-                    <figure>
-                        <img src="" alt="test-video"/>
-                        <h6>Test video</h6>
-                        <figcaption>Send us sample video and get expert feedback</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="" alt="test-video"/>
-                        <h6>Test video</h6>
-                        <figcaption>Send us sample video and get expert feedback</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="" alt="test-video"/>
-                        <h6>Test video</h6>
-                        <figcaption>Send us sample video and get expert feedback</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="" alt="test-video"/>
-                        <h6>Test video</h6>
-                        <figcaption>Send us sample video and get expert feedback</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="" alt="test-video"/>
-                        <h6>Test video</h6>
-                        <figcaption>Send us sample video and get expert feedback</figcaption>
-                    </figure>
+                        <figure>
+                            <img src={Video} alt="video-icon"/>
+                            <h6>Test video</h6>
+                            <figcaption>Send us sample video and get expert feedback</figcaption>
+                        </figure>
+                        <figure>
+                            <img src={Like} alt="like-icon"/>
+                            <h6>Instructor Community</h6>
+                            <figcaption>Send us sample video and get expert feedback</figcaption>
+                        </figure>
+                        <figure>
+                            <img src={Book} alt="book-icon"/>
+                            <h6>Teaching center</h6>
+                            <figcaption>Send us sample video and get expert feedback</figcaption>
+                        </figure>
+                        <figure>
+                            <img src={Analytics} alt="analytics-icon"/>
+                            <h6>Marketplace insiders</h6>
+                            <figcaption>Send us sample video and get expert feedback</figcaption>
+                        </figure>
+                        <figure>
+                            <img src={Emoji} alt="support-icon"/>
+                            <h6>Help and support</h6>
+                            <figcaption>Send us sample video and get expert feedback</figcaption>
+                        </figure>
 
                     </div>                  
                     

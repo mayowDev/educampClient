@@ -12,6 +12,7 @@ const mapStateToProps = ({teachers, auth})=>{
     return{
         teachers: teachers.teachersList,
         teacherDetails: teachers.teacherDetails,
+        userProfile: auth.userProfile,
         loading: teachers.loading,
         isNull: teachers.isNull,
         isLoggedIn: auth.isLoggedIn,

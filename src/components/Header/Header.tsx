@@ -107,15 +107,8 @@ const Header = (props) => {
                 <div className="header--flex">
                     <nav className='header__nav'>
                         <ul>
-                            <li >
-                                <MenuItem value='Instructors' to="/teachers" className={isLinkActive('/teachers')}/>
-                            </li>
-                            <li >
-                                {/* <Dropdown type="primary" icon={<MenuItem value='Teach on Educamp' to="/teach" className={isLinkActive('/teach')}/> }/> */}
-                                    {/* <div className="dropdown-items">Turn what you know into an opportunity and reach millions around the world.</div> */}
-                                {/* </Dropdown> */}
-                                <MenuItem value='Teach on Educamp' to="/teach" className={isLinkActive('/teach')}/>
-                            </li>
+                            <li ><MenuItem value='Instructors' to="/teachers" className={isLinkActive('/teachers')}/></li>
+                            <li ><MenuItem value='Teach on Educamp' to="/teach" className={isLinkActive('/teach')}/></li>
                             <li  className={!isAuthenticated ? 'not-logged-in' : ''}>
                                 {
                                 !isAuthenticated &&
@@ -179,7 +172,7 @@ const Header = (props) => {
                                 </Dropdown>
                                 <li  className={!isAuthenticated ? 'not-logged-in' : 'logged-in'}>
                                     <Dropdown icon={<IconBtn className="user--profile" type="user" />}>
-                                        <Link to="/profile">My Profile</Link>
+                                        <Link to={userProfile?.role==='teacher' ? "/teacher-profile": "/profile"}>My Profile</Link>
                                         <Link to="/settings">Settings</Link>
                                         <Link to="/help">Help</Link>
                                         <Link className="logout-btn" to="/" onClick={()=>handleLogout()}>Logout</Link>

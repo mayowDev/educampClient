@@ -1064,7 +1064,7 @@
                 p{
                     font-size:2rem;
                     opacity: 0.8;
-                    color: white
+                    color: black
                 }
                 .primary-btn{
                     padding: 10px;
@@ -1219,25 +1219,27 @@
             h5{width:100%}
             .figures-container{
                 display:flex;
-                // flex-direction: column;
-            }
-            figure{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                max-width: 200px;
-                padding: 2rem 1rem;
-                background-color: lightgray;
-                
-                figcaption{
+                figure{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
                     text-align: center;
-                    max-width: 14rem;
+                    max-width: 200px;
+                    padding: 2rem 1rem;
+                    // background-color: lightgray;
+                    img{
+                        // width: 30px;
+                        height: 2.25rem;                    
+                    }
+                    figcaption{
+                        text-align: center;
+                        max-width: 14rem;
+                    }
                 }
             }
             
+            
         }
-        
         
     }
 }
