@@ -108,7 +108,7 @@ const Header = (props) => {
                     <nav className='header__nav'>
                         <ul>
                             <li ><MenuItem value='Instructors' to="/teachers" className={isLinkActive('/teachers')}/></li>
-                            <li ><MenuItem value='Teach on Educamp' to="/teach" className={isLinkActive('/teach')}/></li>
+                            <li ><MenuItem value='Teach on Educamp' to="/teacher-landing" className={isLinkActive('/teacher-landing')}/></li>
                             <li  className={!isAuthenticated ? 'not-logged-in' : ''}>
                                 {
                                 !isAuthenticated &&

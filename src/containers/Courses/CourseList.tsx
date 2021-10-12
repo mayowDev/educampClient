@@ -277,7 +277,7 @@ const Courses = (props) => {
                         <p> Top instructors from around the world teach millions of students on Educamp.
                             We provide the tools and skills to teach what you love.
                         </p>
-                        <button onClick={() => history.push('/teach')}>Start Teaching today</button>
+                        <button onClick={() => history.push('/teacher-landing')}>Start Teaching today</button>
                     </div>
                 </div>
             </div>

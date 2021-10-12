@@ -11,7 +11,7 @@ const Footer = () => {
             <div className="footer__nav">
                 <nav className="first-nav">
                     <ul>
-                        <Link to='/teach'><P1 value="Teach on Educamp" /></Link>
+                        <Link to='/teacher-landing'><P1 value="Teach on Educamp" /></Link>
                         <Link to='#'><P1 value="Get the app" /></Link>
                         <Link to='/about'><P1 value="About us" /></Link>
                         <Link to='/contact'><P1 value="Contact Us" /></Link>
@@ -23,7 +23,7 @@ const Footer = () => {
                         <Link to='/affiliate'><P1 value="Affiliate" /></Link>
                     </ul>
                     <ul>
-                        <Link to='/teach'><P1 value="Terms" /></Link>
+                        <Link to='/terms'><P1 value="Terms" /></Link>
                         <Link to='/privacy-police'><P1 value="Privacy and Policy" /></Link>
                         <Link to='/sitemap'><P1 value="Sitemap" /></Link>
                     </ul>

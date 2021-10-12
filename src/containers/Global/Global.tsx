@@ -13,6 +13,8 @@ import ResetPage from '../Auth/Reset'
 import ProfilePage from '../Auth/Profile'
 import Courses from "../Courses";
 import Teachers from '../Teachers'
+import Teach from '../Teach'
+
 import Cart from '../Cart'
 import Favourites from '../Favourites';
 
@@ -31,15 +33,15 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/forgot-password" component={ForgotPassword}/>
                 <Route exact path="/reset"  component={ResetPage}/>
                 <Route exact path="/courses/new" component={Courses.AddCourse}/>
+                <Route exact path="/teach" component={Teach}/>
+
                 <Route exact path="/courses/edit/:id" component={Courses.EditCourse}/>
                 <Route exact path="/courses/:slug" component={Courses.CourseDetails}/>
                 <Route exact path="/gift/:slug" component={Courses.CourseGift}/>
                 <Route exact path="/teachers" component={Teachers.Teachers}/>
                 <Route exact path="/teachers/:slug" component={Teachers.TeacherDetails}/>
-                <Route exact path="/teach" component={Teachers.TeacherBoarding}/>
+                <Route exact path="/teacher-landing" component={Teachers.TeacherBoarding}/>
                 <Route exact path="/teacher-profile" component={Teachers.TeacherProfile}/>
-
-
                 <Route exact path="/cart" component={Cart.Cart}/>
                 <Route exact path="/favourites" component={Favourites}/>
                 <Route exact path="/categories" component={Courses.Categories}/>
