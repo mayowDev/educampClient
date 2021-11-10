@@ -1,0 +1,89 @@
+.teach{
+    padding:1rem 13rem;
+    &__sidebar{
+        border: 1px solid lightgray;
+        margin-right: 1rem;
+        width: 20%;
+        height: max-content;
+        ul{
+            h3{
+                font-size:1rem
+            }
+            li{
+                padding: .5rem;
+                cursor: pointer;
+                &-active{
+                    border-left: 2px solid blacks;
+                }
+            }
+        }
+        button{
+            width:160px;
+            padding:.75rem 1rem;
+            margin: 5% 10%;
+            font-size:.9rem;
+            font-weight:bold;
+        }
+
+    }
+    &__content{
+        width: 75%;
+        border: 1px solid lightgray;
+        section{    
+            .container{       
+                padding: 1rem 1.75rem;       
+            }
+            .title{
+                border-bottom: 1px solid lightgray;
+                padding: 0;
+                box-sizing: border-box;
+                h2{
+                    font-size:1.5rem;
+                    margin-left: 1.5rem;
+                }
+            }   
+            input{
+                width: 30vw;
+                padding:.75rem 1rem;
+                margin:.5rem 0;
+            }
+        }
+        .intened-learners{
+            
+        }   
+        .structure{
+            &-plan{
+                padding: 1rem 1.75rem;  
+                justify-content: space-between;
+                background-color:#F7F9FA;
+                figure{
+                    background-color: red;
+                    width: 350px;
+                    height: max-content;
+                    padding: 2rem;
+                    min-height: 200px;
+                }
+            }
+           
+        }    
+        .setup{}
+        .film{}
+        .curriculum{}    
+        .caption{} 
+        .landing{}   
+        .promotion{}   
+        .pricing{} 
+        .message{} 
+                
+    }
+}
+
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}

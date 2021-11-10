@@ -9,7 +9,6 @@ const Rating = (props) => {
             <span className="fa fa-star checked"/>
             <span className="fa fa-star checked"/>
             <span className="fa fa-star"/>
-            {/* <span className="count">(94,974 ratings) 254,953 students</span> */}
             <span className="count">(94,974 ratings)</span>
         </div>
     )
