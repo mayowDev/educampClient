@@ -34,7 +34,6 @@ const RenderRoutes = ({isLoggedIn}) => {
                 <Route exact path="/reset"  component={ResetPage}/>
                 <Route exact path="/courses/new" component={Courses.AddCourse}/>
                 <Route exact path="/teach" component={Teach}/>
-
                 <Route exact path="/courses/edit/:id" component={Courses.EditCourse}/>
                 <Route exact path="/courses/:slug" component={Courses.CourseDetails}/>
                 <Route exact path="/gift/:slug" component={Courses.CourseGift}/>
@@ -70,7 +69,6 @@ const Global = ({isLoggedIn, getUserData, fetchCourses, getWishlistItems,  getCa
         }
     },[userProfile&&userProfile.id, isLoggedIn]); 
     useEffect(() => {
-        // console.log('userProfile', userProfile);
         if(isLoggedIn){
             // console.log('isLoggedIn', isLoggedIn);
             getUserData();  

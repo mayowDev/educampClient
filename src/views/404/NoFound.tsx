@@ -1,8 +1,7 @@
 import React,{Fragment} from 'react'
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './style.scss'
 const NoFound = () => {
-    const { pathname } = useLocation()
     return (
         <Fragment>
             <div className="wrapper">

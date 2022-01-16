@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 
 const Teach = () => {
     const [activeTab, setActiveTab] = useState('default')
     return (
         <div className="teach flex-row">
             <aside className="teach__sidebar flex-col">
-                {/* this page should consist a side bar : and each title should have a section  with a inputs */}
                 <ul>
                     <h3>Plan your course</h3>
                     <li onClick={()=>setActiveTab('default')}>Intended Learners</li>

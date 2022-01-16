@@ -35,7 +35,7 @@
     "build-betaaa": "npm run clean-dist && ./node_modules/.bin/cross-env NODE_OPTIONS='--max-old-space-size=4096' webpack --config configs/webpack/prod.js",
     "clean-dist": "rimraf build/*",
     "start-prod": "webpack  serve --node-env production --config webpack.config.js  --profile --content-base dist/ ",
-    "start-dev": "webpack serve --node-env development  --config webpack.config.js  --profile --content-base src/ ",
+    "dev": "webpack serve --node-env development  --config webpack.config.js  --profile --content-base src/ ",
     "start": "npm-run-all --parallel build start-prod",
     "storybook": "start-storybook -p 6006 -s public",
     "serve": "webpack serve --config webpack.config.js --profile --watch --content-base src/",
