@@ -3,7 +3,7 @@
 
 .courses{
     font-family: sf pro text,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
-    padding: 0 240px;
+    padding: 0 10vw;
     h1,h2,h3{color:$dark-gray;line-height: 1.4;}
     
 }
@@ -398,7 +398,7 @@
     flex-wrap: wrap;
     column-gap: 1rem;
     h2{margin: 3rem 1.35rem;}
-    &__isCategoryPage{ padding: 0 240px}
+    &__isCategoryPage{ padding: 0 30vw}
     &__items{
         display: flex;
         flex-direction:row;

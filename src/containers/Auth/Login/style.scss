@@ -25,12 +25,17 @@
 			text-align: center;
 			h2{
 				font-size: 30px!important;
-			}
-			p a{
-				font-size: 18px;
 				color: black;
-				text-decoration: underline;
-				padding-bottom: 0px;
+
+			}
+			p{
+				color: black;
+				 a{
+					font-size: 18px;
+					color: black;
+					text-decoration: underline;
+					padding-bottom: 0px;
+				}
 			}
 		} 
 		form{
